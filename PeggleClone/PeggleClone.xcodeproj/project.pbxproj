@@ -16,6 +16,13 @@
 		619D84AA29890A9A007C8683 /* PeggleCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84A929890A9A007C8683 /* PeggleCloneTests.swift */; };
 		619D84B429890A9A007C8683 /* PeggleCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84B329890A9A007C8683 /* PeggleCloneUITests.swift */; };
 		619D84B629890A9A007C8683 /* PeggleCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84B529890A9A007C8683 /* PeggleCloneUITestsLaunchTests.swift */; };
+		619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */; };
+		61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA5298A339C00297265 /* MSKNode.swift */; };
+		61CDDEA8298A363B00297265 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA7298A363B00297265 /* Constants.swift */; };
+		61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */; };
+		61CDDEBB298AA6E800297265 /* MSKScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEBA298AA6E800297265 /* MSKScene.swift */; };
+		61CDDEBD298AAC1200297265 /* MSKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEBC298AAC1200297265 /* MSKView.swift */; };
+		61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEBE298AACC600297265 /* MSKSpriteNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		619D84AF29890A9A007C8683 /* PeggleCloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PeggleCloneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		619D84B329890A9A007C8683 /* PeggleCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleCloneUITests.swift; sourceTree = "<group>"; };
 		619D84B529890A9A007C8683 /* PeggleCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsBody.swift; sourceTree = "<group>"; };
+		61CDDEA5298A339C00297265 /* MSKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKNode.swift; sourceTree = "<group>"; };
+		61CDDEA7298A363B00297265 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsWorld.swift; sourceTree = "<group>"; };
+		61CDDEBA298AA6E800297265 /* MSKScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKScene.swift; sourceTree = "<group>"; };
+		61CDDEBC298AAC1200297265 /* MSKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKView.swift; sourceTree = "<group>"; };
+		61CDDEBE298AACC600297265 /* MSKSpriteNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKSpriteNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +113,7 @@
 		619D849129890A96007C8683 /* PeggleClone */ = {
 			isa = PBXGroup;
 			children = (
+				61CDDEA3298A333A00297265 /* MySpriteKit */,
 				619D849229890A96007C8683 /* AppDelegate.swift */,
 				619D849429890A96007C8683 /* SceneDelegate.swift */,
 				619D849629890A96007C8683 /* ViewController.swift */,
@@ -127,6 +142,36 @@
 			path = PeggleCloneUITests;
 			sourceTree = "<group>";
 		};
+		619D84C229890AF7007C8683 /* Physics Engine */ = {
+			isa = PBXGroup;
+			children = (
+				619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */,
+				61CDDEA7298A363B00297265 /* Constants.swift */,
+				61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */,
+			);
+			path = "Physics Engine";
+			sourceTree = "<group>";
+		};
+		61CDDEA3298A333A00297265 /* MySpriteKit */ = {
+			isa = PBXGroup;
+			children = (
+				61CDDEA4298A334F00297265 /* Scene Renderers */,
+				619D84C229890AF7007C8683 /* Physics Engine */,
+			);
+			path = MySpriteKit;
+			sourceTree = "<group>";
+		};
+		61CDDEA4298A334F00297265 /* Scene Renderers */ = {
+			isa = PBXGroup;
+			children = (
+				61CDDEA5298A339C00297265 /* MSKNode.swift */,
+				61CDDEBA298AA6E800297265 /* MSKScene.swift */,
+				61CDDEBC298AAC1200297265 /* MSKView.swift */,
+				61CDDEBE298AACC600297265 /* MSKSpriteNode.swift */,
+			);
+			path = "Scene Renderers";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,6 +182,7 @@
 				619D848B29890A96007C8683 /* Sources */,
 				619D848C29890A96007C8683 /* Frameworks */,
 				619D848D29890A96007C8683 /* Resources */,
+				619D84C529890EE0007C8683 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -253,14 +299,41 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		619D84C529890EE0007C8683 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		619D848B29890A96007C8683 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */,
+				61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */,
+				61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */,
+				61CDDEBB298AA6E800297265 /* MSKScene.swift in Sources */,
 				619D849729890A96007C8683 /* ViewController.swift in Sources */,
+				619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */,
 				619D849329890A96007C8683 /* AppDelegate.swift in Sources */,
+				61CDDEBD298AAC1200297265 /* MSKView.swift in Sources */,
 				619D849529890A96007C8683 /* SceneDelegate.swift in Sources */,
+				61CDDEA8298A363B00297265 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
