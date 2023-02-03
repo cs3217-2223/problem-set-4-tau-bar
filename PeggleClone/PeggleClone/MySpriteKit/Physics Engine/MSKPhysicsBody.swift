@@ -46,6 +46,25 @@ class MSKPhysicsBody {
         self.categoryBitMask = categoryBitMask
         self.mass = mass
     }
+    init(node: MSKNode? = nil,
+         radius: Double = defaultRadius,
+         position: SIMD2<Double>,
+         oldPosition: SIMD2<Double>,
+         acceleration: SIMD2<Double> = defaultAcceleration,
+         affectedByGravity: Bool = defaultAffectedByGravity,
+         isDynamic: Bool = defaultIsDynamic,
+         categoryBitMask: UInt32 = defaultCategoryBitMask,
+         mass: Double = defaultMass) {
+        self.node = node
+        self.radius = radius
+        self.position = position
+        self.positionLast = oldPosition
+        self.acceleration = acceleration
+        self.affectedByGravity = affectedByGravity
+        self.isDynamic = isDynamic
+        self.categoryBitMask = categoryBitMask
+        self.mass = mass
+    }
     convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>) {
         self.init(radius: radius, position: center)
     }

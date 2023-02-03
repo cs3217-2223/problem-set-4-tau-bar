@@ -7,18 +7,39 @@
 
 import UIKit
 
-class MSKView: UIView {
+class MSKView: UIView, MSKSceneDelegate {
     var scene: MSKScene?
+    var nodeToView: [MSKSpriteNode: UIView] = [:]
     func presentScene() {
         guard let nodes = scene?.nodes else { return }
         for node in nodes {
-            let newView = createImageView(from: node)
-            self.addSubview(newView)
+            addSubview(from: node)
         }
     }
     func createImageView(from node: MSKSpriteNode) -> UIImageView {
         let newView = UIImageView(image: node.image)
         newView.center = node.position
+        newView.frame.size = CGSize(width: node.physicsBody.radius * 2, height: node.physicsBody.radius * 2)
         return newView
+    }
+    func addSubview(from addedNode: MSKSpriteNode) {
+        let newView = createImageView(from: addedNode)
+        nodeToView[addedNode] = newView
+        self.addSubview(newView)
+    }
+    func didRemoveNode(_ removedNode: MSKSpriteNode) {
+        nodeToView[removedNode] = nil
+    }
+    func didAddNode(_ addedNode: MSKSpriteNode) {
+        addSubview(from: addedNode)
+    }
+    func didMoveNode(_ movedNode: MSKSpriteNode) {
+        nodeToView[movedNode]?.center = movedNode.position
+    }
+    func refresh(dt: TimeInterval) {
+        scene?.update(dt: dt)
+    }
+    func setScene(_ scene: MSKScene) {
+        self.scene = scene
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: Constants for `MSKPhysicsBody`
-let defaultRadius: Double = 1.0
+let defaultRadius: Double = 20.0
 let defaultAcceleration: SIMD2<Double> = .zero
 let defaultAffectedByGravity: Bool = true
 let defaultIsDynamic: Bool = true
@@ -18,5 +18,5 @@ let defaultAngularVelocity: CGFloat = .zero
 let defaultMass: Double = 1.0
 
 // MARK: Constants for `MSKPhysicsWorld`
-let defaultGravity: SIMD2<Double> = SIMD2(x: 0, y: -9.81)
+let defaultGravity: SIMD2<Double> = SIMD2(x: 0, y: 200)
 let defaultResponseCoeff: Double = 0.75
