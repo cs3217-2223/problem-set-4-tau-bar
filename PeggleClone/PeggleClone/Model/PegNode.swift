@@ -11,7 +11,7 @@ class PegNode: MSKSpriteNode {
     // TODO: Create Blue, Orange peg classes, etc.
     init(position: CGPoint) {
         super.init(position: position,
-                   physicsBody: MSKPhysicsBody(circleOfRadius: 1.0,
+                   physicsBody: MSKPhysicsBody(circleOfRadius: 20.0,
                                                center: SIMD2<Double>(x: position.x,
                                                                      y: position.y)),
                    image: UIImage(named: "peg-blue"))

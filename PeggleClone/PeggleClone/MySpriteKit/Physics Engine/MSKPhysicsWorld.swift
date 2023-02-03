@@ -57,18 +57,23 @@ class MSKPhysicsWorld {
                 let collisionAxisLength = getLength(of: collisionAxis)
                 // Checks whether the objects are overlapping.
                 if collisionAxisLength < minDistance {
-                    let unitVector = collisionAxis / collisionAxisLength
+                    var unitVector = collisionAxis / collisionAxisLength
                     let massRatioA = bodyA.mass / (bodyA.mass + bodyB.mass)
                     let massRatioB = bodyB.mass / (bodyA.mass + bodyB.mass)
                     let delta = 0.5 * responseCoeff * (collisionAxisLength - minDistance)
                     // Update positions of both bodies.
+                    if isVertical(unitVector) {
+                        unitVector.x = Double.random(in: -0.5...0.5)
+                    }
                     bodyA.updatePosition(by: -1 * unitVector * (massRatioB * delta))
                     bodyB.updatePosition(by: unitVector * (massRatioA * delta))
                 }
             }
         }
     }
-    
+    private func isVertical(_ unitVector: SIMD2<Double>) -> Bool {
+        unitVector.y == 1.0 || unitVector.y == -1.0
+    }
     func applyConstraint() {
         for body in bodies {
             if body.position.x - body.radius < 0 {

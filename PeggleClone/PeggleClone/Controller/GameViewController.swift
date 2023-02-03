@@ -23,6 +23,11 @@ class GameViewController: UIViewController {
         guard let boardScene = boardScene else { return }
         boardView.setScene(boardScene)
         boardScene.delegate = boardView
+        
+        let staticPhysicsBody = MSKPhysicsBody(radius: 50, position: SIMD2<Double>(x: 400, y: 200),
+                                               oldPosition: SIMD2<Double>(x: 400, y: 200), isDynamic: false)
+        let staticNode = PegNode(physicsBody: staticPhysicsBody)
+        boardScene.addNode(staticNode)
     }
     func begin() {
         boardView.presentScene()
@@ -30,9 +35,9 @@ class GameViewController: UIViewController {
     @objc func step() {
         boardView.refresh(dt: displayLink.targetTimestamp - displayLink.timestamp)
         guard let boardScene = boardScene else { return }
-        if count == 10 {
-            let newPhysicsBody = MSKPhysicsBody(position: SIMD2<Double>(x: Double(405 + Int.random(in: 1...50)), y: 50),
-                                                oldPosition: SIMD2<Double>(x: 400, y: 30))
+        if count == 100 {
+            let newPhysicsBody = MSKPhysicsBody(position: SIMD2<Double>(x: 400, y: 50),
+                                                oldPosition: SIMD2<Double>(x: 400, y: 50))
             let newNode = PegNode(physicsBody: newPhysicsBody)
             boardScene.addNode(newNode)
             count = 0
