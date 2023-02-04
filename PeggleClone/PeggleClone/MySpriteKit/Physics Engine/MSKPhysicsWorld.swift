@@ -45,28 +45,28 @@ class MSKPhysicsWorld {
     /// Adds edges to the borders of the physics world to ensure bodies stay within bounds.
     func addBorders() {
         let borderBuffer: Double = 100
-        let verticalBorderVertices = [SIMD2<Double>.zero, SIMD2<Double>(x: 0, y: height + borderBuffer * 2)]
+        let verticalBorderVertices = getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
 
-        let leftBorderPos = SIMD2<Double>(x: 0, y: 0 - borderBuffer)
+        let leftBorderPos = SIMD2<Double>(x: 0 - borderBuffer, y: height / 2)
         let leftBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
                                                position: leftBorderPos,
                                                affectedByGravity: false,
                                                isDynamic: false)
 
-        let rightBorderPos = SIMD2<Double>(x: width, y: 0 - borderBuffer)
+        let rightBorderPos = SIMD2<Double>(x: width + borderBuffer, y: height / 2)
         let rightBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
                                                 position: rightBorderPos,
                                                 affectedByGravity: false,
                                                 isDynamic: false)
 
-        let horizontalBorderVertices = [SIMD2<Double>.zero, SIMD2<Double>(x: width + borderBuffer * 2, y: 0)]
-        let topBorderPos = SIMD2<Double>(x: 0 - borderBuffer, y: 0)
+        let horizontalBorderVertices = getVerticesForRect(width: width + borderBuffer * 2, height: borderBuffer * 2)
+        let topBorderPos = SIMD2<Double>(x: width / 2, y: 0 - borderBuffer)
         let topBorder = MSKPolygonPhysicsBody(vertices: horizontalBorderVertices,
                                                  position: topBorderPos,
                                                  affectedByGravity: false,
                                                  isDynamic: false)
 
-        let bottomBorderPos = SIMD2<Double>(x: 0 - borderBuffer, y: height)
+        let bottomBorderPos = SIMD2<Double>(x: width / 2, y: height + borderBuffer)
         let bottomBorder = MSKPolygonPhysicsBody(vertices: horizontalBorderVertices,
                                                  position: bottomBorderPos,
                                                  affectedByGravity: false,

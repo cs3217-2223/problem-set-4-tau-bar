@@ -22,7 +22,7 @@
 		619D84B429890A9A007C8683 /* PeggleCloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84B329890A9A007C8683 /* PeggleCloneUITests.swift */; };
 		619D84B629890A9A007C8683 /* PeggleCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84B529890A9A007C8683 /* PeggleCloneUITestsLaunchTests.swift */; };
 		619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */; };
-		61AF44CD298C9B0C00A9181A /* MSKCirclePhysicsBodyCirclePhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBodyCirclePhysicsBody.swift */; };
+		61AF44CD298C9B0C00A9181A /* MSKCirclePhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBody.swift */; };
 		61AF44CF298CA17F00A9181A /* UtilFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AF44CE298CA17F00A9181A /* UtilFunctions.swift */; };
 		61AF44D1298CA31600A9181A /* MSKPolygonPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */; };
 		61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA5298A339C00297265 /* MSKNode.swift */; };
@@ -71,7 +71,7 @@
 		619D84B329890A9A007C8683 /* PeggleCloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleCloneUITests.swift; sourceTree = "<group>"; };
 		619D84B529890A9A007C8683 /* PeggleCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsBody.swift; sourceTree = "<group>"; };
-		61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBodyCirclePhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKCirclePhysicsBodyCirclePhysicsBody.swift; sourceTree = "<group>"; };
+		61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKCirclePhysicsBody.swift; sourceTree = "<group>"; };
 		61AF44CE298CA17F00A9181A /* UtilFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilFunctions.swift; sourceTree = "<group>"; };
 		61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPolygonPhysicsBody.swift; sourceTree = "<group>"; };
 		61CDDEA5298A339C00297265 /* MSKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKNode.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 				619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */,
 				61CDDEA7298A363B00297265 /* Constants.swift */,
 				61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */,
-				61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBodyCirclePhysicsBody.swift */,
+				61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBody.swift */,
 				61AF44CE298CA17F00A9181A /* UtilFunctions.swift */,
 				61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */,
 			);
@@ -380,7 +380,7 @@
 				617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */,
 				617D2DDC298BB79900461FC9 /* MSKRenderer.swift in Sources */,
 				61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */,
-				61AF44CD298C9B0C00A9181A /* MSKCirclePhysicsBodyCirclePhysicsBody.swift in Sources */,
+				61AF44CD298C9B0C00A9181A /* MSKCirclePhysicsBody.swift in Sources */,
 				61CDDEBB298AA6E800297265 /* MSKScene.swift in Sources */,
 				617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */,
 				619D849729890A96007C8683 /* GameViewController.swift in Sources */,
