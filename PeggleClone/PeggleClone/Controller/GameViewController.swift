@@ -33,7 +33,7 @@ class GameViewController: UIViewController {
         boardView.presentScene()
     }
     @objc func step() {
-        boardView.refresh(dt: displayLink.targetTimestamp - displayLink.timestamp)
+        boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
         guard let boardScene = boardScene else { return }
         if count == 25 {
             let newPhysicsBody = MSKCirclePhysicsBody(radius: 20,

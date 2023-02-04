@@ -28,6 +28,16 @@ class MSKNode: MSKPhysicsBodyDelegate {
         updatePosition()
     }
 
+    /// Returns width of the node.
+    func getWidth() -> Double {
+        physicsBody.getWidth()
+    }
+
+    /// Returns height of the node.
+    func getHeight() -> Double {
+        physicsBody.getHeight()
+    }
+
     private func updatePosition() {
         position.x = physicsBody.position.x
         position.y = physicsBody.position.y

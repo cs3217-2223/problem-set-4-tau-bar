@@ -8,7 +8,9 @@
 import UIKit
 
 class MSKSpriteNode: MSKNode {
+    /// The image which represents design of the sprite.
     var image: UIImage?
+
     init(physicsBody: MSKPhysicsBody, image: UIImage?) {
         self.image = image
         super.init(physicsBody: physicsBody)

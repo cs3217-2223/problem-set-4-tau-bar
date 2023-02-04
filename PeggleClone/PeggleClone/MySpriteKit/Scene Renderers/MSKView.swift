@@ -8,41 +8,58 @@
 import UIKit
 
 class MSKView: UIView, MSKSceneDelegate {
-    /// The scene that the view is displaying.
+    /// The scene currently presented by this view.
     var scene: MSKScene?
-    
+
+    /// Dictionary to cache the view representing each `MSKSpriteNode` in the `scene`.
     var nodeToView: [MSKSpriteNode: UIView] = [:]
+
+    /// Presents a scene.
     func presentScene() {
         guard let nodes = scene?.nodes else { return }
         for node in nodes {
             addSubview(from: node)
         }
     }
+
+    /// Creates a `UIImageView` from a `MSKSpriteNode`.
     func createImageView(from node: MSKSpriteNode) -> UIImageView {
         let newView = UIImageView(image: node.image)
+
         newView.center = node.position
-        // TODO: Refactor this - view shouldn't access the physicsbody.
-        let nodePhysicsBody = node.physicsBody
-        newView.frame.size = CGSize(width: nodePhysicsBody.getWidth(), height: nodePhysicsBody.getHeight())
+        newView.frame.size = CGSize(width: node.getWidth(), height: node.getHeight())
+
         return newView
     }
+
+    /// Adds a subview onto the view from a `MSKSpriteNode`.
     func addSubview(from addedNode: MSKSpriteNode) {
         let newView = createImageView(from: addedNode)
         nodeToView[addedNode] = newView
         self.addSubview(newView)
     }
+
+    /// Removes a subview which represents a `MSKSpriteNode`.
     func didRemoveNode(_ removedNode: MSKSpriteNode) {
+        nodeToView[removedNode]?.removeFromSuperview()
         nodeToView[removedNode] = nil
     }
+
+    /// Adds a subview when a `MSKSpriteNode` is added to the scene.
     func didAddNode(_ addedNode: MSKSpriteNode) {
         addSubview(from: addedNode)
     }
-    func didUpdateNode(_ movedNode: MSKSpriteNode) {
-        nodeToView[movedNode]?.center = movedNode.position
+
+    /// Updates a subview to the latest state of the `MSKSpriteNode`.
+    func didUpdateNode(_ node: MSKSpriteNode) {
+        nodeToView[node]?.center = node.position
     }
-    func refresh(dt: TimeInterval) {
-        scene?.update(timeInterval: dt)
+
+    /// Refreshes the state of the scene to the current time.
+    func refresh(timeInterval: TimeInterval) {
+        scene?.update(timeInterval: timeInterval)
     }
+
     func setScene(_ scene: MSKScene) {
         self.scene = scene
     }

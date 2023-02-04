@@ -9,6 +9,8 @@ import Foundation
 
 protocol MSKSceneDelegate: AnyObject {
     func didRemoveNode(_ removedNode: MSKSpriteNode)
+
     func didAddNode(_ addedNode: MSKSpriteNode)
-    func didUpdateNode(_ updatedNode: MSKSpriteNode)
+
+    func didUpdateNode(_ node: MSKSpriteNode)
 }
