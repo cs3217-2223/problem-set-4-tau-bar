@@ -7,21 +7,35 @@
 
 import Foundation
 
-class MSKNode {
+/// Represents a node inside a `MSKScene`.
+class MSKNode: MSKPhysicsBodyDelegate {
+    /// The position of the node within the scene.
     var position: CGPoint
+
+    /// The physics body of the node.
     var physicsBody: MSKPhysicsBody
-    init(position: CGPoint, physicsBody: MSKPhysicsBody) {
-        self.position = position
+
+    init(physicsBody: MSKPhysicsBody) {
+        self.position = CGPoint(x: physicsBody.position.x,
+                                y: physicsBody.position.y)
         self.physicsBody = physicsBody
+        self.physicsBody.delegate = self
     }
-    func updatePosition() {
+
+    /// Updates position of node when position of physics body gets updated.
+    /// Delegate function for `MSKPhysicsBodyDelegate`.
+    func didUpdatePosition() {
+        updatePosition()
+    }
+
+    private func updatePosition() {
         position.x = physicsBody.position.x
         position.y = physicsBody.position.y
     }
 }
 
 extension MSKNode: Equatable {
-    static func ==(lhs: MSKNode, rhs: MSKNode) -> Bool {
+    static func == (lhs: MSKNode, rhs: MSKNode) -> Bool {
         ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
 }

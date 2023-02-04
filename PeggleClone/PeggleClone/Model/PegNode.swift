@@ -10,16 +10,13 @@ import UIKit
 class PegNode: MSKSpriteNode {
     // TODO: Create Blue, Orange peg classes, etc.
     init(position: CGPoint) {
-        super.init(position: position,
-                   physicsBody: MSKCirclePhysicsBody(circleOfRadius: 20.0,
+        super.init(physicsBody: MSKCirclePhysicsBody(circleOfRadius: 20.0,
                                                center: SIMD2<Double>(x: position.x,
                                                                      y: position.y)),
                    image: UIImage(named: "peg-blue"))
     }
     init(physicsBody: MSKCirclePhysicsBody) {
-        super.init(position: CGPoint(x: physicsBody.position.x,
-                                     y: physicsBody.position.y),
-                   physicsBody: physicsBody,
+        super.init(physicsBody: physicsBody,
                    image: UIImage(named: "peg-blue"))
     }
 }

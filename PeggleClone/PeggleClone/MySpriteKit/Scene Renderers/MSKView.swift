@@ -8,7 +8,9 @@
 import UIKit
 
 class MSKView: UIView, MSKSceneDelegate {
+    /// The scene that the view is displaying.
     var scene: MSKScene?
+    
     var nodeToView: [MSKSpriteNode: UIView] = [:]
     func presentScene() {
         guard let nodes = scene?.nodes else { return }
@@ -35,11 +37,11 @@ class MSKView: UIView, MSKSceneDelegate {
     func didAddNode(_ addedNode: MSKSpriteNode) {
         addSubview(from: addedNode)
     }
-    func didMoveNode(_ movedNode: MSKSpriteNode) {
+    func didUpdateNode(_ movedNode: MSKSpriteNode) {
         nodeToView[movedNode]?.center = movedNode.position
     }
     func refresh(dt: TimeInterval) {
-        scene?.update(dt: dt)
+        scene?.update(timeInterval: dt)
     }
     func setScene(_ scene: MSKScene) {
         self.scene = scene

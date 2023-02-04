@@ -10,6 +10,8 @@ import CoreGraphics
 
 /// Represents a physical body in the Physics World.
 class MSKPhysicsBody {
+    weak var delegate: MSKPhysicsBodyDelegate?
+
     /// The previous position of the center of the body.
     var positionLast: SIMD2<Double>
 
@@ -75,6 +77,8 @@ class MSKPhysicsBody {
         positionLast = position
         position = position + displacement + acceleration * (timeInterval * timeInterval)
         acceleration = .zero
+
+        delegate?.didUpdatePosition()
     }
 
     /// Applies gravirty to the physics body.

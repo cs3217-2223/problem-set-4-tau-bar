@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */; };
 		617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */; };
 		617D2DDC298BB79900461FC9 /* MSKRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DDB298BB79900461FC9 /* MSKRenderer.swift */; };
 		617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DDE298BBBB100461FC9 /* BoardView.swift */; };
@@ -52,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKSceneDelegate.swift; sourceTree = "<group>"; };
 		617D2DDB298BB79900461FC9 /* MSKRenderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKRenderer.swift; sourceTree = "<group>"; };
 		617D2DDE298BBBB100461FC9 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 				61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBody.swift */,
 				61AF44CE298CA17F00A9181A /* UtilFunctions.swift */,
 				61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */,
+				615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */,
 			);
 			path = "Physics Engine";
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 			files = (
 				61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */,
 				61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */,
+				615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */,
 				617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */,
 				617D2DDC298BB79900461FC9 /* MSKRenderer.swift in Sources */,
 				61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */,
