@@ -19,7 +19,9 @@ class MSKView: UIView, MSKSceneDelegate {
     func createImageView(from node: MSKSpriteNode) -> UIImageView {
         let newView = UIImageView(image: node.image)
         newView.center = node.position
-        newView.frame.size = CGSize(width: node.physicsBody.radius * 2, height: node.physicsBody.radius * 2)
+        // TODO: Refactor this - view shouldn't access the physicsbody.
+        let nodePhysicsBody = node.physicsBody
+        newView.frame.size = CGSize(width: nodePhysicsBody.getWidth(), height: nodePhysicsBody.getHeight())
         return newView
     }
     func addSubview(from addedNode: MSKSpriteNode) {

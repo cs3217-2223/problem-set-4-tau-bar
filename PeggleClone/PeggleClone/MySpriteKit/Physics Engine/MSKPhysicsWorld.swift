@@ -36,7 +36,7 @@ class MSKPhysicsWorld {
     func simulatePhysics(dt: TimeInterval) {
         for _ in 0..<substeps {
             applyGravity()
-            checkCollisions(dt: dt)
+            handleCollisions(dt: dt)
             applyConstraint()
             updateObjects(dt: dt)
         }
@@ -46,60 +46,43 @@ class MSKPhysicsWorld {
             body.applyGravity(gravity)
         }
     }
-    private func checkCollisions(dt: TimeInterval) {
-        let responseCoeff: Double = defaultResponseCoeff
+    func resolveCollision(bodyA: MSKPhysicsBody, bodyB: MSKPhysicsBody) {
+        bodyA.collide(with: bodyB)
+        bodyB.collide(with: bodyA)
+    }
+    private func handleCollisions(dt: TimeInterval) {
         for idx1 in 0..<bodies.count {
             let bodyA = bodies[idx1]
             for idx2 in (idx1 + 1)..<bodies.count {
                 let bodyB = bodies[idx2]
-                let minDistance = bodyA.radius + bodyB.radius
-                let collisionAxis = bodyA.position - bodyB.position
-                let collisionAxisLength = getLength(of: collisionAxis)
-                // Checks whether the objects are overlapping.
-                if collisionAxisLength < minDistance {
-                    var unitVector = collisionAxis / collisionAxisLength
-                    let massRatioA = bodyA.mass / (bodyA.mass + bodyB.mass)
-                    let massRatioB = bodyB.mass / (bodyA.mass + bodyB.mass)
-                    let delta = 0.5 * responseCoeff * (collisionAxisLength - minDistance)
-                    // Update positions of both bodies.
-                    if isVertical(unitVector) {
-                        unitVector.x = Double.random(in: -0.5...0.5)
-                    }
-                    bodyA.updatePosition(by: -1 * unitVector * (massRatioB * delta))
-                    bodyB.updatePosition(by: unitVector * (massRatioA * delta))
-                }
+                resolveCollision(bodyA: bodyA, bodyB: bodyB)
             }
         }
     }
-    private func isVertical(_ unitVector: SIMD2<Double>) -> Bool {
-        unitVector.y == 1.0 || unitVector.y == -1.0
-    }
     func applyConstraint() {
         for body in bodies {
-            if body.position.x - body.radius < 0 {
-                body.positionLast = body.position
-                body.position.x = body.radius
-            }
-            if body.position.x + body.radius > width {
-                body.positionLast = body.position
-                body.position.x = width - body.radius
-            }
-            if body.position.y - body.radius < 0 {
-                body.positionLast = body.position
-                body.position.y = body.radius
-            }
-            if body.position.y + body.radius > width {
-                body.positionLast = body.position
-                body.position.y = width - body.radius
-            }
+            // TODO: Add method for each physics body type to apply constraint to itself.
+//            if body.position.x - body.radius < 0 {
+//                body.positionLast = body.position
+//                body.position.x = body.radius
+//            }
+//            if body.position.x + body.radius > width {
+//                body.positionLast = body.position
+//                body.position.x = width - body.radius
+//            }
+//            if body.position.y - body.radius < 0 {
+//                body.positionLast = body.position
+//                body.position.y = body.radius
+//            }
+//            if body.position.y + body.radius > width {
+//                body.positionLast = body.position
+//                body.position.y = width - body.radius
+//            }
         }
     }
     private func updateObjects(dt: TimeInterval) {
         for body in bodies {
             body.updatePosition(dt: dt)
         }
-    }
-    private func getLength(of vector: SIMD2<Double>) -> Double {
-        sqrt(vector.x * vector.x + vector.y * vector.y)
     }
 }

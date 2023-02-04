@@ -24,9 +24,10 @@ class GameViewController: UIViewController {
         boardView.setScene(boardScene)
         boardScene.delegate = boardView
         
-        let staticPhysicsBody = MSKPhysicsBody(radius: 50, position: SIMD2<Double>(x: 400, y: 200),
+        let rectVertices = getVerticesForRect(width: 100, height: 100)
+        let staticPhysicsBody = MSKPolygonPhysicsBody(vertices: rectVertices, position: SIMD2<Double>(x: 400, y: 200),
                                                oldPosition: SIMD2<Double>(x: 400, y: 200), isDynamic: false)
-        let staticNode = PegNode(physicsBody: staticPhysicsBody)
+        let staticNode = SquareNode(physicsBody: staticPhysicsBody)
         boardScene.addNode(staticNode)
     }
     func begin() {
@@ -36,9 +37,11 @@ class GameViewController: UIViewController {
         boardView.refresh(dt: displayLink.targetTimestamp - displayLink.timestamp)
         guard let boardScene = boardScene else { return }
         if count == 100 {
-            let newPhysicsBody = MSKPhysicsBody(position: SIMD2<Double>(x: 400, y: 50),
-                                                oldPosition: SIMD2<Double>(x: 400, y: 50))
-            let newNode = PegNode(physicsBody: newPhysicsBody)
+            let vertices = getVerticesForRect(width: 20, height: 20)
+            let newPhysicsBody = MSKPolygonPhysicsBody(vertices: vertices,
+                                                       position: SIMD2<Double>(x: 300, y: 400),
+                                                       oldPosition: SIMD2<Double>(x: 290, y: 420))
+            let newNode = SquareNode(physicsBody: newPhysicsBody)
             boardScene.addNode(newNode)
             count = 0
         }

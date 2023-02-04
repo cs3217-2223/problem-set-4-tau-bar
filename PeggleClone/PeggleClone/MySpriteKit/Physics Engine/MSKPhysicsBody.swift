@@ -9,10 +9,7 @@ import Foundation
 import CoreGraphics
 
 class MSKPhysicsBody {
-    ///
     weak var node: MSKNode?
-    /// The radius of the body.
-    var radius: Double
     /// The previous position of the center of the body.
     var positionLast: SIMD2<Double>
     /// The current position of the center of the body.
@@ -29,7 +26,6 @@ class MSKPhysicsBody {
     
     // MARK: Designated & Convenience Initializers
     init(node: MSKNode? = nil,
-         radius: Double = defaultRadius,
          position: SIMD2<Double>,
          acceleration: SIMD2<Double> = defaultAcceleration,
          affectedByGravity: Bool = defaultAffectedByGravity,
@@ -37,7 +33,6 @@ class MSKPhysicsBody {
          categoryBitMask: UInt32 = defaultCategoryBitMask,
          mass: Double = defaultMass) {
         self.node = node
-        self.radius = radius
         self.position = position
         self.positionLast = position
         self.acceleration = acceleration
@@ -47,7 +42,6 @@ class MSKPhysicsBody {
         self.mass = mass
     }
     init(node: MSKNode? = nil,
-         radius: Double = defaultRadius,
          position: SIMD2<Double>,
          oldPosition: SIMD2<Double>,
          acceleration: SIMD2<Double> = defaultAcceleration,
@@ -56,7 +50,6 @@ class MSKPhysicsBody {
          categoryBitMask: UInt32 = defaultCategoryBitMask,
          mass: Double = defaultMass) {
         self.node = node
-        self.radius = radius
         self.position = position
         self.positionLast = oldPosition
         self.acceleration = acceleration
@@ -65,14 +58,10 @@ class MSKPhysicsBody {
         self.categoryBitMask = categoryBitMask
         self.mass = mass
     }
-    convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>) {
-        self.init(radius: radius, position: center)
-    }
     func updatePosition(dt: TimeInterval) {
         if !isDynamic {
             return
         }
-        
         let displacement = position - positionLast
         positionLast = position
         position = position + displacement + acceleration * (dt * dt)
@@ -82,14 +71,12 @@ class MSKPhysicsBody {
         if !affectedByGravity {
             return
         }
-        
         accelerate(acc: gravity)
     }
     func updatePosition(by vector: SIMD2<Double>) {
         if !isDynamic {
             return
         }
-        
         position += vector
     }
     func accelerate(acc: SIMD2<Double>) {
@@ -103,5 +90,22 @@ class MSKPhysicsBody {
     }
     func getVelocity(dt: TimeInterval) -> SIMD2<Double> {
         (position - positionLast)/dt
+    }
+    func collide(with body: MSKPhysicsBody) {
+        assert(false, "This method must be overridden by subclass.")
+    }
+    func collide(with body: MSKCirclePhysicsBody) {
+        assert(false, "This method must be overridden by subclass.")
+    }
+    func collide(with body: MSKPolygonPhysicsBody) {
+        assert(false, "This method must be overridden by subclass.")
+    }
+    func getHeight() -> Double {
+        assert(false, "This method must be overridden by subclass.")
+        return 0.0
+    }
+    func getWidth() -> Double {
+        assert(false, "This method must be overridden by subclass.")
+        return 0.0
     }
 }
