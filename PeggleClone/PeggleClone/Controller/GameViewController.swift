@@ -37,11 +37,11 @@ class GameViewController: UIViewController {
         boardView.refresh(dt: displayLink.targetTimestamp - displayLink.timestamp)
         guard let boardScene = boardScene else { return }
         if count == 100 {
-            let vertices = getVerticesForRect(width: 20, height: 20)
-            let newPhysicsBody = MSKPolygonPhysicsBody(vertices: vertices,
-                                                       position: SIMD2<Double>(x: 300, y: 400),
-                                                       oldPosition: SIMD2<Double>(x: 290, y: 420))
-            let newNode = SquareNode(physicsBody: newPhysicsBody)
+//            let vertices = getVerticesForRect(width: 20, height: 20)
+            let newPhysicsBody = MSKCirclePhysicsBody(radius: 20,
+                                                       position: SIMD2<Double>(x: 200, y: 400),
+                                                       oldPosition: SIMD2<Double>(x: 190, y: 410))
+            let newNode = PegNode(physicsBody: newPhysicsBody)
             boardScene.addNode(newNode)
             count = 0
         }

@@ -55,7 +55,11 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
     override func collide(with body: MSKPhysicsBody) {
         body.collide(with: self)
     }
-    
+    override func collide(with body: MSKCirclePhysicsBody) {
+        guard let collisionVector = findCollisionVector(polygon: self, circle: body) else { return }
+        self.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
+        body.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
+    }
     override func collide(with body: MSKPolygonPhysicsBody) {
         guard let collisionVector = findCollisionVector(polygonA: self, polygonB: body) else { return }
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)

@@ -17,6 +17,10 @@ func getLength(of vector: SIMD2<Double>) -> Double {
     sqrt(vector.x * vector.x + vector.y * vector.y)
 }
 
+func getDistance(pointA: SIMD2<Double>, pointB: SIMD2<Double>) -> Double {
+    getLength(of: pointA - pointB)
+}
+
 /// Checks whether the polygons are intersecting using Separation Axis Theorem,
 /// and finds the smallest depth along the intersecting axis.
 /// Returns the unit vector of the axis of collision and the minimum depth.
@@ -29,6 +33,7 @@ func getLength(of vector: SIMD2<Double>) -> Double {
 /// ```
 func findCollisionVector(polygonA: MSKPolygonPhysicsBody,
                          polygonB: MSKPolygonPhysicsBody) -> (minDepth: Double, normal: SIMD2<Double>)? {
+    // TODO: Abstract out functions
     let verticesA = getAbsoluteVertices(of: polygonA)
     let verticesB = getAbsoluteVertices(of: polygonB)
     var minDepth = maxDoubleValue
@@ -69,35 +74,91 @@ func findCollisionVector(polygonA: MSKPolygonPhysicsBody,
             normal = axis
         }
     }
-//    print("Normal length:")
-//    print(getLength(of: normal))
     minDepth /= getLength(of: normal)
-//    print(minDepth)
-//    print("----")
     normal = findUnitVector(of: normal)
-    
-    let centerA = findPolygonCenter(vertices: verticesA)
-    let centerB = findPolygonCenter(vertices: verticesB)
-    
+    let centerA = findPolygonCenter(absoluteVertices: verticesA)
+    let centerB = findPolygonCenter(absoluteVertices: verticesB)
     let direction = centerB - centerA
     // Reverse the normal direction such that the collision indicates direction for bodyB
     if dotProduct(vectorA: direction, vectorB: normal) < 0 {
         normal = -normal
     }
-    
     return (minDepth: minDepth, normal: normal)
 }
 
-func findPolygonCenter(vertices: [SIMD2<Double>]) -> SIMD2<Double> {
+func findCollisionVector(polygon: MSKPolygonPhysicsBody,
+                         circle: MSKCirclePhysicsBody) -> (minDepth: Double, normal: SIMD2<Double>)? {
+    let vertices = getAbsoluteVertices(of: polygon)
+    var minDepth = maxDoubleValue
+    var normal = SIMD2<Double>.zero
+    // Check whether there are any non-intersections for all the possible axes for bodyA
+    for idx in 0..<polygon.vertices.count {
+        let firstVertice = vertices[idx]
+        let secondVertice = vertices[(idx + 1) % vertices.count]
+        let edge = secondVertice - firstVertice
+        let axis = SIMD2<Double>(x: -edge.y, y: edge.x)
+        let minMaxA: (min: Double, max: Double) = findMinMaxOf(vertices: vertices, along: axis)
+        let minMaxB: (min: Double, max: Double) = findMinMaxOf(circle: circle, along: axis)
+        // If find any separation between the range of values for each body, means no intersection.
+        if minMaxA.min >= minMaxB.max || minMaxB.min >= minMaxA.max {
+            return nil
+        }
+        let axisDepth = Double.minimum(minMaxA.max - minMaxB.min, minMaxB.max - minMaxA.min)
+        if axisDepth < minDepth {
+            minDepth = axisDepth
+            normal = axis
+        }
+    }
+    
+    let closestPoint = vertices[findClosestVertice(in: vertices, to: circle.position)]
+    let axis = closestPoint - circle.position
+    let minMaxA: (min: Double, max: Double) = findMinMaxOf(vertices: vertices, along: axis)
+    let minMaxB: (min: Double, max: Double) = findMinMaxOf(circle: circle, along: axis)
+    if minMaxA.min >= minMaxB.max || minMaxB.min >= minMaxA.max {
+        return nil
+    }
+    let axisDepth = Double.minimum(minMaxA.max - minMaxB.min, minMaxB.max - minMaxA.min)
+    if axisDepth < minDepth {
+        minDepth = axisDepth
+        normal = axis
+    }
+    
+    minDepth /= getLength(of: normal)
+    normal = findUnitVector(of: normal)
+    let polygonCenter = findPolygonCenter(absoluteVertices: vertices)
+    let direction = polygonCenter - circle.position
+    // Reverse the normal direction such that the collision indicates direction for bodyB
+    if dotProduct(vectorA: direction, vectorB: normal) < 0 {
+        normal = -normal
+    }
+    return (minDepth: minDepth, normal: normal)
+}
+
+/// Returns the index of vertice in `vertices` that is closest to `point`.
+func findClosestVertice(in vertices: [SIMD2<Double>], to point: SIMD2<Double>) -> Int {
+    var minDistance = maxDoubleValue
+    var minIdx = -1
+    for idx in 0..<vertices.count {
+        let dist = getDistance(pointA: vertices[idx], pointB: point)
+        if dist < minDistance {
+            minDistance = dist
+            minIdx = idx
+        }
+    }
+    
+    return minIdx
+}
+
+func findPolygonCenter(absoluteVertices: [SIMD2<Double>]) -> SIMD2<Double> {
     var sumX: Double = 0
     var sumY: Double = 0
     
-    for vertex in vertices {
+    for vertex in absoluteVertices {
         sumX += vertex.x
         sumY += vertex.y
     }
     
-    return SIMD2<Double>(x: sumX / Double(vertices.count), y: sumY / Double(vertices.count))
+    return SIMD2<Double>(x: sumX / Double(absoluteVertices.count), y: sumY / Double(absoluteVertices.count))
 }
 
 func findUnitVector(of vector: SIMD2<Double>) -> SIMD2<Double> {
@@ -124,6 +185,22 @@ func findMinMaxOf(vertices: [SIMD2<Double>], along axis: SIMD2<Double>) -> (min:
     return (min: min, max: max)
 }
 
+func findMinMaxOf(circle: MSKCirclePhysicsBody, along axis: SIMD2<Double>) -> (min: Double, max: Double) {
+    let direction = findUnitVector(of: axis)
+    let radiusVector = direction * circle.radius
+    
+    let firstPoint = circle.position + radiusVector
+    let secondPoint = circle.position - radiusVector
+    
+    let firstPointPositionOnAxis = dotProduct(vectorA: firstPoint, vectorB: axis)
+    let secondPointPostionOnAxis = dotProduct(vectorA: secondPoint, vectorB: axis)
+    
+    let min = Double.minimum(firstPointPositionOnAxis, secondPointPostionOnAxis)
+    let max = Double.maximum(firstPointPositionOnAxis, secondPointPostionOnAxis)
+    
+    return (min: min, max: max)
+}
+
 func dotProduct(vectorA: SIMD2<Double>, vectorB: SIMD2<Double>) -> Double {
     vectorA.x * vectorB.x + vectorA.y * vectorB.y
 }
@@ -143,5 +220,4 @@ func getAbsoluteVertices(of polygon: MSKPolygonPhysicsBody) -> [SIMD2<Double>] {
         vertex + polygon.position
     })
 }
-
 

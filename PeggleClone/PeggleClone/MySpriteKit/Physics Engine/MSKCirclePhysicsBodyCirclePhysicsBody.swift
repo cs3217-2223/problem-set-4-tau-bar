@@ -73,6 +73,11 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
             body.updatePosition(by: unitVector * (massRatioA * delta))
         }
     }
+    override func collide(with body: MSKPolygonPhysicsBody) {
+        guard let collisionVector = findCollisionVector(polygon: body, circle: self) else { return }
+        body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
+        self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
+    }
     override func getHeight() -> Double {
         radius * 2
     }
