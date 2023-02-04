@@ -109,7 +109,7 @@ func findCollisionVector(polygon: MSKPolygonPhysicsBody,
             normal = axis
         }
     }
-    
+
     let closestPoint = vertices[findClosestVertice(in: vertices, to: circle.position)]
     let axis = closestPoint - circle.position
     let minMaxA: (min: Double, max: Double) = findMinMaxOf(vertices: vertices, along: axis)
@@ -122,7 +122,7 @@ func findCollisionVector(polygon: MSKPolygonPhysicsBody,
         minDepth = axisDepth
         normal = axis
     }
-    
+
     minDepth /= getLength(of: normal)
     normal = findUnitVector(of: normal)
     let polygonCenter = findPolygonCenter(absoluteVertices: vertices)
@@ -145,19 +145,19 @@ func findClosestVertice(in vertices: [SIMD2<Double>], to point: SIMD2<Double>) -
             minIdx = idx
         }
     }
-    
+
     return minIdx
 }
 
 func findPolygonCenter(absoluteVertices: [SIMD2<Double>]) -> SIMD2<Double> {
     var sumX: Double = 0
     var sumY: Double = 0
-    
+
     for vertex in absoluteVertices {
         sumX += vertex.x
         sumY += vertex.y
     }
-    
+
     return SIMD2<Double>(x: sumX / Double(absoluteVertices.count), y: sumY / Double(absoluteVertices.count))
 }
 
@@ -188,16 +188,16 @@ func findMinMaxOf(vertices: [SIMD2<Double>], along axis: SIMD2<Double>) -> (min:
 func findMinMaxOf(circle: MSKCirclePhysicsBody, along axis: SIMD2<Double>) -> (min: Double, max: Double) {
     let direction = findUnitVector(of: axis)
     let radiusVector = direction * circle.radius
-    
+
     let firstPoint = circle.position + radiusVector
     let secondPoint = circle.position - radiusVector
-    
+
     let firstPointPositionOnAxis = dotProduct(vectorA: firstPoint, vectorB: axis)
     let secondPointPostionOnAxis = dotProduct(vectorA: secondPoint, vectorB: axis)
-    
+
     let min = Double.minimum(firstPointPositionOnAxis, secondPointPostionOnAxis)
     let max = Double.maximum(firstPointPositionOnAxis, secondPointPostionOnAxis)
-    
+
     return (min: min, max: max)
 }
 
@@ -216,8 +216,7 @@ func getVerticesForRect(width: Double, height: Double) -> [SIMD2<Double>] {
 }
 
 func getAbsoluteVertices(of polygon: MSKPolygonPhysicsBody) -> [SIMD2<Double>] {
-    return polygon.vertices.map({ vertex in
+    polygon.vertices.map({ vertex in
         vertex + polygon.position
     })
 }
-

@@ -11,7 +11,7 @@ class GameViewController: UIViewController {
     var boardScene: BoardScene?
     var displayLink: CADisplayLink!
     var count = 0
-    @IBOutlet weak var boardView: BoardView!
+    @IBOutlet var boardView: BoardView!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -23,10 +23,9 @@ class GameViewController: UIViewController {
         guard let boardScene = boardScene else { return }
         boardView.setScene(boardScene)
         boardScene.delegate = boardView
-        
+
         let rectVertices = getVerticesForRect(width: 100, height: 100)
-        let staticPhysicsBody = MSKPolygonPhysicsBody(vertices: rectVertices, position: SIMD2<Double>(x: 400, y: 200),
-                                               oldPosition: SIMD2<Double>(x: 400, y: 200), isDynamic: false)
+        let staticPhysicsBody = MSKPolygonPhysicsBody(vertices: rectVertices, position: SIMD2<Double>(x: 400, y: 1_000), isDynamic: false)
         let staticNode = SquareNode(physicsBody: staticPhysicsBody)
         boardScene.addNode(staticNode)
     }
@@ -36,7 +35,7 @@ class GameViewController: UIViewController {
     @objc func step() {
         boardView.refresh(dt: displayLink.targetTimestamp - displayLink.timestamp)
         guard let boardScene = boardScene else { return }
-        if count == 100 {
+        if count == 10 {
 //            let vertices = getVerticesForRect(width: 20, height: 20)
             let newPhysicsBody = MSKCirclePhysicsBody(radius: 20,
                                                        position: SIMD2<Double>(x: 200, y: 400),

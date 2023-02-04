@@ -10,8 +10,8 @@ import Foundation
 // MARK: Constants for `MSKPhysicsBody`
 let defaultRadius: Double = 20.0
 let defaultAcceleration: SIMD2<Double> = .zero
-let defaultAffectedByGravity: Bool = true
-let defaultIsDynamic: Bool = true
+let defaultAffectedByGravity = true
+let defaultIsDynamic = true
 let defaultCategoryBitMask: UInt32 = 0xFFFFFFFF
 let defaultVelocity: CGVector = .zero
 let defaultAngularVelocity: CGFloat = .zero

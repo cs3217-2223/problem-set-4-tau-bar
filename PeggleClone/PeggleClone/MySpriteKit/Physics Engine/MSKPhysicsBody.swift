@@ -8,31 +8,36 @@
 import Foundation
 import CoreGraphics
 
+/// Represents a physical body in the Physics World.
 class MSKPhysicsBody {
-    weak var node: MSKNode?
     /// The previous position of the center of the body.
     var positionLast: SIMD2<Double>
+
     /// The current position of the center of the body.
     var position: SIMD2<Double>
+
     /// The current acceleration of the body.
     var acceleration: SIMD2<Double>
+
     /// A Boolean value indicating whether the physics body is affected by gravity.
     var affectedByGravity: Bool
+
     /// A Boolean value indivating whether the physics body is moved by the physics simulation.
     var isDynamic: Bool
+
     /// A mask that defines which categories this physics body belongs to.
     var categoryBitMask: UInt32
+
+    /// The mass of the physics body (in kgs).
     var mass: Double
-    
+
     // MARK: Designated & Convenience Initializers
-    init(node: MSKNode? = nil,
-         position: SIMD2<Double>,
+    init(position: SIMD2<Double>,
          acceleration: SIMD2<Double> = defaultAcceleration,
          affectedByGravity: Bool = defaultAffectedByGravity,
          isDynamic: Bool = defaultIsDynamic,
          categoryBitMask: UInt32 = defaultCategoryBitMask,
          mass: Double = defaultMass) {
-        self.node = node
         self.position = position
         self.positionLast = position
         self.acceleration = acceleration
@@ -41,15 +46,14 @@ class MSKPhysicsBody {
         self.categoryBitMask = categoryBitMask
         self.mass = mass
     }
-    init(node: MSKNode? = nil,
-         position: SIMD2<Double>,
+
+    init(position: SIMD2<Double>,
          oldPosition: SIMD2<Double>,
          acceleration: SIMD2<Double> = defaultAcceleration,
          affectedByGravity: Bool = defaultAffectedByGravity,
          isDynamic: Bool = defaultIsDynamic,
          categoryBitMask: UInt32 = defaultCategoryBitMask,
          mass: Double = defaultMass) {
-        self.node = node
         self.position = position
         self.positionLast = oldPosition
         self.acceleration = acceleration
@@ -58,39 +62,60 @@ class MSKPhysicsBody {
         self.categoryBitMask = categoryBitMask
         self.mass = mass
     }
-    func updatePosition(dt: TimeInterval) {
+
+    // MARK: Methods
+    /// Updates the positon of the body given the specified `timeInterval` to calculate
+    /// the new position of the body using Verlet integration.
+    func updatePosition(timeInterval: TimeInterval) {
         if !isDynamic {
             return
         }
+
         let displacement = position - positionLast
         positionLast = position
-        position = position + displacement + acceleration * (dt * dt)
+        position = position + displacement + acceleration * (timeInterval * timeInterval)
         acceleration = .zero
     }
+
+    /// Applies gravirty to the physics body.
+    /// If the body' s `affectedByGravity` is set to false, then do nothing.
     func applyGravity(_ gravity: SIMD2<Double>) {
         if !affectedByGravity {
             return
         }
         accelerate(acc: gravity)
     }
+
+    /// Updates the position of body by the specified vector.
+    /// The specified `vector` is added to the current position.
     func updatePosition(by vector: SIMD2<Double>) {
         if !isDynamic {
             return
         }
         position += vector
     }
+
+    /// Increases the acceleration of the physics body by the specified amount.
     func accelerate(acc: SIMD2<Double>) {
         acceleration += acc
     }
-    func setVelocity(newVelocity: SIMD2<Double>, dt: TimeInterval) {
-        positionLast = position - (newVelocity * dt)
+
+    /// Sets the velocity of the body.
+    func setVelocity(newVelocity: SIMD2<Double>, timeInterval: TimeInterval) {
+        positionLast = position - (newVelocity * timeInterval)
     }
-    func addVelocity(velocity: SIMD2<Double>, dt: TimeInterval) {
-        positionLast -= velocity * dt
+
+    /// Adds velocity to the body.
+    func addVelocity(velocity: SIMD2<Double>, timeInterval: TimeInterval) {
+        positionLast -= velocity * timeInterval
     }
-    func getVelocity(dt: TimeInterval) -> SIMD2<Double> {
-        (position - positionLast)/dt
+
+    /// Returns the current velocity of the body.
+    func getVelocity(timeInterval: TimeInterval) -> SIMD2<Double> {
+        (position - positionLast) / timeInterval
     }
+
+    // MARK: Abstract methods - these methods must be overridden by the subclass.
     func collide(with body: MSKPhysicsBody) {
         assert(false, "This method must be overridden by subclass.")
     }

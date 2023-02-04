@@ -8,10 +8,13 @@
 import Foundation
 import CoreGraphics
 
+/// Represents a circular physics body, characterized by `radius`.
 class MSKCirclePhysicsBody: MSKPhysicsBody {
+
     /// The radius of the body.
     var radius: Double
-    // MARK: Designated & Convenience Initializers
+
+    // MARK: Initializers
     init(node: MSKNode? = nil,
          radius: Double = defaultRadius,
          position: SIMD2<Double>,
@@ -22,8 +25,7 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
          categoryBitMask: UInt32 = defaultCategoryBitMask,
          mass: Double = defaultMass) {
         self.radius = radius
-        super.init(node: node,
-                   position: position,
+        super.init(position: position,
                    oldPosition: oldPosition,
                    acceleration: acceleration,
                    affectedByGravity: affectedByGravity,
@@ -31,6 +33,7 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
                    categoryBitMask: categoryBitMask,
                    mass: mass)
     }
+
     convenience init(node: MSKNode? = nil,
                      radius: Double = defaultRadius,
                      position: SIMD2<Double>,
@@ -49,38 +52,54 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
                   categoryBitMask: categoryBitMask,
                   mass: mass)
     }
+
     convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>) {
         self.init(radius: radius, position: center)
     }
+
+    /// Handles collision of the circle body with another unspecified type physics body.
     override func collide(with body: MSKPhysicsBody) {
         body.collide(with: self)
     }
+
+    /// Handles collision of the circle body with another circle physics body.
     override func collide(with body: MSKCirclePhysicsBody) {
         let minDistance = self.radius + body.radius
         let collisionAxis = self.position - body.position
         let collisionAxisLength = getLength(of: collisionAxis)
+
         // Checks whether the objects are overlapping.
         if collisionAxisLength < minDistance {
             var unitVector = collisionAxis / collisionAxisLength
             let massRatioA = self.mass / (self.mass + body.mass)
             let massRatioB = body.mass / (self.mass + body.mass)
             let delta = 0.5 * defaultResponseCoeff * (collisionAxisLength - minDistance)
-            // Update positions of both bodies.
+
+            // Add random horizontal acceleration if the circles are directly
+            // on top of each other.
             if isVertical(unitVector) {
                 unitVector.x = Double.random(in: -0.5...0.5)
             }
+
+            // Update positions of both bodies.
             self.updatePosition(by: -1 * unitVector * (massRatioB * delta))
             body.updatePosition(by: unitVector * (massRatioA * delta))
         }
     }
+
+    /// Handles collision of the circle body with a polygonal physics body.
     override func collide(with body: MSKPolygonPhysicsBody) {
         guard let collisionVector = findCollisionVector(polygon: body, circle: self) else { return }
         body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
     }
+
+    /// Returns height of the body.
     override func getHeight() -> Double {
         radius * 2
     }
+
+    /// Returns width of the body.
     override func getWidth() -> Double {
         radius * 2
     }

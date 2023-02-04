@@ -22,7 +22,7 @@ class MSKNode {
 
 extension MSKNode: Equatable {
     static func ==(lhs: MSKNode, rhs: MSKNode) -> Bool {
-        return ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
+        ObjectIdentifier(lhs) == ObjectIdentifier(rhs)
     }
 }
 

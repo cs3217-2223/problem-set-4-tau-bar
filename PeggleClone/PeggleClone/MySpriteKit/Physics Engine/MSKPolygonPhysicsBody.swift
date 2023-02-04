@@ -12,8 +12,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
     /// Vertices of the polygon, relative to the `position` of the polygon.
     var vertices: [SIMD2<Double>]
     // MARK: Designated & Convenience Initializers
-    init(node: MSKNode? = nil,
-         vertices: [SIMD2<Double>],
+    init(vertices: [SIMD2<Double>],
          position: SIMD2<Double>,
          oldPosition: SIMD2<Double>,
          acceleration: SIMD2<Double> = defaultAcceleration,
@@ -22,8 +21,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
          categoryBitMask: UInt32 = defaultCategoryBitMask,
          mass: Double = defaultMass) {
         self.vertices = vertices
-        super.init(node: node,
-                   position: position,
+        super.init(position: position,
                    oldPosition: oldPosition,
                    acceleration: acceleration,
                    affectedByGravity: affectedByGravity,
@@ -31,16 +29,14 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
                    categoryBitMask: categoryBitMask,
                    mass: mass)
     }
-    convenience init(node: MSKNode? = nil,
-                     vertices: [SIMD2<Double>],
+    convenience init(vertices: [SIMD2<Double>],
                      position: SIMD2<Double>,
                      acceleration: SIMD2<Double> = defaultAcceleration,
                      affectedByGravity: Bool = defaultAffectedByGravity,
                      isDynamic: Bool = defaultIsDynamic,
                      categoryBitMask: UInt32 = defaultCategoryBitMask,
                      mass: Double = defaultMass) {
-        self.init(node: node,
-                  vertices: vertices,
+        self.init(vertices: vertices,
                   position: position,
                   oldPosition: position,
                   acceleration: acceleration,
@@ -72,7 +68,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
             minA = Double.minimum(minA, vertex.x)
             maxA = Double.maximum(maxA, vertex.x)
         }
-        
+
         return maxA - minA
     }
 
@@ -83,7 +79,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
             minA = Double.minimum(minA, vertex.y)
             maxA = Double.maximum(maxA, vertex.y)
         }
-        
+
         return maxA - minA
     }
 }

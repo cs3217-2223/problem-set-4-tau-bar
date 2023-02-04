@@ -31,7 +31,7 @@ class MSKScene {
     /// Updates the scene with the current time interval.
     func update(dt: TimeInterval) {
         // TODO: Can replace this with Observer pattern.
-        physicsWorld.simulatePhysics(dt: dt)
+        physicsWorld.simulatePhysics(timeInterval: dt)
         didSimulatePhysics()
         // should update (remove, add) nodes here
     }
