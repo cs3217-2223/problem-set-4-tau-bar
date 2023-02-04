@@ -6,9 +6,24 @@
 //
 
 import UIKit
+import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    
+    let persistentContainer: NSPersistentContainer = {
+        BoardsTransformer.register()
+
+        let container = NSPersistentContainer(name: "BoardModelData")
+
+        container.loadPersistentStores { (_, error) in
+            if let error = error {
+                print("Error setting up Core Data (\(error)).")
+            }
+        }
+        return container
+    }()
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         return true
