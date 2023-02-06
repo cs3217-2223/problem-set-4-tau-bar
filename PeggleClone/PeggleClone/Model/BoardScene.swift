@@ -13,6 +13,11 @@ class BoardScene: MSKScene, PegNodeDelegate {
         super.init(physicsWorld: MSKPhysicsWorld(width: width, height: height))
     }
 
+    func setupBoard() {
+        let cannonPosition = SIMD2<Double>(x: physicsWorld.width / 2, y: 100)
+        addNode(CannonNode(center: cannonPosition))
+    }
+
     override func addNode(_ addedNode: MSKSpriteNode) {
         super.addNode(addedNode)
 

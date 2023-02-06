@@ -40,6 +40,7 @@
 		612F7A7F29912CC9005540DF /* BallPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A7E29912CC9005540DF /* BallPhysicsBody.swift */; };
 		612F7A8129913400005540DF /* PegPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A8029913400005540DF /* PegPhysicsBodyDelegate.swift */; };
 		612F7A8329913AFC005540DF /* BoardSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A8229913AFC005540DF /* BoardSceneDelegate.swift */; };
+		612F7A8529913D55005540DF /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A8429913D55005540DF /* CannonNode.swift */; };
 		615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */; };
 		617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */; };
 		617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DDE298BBBB100461FC9 /* BoardView.swift */; };
@@ -114,6 +115,7 @@
 		612F7A7E29912CC9005540DF /* BallPhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallPhysicsBody.swift; sourceTree = "<group>"; };
 		612F7A8029913400005540DF /* PegPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		612F7A8229913AFC005540DF /* BoardSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSceneDelegate.swift; sourceTree = "<group>"; };
+		612F7A8429913D55005540DF /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
 		615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKSceneDelegate.swift; sourceTree = "<group>"; };
 		617D2DDE298BBBB100461FC9 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				612F7A7E29912CC9005540DF /* BallPhysicsBody.swift */,
 				612F7A8029913400005540DF /* PegPhysicsBodyDelegate.swift */,
 				612F7A8229913AFC005540DF /* BoardSceneDelegate.swift */,
+				612F7A8429913D55005540DF /* CannonNode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -538,6 +541,7 @@
 				61FAE9D0298DC9AC00981FA9 /* SquareNode.swift in Sources */,
 				610FED9A298E616400875BBA /* Position.swift in Sources */,
 				612F7A7F29912CC9005540DF /* BallPhysicsBody.swift in Sources */,
+				612F7A8529913D55005540DF /* CannonNode.swift in Sources */,
 				610FED93298E616400875BBA /* DataManager.swift in Sources */,
 				610FED9F298E616400875BBA /* LevelSelectViewController.swift in Sources */,
 				619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */,

@@ -9,6 +9,7 @@ import Foundation
 
 class PegPhysicsBody: MSKCirclePhysicsBody {
     weak var pegPhysicsBodyDelegate: PegPhysicsBodyDelegate?
+
     override func collide(with body: MSKPhysicsBody) -> Bool {
         guard let body = body as? BallPhysicsBody else {
             return super.collide(with: body)

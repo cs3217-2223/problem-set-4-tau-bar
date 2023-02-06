@@ -17,39 +17,41 @@ class GameViewController: UIViewController {
         // Do any additional setup after loading the view.
         boardScene = BoardScene(width: boardView.frame.width, height: boardView.frame.height)
 
+        // Set scene for board view
+        guard let boardScene = boardScene else { return }
+        boardView.setScene(boardScene)
+
+        // Set up board scene
+        boardScene.setupBoard()
+
         // Set up game loop
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
 
-        // Set scene for board view
-        guard let boardScene = boardScene else { return }
-        boardView.setScene(boardScene)
-        boardScene.delegate = boardView
-
-        let rectVertices = getVerticesForRect(width: 100, height: 100)
-        let staticPhysicsBody = MSKPolygonPhysicsBody(vertices: rectVertices, position: SIMD2<Double>(x: 400, y: 200), isDynamic: false)
-        let staticNode = SquareNode(physicsBody: staticPhysicsBody)
-        boardScene.addNode(staticNode)
+        let newNode = BluePegNode(position: CGPoint(x: 200, y: 400))
+        boardScene.addNode(newNode)
     }
+
     func begin() {
         boardView.presentScene()
     }
+
     @objc func step() {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
-        guard let boardScene = boardScene else { return }
-        if count == 25 {
-            let newNode = OrangePegNode(position: CGPoint(x: 200, y: 400))
-            boardScene.addNode(newNode)
-        }
-        if count == 60 {
-            let newNode = BluePegNode(position: CGPoint(x: 200, y: 400))
-            boardScene.addNode(newNode)
-        }
-        if count == 300 {
-            let newNode = BallNode(position: CGPoint(x: 200, y: 400))
-            boardScene.addNode(newNode)
-            count = 0
-        }
-        count += 1
+//        guard let boardScene = boardScene else { return }
+//        if count == 25 {
+//            let newNode = OrangePegNode(position: CGPoint(x: 200, y: 400))
+//            boardScene.addNode(newNode)
+//        }
+//        if count == 60 {
+//            let newNode = BluePegNode(position: CGPoint(x: 200, y: 400))
+//            boardScene.addNode(newNode)
+//        }
+//        if count == 300 {
+//            let newNode = BallNode(position: CGPoint(x: 200, y: 400))
+//            boardScene.addNode(newNode)
+//            count = 0
+//        }
+//        count += 1
     }
 }

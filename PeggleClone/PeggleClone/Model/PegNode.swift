@@ -13,7 +13,7 @@ class PegNode: MSKSpriteNode, PegPhysicsBodyDelegate {
     init(position: CGPoint, image: UIImage?) {
         let pegPhysicsBody = PegPhysicsBody(circleOfRadius: 20.0,
                        center: SIMD2<Double>(x: position.x, y: position.y),
-                       isDynamic: true)
+                       isDynamic: false)
         super.init(physicsBody: pegPhysicsBody,
                    image: image)
         pegPhysicsBody.pegPhysicsBodyDelegate = self

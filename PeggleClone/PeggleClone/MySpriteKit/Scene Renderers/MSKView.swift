@@ -63,5 +63,6 @@ class MSKView: UIView, MSKSceneDelegate {
     /// Sets the scene of the view.
     func setScene(_ scene: MSKScene) {
         self.scene = scene
+        self.scene?.delegate = self
     }
 }
