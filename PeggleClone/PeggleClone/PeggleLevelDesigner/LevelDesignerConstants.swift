@@ -18,20 +18,20 @@ func getImageUrl(from colour: PegColour) -> String? {
 
 extension Notification.Name {
     static var pegAdded: Notification.Name {
-          return .init(rawValue: "Board.pegAdded") }
+          .init(rawValue: "Board.pegAdded") }
 
     static var pegDeleted: Notification.Name {
-          return .init(rawValue: "Board.pegDeleted") }
+          .init(rawValue: "Board.pegDeleted") }
 
     static var pegMoved: Notification.Name {
-          return .init(rawValue: "Board.pegMoved") }
+          .init(rawValue: "Board.pegMoved") }
 
     static var boardCleared: Notification.Name {
-          return .init(rawValue: "Board.cleared") }
+          .init(rawValue: "Board.cleared") }
 
     static var dataSaved: Notification.Name {
-          return .init(rawValue: "Data.saved") }
+          .init(rawValue: "Data.saved") }
 
     static var dataSaveError: Notification.Name {
-          return .init(rawValue: "Data.saveError") }
+          .init(rawValue: "Data.saveError") }
 }

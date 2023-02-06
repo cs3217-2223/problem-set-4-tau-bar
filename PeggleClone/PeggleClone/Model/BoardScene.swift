@@ -7,8 +7,22 @@
 
 import Foundation
 
-class BoardScene: MSKScene {
+class BoardScene: MSKScene, PegNodeDelegate {
+    weak var boardView: BoardView?
     init(width: Double, height: Double) {
         super.init(physicsWorld: MSKPhysicsWorld(width: width, height: height))
+    }
+
+    override func addNode(_ addedNode: MSKSpriteNode) {
+        super.addNode(addedNode)
+
+        guard let pegNode = addedNode as? PegNode else { return }
+
+        pegNode.delegate = self
+        boardView?.didAddPegNode(addedNode: pegNode)
+    }
+
+    func didCollideWithBall(pegNode: PegNode) {
+        boardView?.didCollideWithBall(updatedPegNode: pegNode)
     }
 }

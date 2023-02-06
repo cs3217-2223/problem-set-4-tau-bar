@@ -7,16 +7,20 @@
 
 import UIKit
 
-class PegNode: MSKSpriteNode {
-    // TODO: Create Blue, Orange peg classes, etc.
-    init(position: CGPoint) {
-        super.init(physicsBody: MSKCirclePhysicsBody(circleOfRadius: 20.0,
-                                               center: SIMD2<Double>(x: position.x,
-                                                                     y: position.y)),
-                   image: UIImage(named: "peg-blue"))
+class PegNode: MSKSpriteNode, PegPhysicsBodyDelegate {
+    weak var delegate: PegNodeDelegate?
+    var isHit = false
+    init(position: CGPoint, image: UIImage?) {
+        let pegPhysicsBody = PegPhysicsBody(circleOfRadius: 20.0,
+                       center: SIMD2<Double>(x: position.x, y: position.y),
+                       isDynamic: true)
+        super.init(physicsBody: pegPhysicsBody,
+                   image: image)
+        pegPhysicsBody.pegPhysicsBodyDelegate = self
     }
-    init(physicsBody: MSKCirclePhysicsBody) {
-        super.init(physicsBody: physicsBody,
-                   image: UIImage(named: "peg-blue"))
+
+    func didCollideWithBall() {
+        isHit = true
+        delegate?.didCollideWithBall(pegNode: self)
     }
 }

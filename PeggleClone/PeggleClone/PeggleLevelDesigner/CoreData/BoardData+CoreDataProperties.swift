@@ -12,7 +12,7 @@ import CoreData
 extension BoardData {
 
     @nonobjc public class func fetchRequest() -> NSFetchRequest<BoardData> {
-        return NSFetchRequest<BoardData>(entityName: "BoardData")
+        NSFetchRequest<BoardData>(entityName: "BoardData")
     }
 
     @NSManaged public var boards: [Board]?

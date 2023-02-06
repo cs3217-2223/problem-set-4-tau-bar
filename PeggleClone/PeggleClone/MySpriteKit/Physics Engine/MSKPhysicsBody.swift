@@ -24,7 +24,7 @@ class MSKPhysicsBody {
     /// A Boolean value indicating whether the physics body is affected by gravity.
     var affectedByGravity: Bool
 
-    /// A Boolean value indivating whether the physics body is moved by the physics simulation.
+    /// A Boolean value indicating whether the physics body is moved by the physics simulation.
     var isDynamic: Bool
 
     /// A mask that defines which categories this physics body belongs to.
@@ -120,14 +120,17 @@ class MSKPhysicsBody {
     }
 
     // MARK: Abstract methods - these methods must be overridden by the subclass.
-    func collide(with body: MSKPhysicsBody) {
+    func collide(with body: MSKPhysicsBody) -> Bool {
         assert(false, "This method must be overridden by subclass.")
+        return false
     }
-    func collide(with body: MSKCirclePhysicsBody) {
+    func collide(with body: MSKCirclePhysicsBody) -> Bool {
         assert(false, "This method must be overridden by subclass.")
+        return false
     }
-    func collide(with body: MSKPolygonPhysicsBody) {
+    func collide(with body: MSKPolygonPhysicsBody) -> Bool {
         assert(false, "This method must be overridden by subclass.")
+        return false
     }
     func getHeight() -> Double {
         assert(false, "This method must be overridden by subclass.")

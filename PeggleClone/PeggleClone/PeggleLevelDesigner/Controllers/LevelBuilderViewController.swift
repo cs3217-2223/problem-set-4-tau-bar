@@ -6,15 +6,15 @@ class LevelBuilderViewController: UIViewController,
                                   LevelSelectViewControllerDelegate {
 
     // MARK: View objects
-    @IBOutlet weak var bluePegButton: SelectPegButton!
-    @IBOutlet weak var orangePegButton: SelectPegButton!
-    @IBOutlet weak var deletePegButton: SelectPegButton!
-    @IBOutlet weak var levelNameTextField: UITextField!
-    @IBOutlet weak var boardView: UIView!
-    @IBOutlet weak var startButton: UIButton!
-    @IBOutlet weak var resetButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
-    @IBOutlet weak var loadButton: UIButton!
+    @IBOutlet var bluePegButton: SelectPegButton!
+    @IBOutlet var orangePegButton: SelectPegButton!
+    @IBOutlet var deletePegButton: SelectPegButton!
+    @IBOutlet var levelNameTextField: UITextField!
+    @IBOutlet var boardView: UIView!
+    @IBOutlet var startButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
+    @IBOutlet var saveButton: UIButton!
+    @IBOutlet var loadButton: UIButton!
     // MARK: Model objects
     var board: Board? {
         didSet {

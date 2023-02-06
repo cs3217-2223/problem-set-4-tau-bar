@@ -56,24 +56,26 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
 
     // MARK: Methods
     /// Handles collisions with an unspecified type physics body.
-    override func collide(with body: MSKPhysicsBody) {
+    override func collide(with body: MSKPhysicsBody) -> Bool {
         body.collide(with: self)
     }
 
     /// Handles collisions with an circle type physics body.
-    override func collide(with body: MSKCirclePhysicsBody) {
-        guard let collisionVector = findCollisionVector(polygon: self, circle: body) else { return }
+    override func collide(with body: MSKCirclePhysicsBody) -> Bool {
+        guard let collisionVector = findCollisionVector(polygon: self, circle: body) else { return false }
 
         self.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
         body.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
+        return true
     }
 
     /// Handles collisions with an polygonal type physics body.
-    override func collide(with body: MSKPolygonPhysicsBody) {
-        guard let collisionVector = findCollisionVector(polygonA: self, polygonB: body) else { return }
+    override func collide(with body: MSKPolygonPhysicsBody) -> Bool {
+        guard let collisionVector = findCollisionVector(polygonA: self, polygonB: body) else { return false }
 
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
         body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
+        return true
     }
 
     /// Returns the width of the polygon.

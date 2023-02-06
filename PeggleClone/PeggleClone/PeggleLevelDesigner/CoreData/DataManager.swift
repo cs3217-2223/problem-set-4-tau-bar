@@ -18,7 +18,7 @@ open class DataManager: NSObject {
 
     static let BoardDataEntityName = "BoardData"
 
-    private override init() {}
+    override private init() {}
 
     private lazy var boardDataEntity: NSEntityDescription = {
         let managedContext = getContext()

@@ -6,7 +6,7 @@ enum PositionKeys: String, CodingKey {
 }
 
 class Position: NSObject, NSSecureCoding {
-    static var supportsSecureCoding: Bool = true
+    static var supportsSecureCoding = true
 
     let xPos: Double
     let yPos: Double

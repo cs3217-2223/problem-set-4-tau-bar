@@ -24,7 +24,7 @@ class Peg: NSObject, NSSecureCoding {
     let radius: Double
 
     static let DefaultPegRadius = 20.0
-    static var supportsSecureCoding: Bool = true
+    static var supportsSecureCoding = true
 
     // MARK: Initializers
     init?(colour: PegColour, position: Position, radius: Double) {
@@ -67,7 +67,7 @@ class Peg: NSObject, NSSecureCoding {
 
     /// Checks the representation invariants.
     private func checkRepresentation() -> Bool {
-        return radius > 0
+        radius > 0
     }
 
     /// Encodes the peg instance to support persistence of peg data.

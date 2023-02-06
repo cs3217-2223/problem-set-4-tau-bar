@@ -16,9 +16,11 @@ class GameViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         boardScene = BoardScene(width: boardView.frame.width, height: boardView.frame.height)
+
         // Set up game loop
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
+
         // Set scene for board view
         guard let boardScene = boardScene else { return }
         boardView.setScene(boardScene)
@@ -36,18 +38,15 @@ class GameViewController: UIViewController {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
         guard let boardScene = boardScene else { return }
         if count == 25 {
-            let newPhysicsBody = MSKCirclePhysicsBody(radius: 20,
-                                                       position: SIMD2<Double>(x: 200, y: 400),
-                                                       oldPosition: SIMD2<Double>(x: 190, y: 410))
-            let newNode = PegNode(physicsBody: newPhysicsBody)
+            let newNode = OrangePegNode(position: CGPoint(x: 200, y: 400))
             boardScene.addNode(newNode)
         }
-        if count == 50 {
-            let vertices = getVerticesForRect(width: 20, height: 20)
-            let newPhysicsBody = MSKPolygonPhysicsBody(vertices: vertices,
-                                                       position: SIMD2<Double>(x: 200, y: 400),
-                                                       oldPosition: SIMD2<Double>(x: 190, y: 410))
-            let newNode = SquareNode(physicsBody: newPhysicsBody)
+        if count == 60 {
+            let newNode = BluePegNode(position: CGPoint(x: 200, y: 400))
+            boardScene.addNode(newNode)
+        }
+        if count == 300 {
+            let newNode = BallNode(position: CGPoint(x: 200, y: 400))
             boardScene.addNode(newNode)
             count = 0
         }

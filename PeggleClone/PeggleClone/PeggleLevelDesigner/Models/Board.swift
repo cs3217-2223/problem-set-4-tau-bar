@@ -26,7 +26,7 @@ public class Board: NSObject, BoardProtocol, NSSecureCoding {
     var name: String = DefaultBoardName
 
     static let DefaultBoardName = ""
-    public static var supportsSecureCoding: Bool = true
+    public static var supportsSecureCoding = true
 
     // MARK: Initializers
     init(width: Double, height: Double) {
@@ -43,7 +43,7 @@ public class Board: NSObject, BoardProtocol, NSSecureCoding {
     }
 
     /// Required initializer for conforming with NSSecureCoding protocol to support persistence of board data.
-    required convenience public init?(coder: NSCoder) {
+    public required convenience init?(coder: NSCoder) {
         guard let pegs = coder.decodeObject(of: [NSSet.self, Peg.self], forKey: BoardKeys.pegs.rawValue) as? Set<Peg>,
               let name = coder.decodeObject(of: NSString.self, forKey: BoardKeys.name.rawValue) as? String
         else {
@@ -147,7 +147,7 @@ public class Board: NSObject, BoardProtocol, NSSecureCoding {
     ///
     /// If there is an overlap with another peg, return true. Else, return false.
     private func findOverlappingPegs(with pegToCheck: Peg) -> Bool {
-        return pegs.contains(where: { peg in
+        pegs.contains(where: { peg in
             if peg === pegToCheck {
                 return false
             }

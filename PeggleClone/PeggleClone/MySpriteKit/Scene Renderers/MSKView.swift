@@ -12,7 +12,7 @@ class MSKView: UIView, MSKSceneDelegate {
     var scene: MSKScene?
 
     /// Dictionary to cache the view representing each `MSKSpriteNode` in the `scene`.
-    var nodeToView: [MSKSpriteNode: UIView] = [:]
+    var nodeToView: [MSKSpriteNode: UIImageView] = [:]
 
     /// Presents a scene.
     func presentScene() {
@@ -60,6 +60,7 @@ class MSKView: UIView, MSKSceneDelegate {
         scene?.update(timeInterval: timeInterval)
     }
 
+    /// Sets the scene of the view.
     func setScene(_ scene: MSKScene) {
         self.scene = scene
     }

@@ -32,7 +32,7 @@ class MSKPhysicsWorld {
          gravity: SIMD2<Double> = defaultGravity,
          width: Double,
          height: Double,
-         substeps: Int = 1) {
+         substeps: Int = 3) {
         self.bodies = bodies
         self.gravity = gravity
         self.substeps = substeps
@@ -93,8 +93,8 @@ class MSKPhysicsWorld {
     func simulatePhysics(timeInterval: TimeInterval) {
         for _ in 0..<substeps {
             applyGravity()
-            handleCollisions(timeInterval: timeInterval)
-            updateObjects(timeInterval: timeInterval)
+            handleCollisions(timeInterval: timeInterval / Double(substeps))
+            updateObjects(timeInterval: timeInterval / Double(substeps))
         }
     }
 

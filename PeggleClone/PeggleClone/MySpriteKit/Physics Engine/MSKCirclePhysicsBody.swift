@@ -53,17 +53,17 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
                   mass: mass)
     }
 
-    convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>) {
-        self.init(radius: radius, position: center)
+    convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>, isDynamic: Bool) {
+        self.init(radius: radius, position: center, isDynamic: isDynamic)
     }
 
     /// Handles collision of the circle body with another unspecified type physics body.
-    override func collide(with body: MSKPhysicsBody) {
+    override func collide(with body: MSKPhysicsBody) -> Bool {
         body.collide(with: self)
     }
 
     /// Handles collision of the circle body with another circle physics body.
-    override func collide(with body: MSKCirclePhysicsBody) {
+    override func collide(with body: MSKCirclePhysicsBody) -> Bool {
         let minDistance = self.radius + body.radius
         let collisionAxis = self.position - body.position
         let collisionAxisLength = getLength(of: collisionAxis)
@@ -84,14 +84,18 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
             // Update positions of both bodies.
             self.updatePosition(by: -1 * unitVector * (massRatioB * delta))
             body.updatePosition(by: unitVector * (massRatioA * delta))
+            return true
         }
+
+        return false
     }
 
     /// Handles collision of the circle body with a polygonal physics body.
-    override func collide(with body: MSKPolygonPhysicsBody) {
-        guard let collisionVector = findCollisionVector(polygon: body, circle: self) else { return }
+    override func collide(with body: MSKPolygonPhysicsBody) -> Bool {
+        guard let collisionVector = findCollisionVector(polygon: body, circle: self) else { return false }
         body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
+        return true
     }
 
     /// Returns height of the body.

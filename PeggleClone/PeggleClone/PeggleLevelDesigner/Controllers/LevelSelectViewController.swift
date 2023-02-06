@@ -8,8 +8,8 @@
 import UIKit
 
 class LevelSelectViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var deleteAllLevelsButton: UIButton!
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var deleteAllLevelsButton: UIButton!
+    @IBOutlet var tableView: UITableView!
 
     var boards: [Board] = []
     var delegate: LevelSelectViewControllerDelegate?
@@ -38,7 +38,7 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
 
     /// Returns the number of rows that the table should load.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return boards.count
+        boards.count
     }
 
     /// Returns the cell view to be displayed in the table view at a specified row.
@@ -61,7 +61,7 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
 
     /// Specifies the height of the table cell view.
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-            return 100
+            100
     }
 
     /// Deletes a saved board when user swipes left on a cell.
