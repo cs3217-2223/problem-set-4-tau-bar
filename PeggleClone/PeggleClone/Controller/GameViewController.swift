@@ -36,6 +36,11 @@ class GameViewController: UIViewController {
         boardView.presentScene()
     }
 
+    @IBAction func didTapBoardView(_ sender: UITapGestureRecognizer) {
+        let tapLocation = sender.location(in: boardView)
+        boardScene?.fireCannon(at: tapLocation)
+    }
+
     @objc func step() {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
 //        guard let boardScene = boardScene else { return }

@@ -23,6 +23,8 @@ class MSKScene {
     func addNode(_ addedNode: MSKSpriteNode) {
         nodes.append(addedNode)
         physicsWorld.addBody(addedNode.physicsBody)
+        print("inside addnode")
+        print(addedNode.position)
         delegate?.didAddNode(addedNode)
     }
 

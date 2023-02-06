@@ -22,15 +22,20 @@
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="rGp-r9-Qp7">
                                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                        <gestureRecognizers/>
                                     </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="rGp-r9-Qp7" secondAttribute="bottom" id="5gS-Zy-IK3"/>
                                     <constraint firstItem="rGp-r9-Qp7" firstAttribute="leading" secondItem="31p-kz-ibb" secondAttribute="leading" id="GuW-wH-DNE"/>
                                     <constraint firstItem="rGp-r9-Qp7" firstAttribute="top" secondItem="31p-kz-ibb" secondAttribute="top" id="PdU-5z-8sW"/>
                                     <constraint firstAttribute="trailing" secondItem="rGp-r9-Qp7" secondAttribute="trailing" id="mVk-TT-2wd"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2ec-hD-WcX" appends="YES" id="e4Y-Zi-Msc"/>
+                                </connections>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="1gM-Jw-cP1"/>
@@ -43,10 +48,15 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="boardView" destination="31p-kz-ibb" id="DX1-vg-8Ia"/>
+                        <outlet property="boardView" destination="31p-kz-ibb" id="aAV-kW-ilv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="2ec-hD-WcX">
+                    <connections>
+                        <action selector="didTapBoardView:" destination="BYZ-38-t0r" id="b4U-x2-pTq"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-18.292682926829269" y="3.5593220338983054"/>
         </scene>

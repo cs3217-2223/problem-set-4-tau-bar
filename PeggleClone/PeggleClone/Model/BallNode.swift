@@ -7,11 +7,11 @@
 import UIKit
 
 class BallNode: MSKSpriteNode {
-    init(position: CGPoint) {
+    init(oldPosition: CGPoint, position: CGPoint) {
         super.init(physicsBody: BallPhysicsBody(circleOfRadius: 20.0,
-                                                     center: SIMD2<Double>(x: position.x,
-                                                                     y: position.y),
-                                                     isDynamic: true),
+                                                oldPosition: SIMD2<Double>(x: oldPosition.x, y: oldPosition.y),
+                                                position: SIMD2<Double>(x: position.x, y: position.y),
+                                                isDynamic: true),
                    image: UIImage(named: "ball"))
     }
 }

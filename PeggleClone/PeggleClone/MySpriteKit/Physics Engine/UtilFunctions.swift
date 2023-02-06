@@ -129,7 +129,10 @@ func findCollisionVector(polygon: MSKPolygonPhysicsBody,
         }
     }
 
-    let closestPoint = vertices[findClosestVertice(in: vertices, to: circle.position)]
+    // TODO: Guard out of range
+    let closestVertexIdx = findClosestVertice(in: vertices, to: circle.position)
+    guard vertices.indices.contains(closestVertexIdx) else { return nil }
+    let closestPoint = vertices[closestVertexIdx]
     let axis = closestPoint - circle.position
     let minMaxA: (min: Double, max: Double) = findMinMaxOf(vertices: vertices, along: axis)
     let minMaxB: (min: Double, max: Double) = findMinMaxOf(circle: circle, along: axis)

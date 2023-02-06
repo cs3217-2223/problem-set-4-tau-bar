@@ -57,6 +57,10 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
         self.init(radius: radius, position: center, isDynamic: isDynamic)
     }
 
+    convenience init(circleOfRadius radius: CGFloat, oldPosition: SIMD2<Double>, position: SIMD2<Double>, isDynamic: Bool) {
+        self.init(radius: radius, position: position, oldPosition: oldPosition, isDynamic: isDynamic)
+    }
+
     /// Handles collision of the circle body with another unspecified type physics body.
     override func collide(with body: MSKPhysicsBody) -> Bool {
         body.collide(with: self)
