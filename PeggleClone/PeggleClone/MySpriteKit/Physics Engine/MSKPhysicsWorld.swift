@@ -44,52 +44,48 @@ class MSKPhysicsWorld {
     }
 
     // MARK: Methods
-
+    /// Adds a border to the top of the physics world.
+    /// - Parameters:
+    ///   - xPos: x-coordinate of the midpoint of the border.
+    ///   - yPos: y-coordinate of the midpoint of the border.
+    ///   - width: Width of the border.
     func addTopBorder(xPos: Double, yPos: Double, width: Double) {
         let horizontalBorderVertices = getVerticesForRect(width: width + borderBuffer * 2, height: borderBuffer * 2)
         let topBorderPos = SIMD2<Double>(x: xPos, y: yPos - borderBuffer)
-        let topBorder = MSKPolygonPhysicsBody(vertices: horizontalBorderVertices,
-                                                 position: topBorderPos,
-                                                 affectedByGravity: false,
-                                                 isDynamic: false)
-        addBody(topBorder)
+        addBorder(vertices: horizontalBorderVertices, postion: topBorderPos)
     }
 
+    /// Adds a border to the left of the physics world.
+    /// - Parameters:
+    ///   - xPos: x-coordinate of the midpoint of the border.
+    ///   - yPos: y-coordinate of the midpoint of the border.
+    ///   - height: Height of the border.
     func addLeftBorder(xPos: Double, yPos: Double, height: Double) {
         let verticalBorderVertices = getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
 
         let leftBorderPos = SIMD2<Double>(x: xPos - borderBuffer, y: height / 2)
-        let leftBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
-                                               position: leftBorderPos,
-                                               affectedByGravity: false,
-                                               isDynamic: false)
-        addBody(leftBorder)
+        addBorder(vertices: verticalBorderVertices, postion: leftBorderPos)
     }
 
+    /// Adds a border to the right of the physics world.
+    /// - Parameters:
+    ///   - xPos: x-coordinate of the midpoint of the border.
+    ///   - yPos: y-coordinate of the midpoint of the border.
+    ///   - height: Height of the border.
     func addRightBorder(xPos: Double, yPos: Double, height: Double) {
         let verticalBorderVertices = getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
 
         let rightBorderPos = SIMD2<Double>(x: xPos + borderBuffer, y: height / 2)
-        let rightBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
-                                               position: rightBorderPos,
-                                               affectedByGravity: false,
-                                               isDynamic: false)
-        addBody(rightBorder)
+        addBorder(vertices: verticalBorderVertices, postion: rightBorderPos)
     }
 
-    /// Creates a horizontal border at the top of the physics world.
-    /// - Parameters:
-    ///   - x: The x-coordinate of the mid-point of the border.
-    ///   - y: The y-coordinate of the mid-point of the border.
-    ///   - length: The length of the border to create.
-    func addTopBorder(xPos: Double, yPos: Double, length: Double) {
-        let horizontalBorderVertices = getVerticesForRect(width: length + borderBuffer * 2, height: borderBuffer * 2)
-        let topBorderPos = SIMD2<Double>(x: xPos, y: yPos - borderBuffer)
-        let topBorder = MSKPolygonPhysicsBody(vertices: horizontalBorderVertices,
-                                                 position: topBorderPos,
-                                                 affectedByGravity: false,
-                                                 isDynamic: false)
-        addBody(topBorder)
+    /// Adds a border to the physics world.
+    private func addBorder(vertices: [SIMD2<Double>], postion: SIMD2<Double>) {
+        let border = MSKPolygonPhysicsBody(vertices: vertices,
+                                               position: postion,
+                                               affectedByGravity: false,
+                                               isDynamic: false)
+        addBody(border)
     }
 
     /// Adds a new body to the physics world.
