@@ -10,64 +10,87 @@ import CoreGraphics
 
 /// Represents a circular physics body, characterized by `radius`.
 class MSKCirclePhysicsBody: MSKPhysicsBody {
+    var delegate: MSKPhysicsBodyDelegate?
+
+    var positionLast: SIMD2<Double>
+
+    var position: SIMD2<Double>
+
+    var acceleration: SIMD2<Double>
+
+    var affectedByGravity: Bool
+
+    var isDynamic: Bool
+
+    var categoryBitMask: UInt32
+
+    var mass: Double
 
     /// The radius of the body.
     var radius: Double
 
     // MARK: Initializers
-    init(node: MSKNode? = nil,
-         radius: Double = defaultRadius,
+    init(delegate: MSKPhysicsBodyDelegate? = nil,
+         positionLast: SIMD2<Double>,
          position: SIMD2<Double>,
-         oldPosition: SIMD2<Double>,
          acceleration: SIMD2<Double> = defaultAcceleration,
          affectedByGravity: Bool = defaultAffectedByGravity,
          isDynamic: Bool = defaultIsDynamic,
          categoryBitMask: UInt32 = defaultCategoryBitMask,
-         mass: Double = defaultMass) {
+         mass: Double = defaultMass,
+         radius: Double = defaultRadius
+    ) {
+        self.delegate = delegate
+        self.positionLast = positionLast
+        self.position = position
+        self.acceleration = acceleration
+        self.affectedByGravity = affectedByGravity
+        self.isDynamic = isDynamic
+        self.categoryBitMask = categoryBitMask
+        self.mass = mass
         self.radius = radius
-        super.init(position: position,
-                   oldPosition: oldPosition,
-                   acceleration: acceleration,
-                   affectedByGravity: affectedByGravity,
-                   isDynamic: isDynamic,
-                   categoryBitMask: categoryBitMask,
-                   mass: mass)
     }
 
-    convenience init(node: MSKNode? = nil,
-                     radius: Double = defaultRadius,
+    convenience init(delegate: MSKPhysicsBodyDelegate? = nil,
                      position: SIMD2<Double>,
                      acceleration: SIMD2<Double> = defaultAcceleration,
                      affectedByGravity: Bool = defaultAffectedByGravity,
                      isDynamic: Bool = defaultIsDynamic,
                      categoryBitMask: UInt32 = defaultCategoryBitMask,
-                     mass: Double = defaultMass) {
-        self.init(node: node,
-                  radius: radius,
+                     mass: Double = defaultMass,
+                     radius: Double = defaultRadius) {
+        self.init(delegate: delegate,
+                  positionLast: position,
                   position: position,
-                  oldPosition: position,
                   acceleration: acceleration,
                   affectedByGravity: affectedByGravity,
                   isDynamic: isDynamic,
                   categoryBitMask: categoryBitMask,
-                  mass: mass)
+                  mass: mass,
+                  radius: radius)
+    }
+
+    convenience init(circleOfRadius radius: CGFloat,
+                     oldPosition: SIMD2<Double>,
+                     position: SIMD2<Double>,
+                     isDynamic: Bool) {
+        self.init(positionLast: oldPosition,
+                  position: position,
+                  isDynamic: isDynamic,
+                  radius: radius)
     }
 
     convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>, isDynamic: Bool) {
-        self.init(radius: radius, position: center, isDynamic: isDynamic)
-    }
-
-    convenience init(circleOfRadius radius: CGFloat, oldPosition: SIMD2<Double>, position: SIMD2<Double>, isDynamic: Bool) {
-        self.init(radius: radius, position: position, oldPosition: oldPosition, isDynamic: isDynamic)
+        self.init(position: center, isDynamic: isDynamic, radius: radius)
     }
 
     /// Handles collision of the circle body with another unspecified type physics body.
-    override func collide(with body: MSKPhysicsBody) -> Bool {
+    func collide(with body: MSKPhysicsBody) -> Bool {
         body.collide(with: self)
     }
 
     /// Handles collision of the circle body with another circle physics body.
-    override func collide(with body: MSKCirclePhysicsBody) -> Bool {
+    func collide(with body: MSKCirclePhysicsBody) -> Bool {
         let minDistance = self.radius + body.radius
         let collisionAxis = self.position - body.position
         let collisionAxisLength = getLength(of: collisionAxis)
@@ -95,7 +118,7 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
     }
 
     /// Handles collision of the circle body with a polygonal physics body.
-    override func collide(with body: MSKPolygonPhysicsBody) -> Bool {
+    func collide(with body: MSKPolygonPhysicsBody) -> Bool {
         guard let collisionVector = findCollisionVector(polygon: body, circle: self) else { return false }
         body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
@@ -103,12 +126,12 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
     }
 
     /// Returns height of the body.
-    override func getHeight() -> Double {
+    func getHeight() -> Double {
         radius * 2
     }
 
     /// Returns width of the body.
-    override func getWidth() -> Double {
+    func getWidth() -> Double {
         radius * 2
     }
 }

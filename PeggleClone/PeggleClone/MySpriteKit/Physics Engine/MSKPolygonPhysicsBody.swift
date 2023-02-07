@@ -10,27 +10,45 @@ import CoreGraphics
 
 /// Represents a polygonal physics body, characterized by `vertices`.
 class MSKPolygonPhysicsBody: MSKPhysicsBody {
+    var delegate: MSKPhysicsBodyDelegate?
+
+    var positionLast: SIMD2<Double>
+
+    var position: SIMD2<Double>
+
+    var acceleration: SIMD2<Double>
+
+    var affectedByGravity: Bool
+
+    var isDynamic: Bool
+
+    var categoryBitMask: UInt32
+
+    var mass: Double
+
     /// Vertices of the polygon, relative to the `position` of the polygon.
     /// The vertices are in order (either clockwise or anticlockwise).
     var vertices: [SIMD2<Double>]
 
     // MARK: Designated & Convenience Initializers
-    init(vertices: [SIMD2<Double>],
-         position: SIMD2<Double>,
-         oldPosition: SIMD2<Double>,
-         acceleration: SIMD2<Double> = defaultAcceleration,
-         affectedByGravity: Bool = defaultAffectedByGravity,
-         isDynamic: Bool = defaultIsDynamic,
-         categoryBitMask: UInt32 = defaultCategoryBitMask,
-         mass: Double = defaultMass) {
+    internal init(delegate: MSKPhysicsBodyDelegate? = nil,
+                  positionLast: SIMD2<Double>,
+                  position: SIMD2<Double>,
+                  acceleration: SIMD2<Double> = defaultAcceleration,
+                  affectedByGravity: Bool = defaultAffectedByGravity,
+                  isDynamic: Bool = defaultIsDynamic,
+                  categoryBitMask: UInt32 = defaultCategoryBitMask,
+                  mass: Double = defaultMass,
+                  vertices: [SIMD2<Double>]) {
+        self.delegate = delegate
+        self.positionLast = positionLast
+        self.position = position
+        self.acceleration = acceleration
+        self.affectedByGravity = affectedByGravity
+        self.isDynamic = isDynamic
+        self.categoryBitMask = categoryBitMask
+        self.mass = mass
         self.vertices = vertices
-        super.init(position: position,
-                   oldPosition: oldPosition,
-                   acceleration: acceleration,
-                   affectedByGravity: affectedByGravity,
-                   isDynamic: isDynamic,
-                   categoryBitMask: categoryBitMask,
-                   mass: mass)
     }
 
     convenience init(vertices: [SIMD2<Double>],
@@ -40,14 +58,15 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
                      isDynamic: Bool = defaultIsDynamic,
                      categoryBitMask: UInt32 = defaultCategoryBitMask,
                      mass: Double = defaultMass) {
-        self.init(vertices: vertices,
+        self.init(positionLast: position,
                   position: position,
-                  oldPosition: position,
                   acceleration: acceleration,
                   affectedByGravity: affectedByGravity,
                   isDynamic: isDynamic,
                   categoryBitMask: categoryBitMask,
-                  mass: mass)
+                  mass: mass,
+                  vertices: vertices
+        )
     }
 
     convenience init(polygon vertices: [SIMD2<Double>], center: SIMD2<Double>) {
@@ -56,12 +75,12 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
 
     // MARK: Methods
     /// Handles collisions with an unspecified type physics body.
-    override func collide(with body: MSKPhysicsBody) -> Bool {
+    func collide(with body: MSKPhysicsBody) -> Bool {
         body.collide(with: self)
     }
 
     /// Handles collisions with an circle type physics body.
-    override func collide(with body: MSKCirclePhysicsBody) -> Bool {
+    func collide(with body: MSKCirclePhysicsBody) -> Bool {
         guard let collisionVector = findCollisionVector(polygon: self, circle: body) else { return false }
 
         self.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
@@ -70,7 +89,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
     }
 
     /// Handles collisions with an polygonal type physics body.
-    override func collide(with body: MSKPolygonPhysicsBody) -> Bool {
+    func collide(with body: MSKPolygonPhysicsBody) -> Bool {
         guard let collisionVector = findCollisionVector(polygonA: self, polygonB: body) else { return false }
 
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
@@ -79,7 +98,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
     }
 
     /// Returns the width of the polygon.
-    override func getWidth() -> Double {
+    func getWidth() -> Double {
         var minA = maxDoubleValue
         var maxA = minDoubleValue
         for vertex in vertices {
@@ -91,7 +110,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
     }
 
     /// Returns the height of the polygon.
-    override func getHeight() -> Double {
+    func getHeight() -> Double {
         var minA = maxDoubleValue
         var maxA = minDoubleValue
         for vertex in vertices {

@@ -32,9 +32,9 @@ class GameViewController: UIViewController {
                 let orangeNode = OrangePegNode(position: CGPoint(x: 200 + 100 * one, y: 700 + 60 * two))
                 boardScene.addNode(orangeNode)
             }
-            
+
         }
-        
+
     }
 
     func begin() {

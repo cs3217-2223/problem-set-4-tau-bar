@@ -9,63 +9,63 @@ import Foundation
 import CoreGraphics
 
 /// Represents a physical body in the Physics World.
-class MSKPhysicsBody {
-    weak var delegate: MSKPhysicsBodyDelegate?
+protocol MSKPhysicsBody: AnyObject {
+    var delegate: MSKPhysicsBodyDelegate? { get set }
 
     /// The previous position of the center of the body.
-    var positionLast: SIMD2<Double>
+    var positionLast: SIMD2<Double> { get set }
 
     /// The current position of the center of the body.
-    var position: SIMD2<Double>
+    var position: SIMD2<Double> { get set }
 
     /// The current acceleration of the body.
-    var acceleration: SIMD2<Double>
+    var acceleration: SIMD2<Double> { get set }
 
     /// A Boolean value indicating whether the physics body is affected by gravity.
-    var affectedByGravity: Bool
+    var affectedByGravity: Bool { get set }
 
     /// A Boolean value indicating whether the physics body is moved by the physics simulation.
-    var isDynamic: Bool
+    var isDynamic: Bool { get set }
 
     /// A mask that defines which categories this physics body belongs to.
-    var categoryBitMask: UInt32
+    var categoryBitMask: UInt32 { get set }
 
     /// The mass of the physics body (in kgs).
-    var mass: Double
+    var mass: Double { get set }
 
-    // MARK: Designated & Convenience Initializers
-    init(position: SIMD2<Double>,
-         acceleration: SIMD2<Double> = defaultAcceleration,
-         affectedByGravity: Bool = defaultAffectedByGravity,
-         isDynamic: Bool = defaultIsDynamic,
-         categoryBitMask: UInt32 = defaultCategoryBitMask,
-         mass: Double = defaultMass) {
-        self.position = position
-        self.positionLast = position
-        self.acceleration = acceleration
-        self.affectedByGravity = affectedByGravity
-        self.isDynamic = isDynamic
-        self.categoryBitMask = categoryBitMask
-        self.mass = mass
-    }
+    /// Updates the position of the physics body after a `timeInterval`.
+    func updatePosition(timeInterval: TimeInterval)
 
-    init(position: SIMD2<Double>,
-         oldPosition: SIMD2<Double>,
-         acceleration: SIMD2<Double> = defaultAcceleration,
-         affectedByGravity: Bool = defaultAffectedByGravity,
-         isDynamic: Bool = defaultIsDynamic,
-         categoryBitMask: UInt32 = defaultCategoryBitMask,
-         mass: Double = defaultMass) {
-        self.position = position
-        self.positionLast = oldPosition
-        self.acceleration = acceleration
-        self.affectedByGravity = affectedByGravity
-        self.isDynamic = isDynamic
-        self.categoryBitMask = categoryBitMask
-        self.mass = mass
-    }
+    /// Applies gravity to the physics body.
+    func applyGravity(_ gravity: SIMD2<Double>)
 
-    // MARK: Methods
+    /// Updates the position by the specified vector.
+    func updatePosition(by vector: SIMD2<Double>)
+
+    /// Accelerates the physics body.
+    func accelerate(acc: SIMD2<Double>)
+
+    /// Sets the velocity to the `newVelocity` after a `timeInterval`.
+    func setVelocity(newVelocity: SIMD2<Double>, timeInterval: TimeInterval)
+
+    /// Adds velocity after a `timeInterval`.
+    func addVelocity(velocity: SIMD2<Double>, timeInterval: TimeInterval)
+
+    /// Returns the current velocity given the `timeInterval`.
+    func getVelocity(timeInterval: TimeInterval) -> SIMD2<Double>
+
+    func collide(with body: MSKPhysicsBody) -> Bool
+
+    func collide(with body: MSKCirclePhysicsBody) -> Bool
+
+    func collide(with body: MSKPolygonPhysicsBody) -> Bool
+
+    func getHeight() -> Double
+
+    func getWidth() -> Double
+}
+
+extension MSKPhysicsBody {
     /// Updates the positon of the body given the specified `timeInterval` to calculate
     /// the new position of the body using Verlet integration.
     func updatePosition(timeInterval: TimeInterval) {
@@ -117,27 +117,5 @@ class MSKPhysicsBody {
     /// Returns the current velocity of the body.
     func getVelocity(timeInterval: TimeInterval) -> SIMD2<Double> {
         (position - positionLast) / timeInterval
-    }
-
-    // MARK: Abstract methods - these methods must be overridden by the subclass.
-    func collide(with body: MSKPhysicsBody) -> Bool {
-        assert(false, "This method must be overridden by subclass.")
-        return false
-    }
-    func collide(with body: MSKCirclePhysicsBody) -> Bool {
-        assert(false, "This method must be overridden by subclass.")
-        return false
-    }
-    func collide(with body: MSKPolygonPhysicsBody) -> Bool {
-        assert(false, "This method must be overridden by subclass.")
-        return false
-    }
-    func getHeight() -> Double {
-        assert(false, "This method must be overridden by subclass.")
-        return 0.0
-    }
-    func getWidth() -> Double {
-        assert(false, "This method must be overridden by subclass.")
-        return 0.0
     }
 }
