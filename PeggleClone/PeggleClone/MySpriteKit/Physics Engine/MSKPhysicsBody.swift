@@ -54,14 +54,19 @@ protocol MSKPhysicsBody: AnyObject {
     /// Returns the current velocity given the `timeInterval`.
     func getVelocity(timeInterval: TimeInterval) -> SIMD2<Double>
 
+    /// Simulates collision with an unspecified type of physics body.
     func collide(with body: MSKPhysicsBody) -> Bool
 
+    /// Simulates collision with a circle type of physics body.
     func collide(with body: MSKCirclePhysicsBody) -> Bool
 
+    /// Simulates collision with a polygon type of physics body.
     func collide(with body: MSKPolygonPhysicsBody) -> Bool
 
+    /// Returns the height of the body.
     func getHeight() -> Double
 
+    /// Returns the width of the body.
     func getWidth() -> Double
 }
 

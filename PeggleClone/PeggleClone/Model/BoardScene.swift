@@ -9,8 +9,7 @@ import Foundation
 
 class BoardScene: MSKScene, PegNodeDelegate {
     weak var boardView: BoardView?
-    private var leftBall: BallNode?
-    private var rightBall: BallNode?
+    private var ball: BallNode?
     private var isCannonFired = false
     private let defaultDirectionVectorMultiplier: Double = 10.0
     private let defaultCannonHeight: Double = 100
@@ -47,16 +46,12 @@ class BoardScene: MSKScene, PegNodeDelegate {
 
         let originalPos = CGPoint(x: physicsWorld.width / 2, y: defaultBallStartingHeight)
 
-        let leftBallOldPos = CGPoint(x: originalPos.x - spaceBetweenBalls / 2, y: originalPos.y)
-        let leftBallNewPos = findNewBallPos(oldPosition: leftBallOldPos, tapLocation: tapLocation)
-        leftBall = BallNode(oldPosition: leftBallOldPos, position: leftBallNewPos)
-        let rightBallOldPos = CGPoint(x: originalPos.x + spaceBetweenBalls / 2, y: originalPos.y)
-        let rightBallNewPos = findNewBallPos(oldPosition: rightBallOldPos, tapLocation: tapLocation)
-        rightBall = BallNode(oldPosition: rightBallOldPos, position: rightBallNewPos)
+        let ballOldPos = CGPoint(x: originalPos.x - spaceBetweenBalls / 2, y: originalPos.y)
+        let ballNewPos = findNewBallPos(oldPosition: ballOldPos, tapLocation: tapLocation)
+        ball = BallNode(oldPosition: ballOldPos, position: ballNewPos)
 
-        guard let leftBall = leftBall, let rightBall = rightBall else { return }
-        addNode(leftBall)
-        addNode(rightBall)
+        guard let ball = ball else { return }
+        addNode(ball)
         isCannonFired = true
     }
 
@@ -81,8 +76,8 @@ class BoardScene: MSKScene, PegNodeDelegate {
 
     override func update(timeInterval: TimeInterval) {
         super.update(timeInterval: timeInterval)
-        guard let leftBall = leftBall, let rightBall = rightBall else { return }
-        if isOutOfBounds(node: leftBall) && isOutOfBounds(node: rightBall) {
+        guard let ball = ball else { return }
+        if isOutOfBounds(node: ball) {
             // Remove the balls out of the scene.
             removeFiredBalls()
 
@@ -110,11 +105,9 @@ class BoardScene: MSKScene, PegNodeDelegate {
     }
 
     func removeFiredBalls() {
-        guard let leftBall = leftBall, let rightBall = rightBall else { return }
-        removeNode(leftBall)
-        self.leftBall = nil
-        removeNode(rightBall)
-        self.rightBall = nil
+        guard let ball = ball else { return }
+        removeNode(ball)
+        self.ball = nil
     }
 
     func isOutOfBounds(node: BallNode) -> Bool {
