@@ -27,6 +27,9 @@ class MSKPhysicsWorld {
     /// Conversely, lower number of substeps results in worse-looking collisions & physics but better performance.
     private var substeps: Int
 
+    /// Buffer for the border bodies, to allow collisions with borders to work properly.
+    let borderBuffer: Double = 100
+
     // MARK: Initializers
     init(bodies: [MSKPhysicsBody] = [],
          gravity: SIMD2<Double> = defaultGravity,
@@ -38,44 +41,55 @@ class MSKPhysicsWorld {
         self.substeps = substeps
         self.width = width
         self.height = height
-        addBorders()
     }
 
     // MARK: Methods
-    /// Adds edges to the borders of the physics world to ensure bodies stay within bounds.
-    func addBorders() {
-        let borderBuffer: Double = 100
-        let verticalBorderVertices = getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
 
-        let leftBorderPos = SIMD2<Double>(x: 0 - borderBuffer, y: height / 2)
-        let leftBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
-                                               position: leftBorderPos,
-                                               affectedByGravity: false,
-                                               isDynamic: false)
-
-        let rightBorderPos = SIMD2<Double>(x: width + borderBuffer, y: height / 2)
-        let rightBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
-                                                position: rightBorderPos,
-                                                affectedByGravity: false,
-                                                isDynamic: false)
-
+    func addTopBorder(xPos: Double, yPos: Double, width: Double) {
         let horizontalBorderVertices = getVerticesForRect(width: width + borderBuffer * 2, height: borderBuffer * 2)
-        let topBorderPos = SIMD2<Double>(x: width / 2, y: 0 - borderBuffer)
+        let topBorderPos = SIMD2<Double>(x: xPos, y: yPos - borderBuffer)
         let topBorder = MSKPolygonPhysicsBody(vertices: horizontalBorderVertices,
                                                  position: topBorderPos,
                                                  affectedByGravity: false,
                                                  isDynamic: false)
+        addBody(topBorder)
+    }
 
-        let bottomBorderPos = SIMD2<Double>(x: width / 2, y: height + borderBuffer)
-        let bottomBorder = MSKPolygonPhysicsBody(vertices: horizontalBorderVertices,
-                                                 position: bottomBorderPos,
+    func addLeftBorder(xPos: Double, yPos: Double, height: Double) {
+        let verticalBorderVertices = getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
+
+        let leftBorderPos = SIMD2<Double>(x: xPos - borderBuffer, y: height / 2)
+        let leftBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
+                                               position: leftBorderPos,
+                                               affectedByGravity: false,
+                                               isDynamic: false)
+        addBody(leftBorder)
+    }
+
+    func addRightBorder(xPos: Double, yPos: Double, height: Double) {
+        let verticalBorderVertices = getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
+
+        let rightBorderPos = SIMD2<Double>(x: xPos + borderBuffer, y: height / 2)
+        let rightBorder = MSKPolygonPhysicsBody(vertices: verticalBorderVertices,
+                                               position: rightBorderPos,
+                                               affectedByGravity: false,
+                                               isDynamic: false)
+        addBody(rightBorder)
+    }
+
+    /// Creates a horizontal border at the top of the physics world.
+    /// - Parameters:
+    ///   - x: The x-coordinate of the mid-point of the border.
+    ///   - y: The y-coordinate of the mid-point of the border.
+    ///   - length: The length of the border to create.
+    func addTopBorder(xPos: Double, yPos: Double, length: Double) {
+        let horizontalBorderVertices = getVerticesForRect(width: length + borderBuffer * 2, height: borderBuffer * 2)
+        let topBorderPos = SIMD2<Double>(x: xPos, y: yPos - borderBuffer)
+        let topBorder = MSKPolygonPhysicsBody(vertices: horizontalBorderVertices,
+                                                 position: topBorderPos,
                                                  affectedByGravity: false,
                                                  isDynamic: false)
-
-        addBody(leftBorder)
-        addBody(rightBorder)
         addBody(topBorder)
-        addBody(bottomBorder)
     }
 
     /// Adds a new body to the physics world.
@@ -107,8 +121,8 @@ class MSKPhysicsWorld {
 
     /// Resolves collisions between two physics bodies.
     private func resolveCollision(bodyA: MSKPhysicsBody, bodyB: MSKPhysicsBody) {
-        bodyA.collide(with: bodyB)
-        bodyB.collide(with: bodyA)
+        _ = bodyA.collide(with: bodyB)
+        _ = bodyB.collide(with: bodyA)
     }
 
     /// Checks and resolves collisions between all bodies within the world.

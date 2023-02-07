@@ -21,9 +21,6 @@ class GameViewController: UIViewController {
         guard let boardScene = boardScene else { return }
         boardView.setScene(boardScene)
 
-        // Set up board scene
-        boardScene.setupBoard()
-
         // Set up game loop
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
@@ -38,7 +35,10 @@ class GameViewController: UIViewController {
 
     @IBAction func didTapBoardView(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: boardView)
-        boardScene?.fireCannon(at: tapLocation)
+        guard let isTapLocationValid = boardScene?.isTapInValidLocation(location: tapLocation) else { return }
+        if isTapLocationValid {
+            boardScene?.fireCannon(at: tapLocation)
+        }
     }
 
     @objc func step() {

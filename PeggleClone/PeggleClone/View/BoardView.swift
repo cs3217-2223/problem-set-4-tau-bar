@@ -21,5 +21,13 @@ class BoardView: MSKView, BoardSceneDelegate {
         super.setScene(scene)
         guard let boardScene = scene as? BoardScene else { return }
         boardScene.boardView = self
+        boardScene.setupBoard()
+    }
+
+    func fadeOutPegView(removedNode: PegNode) {
+        let pegViewToRemove = pegToView[removedNode]
+        UIView.animate(withDuration: 0.5,
+                       animations: { pegViewToRemove?.alpha = 0 },
+                       completion: { _ in pegViewToRemove?.removeFromSuperview() })
     }
 }

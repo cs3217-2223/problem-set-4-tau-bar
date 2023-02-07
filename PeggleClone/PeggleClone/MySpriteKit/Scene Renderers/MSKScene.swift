@@ -23,8 +23,6 @@ class MSKScene {
     func addNode(_ addedNode: MSKSpriteNode) {
         nodes.append(addedNode)
         physicsWorld.addBody(addedNode.physicsBody)
-        print("inside addnode")
-        print(addedNode.position)
         delegate?.didAddNode(addedNode)
     }
 
@@ -45,7 +43,7 @@ class MSKScene {
         // e.g. update, add, remove nodes.
         didSimulatePhysics()
     }
-    /// Runs once `physicsWorld` has completed physics simulation.
+    /// Updates the positions of the nodes  once `physicsWorld` has completed physics simulation.
     func didSimulatePhysics() {
         updateNodePositions()
     }
