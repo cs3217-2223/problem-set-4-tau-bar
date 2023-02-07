@@ -25,8 +25,16 @@ class GameViewController: UIViewController {
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
 
-        let newNode = BluePegNode(position: CGPoint(x: 200, y: 400))
-        boardScene.addNode(newNode)
+        for one in 0..<5 {
+            for two in 0..<5 {
+                let blueNode = BluePegNode(position: CGPoint(x: 200 + 100 * one, y: 300 + 60 * two))
+                boardScene.addNode(blueNode)
+                let orangeNode = OrangePegNode(position: CGPoint(x: 200 + 100 * one, y: 700 + 60 * two))
+                boardScene.addNode(orangeNode)
+            }
+            
+        }
+        
     }
 
     func begin() {
@@ -43,20 +51,5 @@ class GameViewController: UIViewController {
 
     @objc func step() {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
-//        guard let boardScene = boardScene else { return }
-//        if count == 25 {
-//            let newNode = OrangePegNode(position: CGPoint(x: 200, y: 400))
-//            boardScene.addNode(newNode)
-//        }
-//        if count == 60 {
-//            let newNode = BluePegNode(position: CGPoint(x: 200, y: 400))
-//            boardScene.addNode(newNode)
-//        }
-//        if count == 300 {
-//            let newNode = BallNode(position: CGPoint(x: 200, y: 400))
-//            boardScene.addNode(newNode)
-//            count = 0
-//        }
-//        count += 1
     }
 }

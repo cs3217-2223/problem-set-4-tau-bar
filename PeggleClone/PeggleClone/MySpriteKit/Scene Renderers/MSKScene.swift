@@ -31,6 +31,7 @@ class MSKScene {
         nodes.removeAll(where: { node in
             node == removedNode
         })
+        physicsWorld.removeBody(removedNode.physicsBody)
         delegate?.didRemoveNode(removedNode)
     }
 

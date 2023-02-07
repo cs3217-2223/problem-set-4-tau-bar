@@ -97,13 +97,14 @@ class BoardScene: MSKScene, PegNodeDelegate {
     func removeHitPegs() {
         var hitPegs: [PegNode] = []
         for node in nodes {
-            if let pegNode = node as? PegNode {
+            if let pegNode = node as? PegNode, pegNode.isHit {
                 hitPegs.append(pegNode)
             }
         }
 
         hitPegs.forEach({ hitNode in
             nodes.removeAll(where: { node in node == hitNode })
+            physicsWorld.removeBody(hitNode.physicsBody)
             boardView?.fadeOutPegView(removedNode: hitNode)
         })
     }
