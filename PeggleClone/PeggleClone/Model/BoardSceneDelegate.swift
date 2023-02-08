@@ -10,7 +10,5 @@ import Foundation
 protocol BoardSceneDelegate: AnyObject {
     func didCollideWithBall(updatedPegNode: PegNode)
 
-    func didAddPegNode(addedNode: PegNode)
-
     func fadeOutPegView(removedNode: PegNode)
 }

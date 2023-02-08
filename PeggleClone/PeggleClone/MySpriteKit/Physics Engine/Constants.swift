@@ -19,5 +19,5 @@ let defaultMass: Double = 1.0
 let defaultAngle: Double = 0
 
 // MARK: Constants for `MSKPhysicsWorld`
-let defaultGravity: SIMD2<Double> = SIMD2(x: 0, y: 200)
+let defaultGravity: SIMD2<Double> = SIMD2(x: 0, y: 300)
 let defaultResponseCoeff: Double = 0.75

@@ -35,7 +35,6 @@ class BoardScene: MSKScene, PegNodeDelegate {
         guard let pegNode = addedNode as? PegNode else { return }
 
         pegNode.delegate = self
-        boardView?.didAddPegNode(addedNode: pegNode)
     }
 
     func didCollideWithBall(pegNode: PegNode) {

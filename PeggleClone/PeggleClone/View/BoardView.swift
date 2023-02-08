@@ -7,14 +7,8 @@
 import UIKit
 
 class BoardView: MSKView, BoardSceneDelegate {
-    var pegToView: [PegNode: UIImageView] = [:]
-
     func didCollideWithBall(updatedPegNode: PegNode) {
-        pegToView[updatedPegNode]?.image = updatedPegNode.image
-    }
-
-    func didAddPegNode(addedNode: PegNode) {
-        pegToView[addedNode] = nodeToView[addedNode]
+        nodeToView[updatedPegNode]?.image = updatedPegNode.image
     }
 
     override func setScene(_ scene: MSKScene) {
@@ -25,9 +19,9 @@ class BoardView: MSKView, BoardSceneDelegate {
     }
 
     func fadeOutPegView(removedNode: PegNode) {
-        let pegViewToRemove = pegToView[removedNode]
+        let viewToRemove = nodeToView[removedNode]
         UIView.animate(withDuration: 0.5,
-                       animations: { pegViewToRemove?.alpha = 0 },
-                       completion: { _ in pegViewToRemove?.removeFromSuperview() })
+                       animations: { viewToRemove?.alpha = 0 },
+                       completion: { _ in viewToRemove?.removeFromSuperview() })
     }
 }
