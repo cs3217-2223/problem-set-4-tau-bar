@@ -10,6 +10,8 @@ import CoreGraphics
 
 /// Represents a circular physics body, characterized by `radius`.
 class MSKCirclePhysicsBody: MSKPhysicsBody {
+    var angle: Double
+
     var delegate: MSKPhysicsBodyDelegate?
 
     var positionLast: SIMD2<Double>
@@ -38,7 +40,8 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
          isDynamic: Bool = defaultIsDynamic,
          categoryBitMask: UInt32 = defaultCategoryBitMask,
          mass: Double = defaultMass,
-         radius: Double = defaultRadius
+         radius: Double = defaultRadius,
+         angle: Double = defaultAngle
     ) {
         self.delegate = delegate
         self.positionLast = positionLast
@@ -49,6 +52,7 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
         self.categoryBitMask = categoryBitMask
         self.mass = mass
         self.radius = radius
+        self.angle = angle
     }
 
     convenience init(delegate: MSKPhysicsBodyDelegate? = nil,

@@ -10,6 +10,7 @@ import Foundation
 class BoardScene: MSKScene, PegNodeDelegate {
     weak var boardView: BoardView?
     private var ball: BallNode?
+    private var cannon: CannonNode?
     private var isCannonFired = false
     private let defaultDirectionVectorMultiplier: Double = 10.0
     private let defaultCannonHeight: Double = 100
@@ -22,7 +23,9 @@ class BoardScene: MSKScene, PegNodeDelegate {
 
     func setupBoard() {
         let cannonPosition = SIMD2<Double>(x: physicsWorld.width / 2, y: defaultCannonHeight)
-        addNode(CannonNode(center: cannonPosition))
+        let newCannon = CannonNode(center: cannonPosition)
+        addNode(newCannon)
+        cannon = newCannon
         setUpBorders()
     }
 
@@ -46,9 +49,21 @@ class BoardScene: MSKScene, PegNodeDelegate {
 
         let originalPos = CGPoint(x: physicsWorld.width / 2, y: defaultBallStartingHeight)
 
-        let ballOldPos = CGPoint(x: originalPos.x - spaceBetweenBalls / 2, y: originalPos.y)
+        let ballOldPos = CGPoint(x: originalPos.x, y: originalPos.y)
         let ballNewPos = findNewBallPos(oldPosition: ballOldPos, tapLocation: tapLocation)
         ball = BallNode(oldPosition: ballOldPos, position: ballNewPos)
+
+        // Rotate cannon to aim at target location
+        let shotVector = SIMD2<Double>(x: tapLocation.x - ballOldPos.x, y: tapLocation.y - ballOldPos.y)
+        let downVector = SIMD2<Double>(x: 0, y: 1.0)
+        let angleBetween = findAngleBetween(vectorA: shotVector, vectorB: downVector)
+
+        guard let cannonPosX = cannon?.position.x else { return }
+        if tapLocation.x > cannonPosX {
+            cannon?.updateAngle(newAngle: -angleBetween)
+        } else {
+            cannon?.updateAngle(newAngle: angleBetween)
+        }
 
         guard let ball = ball else { return }
         addNode(ball)

@@ -16,6 +16,7 @@ let defaultCategoryBitMask: UInt32 = 0xFFFFFFFF
 let defaultVelocity: CGVector = .zero
 let defaultAngularVelocity: CGFloat = .zero
 let defaultMass: Double = 1.0
+let defaultAngle: Double = 0
 
 // MARK: Constants for `MSKPhysicsWorld`
 let defaultGravity: SIMD2<Double> = SIMD2(x: 0, y: 200)

@@ -44,15 +44,22 @@ class MSKScene {
         // e.g. update, add, remove nodes.
         didSimulatePhysics()
     }
-    /// Updates the positions of the nodes  once `physicsWorld` has completed physics simulation.
+    /// Updates the visual representation of the scene  once `physicsWorld` has completed physics simulation.
     func didSimulatePhysics() {
         updateNodePositions()
+        updateNodeRotation()
     }
 
-    /// Update the node positions to equal the position of their respective physics bodies.
+    /// Updates the visual representations of the nodes in their positions.
     func updateNodePositions() {
         for node in nodes {
             delegate?.didUpdateNode(node)
+        }
+    }
+
+    func updateNodeRotation() {
+        for node in nodes {
+            delegate?.didRotateNode(node)
         }
     }
 }

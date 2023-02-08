@@ -12,6 +12,9 @@ class MSKNode: MSKPhysicsBodyDelegate {
     /// The position of the node within the scene.
     var position: CGPoint
 
+    /// The anticlockwise rotation of the node.
+    var angle: Double
+
     /// The physics body of the node.
     var physicsBody: MSKPhysicsBody
 
@@ -19,6 +22,7 @@ class MSKNode: MSKPhysicsBodyDelegate {
         self.position = CGPoint(x: physicsBody.position.x,
                                 y: physicsBody.position.y)
         self.physicsBody = physicsBody
+        self.angle = physicsBody.angle
         self.physicsBody.delegate = self
     }
 
@@ -26,6 +30,10 @@ class MSKNode: MSKPhysicsBodyDelegate {
     /// Delegate function for `MSKPhysicsBodyDelegate`.
     func didUpdatePosition() {
         updatePosition()
+    }
+
+    func didUpdateAngle() {
+        angle = physicsBody.angle
     }
 
     /// Returns width of the node.
@@ -36,6 +44,11 @@ class MSKNode: MSKPhysicsBodyDelegate {
     /// Returns height of the node.
     func getHeight() -> Double {
         physicsBody.getHeight()
+    }
+
+    func updateAngle(newAngle: Double) {
+        angle = newAngle
+        physicsBody.angle = newAngle
     }
 
     private func updatePosition() {

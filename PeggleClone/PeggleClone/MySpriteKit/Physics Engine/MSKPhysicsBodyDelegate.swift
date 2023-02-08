@@ -9,4 +9,6 @@ import Foundation
 
 protocol MSKPhysicsBodyDelegate: AnyObject {
     func didUpdatePosition()
+
+    func didUpdateAngle()
 }

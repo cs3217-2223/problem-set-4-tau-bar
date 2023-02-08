@@ -36,7 +36,6 @@ class GameViewController: UIViewController {
                                                                                affectedByGravity: false))
                 boardScene.addNode(squareNode)
             }
-
         }
 
     }

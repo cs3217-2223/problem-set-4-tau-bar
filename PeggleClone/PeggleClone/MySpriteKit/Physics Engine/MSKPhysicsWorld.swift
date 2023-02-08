@@ -35,7 +35,7 @@ class MSKPhysicsWorld {
          gravity: SIMD2<Double> = defaultGravity,
          width: Double,
          height: Double,
-         substeps: Int = 3) {
+         substeps: Int = 2) {
         self.bodies = bodies
         self.gravity = gravity
         self.substeps = substeps

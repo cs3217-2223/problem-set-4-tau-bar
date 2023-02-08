@@ -13,4 +13,5 @@ class CannonNode: MSKSpriteNode {
         let cannonPb = MSKPolygonPhysicsBody(vertices: vertices, position: center, isDynamic: false)
         super.init(physicsBody: cannonPb, image: UIImage(named: "cannon"))
     }
+
 }

@@ -10,6 +10,8 @@ import CoreGraphics
 
 /// Represents a polygonal physics body, characterized by `vertices`.
 class MSKPolygonPhysicsBody: MSKPhysicsBody {
+    var angle: Double
+
     var delegate: MSKPhysicsBodyDelegate?
 
     var positionLast: SIMD2<Double>
@@ -39,7 +41,9 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
                   isDynamic: Bool = defaultIsDynamic,
                   categoryBitMask: UInt32 = defaultCategoryBitMask,
                   mass: Double = defaultMass,
-                  vertices: [SIMD2<Double>]) {
+                  vertices: [SIMD2<Double>],
+                  angle: Double = defaultAngle
+    ) {
         self.delegate = delegate
         self.positionLast = positionLast
         self.position = position
@@ -49,6 +53,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
         self.categoryBitMask = categoryBitMask
         self.mass = mass
         self.vertices = vertices
+        self.angle = angle
     }
 
     convenience init(vertices: [SIMD2<Double>],

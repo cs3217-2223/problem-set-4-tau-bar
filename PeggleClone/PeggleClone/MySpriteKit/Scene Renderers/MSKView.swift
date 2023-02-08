@@ -53,6 +53,10 @@ class MSKView: UIView, MSKSceneDelegate {
         nodeToView[node]?.center = node.position
     }
 
+    func didRotateNode(_ node: MSKSpriteNode) {
+        nodeToView[node]?.transform = CGAffineTransformMakeRotation(node.angle)
+    }
+
     /// Refreshes the state of the scene to the current time.
     func refresh(timeInterval: TimeInterval) {
         scene?.update(timeInterval: timeInterval)

@@ -251,3 +251,27 @@ func getAbsoluteVertices(of polygon: MSKPolygonPhysicsBody) -> [SIMD2<Double>] {
         vertex + polygon.position
     })
 }
+
+/// Returns the angle between `vectorA` and `vectorB`
+func findAngleBetween(vectorA: SIMD2<Double>, vectorB: SIMD2<Double>) -> Double {
+    let dotProduct = dotProduct(vectorA: vectorA, vectorB: vectorB)
+    let magnitudeA = getLength(of: vectorA)
+    let magnitudeB = getLength(of: vectorB)
+    return acos(dotProduct / (magnitudeA * magnitudeB))
+}
+
+func transformVertex(vertex: SIMD2<Double>, angle: Double) -> SIMD2<Double> {
+    let cos = cos(angle)
+    let sin = sin(angle)
+    let rotationX = cos * vertex.x - sin * vertex.y
+    let rotationY = sin * vertex.x + cos * vertex.y
+
+    let transformedX = rotationX + vertex.x
+    let transformedY = rotationY + vertex.y
+    return SIMD2<Double>(x: transformedX, y: transformedY)
+}
+
+func transformVertices(vertices: [SIMD2<Double>], by angle: Double) -> [SIMD2<Double>] {
+    let transformedVertices = vertices.map({ vertex in transformVertex(vertex: vertex, angle: angle) })
+    return transformedVertices
+}

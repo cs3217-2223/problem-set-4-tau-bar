@@ -33,6 +33,9 @@ protocol MSKPhysicsBody: AnyObject {
     /// The mass of the physics body (in kgs).
     var mass: Double { get set }
 
+    /// Angle of rotation (anticlockwise)
+    var angle: Double { get set }
+
     /// Updates the position of the physics body after a `timeInterval`.
     func updatePosition(timeInterval: TimeInterval)
 
