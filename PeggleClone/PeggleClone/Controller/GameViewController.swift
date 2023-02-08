@@ -29,12 +29,12 @@ class GameViewController: UIViewController {
             for two in 0..<5 {
                 let blueNode = BluePegNode(position: CGPoint(x: 200 + 100 * one, y: 300 + 60 * two))
                 boardScene.addNode(blueNode)
-//                let orangeNode = OrangePegNode(position: CGPoint(x: 200 + 100 * one, y: 700 + 60 * two))
-//                boardScene.addNode(orangeNode)
-                let squareNode = SquareNode(physicsBody: MSKPolygonPhysicsBody(vertices: getVerticesForRect(width: 20, height: 20),
-                                                                               position: SIMD2<Double>(x: Double(200 + 100 * one), y: Double(700 + 60 * two)),
-                                                                               affectedByGravity: false))
-                boardScene.addNode(squareNode)
+                let orangeNode = OrangePegNode(position: CGPoint(x: 200 + 100 * one, y: 700 + 60 * two))
+                boardScene.addNode(orangeNode)
+//                let squareNode = SquareNode(physicsBody: MSKPolygonPhysicsBody(vertices: getVerticesForRect(width: 20, height: 20),
+//                                                                               position: SIMD2<Double>(x: Double(200 + 100 * one), y: Double(700 + 60 * two)),
+//                                                                               affectedByGravity: false))
+//                boardScene.addNode(squareNode)
             }
         }
 
