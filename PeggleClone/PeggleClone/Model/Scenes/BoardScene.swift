@@ -8,7 +8,7 @@
 import Foundation
 
 class BoardScene: MSKScene, PegNodeDelegate {
-    weak var boardView: BoardView?
+    weak var boardSceneDelegate: BoardSceneDelegate?
     private var ball: BallNode?
     private var cannon: CannonNode?
     private var isCannonFired = false
@@ -29,16 +29,13 @@ class BoardScene: MSKScene, PegNodeDelegate {
         setUpBorders()
     }
 
-    override func addNode(_ addedNode: MSKSpriteNode) {
+    func addNode(_ addedNode: PegNode) {
         super.addNode(addedNode)
-
-        guard let pegNode = addedNode as? PegNode else { return }
-
-        pegNode.delegate = self
+        addedNode.delegate = self
     }
 
     func didCollideWithBall(pegNode: PegNode) {
-        boardView?.didCollideWithBall(updatedPegNode: pegNode)
+        boardSceneDelegate?.didCollideWithBall(updatedPegNode: pegNode)
     }
 
     func fireCannon(at tapLocation: CGPoint) {
@@ -69,14 +66,14 @@ class BoardScene: MSKScene, PegNodeDelegate {
         isCannonFired = true
     }
 
-    func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
+    private func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
         let shotVector = SIMD2<Double>(x: tapLocation.x - oldPosition.x, y: tapLocation.y - oldPosition.y)
         let directionVector = findUnitVector(of: shotVector) * defaultDirectionVectorMultiplier
         let newPos = CGPoint(x: oldPosition.x + directionVector.x, y: oldPosition.y + directionVector.y)
         return newPos
     }
 
-    func isTapInValidLocation(location: CGPoint) -> Bool {
+    func isValidLocation(location: CGPoint) -> Bool {
         location.y > defaultBallStartingHeight
     }
 
@@ -112,9 +109,9 @@ class BoardScene: MSKScene, PegNodeDelegate {
         }
 
         hitPegs.forEach({ hitNode in
-            nodes.removeAll(where: { node in node == hitNode })
+            nodes.removeAll(where: { $0 == hitNode })
             physicsWorld.removeBody(hitNode.physicsBody)
-            boardView?.fadeOutPegView(removedNode: hitNode)
+            boardSceneDelegate?.didRemovePegNode(removedNode: hitNode)
         })
     }
 

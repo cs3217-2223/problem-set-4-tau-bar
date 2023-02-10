@@ -30,12 +30,7 @@ class GameViewController: UIViewController {
                 let blueNode = BluePegNode(position: CGPoint(x: 200 + 100 * one, y: 300 + 60 * two))
                 boardScene.addNode(blueNode)
                 let orangeNode = OrangePegNode(position: CGPoint(x: 200 + 100 * one, y: 700 + 60 * two))
-                boardScene.addNode(orangeNode)
-//                let squareNode = SquareNode(physicsBody: MSKPolygonPhysicsBody(vertices: getVerticesForRect(width: 20, height: 20),
-//                                                                               position: SIMD2<Double>(x: Double(200 + 100 * one), y: Double(700 + 60 * two)),
-//                                                                               affectedByGravity: false))
-//                boardScene.addNode(squareNode)
-            }
+                boardScene.addNode(orangeNode)            }
         }
 
     }
@@ -46,7 +41,7 @@ class GameViewController: UIViewController {
 
     @IBAction func didTapBoardView(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: boardView)
-        guard let isTapLocationValid = boardScene?.isTapInValidLocation(location: tapLocation) else { return }
+        guard let isTapLocationValid = boardScene?.isValidLocation(location: tapLocation) else { return }
         if isTapLocationValid {
             boardScene?.fireCannon(at: tapLocation)
         }
