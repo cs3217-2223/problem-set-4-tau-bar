@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Game View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="GameVC" id="BYZ-38-t0r" customClass="GameViewController" customModule="PeggleClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="e5X-ly-VLi">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="31p-kz-ibb" userLabel="BoardView" customClass="BoardView" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="rGp-r9-Qp7">
+                                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                        <gestureRecognizers/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MX8-ft-T1W">
+                                        <rect key="frame" x="749" y="19" width="52" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Exit"/>
+                                        <connections>
+                                            <segue destination="gmW-Us-W4C" kind="unwind" unwindAction="unwindFromGameViewController:" id="YQ6-ve-L2h"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rGp-r9-Qp7" secondAttribute="bottom" id="5gS-Zy-IK3"/>
+                                    <constraint firstItem="rGp-r9-Qp7" firstAttribute="leading" secondItem="31p-kz-ibb" secondAttribute="leading" id="GuW-wH-DNE"/>
+                                    <constraint firstItem="rGp-r9-Qp7" firstAttribute="top" secondItem="31p-kz-ibb" secondAttribute="top" id="PdU-5z-8sW"/>
+                                    <constraint firstAttribute="trailing" secondItem="rGp-r9-Qp7" secondAttribute="trailing" id="mVk-TT-2wd"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="2ec-hD-WcX" appends="YES" id="e4Y-Zi-Msc"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="1gM-Jw-cP1"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="31p-kz-ibb" secondAttribute="bottom" id="MSr-Ia-sxf"/>
+                            <constraint firstItem="31p-kz-ibb" firstAttribute="top" secondItem="e5X-ly-VLi" secondAttribute="top" id="bcs-3h-Xbq"/>
+                            <constraint firstItem="31p-kz-ibb" firstAttribute="leading" secondItem="1gM-Jw-cP1" secondAttribute="leading" id="hdP-yL-116"/>
+                            <constraint firstItem="31p-kz-ibb" firstAttribute="trailing" secondItem="1gM-Jw-cP1" secondAttribute="trailing" id="p1A-zC-slO"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="boardView" destination="31p-kz-ibb" id="aAV-kW-ilv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="gmW-Us-W4C" userLabel="Exit" sceneMemberID="exit"/>
+                <tapGestureRecognizer id="2ec-hD-WcX">
+                    <connections>
+                        <action selector="didTapBoardView:" destination="BYZ-38-t0r" id="b4U-x2-pTq"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="-18.292682926829269" y="3.5593220338983054"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="background" width="4000" height="3000"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

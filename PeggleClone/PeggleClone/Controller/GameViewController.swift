@@ -11,30 +11,40 @@ class GameViewController: UIViewController {
     var boardScene: BoardScene?
     var displayLink: CADisplayLink!
     var count = 0
+    var board: Board?
     @IBOutlet var boardView: BoardView!
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        boardScene = BoardScene(width: boardView.frame.width, height: boardView.frame.height)
+        setUpBoardScene()
 
         // Set scene for board view
         guard let boardScene = boardScene else { return }
         boardView.setScene(boardScene)
 
         // Set up game loop
-        displayLink = CADisplayLink(target: self, selector: #selector(step))
-        displayLink.add(to: .current, forMode: RunLoop.Mode.default)
+        setUpGameLoop()
 
-        for one in 0..<20 {
-            let blueNode = BluePegNode(position: CGPoint(x: 10 + 40 * one, y: 250 + 60))
-            boardScene.addPegNode(blueNode)
-            let orangeNode = OrangePegNode(position: CGPoint(x: 10 + 40 * one, y: 700 + 60))
-            boardScene.addPegNode(orangeNode)            }
-        }
+        begin()
+    }
 
     func begin() {
         boardView.presentScene()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        print("View did disappear")
+        
+        displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
+        displayLink = nil
+    }
+
+//    @IBAction func didTapExit(_ sender: Any) {
+//        displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
+//        self.dismiss(animated: true, completion: nil)
+//    }
 
     @IBAction func didTapBoardView(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: boardView)
@@ -46,5 +56,33 @@ class GameViewController: UIViewController {
 
     @objc func step() {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
+    }
+
+    // TODO: Refactor this
+    func createPegNode(from peg: Peg) -> PegNode? {
+        let pos = peg.getPosition()
+        if peg.colour == PegColour.blue {
+            return BluePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos))
+        } else if peg.colour == PegColour.orange {
+            return OrangePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos))
+        } else {
+            return nil
+        }
+    }
+
+    func setUpBoardScene() {
+        boardScene = BoardScene(width: boardView.frame.width, height: boardView.frame.height)
+
+        boardScene?.setupBoard()
+
+        for peg in board?.pegs ?? [] {
+            guard let pegNode = createPegNode(from: peg) else { continue }
+            boardScene?.addPegNode(pegNode)
+        }
+    }
+
+    func setUpGameLoop() {
+        displayLink = CADisplayLink(target: self, selector: #selector(step))
+        displayLink.add(to: .current, forMode: RunLoop.Mode.default)
     }
 }

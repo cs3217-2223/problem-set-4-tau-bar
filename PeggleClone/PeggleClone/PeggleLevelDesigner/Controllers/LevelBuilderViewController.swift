@@ -100,6 +100,13 @@ class LevelBuilderViewController: UIViewController,
         resetBoard()
     }
 
+    @IBAction func startButtonTapped(_ sender: Any) {
+        performSegue(withIdentifier: "goToGameView", sender: self)
+    }
+    
+    @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {
+    }
+
     /// Opens the view showing the saved levels when the load button is tapped.
     @IBAction func loadButtonTapped(_ sender: Any) {
         guard let levelSelectVC = self
@@ -241,6 +248,13 @@ class LevelBuilderViewController: UIViewController,
     /// Resets the board model.
     func resetBoard() {
         board?.removeAllPegs()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToGameView" {
+            guard let gameVc = segue.destination as? GameViewController else { return }
+            gameVc.board = board
+        }
     }
 
     // MARK: Helper functions

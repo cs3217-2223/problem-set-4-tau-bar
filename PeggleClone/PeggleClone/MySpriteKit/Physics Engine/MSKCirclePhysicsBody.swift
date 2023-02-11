@@ -12,7 +12,7 @@ import CoreGraphics
 class MSKCirclePhysicsBody: MSKPhysicsBody {
     var angle: Double
 
-    var delegate: MSKPhysicsBodyDelegate?
+    weak var delegate: MSKPhysicsBodyDelegate?
 
     var positionLast: SIMD2<Double>
 
@@ -101,16 +101,10 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
 
         // Checks whether the objects are overlapping.
         if collisionAxisLength < minDistance {
-            var unitVector = collisionAxis / collisionAxisLength
+            let unitVector = collisionAxis / collisionAxisLength
             let massRatioA = self.mass / (self.mass + body.mass)
             let massRatioB = body.mass / (self.mass + body.mass)
             let delta = 0.5 * defaultResponseCoeff * (collisionAxisLength - minDistance)
-
-            // Add random horizontal acceleration if the circles are directly
-            // on top of each other.
-            if isVertical(unitVector) {
-                unitVector.x = Double.random(in: -0.5...0.5)
-            }
 
             // Update positions of both bodies.
             self.updatePosition(by: -1 * unitVector * (massRatioB * delta))

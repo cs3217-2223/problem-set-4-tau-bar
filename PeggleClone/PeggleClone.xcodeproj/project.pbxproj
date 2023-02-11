@@ -49,7 +49,7 @@
 		619D849329890A96007C8683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849229890A96007C8683 /* AppDelegate.swift */; };
 		619D849529890A96007C8683 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849429890A96007C8683 /* SceneDelegate.swift */; };
 		619D849729890A96007C8683 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849629890A96007C8683 /* GameViewController.swift */; };
-		619D849A29890A96007C8683 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619D849829890A96007C8683 /* Main.storyboard */; };
+		619D849A29890A96007C8683 /* Game.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619D849829890A96007C8683 /* Game.storyboard */; };
 		619D849C29890A9A007C8683 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 619D849B29890A9A007C8683 /* Assets.xcassets */; };
 		619D849F29890A9A007C8683 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 619D849D29890A9A007C8683 /* LaunchScreen.storyboard */; };
 		619D84AA29890A9A007C8683 /* PeggleCloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D84A929890A9A007C8683 /* PeggleCloneTests.swift */; };
@@ -67,6 +67,7 @@
 		61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEBE298AACC600297265 /* MSKSpriteNode.swift */; };
 		61F6517F2997397500B2FDEB /* BallPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6517E2997397500B2FDEB /* BallPhysicsBodyDelegate.swift */; };
 		61F65183299740D900B2FDEB /* BallNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F65182299740D900B2FDEB /* BallNodeDelegate.swift */; };
+		61F651842997809600B2FDEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610FED8D298E616400875BBA /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,7 +127,7 @@
 		619D849229890A96007C8683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		619D849429890A96007C8683 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		619D849629890A96007C8683 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
-		619D849929890A96007C8683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		619D849929890A96007C8683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Game.storyboard; sourceTree = "<group>"; };
 		619D849B29890A9A007C8683 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		619D849E29890A9A007C8683 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		619D84A029890A9A007C8683 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -236,7 +237,6 @@
 				610FED8A298E616400875BBA /* SelectPegButton.swift */,
 				610FED8B298E616400875BBA /* LevelTableViewCell.swift */,
 				610FED8C298E616400875BBA /* LevelTableViewCell.xib */,
-				610FED8D298E616400875BBA /* Main.storyboard */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -331,7 +331,8 @@
 				61CDDEA3298A333A00297265 /* MySpriteKit */,
 				619D849229890A96007C8683 /* AppDelegate.swift */,
 				619D849429890A96007C8683 /* SceneDelegate.swift */,
-				619D849829890A96007C8683 /* Main.storyboard */,
+				619D849829890A96007C8683 /* Game.storyboard */,
+				610FED8D298E616400875BBA /* Main.storyboard */,
 				619D849B29890A9A007C8683 /* Assets.xcassets */,
 				619D849D29890A9A007C8683 /* LaunchScreen.storyboard */,
 				619D84A029890A9A007C8683 /* Info.plist */,
@@ -498,9 +499,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				619D849F29890A9A007C8683 /* LaunchScreen.storyboard in Resources */,
+				61F651842997809600B2FDEB /* Main.storyboard in Resources */,
 				619D849C29890A9A007C8683 /* Assets.xcassets in Resources */,
 				610FEDA5298E616400875BBA /* LevelTableViewCell.xib in Resources */,
-				619D849A29890A96007C8683 /* Main.storyboard in Resources */,
+				619D849A29890A96007C8683 /* Game.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -642,12 +644,12 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		619D849829890A96007C8683 /* Main.storyboard */ = {
+		619D849829890A96007C8683 /* Game.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				619D849929890A96007C8683 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Game.storyboard;
 			sourceTree = "<group>";
 		};
 		619D849D29890A9A007C8683 /* LaunchScreen.storyboard */ = {
@@ -788,6 +790,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -815,6 +818,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

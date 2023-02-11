@@ -12,7 +12,7 @@ import CoreGraphics
 class MSKPolygonPhysicsBody: MSKPhysicsBody {
     var angle: Double
 
-    var delegate: MSKPhysicsBodyDelegate?
+    weak var delegate: MSKPhysicsBodyDelegate?
 
     var positionLast: SIMD2<Double>
 

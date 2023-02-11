@@ -9,7 +9,7 @@ import UIKit
 
 class MSKView: UIView, MSKSceneDelegate {
     /// The scene currently presented by this view.
-    var scene: MSKScene?
+    weak var scene: MSKScene?
 
     /// Dictionary to cache the view representing each `MSKSpriteNode` in the `scene`.
     var nodeToView: [MSKSpriteNode: UIImageView] = [:]

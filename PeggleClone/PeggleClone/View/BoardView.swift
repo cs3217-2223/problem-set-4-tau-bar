@@ -10,7 +10,6 @@ class BoardView: MSKView, BoardSceneDelegate {
     func setScene(_ scene: BoardScene) {
         super.setScene(scene)
         scene.boardSceneDelegate = self
-        scene.setupBoard()
     }
 
     func didCollideWithBall(updatedPegNode: PegNode) {
