@@ -100,3 +100,22 @@ func didSimulatePhysics() {
 `didSimulatePhysics()` updates positions of the nodes and their rotations after the physics simulation is done.
 
 These functions help to update the state in accordance with the loop.
+
+### MSKNode & MSKSpriteNode
+Represents the nodes within the scene. Each node stores a reference to its physics body, and it is a `MSKPhysicsBodyDelegate`.
+
+Upon changes in the physics body, `didUpdatePosition()` or `didUpdateAngle()` are called by the physics body, which updates the position/rotation of the node.
+
+### MSKView
+View which renders `MSKScene`. It stores a reference to the scene that it is presenting, and also serves as `MSKSceneDelegate` for the `MSKScene` object.
+
+The important function is `refresh()`, which refreshes the view, allowing user to visually see the updates in the state of the scene.
+```swift
+/// Refreshes the state of the scene to the current time.
+    func refresh(timeInterval: TimeInterval) {
+        scene?.update(timeInterval: timeInterval)
+    }
+```
+
+The `refresh()` function calls `scene?.update()`. Upon changes in the scene, the delegate functions (`didRemoveNode()`, `didAddNode()`, `didUpdateNode()`, `didRotateNode()`), are called, causing the view to update itself to stay synced with the scene.
+
