@@ -70,7 +70,9 @@ This is a protocol implemented by classes which use `MSKPhysicsBody`. There are 
 Classes implementing `MSKPhysicsBody` has a reference to an `Optional<MSKPhysicsBodyDelegate>`.
 
 ## MSKSceneRenderers
-The Scene Renderers are used for managing the state of the scene and to render the scene onto a view.
+The Scene Renderers are used for managing the state of the scene and to render the scene onto a view. The class diagram below illustrates how the components interact:
+
+![image](https://user-images.githubusercontent.com/61085398/218269781-21c0ccbf-4406-4712-8159-17a74b48ee79.png)
 
 ### MSKScene
 This class represents the scene that's being rendered. It stores a reference to a `MSKPhysicsWorld`, and to the nodes within the scene. There is a 1:1 mapping between each node in the scene and a physics body in the physics world.
