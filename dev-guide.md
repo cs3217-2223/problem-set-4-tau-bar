@@ -1,5 +1,5 @@
 # MySpriteKit
-MySpriteKit (MSK) is a lightweight framework for simulating physics worlds and rendering. It consists of two main components, the Physics Engine, and the Scene Renderers.
+MySpriteKit (MSK) is a lightweight framework inspired by Apple's SpriteKit framework for simulating physics worlds and rendering. It consists of two main components, the Physics Engine, and the Scene Renderers.
 
 ## MSKPhysicsEngine
 The Physics Engine is a standalone capability which is able to simulate physics worlds and handle the interactions between the bodies between the worlds. Below is a class diagram to illustrate the relationship between the classes in MSKPhysicsEngine.
@@ -69,3 +69,34 @@ This is a protocol implemented by classes which use `MSKPhysicsBody`. There are 
 
 Classes implementing `MSKPhysicsBody` has a reference to an `Optional<MSKPhysicsBodyDelegate>`.
 
+## MSKSceneRenderers
+The Scene Renderers are used for managing the state of the scene and to render the scene onto a view.
+
+### MSKScene
+This class represents the scene that's being rendered. It stores a reference to a `MSKPhysicsWorld`, and to the nodes within the scene. There is a 1:1 mapping between each node in the scene and a physics body in the physics world.
+
+There are two important functions in MSKScene, `update()` and `didSimulatePhysics()`.
+
+```swift
+/// Updates the scene with the current time interval.
+func update(timeInterval: TimeInterval) {
+    // Simulate physics over the time interval
+    physicsWorld.simulatePhysics(timeInterval: timeInterval)
+
+    // Logic to be run after the physics has been simulated,
+    // e.g. update, add, remove nodes.
+    didSimulatePhysics()
+}
+```
+
+```swift
+/// Updates the visual representation of the scene  once `physicsWorld` has completed physics simulation.
+func didSimulatePhysics() {
+    updateNodePositions()
+    updateNodeRotation()
+}
+```
+
+`didSimulatePhysics()` updates positions of the nodes and their rotations after the physics simulation is done.
+
+These functions help to update the state in accordance with the loop.
