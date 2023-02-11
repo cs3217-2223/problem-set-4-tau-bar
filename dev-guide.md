@@ -43,3 +43,29 @@ The classes which implement `MSKPhysicsBody` must implement custom collision log
 
 This is done using the double dispatch method.
 
+```swift
+func collide(with body: MSKPhysicsBody) -> Bool {
+        if !isCollidable(with: body) {
+            return false
+        }
+
+        return body.collide(with: self)
+}
+```
+
+At compile-time, the type of body being collided with is unknown, so `collide(with body: MSKPhysicsBody)` is used. At runtime, the type is known, either `MSKCirclePhysicsBody` or `MSKPolygonPhysicsBody`. So, either `collide(with body: MSKCirclePhysicsBody)` or `collide(with body: MSKPolygonPhysicsBody)` will be used when `body.collide(with: self)` is called.
+
+### MSKCirclePhysicsBody & MSKPolygonPhysicsBody
+These are classes implementing the `MSKPhysicsBody` protocol.
+
+`MSKCirclePhysicsBody` has a radius.
+
+`MSKPolygonPhysicsBody` stores the vertices relative to the `position` of the physics body, to determine the shape of the body. The vertices should be in order, either clockwise or anticlockwise.
+
+As mentioned above, collisions are handled using double dispatch method.
+
+### MSKPhysicsBodyDelegate
+This is a protocol implemented by classes which use `MSKPhysicsBody`. There are two methods, `didUpdatePosition()` and `didUpdateAngle()`, which are called whenever the physics body has updated its position or angle respectively.
+
+Classes implementing `MSKPhysicsBody` has a reference to an `Optional<MSKPhysicsBodyDelegate>`.
+
