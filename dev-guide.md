@@ -1,3 +1,22 @@
+# Overall Structure
+There are two main flows. 
+
+## User Interactions
+First, the handling of user interactions:
+
+![image](https://user-images.githubusercontent.com/61085398/218270661-724caebf-1bc6-45c8-ae6c-bdac86edb946.png)
+
+The user interacts with the Board View (e.g. tapping the board to shoot the ball).
+
+The event is propagated to the Board Scene. The Board Scene updates its internal state, and synchronises the state with the view so that the user sees the most updated state of the scene visually represented.
+
+## Game Loop
+The second flow would be continuous update of the scene based on the game loop. The flow is illustrated below:
+
+![image](https://user-images.githubusercontent.com/61085398/218270725-5b3e2076-3723-4f5d-b809-e87e096dec32.png)
+
+The game loop calls the `refresh()` function on the Board View. The BoardView then gets the scene to update, and then once the state of the scene is updated, the state changes are propagated back to the Board View, which will update itself to visually represent the latest state of the scene.
+
 # MySpriteKit
 MySpriteKit (MSK) is a lightweight framework inspired by Apple's SpriteKit framework for simulating physics worlds and rendering. It consists of two main components, the Physics Engine, and the Scene Renderers.
 
