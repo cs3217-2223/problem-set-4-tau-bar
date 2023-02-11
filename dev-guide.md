@@ -29,3 +29,17 @@ The `for` loop within is to allow for more realistic looking simulation by updat
 `updateObjects()` function updates the positions of the objects after all the collisions have been handled.
 
 To prevent external classes from misusing the physics simulation, only the `simulatePhysics()` method is exposed.
+
+### MSKPhysicsBody
+This is a protocol which is conformed to by classes which represent bodies in the physics world. Most notably, it has the `collide(with: MSKPhysicsBody)` function. It also has the `collide(with: MSKCirclePhysicsBody)` and `collide(with: MSKPolygonPhysicsBody)` functions. All the other functions which help with updating the state of the physics body have a default implementation, using protocol extension.
+
+```swift
+extension MSKPhysicsBody {
+// default method implementations
+}
+```
+
+The classes which implement `MSKPhysicsBody` must implement custom collision logic with other bodies, such as `MSKCirclePhysicsBody` and `MSKPoylgonPhysicsBody`.
+
+This is done using the double dispatch method.
+
