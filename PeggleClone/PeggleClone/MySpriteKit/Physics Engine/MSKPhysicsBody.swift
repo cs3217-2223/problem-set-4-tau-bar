@@ -71,7 +71,7 @@ protocol MSKPhysicsBody: AnyObject {
 
     /// Returns the width of the body.
     func getWidth() -> Double
-    
+
     /// Checks whether the physics body will collide with another physics body based on `categoryBitMask`.
     func isCollidable(with body: MSKPhysicsBody) -> Bool
 }
@@ -129,9 +129,9 @@ extension MSKPhysicsBody {
     func getVelocity(timeInterval: TimeInterval) -> SIMD2<Double> {
         (position - positionLast) / timeInterval
     }
-    
+
     /// Checks whether the physics body will collide with another physics body based on `categoryBitMask`.
     func isCollidable(with body: MSKPhysicsBody) -> Bool {
-        return categoryBitMask & body.categoryBitMask != 0
+        categoryBitMask & body.categoryBitMask != 0
     }
 }

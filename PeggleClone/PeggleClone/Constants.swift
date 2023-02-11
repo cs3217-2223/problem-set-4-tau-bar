@@ -8,3 +8,4 @@
 import Foundation
 
 let defaultCannonRadius: Double = 50
+let defaultHeightBuffer: Double = 186

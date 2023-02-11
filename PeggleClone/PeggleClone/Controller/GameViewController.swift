@@ -32,19 +32,14 @@ class GameViewController: UIViewController {
     func begin() {
         boardView.presentScene()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
-        // Remove reference
+
+        // Remove reference to displayLink to prevent memory leak
         displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
         displayLink = nil
     }
-
-//    @IBAction func didTapExit(_ sender: Any) {
-//        displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
-//        self.dismiss(animated: true, completion: nil)
-//    }
 
     @IBAction func didTapBoardView(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: boardView)
@@ -62,9 +57,9 @@ class GameViewController: UIViewController {
     func createPegNode(from peg: Peg) -> PegNode? {
         let pos = peg.getPosition()
         if peg.colour == PegColour.blue {
-            return BluePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + 186))
+            return BluePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + defaultHeightBuffer))
         } else if peg.colour == PegColour.orange {
-            return OrangePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + 186))
+            return OrangePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + defaultHeightBuffer))
         } else {
             return nil
         }

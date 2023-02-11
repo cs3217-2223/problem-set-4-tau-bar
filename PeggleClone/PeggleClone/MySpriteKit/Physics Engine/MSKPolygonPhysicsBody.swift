@@ -84,7 +84,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
         if !isCollidable(with: body) {
             return false
         }
-        
+
         return body.collide(with: self)
     }
 

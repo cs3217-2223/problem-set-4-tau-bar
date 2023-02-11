@@ -93,7 +93,7 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
         if !isCollidable(with: body) {
             return false
         }
-        
+
         return body.collide(with: self)
     }
 
