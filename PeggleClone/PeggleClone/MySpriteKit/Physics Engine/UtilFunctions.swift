@@ -275,3 +275,9 @@ func transformVertices(vertices: [SIMD2<Double>], by angle: Double) -> [SIMD2<Do
     let transformedVertices = vertices.map({ vertex in transformVertex(vertex: vertex, angle: angle) })
     return transformedVertices
 }
+
+func areApproxEqual(_ positionA: SIMD2<Double>, _ positionB: SIMD2<Double>) -> Bool {
+    let multiplier = pow(10.0, Double(4))
+    return round(positionA.x * multiplier) == round(positionB.x * multiplier) &&
+    round(positionA.y * multiplier) == round(positionB.y * multiplier)
+}

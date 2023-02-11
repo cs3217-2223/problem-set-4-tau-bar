@@ -123,10 +123,8 @@ class MSKPhysicsWorld {
 
     /// Checks and resolves collisions between all bodies within the world.
     private func handleCollisions(timeInterval: TimeInterval) {
-        for idx1 in 0..<bodies.count {
-            let bodyA = bodies[idx1]
-            for idx2 in (idx1 + 1)..<bodies.count {
-                let bodyB = bodies[idx2]
+        for (idx1, bodyA) in bodies.enumerated() {
+            for (idx2, bodyB) in bodies.enumerated() where idx2 > idx1 {
                 resolveCollision(bodyA: bodyA, bodyB: bodyB)
             }
         }

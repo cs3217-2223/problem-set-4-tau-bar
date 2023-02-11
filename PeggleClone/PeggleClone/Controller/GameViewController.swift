@@ -25,15 +25,12 @@ class GameViewController: UIViewController {
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
 
-        for one in 0..<5 {
-            for two in 0..<5 {
-                let blueNode = BluePegNode(position: CGPoint(x: 200 + 100 * one, y: 300 + 60 * two))
-                boardScene.addNode(blueNode)
-                let orangeNode = OrangePegNode(position: CGPoint(x: 200 + 100 * one, y: 700 + 60 * two))
-                boardScene.addNode(orangeNode)            }
+        for one in 0..<20 {
+            let blueNode = BluePegNode(position: CGPoint(x: 10 + 40 * one, y: 250 + 60))
+            boardScene.addPegNode(blueNode)
+            let orangeNode = OrangePegNode(position: CGPoint(x: 10 + 40 * one, y: 700 + 60))
+            boardScene.addPegNode(orangeNode)            }
         }
-
-    }
 
     func begin() {
         boardView.presentScene()

@@ -6,13 +6,20 @@
 //
 import UIKit
 
-class BallNode: MSKSpriteNode {
+class BallNode: MSKSpriteNode, BallPhysicsBodyDelegate {
+    weak var delegate: BallNodeDelegate?
     init(oldPosition: CGPoint, position: CGPoint) {
-        let defaultPhysicsBody = BallPhysicsBody(circleOfRadius: 20.0,
+        let physicsBody = BallPhysicsBody(circleOfRadius: 20.0,
                                                  oldPosition: SIMD2<Double>(x: oldPosition.x, y: oldPosition.y),
                                                  position: SIMD2<Double>(x: position.x, y: position.y),
                                                  isDynamic: true)
-        super.init(physicsBody: defaultPhysicsBody,
+        super.init(physicsBody: physicsBody,
                    image: UIImage(named: "ball"))
+
+        physicsBody.ballPhysicsBodyDelegate = self
+    }
+
+    func handleBallStuck() {
+        delegate?.handleBallStuck()
     }
 }

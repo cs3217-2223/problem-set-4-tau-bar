@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BoardScene: MSKScene, PegNodeDelegate {
+class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
     weak var boardSceneDelegate: BoardSceneDelegate?
     private var ball: BallNode?
     private var cannon: CannonNode?
@@ -29,9 +29,14 @@ class BoardScene: MSKScene, PegNodeDelegate {
         setUpBorders()
     }
 
-    func addNode(_ addedNode: PegNode) {
+    func addPegNode(_ addedNode: PegNode) {
         super.addNode(addedNode)
         addedNode.delegate = self
+    }
+
+    func addBallNode(_ ballNode: BallNode) {
+        super.addNode(ballNode)
+        ballNode.delegate = self
     }
 
     func didCollideWithBall(pegNode: PegNode) {
@@ -62,7 +67,7 @@ class BoardScene: MSKScene, PegNodeDelegate {
         }
 
         guard let ball = ball else { return }
-        addNode(ball)
+        addBallNode(ball)
         isCannonFired = true
     }
 
@@ -90,7 +95,7 @@ class BoardScene: MSKScene, PegNodeDelegate {
         guard let ball = ball else { return }
         if isOutOfBounds(node: ball) {
             // Remove the balls out of the scene.
-            removeFiredBalls()
+            removeFiredBall()
 
             // Remove nodes that are hit once ball is out of bounds.
             removeHitPegs()
@@ -115,7 +120,7 @@ class BoardScene: MSKScene, PegNodeDelegate {
         })
     }
 
-    func removeFiredBalls() {
+    func removeFiredBall() {
         guard let ball = ball else { return }
         removeNode(ball)
         self.ball = nil
@@ -123,5 +128,9 @@ class BoardScene: MSKScene, PegNodeDelegate {
 
     func isOutOfBounds(node: BallNode) -> Bool {
         node.position.y - node.getHeight() > physicsWorld.height
+    }
+
+    func handleBallStuck() {
+        removeHitPegs()
     }
 }
