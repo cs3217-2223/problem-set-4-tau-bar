@@ -90,7 +90,11 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
 
     /// Handles collision of the circle body with another unspecified type physics body.
     func collide(with body: MSKPhysicsBody) -> Bool {
-        body.collide(with: self)
+        if !isCollidable(with: body) {
+            return false
+        }
+        
+        return body.collide(with: self)
     }
 
     /// Handles collision of the circle body with another circle physics body.

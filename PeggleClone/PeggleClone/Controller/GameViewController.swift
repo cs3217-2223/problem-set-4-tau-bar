@@ -35,8 +35,8 @@ class GameViewController: UIViewController {
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        print("View did disappear")
         
+        // Remove reference
         displayLink.remove(from: .current, forMode: RunLoop.Mode.default)
         displayLink = nil
     }
@@ -62,9 +62,9 @@ class GameViewController: UIViewController {
     func createPegNode(from peg: Peg) -> PegNode? {
         let pos = peg.getPosition()
         if peg.colour == PegColour.blue {
-            return BluePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos))
+            return BluePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + 186))
         } else if peg.colour == PegColour.orange {
-            return OrangePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos))
+            return OrangePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + 186))
         } else {
             return nil
         }

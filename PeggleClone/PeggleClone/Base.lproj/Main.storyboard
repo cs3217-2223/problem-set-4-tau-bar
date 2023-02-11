@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -27,6 +28,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="FBt-jd-jAu">
+                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                                <color key="backgroundColor" name="AccentColor"/>
+                                <gestureRecognizers/>
+                            </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ah3-Ee-XVc">
                                 <rect key="frame" x="0.0" y="0.0" width="820" height="1156"/>
                                 <subviews>
@@ -138,6 +144,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="backgroundColor" red="0.50980392159999999" green="0.76470588240000004" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="186" id="3Ox-VH-pd6"/>
                                             <constraint firstItem="lBk-2r-IYC" firstAttribute="top" secondItem="Ndm-X7-A97" secondAttribute="bottom" constant="20" id="9Xj-5o-dJ1"/>
@@ -147,6 +154,7 @@
                                             <constraint firstItem="IsX-5G-N6v" firstAttribute="top" secondItem="Mp5-0o-7Ih" secondAttribute="bottom" constant="21" id="I0R-3b-W44"/>
                                             <constraint firstItem="DIX-hW-oNx" firstAttribute="top" secondItem="cMv-Gk-b16" secondAttribute="bottom" constant="20" id="Ncw-uY-1qm"/>
                                             <constraint firstItem="Ndm-X7-A97" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="25" id="RU0-0B-w7w"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="186" id="TVx-l8-9vd"/>
                                             <constraint firstItem="IsX-5G-N6v" firstAttribute="leading" secondItem="Gq9-0X-Gkz" secondAttribute="trailing" constant="75" id="Yiq-VM-bQM"/>
                                             <constraint firstItem="XbQ-F7-vbO" firstAttribute="top" secondItem="Mp5-0o-7Ih" secondAttribute="bottom" constant="20" id="Yuc-sk-Jn3"/>
                                             <constraint firstItem="Mp5-0o-7Ih" firstAttribute="leading" secondItem="cMv-Gk-b16" secondAttribute="trailing" constant="50" id="cMP-UU-TT7"/>
@@ -161,21 +169,8 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsl-h7-nc6" userLabel="BoardView">
                                         <rect key="frame" x="0.0" y="190" width="820" height="966"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="FBt-jd-jAu">
-                                                <rect key="frame" x="0.0" y="0.0" width="820" height="966"/>
-                                                <gestureRecognizers/>
-                                            </imageView>
-                                        </subviews>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <accessibility key="accessibilityConfiguration" label="Board View"/>
                                         <gestureRecognizers/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="FBt-jd-jAu" secondAttribute="bottom" id="4uW-HY-Rzy"/>
-                                            <constraint firstAttribute="trailing" secondItem="FBt-jd-jAu" secondAttribute="trailing" id="gtW-Om-QHe"/>
-                                            <constraint firstItem="FBt-jd-jAu" firstAttribute="top" secondItem="vsl-h7-nc6" secondAttribute="top" id="oJs-nc-j4S"/>
-                                            <constraint firstItem="FBt-jd-jAu" firstAttribute="leading" secondItem="vsl-h7-nc6" secondAttribute="leading" id="rqy-ZT-fZO"/>
-                                        </constraints>
                                         <connections>
                                             <outletCollection property="gestureRecognizers" destination="fmD-56-xRH" appends="YES" id="Bz1-ao-DqO"/>
                                         </connections>
@@ -197,7 +192,11 @@
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ah3-Ee-XVc" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="GYm-M4-yhA"/>
+                            <constraint firstItem="FBt-jd-jAu" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Y2O-xG-sRR"/>
+                            <constraint firstItem="FBt-jd-jAu" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="YoE-fj-PoR"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="ah3-Ee-XVc" secondAttribute="bottom" constant="4" id="cbq-92-jNO"/>
+                            <constraint firstAttribute="bottom" secondItem="FBt-jd-jAu" secondAttribute="bottom" id="fEX-aX-Kah"/>
+                            <constraint firstItem="FBt-jd-jAu" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="fwP-NG-vVi"/>
                             <constraint firstItem="ah3-Ee-XVc" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="oen-iw-stw"/>
                             <constraint firstItem="ah3-Ee-XVc" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pDl-eo-UEp"/>
                         </constraints>
@@ -282,6 +281,9 @@
         <image name="delete" width="256" height="256"/>
         <image name="peg-blue" width="128" height="128"/>
         <image name="peg-orange" width="128" height="128"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

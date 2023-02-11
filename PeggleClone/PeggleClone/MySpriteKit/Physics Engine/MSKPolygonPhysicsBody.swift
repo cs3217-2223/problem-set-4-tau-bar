@@ -81,7 +81,11 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
     // MARK: Methods
     /// Handles collisions with an unspecified type physics body.
     func collide(with body: MSKPhysicsBody) -> Bool {
-        body.collide(with: self)
+        if !isCollidable(with: body) {
+            return false
+        }
+        
+        return body.collide(with: self)
     }
 
     /// Handles collisions with an circle type physics body.

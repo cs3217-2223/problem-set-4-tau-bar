@@ -13,8 +13,8 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
     private var cannon: CannonNode?
     private var isCannonFired = false
     private let defaultDirectionVectorMultiplier: Double = 10.0
-    private let defaultCannonHeight: Double = 100
-    private let defaultBallStartingHeight: Double = 200
+    private let defaultCannonHeight: Double = 50
+    private let defaultBallStartingHeight: Double = 50
     private let spaceBetweenBalls: Double = 60
 
     init(width: Double, height: Double) {
