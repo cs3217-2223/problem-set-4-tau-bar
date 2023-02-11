@@ -74,6 +74,8 @@ func collide(with body: MSKPhysicsBody) -> Bool {
 
 At compile-time, the type of body being collided with is unknown, so `collide(with body: MSKPhysicsBody)` is used. At runtime, the type is known, either `MSKCirclePhysicsBody` or `MSKPolygonPhysicsBody`. So, either `collide(with body: MSKCirclePhysicsBody)` or `collide(with body: MSKPolygonPhysicsBody)` will be used when `body.collide(with: self)` is called.
 
+The `isCollidable()` method uses the `categoryBitMask` property to check whether two bodies can collide. The `categoryBitMask` property is a `UInt32` type. If the AND of two bodies' `categoryBitMask` is not equal to zero, it means that they can collide.
+
 ### MSKCirclePhysicsBody & MSKPolygonPhysicsBody
 These are classes implementing the `MSKPhysicsBody` protocol.
 
@@ -139,4 +141,55 @@ The important function is `refresh()`, which refreshes the view, allowing user t
 ```
 
 The `refresh()` function calls `scene?.update()`. Upon changes in the scene, the delegate functions (`didRemoveNode()`, `didAddNode()`, `didUpdateNode()`, `didRotateNode()`), are called, causing the view to update itself to stay synced with the scene.
+
+# Game Engine
+To implement Peggle specific logic & UI, MSK is used to implement the custom physics, scene and view.
+
+## BoardScene
+`BoardScene` stores the state of the game. It inherits from `MSKScene`.
+
+The custom property added on top of `MSKScene` is `isCannonFired`. If true, the cannon can't be fired (as it has already been fired).
+
+There are two important functions, `fireCannon()` and `removeHitPegs()`.
+
+`fireCannon(at tapLocation: CGPoint)` shoots the cannon by creating a `BallNode`. The `tapLocation` is used to calculate the angle to fire the ball, as well as to rotate the cannon. If `isCannonFired` is false, nothing happens.
+
+`removeHitPegs()` removes the pegs that were hit by the ball when the ball goes out of the scene (falls out the bottom).
+
+## Nodes
+There are a number of different node classes, which represent the pegs, the ball and the cannon.
+
+### PegNode, BluePegNode, OrangePegNode
+Represents the pegs in the scene. It contains a `isHit` property to indicate whether the ball has hit the peg. It also stores a reference to a `PegNodeDelegate`.
+
+It conforms to the `PegPhysicsBodyDelegate` protocol, so it has `didCollideWithBall()` function.
+
+```swift
+func didCollideWithBall() {
+    isHit = true
+    delegate?.didCollideWithBall(pegNode: self)
+}
+```
+There are 2 subclasses, `BluePegNode` and `OrangePegNode`. These classes override the `didCollideWithBall()` function to implement custom logic upon colliding with the ball (changing the image to be the glowing variant). For example:
+
+```swift
+override func didCollideWithBall() {
+        image = UIImage(named: "peg-blue-glow")
+        super.didCollideWithBall()
+}
+ ```
+ 
+ ### BallNode
+ Represents the ball in the scene. It stores a reference to a `BallNodeDelegate`.
+ 
+ It conforms to the `BallPhysicsBodyDelegate` protocol, so it has the `handleBallStuck()` function.
+ 
+ ```swift
+ func handleBallStuck() {
+        delegate?.handleBallStuck()
+ }
+ ```
+ ### CannonNode
+ It represents the cannon. The notable thing is that its physics body has a `categoryBitMask` of 0 (i.e. 0x00000000) so it does not collide with anything.
+
 
