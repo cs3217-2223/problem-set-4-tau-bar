@@ -129,7 +129,6 @@ func findCollisionVector(polygon: MSKPolygonPhysicsBody,
         }
     }
 
-    // TODO: Guard out of range
     let closestVertexIdx = findClosestVertice(in: vertices, to: circle.position)
     guard vertices.indices.contains(closestVertexIdx) else { return nil }
     let closestPoint = vertices[closestVertexIdx]

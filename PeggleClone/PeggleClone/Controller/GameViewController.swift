@@ -53,7 +53,6 @@ class GameViewController: UIViewController {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
     }
 
-    // TODO: Refactor this
     func createPegNode(from peg: Peg) -> PegNode? {
         let pos = peg.getPosition()
         if peg.colour == PegColour.blue {
