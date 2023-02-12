@@ -22,7 +22,7 @@ class PegPhysicsBodyTests: XCTest {
 
     func testInit() {
         guard let physicsBody = physicsBody else {
-            return XCTFail("Peg Node is nil")
+            return XCTFail("Peg Body is nil")
         }
         XCTAssertNotNil(physicsBody.pegPhysicsBodyDelegate)
     }

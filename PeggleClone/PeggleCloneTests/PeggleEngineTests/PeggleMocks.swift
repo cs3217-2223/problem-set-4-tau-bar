@@ -37,3 +37,16 @@ class MockBallPhysicsBodyDelegate: BallPhysicsBodyDelegate {
         didCallHandleBallStuck = true
     }
 }
+
+class MockBoardSceneDelegate: BoardSceneDelegate {
+    var hasCollidedWithBall = false
+    var isPegNodeRemoved = false
+    
+    func didCollideWithBall(updatedPegNode: PegNode) {
+        hasCollidedWithBall = true
+    }
+    
+    func didRemovePegNode(removedNode: PegNode) {
+        isPegNodeRemoved = true
+    }
+}

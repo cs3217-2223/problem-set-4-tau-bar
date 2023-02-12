@@ -44,4 +44,124 @@ tests in code, please delete this section.
 > `foo` instead of `bar`. Explain what are the advantages and disadvantages of
 > using `foo` and `bar`, and why you decided to go with `foo`.
 
-Your answer here
+#### How to implement MSKPhysicsBody
+I wanted to create a base representation of a physics body. This representation could either be a class or protocol.
+
+##### Class implementation
+If it was a class, it would work except for the collision logic. Since the type of physics body (e.g. whether it is a circle or polygon) is not known in MSKPhysicsBody, there would be no way to implement the `collide()` functions (since we don't know how the body would collide with a circle or polygon unless we knew whether the body was a circle or polygon). Swift doesn’t support abstract functions, so one way to simulate an "abstract function" would be to call `assert(false)` if the functions are called from MSKPhysicsBody instead of its subclasses:
+
+```swift
+// MSKPhysicsBody.swift
+
+collide(with body: MSKCirclePhysicsBody) {
+   assert(false, "This method must be implemented by a subclass.")
+}
+```
+
+ However, this is considered as bad practice because if somehow the `collide()` function was called from `MSKPhysicsBody` (e.g. forgot to add the new `collide()` function in one of the subclasses), it would cause the app to crash as a result of `assert(false)`.
+
+
+##### Protocol implementation
+Using protocol, we can define the properties and methods of MSKPhysicsBody, that its subclass should have. For methods which have the same implementation across subclasses, we can provide a default method implementation using protocol extensions:
+
+```swift
+// MSKPhysicsBody.swift
+protocol MSKPhysicsBody {
+   // protocol body
+}
+
+extension MSKPhysicsBody {
+    /// Updates the positon of the body given the specified `timeInterval` to calculate
+    /// the new position of the body using Verlet integration.
+    func updatePosition(timeInterval: TimeInterval) {
+        // some default implementation
+    }
+    // other default method implementations
+}
+```
+
+ As for methods which require custom implementation by the subclass, we can leave them with no default implementation (inside the protocol body), so subclasses of MSKPhysicsBody have to implement the methods:
+
+ ```swift
+ protocol MSKPhysicsBody {
+   /// Simulates collision with an unspecified type of physics body.
+    func collide(with body: MSKPhysicsBody) -> Bool
+
+    /// Simulates collision with a circle type of physics body.
+    func collide(with body: MSKCirclePhysicsBody) -> Bool
+
+    /// Simulates collision with a polygon type of physics body.
+    func collide(with body: MSKPolygonPhysicsBody) -> Bool
+ }
+
+ extension MSKPhysicsBody {
+   // no default implementation for collide() functions
+ }
+     
+ ```
+
+Suppose we need to add a new MSKPhysicsBody type, we call it `NewMSKPhysicsBody`, we can make it conform to the `MSKPhysicsBody` protocol. We just need to add `collide(with body: NewMSKPhysicsBody)` into `MSKPhysicsBody`:
+
+```swift
+// MSKPhysicsBody.swift
+protocol MSKPhysicsBody {
+   ...
+   collide(with body: NewMskPhysicsBody)
+   ...
+}
+```
+
+The subclasses conforming to `MSKPhysicsBody` will be forced to implement the new method, otherwise the program will not compile. This also makes sense since each subclass should define its own implementation on how to handle collisions with this `NewMSKPhysicsBody`.
+
+#### Handling collisions between different types of bodies
+Previously, we've established that `MSKPhysicsBody` should be a protocol, and the `collide(with body: MSKPhysicsBody)` should not have a default implementation in the protocol. There are a few methods which we can use to implement the `collide()` in the subclasses.
+
+##### Checking of types & massive switch.
+Within the `collide(with: MSKPhysicsBody)` of each subclass we could implement a massive switch statement to handle collisions between that subclass and another subclass:
+
+```swift
+/// MSKCirclePhysicsBody.swift
+func collide(with body: MSKPhysicsBody) {
+   switch body {
+      case is MSKCirclePhysicsBody:
+         guard let circleBody = body as? MSKCirclePhysicsBody else {
+            return
+         }
+         // custom collision logic betweeen circle-circle
+      // other cases
+      default:
+         print("body is of an unknown type")
+   }
+}
+```
+However, a few issues arise with this implementation. Developers who add a new subclass might forget to add the new `case` within each of the subclasses, causing the program to not handle the collisions correctly. This method also doesn’t follow the OCP principle, since we need to change the `collide(with: MSKPhysicsBody)` everytime we add a new type of physics body.
+
+##### Double Dispatch.
+Another method is to use the double dispatch method. At compile time, the `collide(with: MSKPhysicsBody)` function is used, since we have no way of knowing what subclasses are colliding. Inside the `collide(with: MSKPhysicsBody)` method, we can call `body.collide(with: self)`:
+
+```swift
+// MSKCirclePhysicsBody.swift
+
+/// Handles collision of the circle body with another unspecified type physics body.
+func collide(with body: MSKPhysicsBody) -> Bool {
+   if !isCollidable(with: body) {
+      return false
+   }
+
+   return body.collide(with: self)
+}
+```
+
+At runtime, this will cause the specific subclass function, (e.g. `collide(with body: MSKCirclePhysicsBody)`), allowing the custom collision logic to be run. This has an advantage over the first method since we don’t need to modify the `collide(with: MSKPhysicsBody)` method if we add a new subclass conforming to `MSKPhysicsBody`, rather we just add a new collision function, e.g. `collide(with body: NewMSKPhysicsBody)` into `MSKPhysicsBody`:
+
+```swift
+// MSKPhysicsBody.swift
+
+// This function inside protocol does not have default implementation.
+func collide(with body: NewMSKPhysicsBody) 
+```
+
+
+This forces each subclass to implement custom collision logic with the new subclass in order to conform to `MSKPhysicsBody`. Hence, following OCP since we did not modify the `collide(with: MSKPhysicsBody)` method in any of the subclasses, but rather extended the `MSKPhysicsBody` class by adding `collide(with body: NewMSKPhysicsBody)`.
+
+
