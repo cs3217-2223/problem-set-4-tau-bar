@@ -130,6 +130,10 @@ class MSKPhysicsWorld {
         }
     }
 
+    func getBodiesCount() -> Int {
+        bodies.count
+    }
+
     /// Updates the positions of all objects within the world.
     private func updateObjects(timeInterval: TimeInterval) {
         for body in bodies {

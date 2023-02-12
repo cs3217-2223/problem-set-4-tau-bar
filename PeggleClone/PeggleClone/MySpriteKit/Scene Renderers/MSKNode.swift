@@ -32,10 +32,6 @@ class MSKNode: MSKPhysicsBodyDelegate {
         updatePosition()
     }
 
-    func didUpdateAngle() {
-        angle = physicsBody.angle
-    }
-
     /// Returns width of the node.
     func getWidth() -> Double {
         physicsBody.getWidth()
