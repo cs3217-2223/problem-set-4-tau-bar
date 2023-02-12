@@ -24,9 +24,8 @@
                                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
                                         <gestureRecognizers/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MX8-ft-T1W">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MX8-ft-T1W">
                                         <rect key="frame" x="749" y="19" width="52" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Exit" titleAlignment="leading"/>
@@ -40,8 +39,10 @@
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="rGp-r9-Qp7" secondAttribute="bottom" id="5gS-Zy-IK3"/>
                                     <constraint firstItem="rGp-r9-Qp7" firstAttribute="top" secondItem="31p-kz-ibb" secondAttribute="top" id="6VI-6H-3TN"/>
+                                    <constraint firstAttribute="trailing" secondItem="MX8-ft-T1W" secondAttribute="trailing" constant="19" id="Bo8-P8-nl2"/>
                                     <constraint firstItem="rGp-r9-Qp7" firstAttribute="leading" secondItem="31p-kz-ibb" secondAttribute="leading" id="GuW-wH-DNE"/>
                                     <constraint firstAttribute="trailing" secondItem="rGp-r9-Qp7" secondAttribute="trailing" id="mVk-TT-2wd"/>
+                                    <constraint firstItem="MX8-ft-T1W" firstAttribute="top" secondItem="31p-kz-ibb" secondAttribute="top" constant="19" id="o76-Da-rwe"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="2ec-hD-WcX" appends="YES" id="e4Y-Zi-Msc"/>
