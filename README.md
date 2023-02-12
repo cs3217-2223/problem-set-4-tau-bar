@@ -27,9 +27,7 @@ If you have changed the specifications in any way, please write your
 justification here. Otherwise, you may discard this section.
 
 ## Dev Guide
-You may put your dev guide either in this section, or in a new file entirely.
-You are encouraged to include diagrams where appropriate in order to enhance
-your guide.
+Refer to [dev-guide.md](https://github.com/cs3217-2223/problem-set-3-tau-bar/blob/master/dev-guide.md)
 
 ## Tests
 UI Tests
