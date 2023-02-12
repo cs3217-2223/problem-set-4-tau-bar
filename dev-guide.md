@@ -21,22 +21,31 @@
     - [BallPhysicsBody](#ballphysicsbody)
     - [PegPhysicsBody](#pegphysicsbody)
 # Overall Structure
+## Architecture
+The `GameViewController` controls the Peggle Game Engine.
+
+The Peggle Game Engine is built upon MySpriteKit.
+
+![image](https://user-images.githubusercontent.com/61085398/218303956-bad4bb10-ec03-4614-9bca-a2adea9cc61c.png)
+
+
+## Control Flows
 There are two main flows. 
 
-## <a name='UserInteractions'></a>User Interactions
+### <a name='UserInteractions'></a>User Interactions
 First, the handling of user interactions:
 
 ![image](https://user-images.githubusercontent.com/61085398/218270661-724caebf-1bc6-45c8-ae6c-bdac86edb946.png)
 
 The user interacts with the Board View (e.g. tapping the board to shoot the ball).
 
-The event is propagated to the Board Scene. The Board Scene updates its internal state. A more detailed sequence can be seen here:
+The event is propagated to the Board Scene. The Board Scene updates its internal state. A more detailed sequence for the example of shooting the cannon can be seen here:
 
 ![image](https://user-images.githubusercontent.com/61085398/218303137-1fc51d31-bc26-4ed0-9e4a-c69064d87313.png)
 
 Suppose we consider the event of shooting a cannon. The user taps the screen where they want to fire the cannon. The `didTapBoardView()` method is called in the `GameViewController`. If it is a valid tap location, `fireCannon()` is called. `BoardScene` updates its state such that the cannon is fired, and then calls `cannon?.updateAngle()` to update the cannon node's angle. The refresh loop (explained in [Game Loop](GameLoop)) refreshes the view and the user sees the cannon rotated to the shooting angle.
 
-## <a name='GameLoop'></a>Game Loop
+### <a name='GameLoop'></a>Game Loop
 The second flow would be continuous update of the scene based on the game loop. The flow is illustrated below:
 
 ![image](https://user-images.githubusercontent.com/61085398/218270725-5b3e2076-3723-4f5d-b809-e87e096dec32.png)
