@@ -4,6 +4,11 @@
 
 **Matric No:** A0218081L
 
+## Note to grader:
+The code from PS2 is in PeggleClone>PeggleClone>PeggleLevelDesigner. The tests from PS2 are in PeggleCloneTests>LevelBuilderTests. Everything else was written for PS3.
+
+I've integrated the level designer to make it easier to manual test myself. When the app is run, it will show the level designer. Build the level and then press the 'START' button to test the PS3 features.
+
 ## Tips
 1. CS3217's docs is at https://cs3217.github.io/cs3217-docs. Do visit the docs often, as
    it contains all things relevant to CS3217.
@@ -27,9 +32,8 @@ You are encouraged to include diagrams where appropriate in order to enhance
 your guide.
 
 ## Tests
-If you decide to write how you are going to do your tests instead of writing
-actual tests, please write in this section. If you decide to write all of your
-tests in code, please delete this section.
+UI Tests
+- 
 
 ## Written Answers
 
@@ -113,6 +117,9 @@ protocol MSKPhysicsBody {
 
 The subclasses conforming to `MSKPhysicsBody` will be forced to implement the new method, otherwise the program will not compile. This also makes sense since each subclass should define its own implementation on how to handle collisions with this `NewMSKPhysicsBody`.
 
+##### Choice
+I chose to use the protocol method.
+
 #### Handling collisions between different types of bodies
 Previously, we've established that `MSKPhysicsBody` should be a protocol, and the `collide(with body: MSKPhysicsBody)` should not have a default implementation in the protocol. There are a few methods which we can use to implement the `collide()` in the subclasses.
 
@@ -163,5 +170,8 @@ func collide(with body: NewMSKPhysicsBody)
 
 
 This forces each subclass to implement custom collision logic with the new subclass in order to conform to `MSKPhysicsBody`. Hence, following OCP since we did not modify the `collide(with: MSKPhysicsBody)` method in any of the subclasses, but rather extended the `MSKPhysicsBody` class by adding `collide(with body: NewMSKPhysicsBody)`.
+
+##### Choice
+I chose to use double dispatch method.
 
 

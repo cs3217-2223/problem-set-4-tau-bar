@@ -11,13 +11,13 @@ class BallPhysicsBody: MSKCirclePhysicsBody {
     weak var ballPhysicsBodyDelegate: BallPhysicsBodyDelegate?
 
     override func collide(with body: MSKPhysicsBody) -> Bool {
-        let didCollideWithBall = super.collide(with: body)
+        let didCollide = super.collide(with: body)
 
-        if isStationary() {
+        if isStationary(), didCollide {
             ballPhysicsBodyDelegate?.handleBallStuck()
         }
 
-        return didCollideWithBall
+        return didCollide
     }
 
     func isStationary() -> Bool {

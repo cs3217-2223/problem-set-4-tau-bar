@@ -17,15 +17,12 @@ class PegPhysicsBody: MSKCirclePhysicsBody {
 
         let didCollideWithBall = self.collide(with: body)
 
-        if didCollideWithBall {
-            pegPhysicsBodyDelegate?.didCollideWithBall()
-        }
-
         return didCollideWithBall
     }
 
     func collide(with body: BallPhysicsBody) -> Bool {
         if super.collide(with: body) {
+            pegPhysicsBodyDelegate?.didCollideWithBall()
             return true
         } else {
             return false
