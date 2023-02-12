@@ -85,7 +85,7 @@ UI Tests
 > `foo` instead of `bar`. Explain what are the advantages and disadvantages of
 > using `foo` and `bar`, and why you decided to go with `foo`.
 
-#### How to implement MSKPhysicsBody
+#### 1. How to implement MSKPhysicsBody
 I wanted to create a base representation of a physics body. This representation could either be a class or protocol.
 
 ##### Class implementation
@@ -157,7 +157,7 @@ The subclasses conforming to `MSKPhysicsBody` will be forced to implement the ne
 ##### Choice
 I chose to use the protocol method.
 
-#### Handling collisions between different types of bodies
+#### 2. Handling collisions between different types of bodies
 Previously, we've established that `MSKPhysicsBody` should be a protocol, and the `collide(with body: MSKPhysicsBody)` should not have a default implementation in the protocol. There are a few methods which we can use to implement the `collide()` in the subclasses.
 
 ##### Checking of types & massive switch.
@@ -211,4 +211,40 @@ This forces each subclass to implement custom collision logic with the new subcl
 ##### Choice
 I chose to use double dispatch method.
 
+#### 3. How MSKView and MSKScene are linked
+There are two possible ways, one is to let all communication between the MSKView and MSKScene go through the View Controller or allow MSKView and MSKScene to update each other.
+
+##### First method: Everything through View Controller
+A possible way to do this would be:
+1. When the `step()` function is called, update the scene by getting it to simulate physics and update the nodes in the scene.
+2. Once done, call the View Controller (maybe through delegate/observer pattern).
+3. View Controller will be the one to update the view based on the changes in the scene.
+
+A visual representation of this flow:
+
+![image](https://user-images.githubusercontent.com/61085398/218305882-1de29880-e5d0-4172-92ca-b76dd7697c74.png)
+
+
+The pros of this method is that the MSKView can be completely decoupled from MSKScene, the Scene acting like the Model in the MVC pattern. It also allows multiple views to know about changes, since the controller can update multiple views.
+
+The cons of this method is that developers using MSK will have to manually update the view based on the changes in state (such as movement or rotation of nodes). This could lead to the View Controller having too many responsibilities (propagating UI as well as synchronising scene and view).
+
+##### Second method: View presents a Scene.
+How this is done is `MSKView` stores a reference to `MSKScene`.
+
+1. When `step()` is called, call `refresh()` on the view.
+2. The view calls `update()` on the scene.
+3. The scene updates its state. It uses delegate functions to get the view to update (the view is a delegate of the scene).
+4. The view is updated.
+
+A visual representation of this flow:
+
+![image](https://user-images.githubusercontent.com/61085398/218270725-5b3e2076-3723-4f5d-b809-e87e096dec32.png)
+
+The pros of this method is that MSKView and MSKScene are automatically synchronised in terms of view and node positions/rotation. All the controller needs to do is call `refresh()`.
+
+The cons of this method is that MSKView is coupled to MSKScene, so changes in MSKScene could lead to having to make changes in MSKView. This also makes MSKView less reusable. It also means that the scene only can update one component about state changes (its delegate).
+
+##### Choice
+I chose the second method. This makes it easier future developers using MSK to implement their own game engines, as basic features such as node movements and rotations are already synchronised between `MSKView` and `MSKScene`. In addition, if developer doesn't want to use `MSKScene`, they can implement their own Views, since `MSKScene` only stores a reference to a `MSKSceneDelegate`. Developer just has to ensure that the new view conforms to the `MSKSceneDelegate`.
 
