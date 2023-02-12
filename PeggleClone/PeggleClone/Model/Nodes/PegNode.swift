@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PegNode: MSKSpriteNode, PegPhysicsBodyDelegate {
+class PegNode: MSKSpriteNode {
     weak var delegate: PegNodeDelegate?
     var isHit = false
     init(position: CGPoint, image: UIImage?) {
@@ -18,10 +18,5 @@ class PegNode: MSKSpriteNode, PegPhysicsBodyDelegate {
         super.init(physicsBody: pegPhysicsBody,
                    image: image)
         pegPhysicsBody.pegPhysicsBodyDelegate = self
-    }
-
-    func didCollideWithBall() {
-        isHit = true
-        delegate?.didCollideWithBall(pegNode: self)
     }
 }

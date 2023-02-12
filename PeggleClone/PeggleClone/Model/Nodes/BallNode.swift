@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class BallNode: MSKSpriteNode, BallPhysicsBodyDelegate {
+class BallNode: MSKSpriteNode {
     weak var delegate: BallNodeDelegate?
     init(oldPosition: CGPoint, position: CGPoint) {
         let physicsBody = BallPhysicsBody(circleOfRadius: 20.0,
@@ -17,9 +17,5 @@ class BallNode: MSKSpriteNode, BallPhysicsBodyDelegate {
                    image: UIImage(named: "ball"))
 
         physicsBody.ballPhysicsBodyDelegate = self
-    }
-
-    func handleBallStuck() {
-        delegate?.handleBallStuck()
     }
 }

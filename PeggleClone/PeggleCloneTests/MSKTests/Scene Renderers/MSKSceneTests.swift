@@ -37,24 +37,24 @@ class MSKSceneTests: XCTestCase {
 
     func testAddNode_addsNode() {
         XCTAssertEqual(scene?.nodes.count, 0)
-        XCTAssertEqual(scene?.physicsWorld.getBodiesCount(), 0)
+        XCTAssertEqual(scene?.physicsWorld.bodiesCount, 0)
         XCTAssertFalse(delegate.isNodeAdded)
 
         scene?.addNode(sNode)
 
         XCTAssertEqual(scene?.nodes.count, 1)
-        XCTAssertEqual(scene?.physicsWorld.getBodiesCount(), 1)
+        XCTAssertEqual(scene?.physicsWorld.bodiesCount, 1)
         XCTAssertTrue(delegate.isNodeAdded)
     }
 
     func testRemoveNode_ifNodeExists_removesNode() {
         scene?.addNode(sNode)
         XCTAssertEqual(scene?.nodes.count, 1)
-        XCTAssertEqual(scene?.physicsWorld.getBodiesCount(), 1)
+        XCTAssertEqual(scene?.physicsWorld.bodiesCount, 1)
 
         scene?.removeNode(sNode)
         XCTAssertEqual(scene?.nodes.count, 0)
-        XCTAssertEqual(scene?.physicsWorld.getBodiesCount(), 0)
+        XCTAssertEqual(scene?.physicsWorld.bodiesCount, 0)
         XCTAssertTrue(delegate.isNodeRemoved)
 
     }
@@ -62,7 +62,7 @@ class MSKSceneTests: XCTestCase {
     func testUpdate() {
         scene?.addNode(sNode)
         XCTAssertEqual(scene?.nodes.count, 1)
-        XCTAssertEqual(scene?.physicsWorld.getBodiesCount(), 1)
+        XCTAssertEqual(scene?.physicsWorld.bodiesCount, 1)
         XCTAssertFalse(delegate.isNodeRotated)
         XCTAssertFalse(delegate.isNodeUpdated)
 

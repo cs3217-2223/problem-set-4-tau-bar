@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
+class BoardScene: MSKScene {
     weak var boardSceneDelegate: BoardSceneDelegate?
     private var ball: BallNode?
     private var cannon: CannonNode?
@@ -38,10 +38,6 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
         ballNode.delegate = self
     }
 
-    func didCollideWithBall(pegNode: PegNode) {
-        boardSceneDelegate?.didCollideWithBall(updatedPegNode: pegNode)
-    }
-
     func fireCannon(at tapLocation: CGPoint) {
         if isCannonFired {
             return
@@ -68,10 +64,6 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
         guard let ball = ball else { return }
         addBallNode(ball)
         isCannonFired = true
-    }
-
-    func handleBallStuck() {
-        removeHitPegs()
     }
 
     private func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
@@ -108,7 +100,7 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
         physicsWorld.addRightBorder(xPos: width, yPos: height / 2, height: height)
     }
 
-    private func removeHitPegs() {
+    func removeHitPegs() {
         var hitPegs: [PegNode] = []
         for node in nodes {
             if let pegNode = node as? PegNode, pegNode.isHit {

@@ -8,7 +8,7 @@
 import Foundation
 
 /// Represents a node inside a `MSKScene`.
-class MSKNode: MSKPhysicsBodyDelegate {
+class MSKNode {
     /// The position of the node within the scene.
     var position: CGPoint
 
@@ -26,12 +26,6 @@ class MSKNode: MSKPhysicsBodyDelegate {
         self.physicsBody.delegate = self
     }
 
-    /// Updates position of node when position of physics body gets updated.
-    /// Delegate function for `MSKPhysicsBodyDelegate`.
-    func didUpdatePosition() {
-        updatePosition()
-    }
-
     /// Returns width of the node.
     func getWidth() -> Double {
         physicsBody.getWidth()
@@ -45,11 +39,6 @@ class MSKNode: MSKPhysicsBodyDelegate {
     func updateAngle(newAngle: Double) {
         angle = newAngle
         physicsBody.angle = newAngle
-    }
-
-    private func updatePosition() {
-        position.x = physicsBody.position.x
-        position.y = physicsBody.position.y
     }
 }
 

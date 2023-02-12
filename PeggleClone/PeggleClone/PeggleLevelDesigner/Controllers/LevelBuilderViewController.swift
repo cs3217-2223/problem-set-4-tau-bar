@@ -1,10 +1,7 @@
 import UIKit
 import CoreData
 
-class LevelBuilderViewController: UIViewController,
-                                    BoardPegViewDelegate,
-                                  LevelSelectViewControllerDelegate {
-
+class LevelBuilderViewController: UIViewController {
     // MARK: View objects
     @IBOutlet var bluePegButton: SelectPegButton!
     @IBOutlet var orangePegButton: SelectPegButton!
@@ -131,29 +128,6 @@ class LevelBuilderViewController: UIViewController,
         DataManager.sharedInstance.saveBoard(board, onComplete: alertUserLevelSaved)
     }
 
-    // MARK: Delegate functions for `BoardPegView`
-    /// Deletes a board peg that was long pressed from the level.
-    /// Delegate function for long press on `BoardPegView`.
-    func userDidLongPress(boardPegView: BoardPegView) {
-        deletePeg(of: boardPegView)
-    }
-
-    /// Deletes a board peg from the level if the user taps on it and if the delete peg button is selected.
-    /// Otherwise, do nothing.
-    /// Delegate function for tap on `BoardPegView`.
-    func userDidTap(boardPegView: BoardPegView) {
-        if isDeletePegButton(selectedButton: selectedButton) {
-            deletePeg(of: boardPegView)
-        }
-    }
-
-    /// Moves a peg on the board that was panned to the new location on the level if valid.
-    /// Otherwise, do nothing.
-    /// Delegate function for pan on `BoardPegView`.
-    func userDidPan(sender: UIPanGestureRecognizer) {
-        movePeg(of: sender)
-    }
-
     // MARK: Notification Functions
     /// Adds a peg to the board view when receive .pegAdded notification from board model.
     @objc func addPegToBoardView(_ notification: Notification) {
@@ -197,16 +171,6 @@ class LevelBuilderViewController: UIViewController,
 
     @objc func notifyUserSaveError() {
         alertUserSaveError()
-    }
-
-    // MARK: LevelSelectViewController delegate functions
-    /// Loads a board from delegatee  as the board for the level builder.
-    func loadBoard(_ loadedBoard: Board) {
-        board = loadedBoard
-    }
-
-    func loadEmptyBoard() {
-        board = createEmptyBoard()
     }
 
     // MARK: Model functions
@@ -258,7 +222,7 @@ class LevelBuilderViewController: UIViewController,
     }
 
     // MARK: Helper functions
-    private func createEmptyBoard() -> Board {
+    func createEmptyBoard() -> Board {
         Board(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
 
@@ -330,7 +294,7 @@ class LevelBuilderViewController: UIViewController,
         peg.radius * 2
     }
 
-    private func isDeletePegButton(selectedButton: SelectPegButton?) -> Bool {
+    func isDeletePegButton(selectedButton: SelectPegButton?) -> Bool {
         selectedButton == deletePegButton
     }
 

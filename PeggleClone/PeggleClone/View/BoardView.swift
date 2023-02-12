@@ -6,20 +6,9 @@
 //
 import UIKit
 
-class BoardView: MSKView, BoardSceneDelegate {
+class BoardView: MSKView {
     func setScene(_ scene: BoardScene) {
         super.setScene(scene)
         scene.boardSceneDelegate = self
-    }
-
-    func didCollideWithBall(updatedPegNode: PegNode) {
-        nodeToView[updatedPegNode]?.image = updatedPegNode.image
-    }
-
-    func didRemovePegNode(removedNode: PegNode) {
-        let viewToRemove = nodeToView[removedNode]
-        UIView.animate(withDuration: 0.5,
-                       animations: { viewToRemove?.alpha = 0 },
-                       completion: { _ in viewToRemove?.removeFromSuperview() })
     }
 }

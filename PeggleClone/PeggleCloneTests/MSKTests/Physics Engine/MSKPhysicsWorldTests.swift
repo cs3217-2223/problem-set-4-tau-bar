@@ -44,31 +44,31 @@ final class MSKPhysicsWorldTests: XCTestCase {
     }
 
     func testAddBody_shouldAddBody() {
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
 
         physicsWorld?.addBody(circlePhysicsBody)
 
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 1)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 1)
     }
 
     func testRemoveBody_bodyExists_shouldRemoveBody() {
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
 
         physicsWorld?.addBody(circlePhysicsBody)
 
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 1)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 1)
 
         physicsWorld?.removeBody(circlePhysicsBody)
 
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
     }
 
     func testRemoveBody_bodyNotExists_shouldDoNothing() {
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
 
         physicsWorld?.removeBody(circlePhysicsBody)
 
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
     }
 
     func testSimulatePhysics_noCollisions_shouldUpdatePosition() {
@@ -76,9 +76,9 @@ final class MSKPhysicsWorldTests: XCTestCase {
         let originalPosition = circlePhysicsBody.position
         circlePhysicsBody.positionLast = originalPosition
 
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
         physicsWorld?.addBody(circlePhysicsBody)
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 1)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 1)
 
         physicsWorld?.simulatePhysics(timeInterval: defaultTimeInterval)
 
@@ -111,7 +111,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
     }
 
     func testAddTopBorder_shouldEnforceBoundary() {
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
 
         let outOfBoundsBody = MSKCirclePhysicsBody(circleOfRadius: 20,
                                                    center: SIMD2<Double>(x: 50, y: 19),
@@ -123,7 +123,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
     }
 
     func testAddLeftBorder_shouldEnforceBoundary() {
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
 
         let outOfBoundsBody = MSKCirclePhysicsBody(circleOfRadius: 20,
                                                    center: SIMD2<Double>(x: 19, y: 50),
@@ -135,7 +135,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
     }
 
     func testAddRightBorder_shouldEnforceBoundary() {
-        XCTAssertEqual(physicsWorld?.getBodiesCount(), 0)
+        XCTAssertEqual(physicsWorld?.bodiesCount, 0)
 
         let outOfBoundsBody = MSKCirclePhysicsBody(circleOfRadius: 20,
                                                    center: SIMD2<Double>(x: 481, y: 50),

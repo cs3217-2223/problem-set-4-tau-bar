@@ -67,7 +67,7 @@ class BoardSceneTests: XCTestCase {
             return XCTFail("Board scene is nil")
         }
         XCTAssertTrue(hasCannonNode)
-        XCTAssertEqual(boardScene?.physicsWorld.getBodiesCount(), 4)
+        XCTAssertEqual(boardScene?.physicsWorld.bodiesCount, 4)
     }
 
     func testFireCannon() {

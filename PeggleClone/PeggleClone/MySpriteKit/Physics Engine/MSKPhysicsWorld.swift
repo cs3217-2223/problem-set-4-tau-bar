@@ -30,6 +30,10 @@ class MSKPhysicsWorld {
     /// Buffer for the border bodies, to allow collisions with borders to work properly.
     let borderBuffer: Double = 100
 
+    var bodiesCount: Int {
+        bodies.count
+    }
+
     // MARK: Initializers
     init(bodies: [MSKPhysicsBody] = [],
          gravity: SIMD2<Double> = defaultGravity,
@@ -128,10 +132,6 @@ class MSKPhysicsWorld {
                 resolveCollision(bodyA: bodyA, bodyB: bodyB)
             }
         }
-    }
-
-    func getBodiesCount() -> Int {
-        bodies.count
     }
 
     /// Updates the positions of all objects within the world.

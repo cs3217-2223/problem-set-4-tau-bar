@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MSKView: UIView, MSKSceneDelegate {
+class MSKView: UIView {
     /// The scene currently presented by this view.
     weak var scene: MSKScene?
 
@@ -38,26 +38,6 @@ class MSKView: UIView, MSKSceneDelegate {
         let newView = createImageView(from: addedNode)
         nodeToView[addedNode] = newView
         self.addSubview(newView)
-    }
-
-    /// Removes a subview which represents a `MSKSpriteNode`.
-    func didRemoveNode(_ removedNode: MSKSpriteNode) {
-        nodeToView[removedNode]?.removeFromSuperview()
-        nodeToView[removedNode] = nil
-    }
-
-    /// Adds a subview when a `MSKSpriteNode` is added to the scene.
-    func didAddNode(_ addedNode: MSKSpriteNode) {
-        addSubview(from: addedNode)
-    }
-
-    /// Updates a subview to the latest state of the `MSKSpriteNode`.
-    func didUpdateNode(_ node: MSKSpriteNode) {
-        nodeToView[node]?.center = node.position
-    }
-
-    func didRotateNode(_ node: MSKSpriteNode) {
-        nodeToView[node]?.transform = CGAffineTransformMakeRotation(node.angle)
     }
 
     /// Refreshes the state of the scene to the current time.
