@@ -30,8 +30,43 @@ justification here. Otherwise, you may discard this section.
 Refer to [dev-guide.md](https://github.com/cs3217-2223/problem-set-3-tau-bar/blob/master/dev-guide.md)
 
 ## Tests
+The tests below are only for features added for PS3. The test palette for PS2 features (level builder) can be found [here](https://github.com/cs3217-2223/problem-set-2-tau-bar/blob/master/README.md).
+
+
 UI Tests
-- 
+* Test Palette 
+  * Board view
+    * When tapped:
+      * if there is no ball that was already fired previously and is still on screen:
+         * should create a `BallNode` in `BoardScene`
+         * `isCannonFired` in `BoardScene` should be set to true
+         * should update the rotation of `CannonNode`
+         * visually, a ball should appear to emerge from the cannon
+         * visually, a ball should move towards the location that was tapped
+         * visually, the cannon view should be rotated to aim at the target location
+      * else:
+         * should do nothing
+    * When ball has been fired and is on the screen:
+      * should collide with pegs in a realistic manner
+      * should light up pegs which it collides with
+      * should bounce off the boundaries of the screen
+    * When the ball is on screen and is stuck on a peg (stationary):
+      * should fade out pegs which have been hit
+      * should be able to continue moving after the pegs have faded out
+    * When the ball falls out of the screen:
+      * pegs which were hit and are lit should fade from the screen
+      * should remove `BallNode` from `BoardScene`
+      * isCannonFired` in `BoardScene` should be set to false
+      * should fire another ball if the user taps on the board view again
+   * Exit button (in the game's Board View)
+      * When tapped:
+         * should dismiss the game view
+         * should show the level builder view with the board as it was before the game was started
+   * Level Builder (only new features)
+      * When START button is tapped:
+         * should load the level that was on the level builder view in the game view
+    
+      
 
 ## Written Answers
 
