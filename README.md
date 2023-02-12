@@ -68,6 +68,7 @@ UI Tests
    * Level Builder (only new features)
       * When START button is tapped:
          * should load the level that was on the level builder view in the game view
+         * should show one cannon at the top middle of the screen aiming vertically downwards
     
       
 
