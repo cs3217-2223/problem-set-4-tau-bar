@@ -36,7 +36,7 @@ The tests below are only for features added for PS3. The test palette for PS2 fe
 UI Tests
 * Test Palette 
   * Board view
-    * When tapped:
+    * When tapped in a valid location (below the height of the cannon):
       * if there is no ball that was already fired previously and is still on screen:
          * should create a `BallNode` in `BoardScene`
          * `isCannonFired` in `BoardScene` should be set to true
@@ -46,10 +46,13 @@ UI Tests
          * visually, the cannon view should be rotated to aim at the target location
       * else:
          * should do nothing
+    * When tapped in an invalid location (above the height of the cannon):
+      * should do nothing
     * When ball has been fired and is on the screen:
-      * should collide with pegs in a realistic manner
+      * should move around the screen in a realistic looking manner
+    * When the ball collides with the edge of the screen/another peg  
+      * should bounce off in a natural & reasonable manner
       * should light up pegs which it collides with
-      * should bounce off the boundaries of the screen
     * When the ball is on screen and is stuck on a peg (stationary):
       * should fade out pegs which have been hit
       * should be able to continue moving after the pegs have faded out
