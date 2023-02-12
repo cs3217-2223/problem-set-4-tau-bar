@@ -92,7 +92,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
         circlePhysicsBody.positionLast = originalPosition
 
         // Overlapping circlePhysicsBody on x-axis --> Collision should occur
-        var otherBody = MSKCirclePhysicsBody(circleOfRadius: 1.0,
+        let otherBody = MSKCirclePhysicsBody(circleOfRadius: 1.0,
                                          center: SIMD2<Double>(x: 0.9, y: 2.0),
                                          isDynamic: true)
 

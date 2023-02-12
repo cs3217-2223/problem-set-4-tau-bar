@@ -51,7 +51,7 @@ UI Tests
     * When ball has been fired and is on the screen:
       * should move around the screen in a realistic looking manner
     * When the ball collides with the edge of the screen/another peg  
-      * should bounce off in a natural & reasonable manner
+      * should bounce off the edge of the screen (regardless of screen size) in a natural & reasonable manner
       * should light up pegs which it collides with
     * When the ball is on screen and is stuck on a peg (stationary):
       * should fade out pegs which have been hit
