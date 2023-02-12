@@ -13,5 +13,27 @@ class MockPegNodeDelegate: PegNodeDelegate {
     func didCollideWithBall(pegNode: PegNode) {
         hasCollidedWithBall = true
     }
+}
 
+class MockBallNodeDelegate: BallNodeDelegate {
+    var didCallHandleBallStuck = false
+    func handleBallStuck() {
+        didCallHandleBallStuck = true
+    }
+}
+
+class MockPegPhysicsBodyDelegate: PegPhysicsBodyDelegate {
+    var collidedWithBall = false
+
+    func didCollideWithBall() {
+        collidedWithBall = true
+    }
+}
+
+class MockBallPhysicsBodyDelegate: BallPhysicsBodyDelegate {
+    var didCallHandleBallStuck = false
+
+    func handleBallStuck() {
+        didCallHandleBallStuck = true
+    }
 }
