@@ -8,14 +8,6 @@
 import Foundation
 import XCTest
 
-class MockPhysicsBodyDelegate: MSKPhysicsBodyDelegate {
-    var isPositionUpdated = false
-
-    func didUpdatePosition() {
-        isPositionUpdated = true
-    }
-}
-
 final class MSKPhysicsBodyDelegateTests: XCTestCase {
     var circlePhysicsBody: MSKCirclePhysicsBody?
     let position = SIMD2<Double>(x: 1.0, y: 2.0)

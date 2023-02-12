@@ -24,9 +24,12 @@ class MSKView: UIView, MSKSceneDelegate {
 
     /// Creates a `UIImageView` from a `MSKSpriteNode`.
     func createImageView(from node: MSKSpriteNode) -> UIImageView {
-        let frame = CGRect(x: node.position.x, y: node.position.y, width: node.getWidth(), height: node.getHeight())
-        let newView = UIImageView(frame: frame)
-        newView.image = node.image
+        let newView = UIImageView(image: node.image)
+        newView.frame = CGRect(x: node.position.x,
+                               y: node.position.y,
+                               width: node.getWidth(),
+                               height: node.getHeight())
+        newView.center = node.position
         return newView
     }
 
