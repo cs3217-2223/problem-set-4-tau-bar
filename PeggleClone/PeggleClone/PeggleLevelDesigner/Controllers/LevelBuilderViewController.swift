@@ -259,7 +259,7 @@ class LevelBuilderViewController: UIViewController,
 
     // MARK: Helper functions
     private func createEmptyBoard() -> Board {
-        Board(width: boardView.frame.width, height: boardView.frame.height)
+        Board(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
 
     /// Sets a new text to the level name text field.

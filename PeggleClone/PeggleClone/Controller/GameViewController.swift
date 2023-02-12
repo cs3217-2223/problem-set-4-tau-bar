@@ -65,7 +65,7 @@ class GameViewController: UIViewController {
     }
 
     func setUpBoardScene() {
-        boardScene = BoardScene(width: boardView.frame.width, height: boardView.frame.height)
+        boardScene = BoardScene(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 
         boardScene?.setupBoard()
 
