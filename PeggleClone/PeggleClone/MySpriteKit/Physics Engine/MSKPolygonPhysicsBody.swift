@@ -90,6 +90,10 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
 
     /// Handles collisions with an circle type physics body.
     func collide(with body: MSKCirclePhysicsBody) -> Bool {
+        if !isCollidable(with: body) {
+            return false
+        }
+
         guard let collisionVector = findCollisionVector(polygon: self, circle: body) else { return false }
 
         self.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
@@ -99,6 +103,10 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
 
     /// Handles collisions with an polygonal type physics body.
     func collide(with body: MSKPolygonPhysicsBody) -> Bool {
+        if !isCollidable(with: body) {
+            return false
+        }
+
         guard let collisionVector = findCollisionVector(polygonA: self, polygonB: body) else { return false }
 
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)

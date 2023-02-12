@@ -99,6 +99,10 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
 
     /// Handles collision of the circle body with another circle physics body.
     func collide(with body: MSKCirclePhysicsBody) -> Bool {
+        if !isCollidable(with: body) {
+            return false
+        }
+
         let minDistance = self.radius + body.radius
         let collisionAxis = self.position - body.position
         let collisionAxisLength = getLength(of: collisionAxis)
@@ -121,6 +125,10 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
 
     /// Handles collision of the circle body with a polygonal physics body.
     func collide(with body: MSKPolygonPhysicsBody) -> Bool {
+        if !isCollidable(with: body) {
+            return false
+        }
+
         guard let collisionVector = findCollisionVector(polygon: body, circle: self) else { return false }
         body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)

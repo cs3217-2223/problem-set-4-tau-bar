@@ -124,4 +124,26 @@ final class MSKPolygonPhysicsBodyTests: XCTestCase {
         XCTAssertEqual(polygon.position.x, -1.0, accuracy: defaultTestAccuracy)
         XCTAssertEqual(polygon.position.y, 4.5, accuracy: defaultTestAccuracy)
     }
+
+    func testCollide_withNonCollidingCategoryMask_shouldNotChangePosition() {
+        guard let polygonPhysicsBody = polygonPhysicsBody else {
+            return XCTFail("polygonPhysicsBody is nil.")
+        }
+
+        let otherBody = MSKPolygonPhysicsBody(delegate: nil,
+                              positionLast: SIMD2<Double>(3, 0),
+                              position: SIMD2<Double>(3, 0),
+                              acceleration: acceleration,
+                              affectedByGravity: true,
+                              isDynamic: false,
+                              categoryBitMask: 0x0,
+                              mass: 1.0,
+                            vertices: vertices,
+                              angle: 0.5)
+
+        XCTAssertFalse(polygonPhysicsBody.collide(with: otherBody))
+        XCTAssertEqual(polygonPhysicsBody.position.x, position.x, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(polygonPhysicsBody.position.y, position.y, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(otherBody.position, SIMD2<Double>(3.0, 0))
+    }
 }

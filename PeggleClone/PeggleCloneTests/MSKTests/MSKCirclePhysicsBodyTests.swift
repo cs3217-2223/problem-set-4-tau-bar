@@ -61,10 +61,10 @@ final class MSKCirclePhysicsBodyTests: XCTestCase {
         let otherCircle = MSKCirclePhysicsBody(delegate: nil,
                                                position: SIMD2<Double>(3, 0),
                                                isDynamic: false,
-                                               radius: 2)
+                                               radius: 3)
         XCTAssertTrue(circlePhysicsBody.collide(with: otherCircle))
-        XCTAssertEqual(circlePhysicsBody.position.x, 0.4469223, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(circlePhysicsBody.position.y, 2.5530777, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(circlePhysicsBody.position.x, 0.3143398, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(circlePhysicsBody.position.y, 2.6856601, accuracy: defaultTestAccuracy)
         XCTAssertEqual(otherCircle.position, SIMD2<Double>(3.0, 0))
     }
 
@@ -76,12 +76,12 @@ final class MSKCirclePhysicsBodyTests: XCTestCase {
         let otherCircle = MSKCirclePhysicsBody(delegate: nil,
                                                position: SIMD2<Double>(3, 0),
                                                isDynamic: true,
-                                               radius: 2)
+                                               radius: 3)
         XCTAssertTrue(circlePhysicsBody.collide(with: otherCircle))
-        XCTAssertEqual(circlePhysicsBody.position.x, 0.4469223, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(circlePhysicsBody.position.y, 2.5530777, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(otherCircle.position.x, 3.5530777, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(otherCircle.position.y, -0.5530777, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(circlePhysicsBody.position.x, 0.3143398, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(circlePhysicsBody.position.y, 2.6856602, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(otherCircle.position.x, 3.6856602, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(otherCircle.position.y, -0.6856602, accuracy: defaultTestAccuracy)
     }
 
     func testCollide_withNonDynamicPolygon_shouldChangePositionCorrectly() {
@@ -121,5 +121,27 @@ final class MSKCirclePhysicsBodyTests: XCTestCase {
         XCTAssertEqual(circlePhysicsBody.position.y, 1.3390025, accuracy: defaultTestAccuracy)
         XCTAssertEqual(polygon.position.x, 4.9659848, accuracy: defaultTestAccuracy)
         XCTAssertEqual(polygon.position.y, 5.1609975, accuracy: defaultTestAccuracy)
+    }
+
+    func testCollide_withNonCollidingCategoryMask_shouldNotChangePosition() {
+        guard let circlePhysicsBody = circlePhysicsBody else {
+            return XCTFail("circlePhysicsBody is nil.")
+        }
+
+        let otherCircle = MSKCirclePhysicsBody(delegate: nil,
+                                                 positionLast: SIMD2<Double>(3, 0),
+                                                 position: SIMD2<Double>(3, 0),
+                                                 acceleration: acceleration,
+                                                 affectedByGravity: true,
+                                                 isDynamic: false,
+                                                 categoryBitMask: 0x0,
+                                                 mass: 1.0,
+                                                 radius: 3.0,
+                                                 angle: 0.5)
+
+        XCTAssertFalse(circlePhysicsBody.collide(with: otherCircle))
+        XCTAssertEqual(circlePhysicsBody.position.x, position.x, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(circlePhysicsBody.position.y, position.y, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(otherCircle.position, SIMD2<Double>(3.0, 0))
     }
 }
