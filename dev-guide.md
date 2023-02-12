@@ -30,15 +30,57 @@ First, the handling of user interactions:
 
 The user interacts with the Board View (e.g. tapping the board to shoot the ball).
 
-The event is propagated to the Board Scene. The Board Scene updates its internal state, and synchronises the state with the view so that the user sees the most updated state of the scene visually represented.
+The event is propagated to the Board Scene. The Board Scene updates its internal state. A more detailed sequence can be seen here:
+
+![image](https://user-images.githubusercontent.com/61085398/218303137-1fc51d31-bc26-4ed0-9e4a-c69064d87313.png)
+
+Suppose we consider the event of shooting a cannon. The user taps the screen where they want to fire the cannon. The `didTapBoardView()` method is called in the `GameViewController`. If it is a valid tap location, `fireCannon()` is called. `BoardScene` updates its state such that the cannon is fired, and then calls `cannon?.updateAngle()` to update the cannon node's angle. The refresh loop (explained in [Game Loop](GameLoop)) refreshes the view and the user sees the cannon rotated to the shooting angle.
 
 ## <a name='GameLoop'></a>Game Loop
 The second flow would be continuous update of the scene based on the game loop. The flow is illustrated below:
 
 ![image](https://user-images.githubusercontent.com/61085398/218270725-5b3e2076-3723-4f5d-b809-e87e096dec32.png)
 
-The game loop (implemented using `CADisplayLink`) is contained within the `GameViewController`. The game loop calls the `step()` function, whch calls the `refresh()` function of the Board View. The BoardView then gets the scene to update, and then once the state of the scene is updated, the state changes are propagated back to the Board View, which will update itself to visually represent the latest state of the scene. The flow is shown below:
+For a more detailed view, refer to the following sequence diagram:
 
+![image](https://user-images.githubusercontent.com/61085398/218302494-966ac603-ee7b-487a-92c3-d6ee1771a4fe.png)
+
+
+The game loop (implemented using `CADisplayLink`) is done within the `GameViewController`. The game loop calls the `step()` function, whch calls the `refresh()` function of the Board View. The BoardView then calls `update()` on the scene. The update() function in MSKScene calls `physicsWorld.simulatePhysics()` and `didSimulatePhysics`:
+
+```swift
+/// Updates the scene with the current time interval.
+func update(timeInterval: TimeInterval) {
+    // Simulate physics over the time interval
+    physicsWorld.simulatePhysics(timeInterval: timeInterval)
+
+    // Logic to be run after the physics has been simulated,
+    // e.g. update, add, remove nodes.
+    didSimulatePhysics()
+}
+```
+
+The `didSimulatePhysics()` function updates the positions & rotations of the nodes, and calls the delegate functions, `didUpdateNode()` and `didRotateNode()`. `BoardView`, which is the delegate, will update the rotation and position of the subviews, and this is seen by the user.
+
+In `BoardScene`, the `update()` function is overridden to add some Peggle-specific logic:
+
+```swift
+override func update(timeInterval: TimeInterval) {
+    super.update(timeInterval: timeInterval)
+    guard let ball = ball else { return }
+    if isOutOfBounds(node: ball) {
+        // Remove the balls out of the scene.
+        removeFiredBall()
+
+        // Remove nodes that are hit once ball is out of bounds.
+        removeHitPegs()
+
+        // Allow cannon to be fired again
+        isCannonFired = false
+    }
+}
+```
+If the ball is out of bounds, the ball is removed from the scene and the pegs which were hit are removed. Upon removing the pegs, the `delegate?.didRemoveNode()` is called. `BoardView`, being the delegate, removes the subviews from the screen, and the user sees the hit pegs fading out of the screen.
 
 
 # MySpriteKit
