@@ -41,11 +41,11 @@ class MockBallPhysicsBodyDelegate: BallPhysicsBodyDelegate {
 class MockBoardSceneDelegate: BoardSceneDelegate {
     var hasCollidedWithBall = false
     var isPegNodeRemoved = false
-    
+
     func didCollideWithBall(updatedPegNode: PegNode) {
         hasCollidedWithBall = true
     }
-    
+
     func didRemovePegNode(removedNode: PegNode) {
         isPegNodeRemoved = true
     }

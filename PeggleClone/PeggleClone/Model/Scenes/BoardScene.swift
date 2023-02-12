@@ -15,7 +15,6 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
     private let defaultDirectionVectorMultiplier: Double = 10.0
     private let defaultCannonHeight: Double = 50
     private let defaultBallStartingHeight: Double = 50
-    private let spaceBetweenBalls: Double = 60
 
     init(width: Double, height: Double) {
         super.init(physicsWorld: MSKPhysicsWorld(width: width, height: height))
@@ -71,6 +70,10 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
         isCannonFired = true
     }
 
+    func handleBallStuck() {
+        removeHitPegs()
+    }
+
     private func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
         let shotVector = SIMD2<Double>(x: tapLocation.x - oldPosition.x, y: tapLocation.y - oldPosition.y)
         let directionVector = findUnitVector(of: shotVector) * defaultDirectionVectorMultiplier
@@ -80,14 +83,6 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
 
     func isValidLocation(location: CGPoint) -> Bool {
         location.y > defaultBallStartingHeight
-    }
-
-    func setUpBorders() {
-        let width = physicsWorld.width
-        let height = physicsWorld.height
-        physicsWorld.addTopBorder(xPos: width / 2, yPos: 0, width: width)
-        physicsWorld.addLeftBorder(xPos: 0, yPos: height / 2, height: height)
-        physicsWorld.addRightBorder(xPos: width, yPos: height / 2, height: height)
     }
 
     override func update(timeInterval: TimeInterval) {
@@ -105,7 +100,15 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
         }
     }
 
-    func removeHitPegs() {
+    private func setUpBorders() {
+        let width = physicsWorld.width
+        let height = physicsWorld.height
+        physicsWorld.addTopBorder(xPos: width / 2, yPos: 0, width: width)
+        physicsWorld.addLeftBorder(xPos: 0, yPos: height / 2, height: height)
+        physicsWorld.addRightBorder(xPos: width, yPos: height / 2, height: height)
+    }
+
+    private func removeHitPegs() {
         var hitPegs: [PegNode] = []
         for node in nodes {
             if let pegNode = node as? PegNode, pegNode.isHit {
@@ -120,17 +123,13 @@ class BoardScene: MSKScene, PegNodeDelegate, BallNodeDelegate {
         })
     }
 
-    func removeFiredBall() {
+    private func removeFiredBall() {
         guard let ball = ball else { return }
         removeNode(ball)
         self.ball = nil
     }
 
-    func isOutOfBounds(node: BallNode) -> Bool {
+    private func isOutOfBounds(node: BallNode) -> Bool {
         node.position.y - node.getHeight() > physicsWorld.height
-    }
-
-    func handleBallStuck() {
-        removeHitPegs()
     }
 }
