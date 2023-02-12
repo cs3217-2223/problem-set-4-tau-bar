@@ -178,7 +178,10 @@ func collide(with body: MSKPhysicsBody) {
    }
 }
 ```
-However, a few issues arise with this implementation. Developers who add a new subclass might forget to add the new `case` within each of the subclasses, causing the program to not handle the collisions correctly. This method also doesn’t follow the OCP principle, since we need to change the `collide(with: MSKPhysicsBody)` everytime we add a new type of physics body.
+
+The pros of this is that this is the most straightforward way to implement colliisons between different bodies. It is easy for developers to understand the logic & flow of the program.
+
+The cons of this is that developers who add a new subclass might forget to add the new `case` within each of the subclasses, causing the program to not handle the collisions correctly. This method also doesn’t follow the OCP principle, since we need to change the `collide(with: MSKPhysicsBody)` everytime we add a new type of physics body.
 
 ##### Double Dispatch.
 Another method is to use the double dispatch method. At compile time, the `collide(with: MSKPhysicsBody)` function is used, since we have no way of knowing what subclasses are colliding. Inside the `collide(with: MSKPhysicsBody)` method, we can call `body.collide(with: self)`:
@@ -206,10 +209,14 @@ func collide(with body: NewMSKPhysicsBody)
 ```
 
 
-This forces each subclass to implement custom collision logic with the new subclass in order to conform to `MSKPhysicsBody`. Hence, following OCP since we did not modify the `collide(with: MSKPhysicsBody)` method in any of the subclasses, but rather extended the `MSKPhysicsBody` class by adding `collide(with body: NewMSKPhysicsBody)`.
+This forces each subclass to implement custom collision logic with the new subclass in order to conform to `MSKPhysicsBody`. 
+
+The pros of this method is that it follows OCP since we did not modify the `collide(with: MSKPhysicsBody)` method in any of the subclasses, but rather extended the `MSKPhysicsBody` class by adding `collide(with body: NewMSKPhysicsBody)`.
+
+The cons of this method is that it is more complex than the switch statement method, and requires more code. On top of that, the flow of execution of the program is not immediately clear unless the developer is aware about how double dispatch works.
 
 ##### Choice
-I chose to use double dispatch method.
+I chose to use double dispatch method. The reaason being that it is less prone to errors, since it doesn't cause runtime errors if the developer made an error, but rather the error can be caught in compile time.
 
 #### 3. How MSKView and MSKScene are linked
 There are two possible ways, one is to let all communication between the MSKView and MSKScene go through the View Controller or allow MSKView and MSKScene to update each other.
