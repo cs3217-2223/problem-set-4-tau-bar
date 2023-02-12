@@ -84,6 +84,8 @@
 		61F06FAB2998900300AA3964 /* MSKSpriteNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEBE298AACC600297265 /* MSKSpriteNode.swift */; };
 		61F06FAC2998900600AA3964 /* MSKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */; };
 		61F06FAD2998900800AA3964 /* MSKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEBC298AAC1200297265 /* MSKView.swift */; };
+		61F06FAF299894C600AA3964 /* MSKSpriteNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F06FAE299894C600AA3964 /* MSKSpriteNodeTests.swift */; };
+		61F06FB12998955400AA3964 /* MSKSceneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F06FB02998955400AA3964 /* MSKSceneTests.swift */; };
 		61F6517F2997397500B2FDEB /* BallPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6517E2997397500B2FDEB /* BallPhysicsBodyDelegate.swift */; };
 		61F65183299740D900B2FDEB /* BallNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F65182299740D900B2FDEB /* BallNodeDelegate.swift */; };
 		61F651842997809600B2FDEB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610FED8D298E616400875BBA /* Main.storyboard */; };
@@ -172,6 +174,8 @@
 		61F06F9E29987EF500AA3964 /* MSKPhysicsWorldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsWorldTests.swift; sourceTree = "<group>"; };
 		61F06FA029987F1E00AA3964 /* MSKPhysicsBodyDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsBodyDelegateTests.swift; sourceTree = "<group>"; };
 		61F06FA729988FBC00AA3964 /* MSKNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKNodeTests.swift; sourceTree = "<group>"; };
+		61F06FAE299894C600AA3964 /* MSKSpriteNodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKSpriteNodeTests.swift; sourceTree = "<group>"; };
+		61F06FB02998955400AA3964 /* MSKSceneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKSceneTests.swift; sourceTree = "<group>"; };
 		61F6517E2997397500B2FDEB /* BallPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		61F65182299740D900B2FDEB /* BallNodeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallNodeDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -454,6 +458,8 @@
 			isa = PBXGroup;
 			children = (
 				61F06FA729988FBC00AA3964 /* MSKNodeTests.swift */,
+				61F06FAE299894C600AA3964 /* MSKSpriteNodeTests.swift */,
+				61F06FB02998955400AA3964 /* MSKSceneTests.swift */,
 			);
 			path = "Scene Renderers";
 			sourceTree = "<group>";
@@ -666,6 +672,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61F06FAF299894C600AA3964 /* MSKSpriteNodeTests.swift in Sources */,
 				610FEDAD298E651900875BBA /* BoardProtocol.swift in Sources */,
 				61F06F9629986AB300AA3964 /* MSKPolygonPhysicsBody.swift in Sources */,
 				61F06F9829986ADB00AA3964 /* UtilFunctions.swift in Sources */,
@@ -691,6 +698,7 @@
 				610FED6C298E5FE100875BBA /* BoardTests.swift in Sources */,
 				61F06FA929988FFE00AA3964 /* MSKNode.swift in Sources */,
 				61F06F9729986AC400AA3964 /* MSKConstants.swift in Sources */,
+				61F06FB12998955400AA3964 /* MSKSceneTests.swift in Sources */,
 				61F06FA129987F1E00AA3964 /* MSKPhysicsBodyDelegateTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
