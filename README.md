@@ -246,5 +246,9 @@ The pros of this method is that MSKView and MSKScene are automatically synchroni
 The cons of this method is that MSKView is coupled to MSKScene, so changes in MSKScene could lead to having to make changes in MSKView. This also makes MSKView less reusable. It also means that the scene only can update one component about state changes (its delegate).
 
 ##### Choice
-I chose the second method. This makes it easier future developers using MSK to implement their own game engines, as basic features such as node movements and rotations are already synchronised between `MSKView` and `MSKScene`. In addition, if developer doesn't want to use `MSKScene`, they can implement their own Views, since `MSKScene` only stores a reference to a `MSKSceneDelegate`. Developer just has to ensure that the new view conforms to the `MSKSceneDelegate`.
+I chose the second method. This makes it easier future developers using MSK to implement their own game engines, as basic features such as node movements and rotations are already synchronised between `MSKView` and `MSKScene`. 
+
+In addition, if developer doesn't want to use `MSKScene`, they can implement their own Views, since `MSKScene` only stores a reference to a `MSKSceneDelegate`. Developer just has to ensure that the new view conforms to the `MSKSceneDelegate`.
+
+If developer wants make it such that multiple views will know about changes in the scene, can also create a wrapper component which conforms to `MSKBoardSceneDelegate`, which will inform the observers that the state has changed.
 
