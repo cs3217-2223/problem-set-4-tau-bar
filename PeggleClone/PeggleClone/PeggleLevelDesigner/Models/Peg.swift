@@ -16,64 +16,70 @@ enum PegKeys: String, CodingKey {
     case colour, radius, position
 }
 
-class Peg: NSObject, NSSecureCoding {
+class Peg: BoardObject {
+    var position: CGPoint
 
-    // MARK: Variables and Properties
-    let colour: PegColour
-    private var position: Position
+    var rotation: Double
+
+    var height: Double {
+        radius * 2
+    }
+
+    var width: Double {
+        radius * 2
+    }
+
+    let colour: PegColor
+
     let radius: Double
 
-    static let DefaultPegRadius = 20.0
+    static let defaultPegRadius = 20.0
+    static let defaultPegRotation = 0.0
     static var supportsSecureCoding = true
 
     // MARK: Initializers
-    init?(colour: PegColour, position: Position, radius: Double) {
+    init?(colour: PegColor, position: CGPoint, rotation: Double = defaultPegRotation, radius: Double = defaultPegRadius) {
         self.colour = colour
         self.position = position
+        self.rotation = rotation
         if radius <= 0 {
             return nil
         }
         self.radius = radius
-        super.init()
-        assert(checkRepresentation())
     }
 
-    required convenience init?(coder: NSCoder) {
-        guard let pegColourString = coder.decodeObject(of: NSString.self, forKey: PegKeys.colour.rawValue) as? String,
-              let position = coder.decodeObject(of: Position.self, forKey: PegKeys.position.rawValue),
-              let colour = PegColour(rawValue: pegColourString)
-        else {
-            return nil
+    convenience init?(colour: PegColor, position: CGPoint) {
+        self.init(colour: colour, position: position, radius: Self.defaultPegRadius)
+    }
+
+    /// Moves the peg to `newPosition`.
+    func move(to newPosition: CGPoint) {
+        position = newPosition
+    }
+
+    /// Checks whether the peg object is overlapping with another `BoardObject`.
+    func isOverlapping(with otherObject: BoardObject) -> Bool {
+        otherObject.isOverlapping(with: self)
+    }
+
+    /// Checks whether the peg object is overlapping with another `Peg`.
+    func isOverlapping(with otherObject: Peg) -> Bool {
+        let distanceBetween = calculateEuclideanDistance(positionA: position, positionB: otherObject.position)
+        return distanceBetween < (otherObject.radius + radius)
+    }
+
+    func isEqual(to otherObject: BoardObject) -> Bool {
+        guard let otherPeg = otherObject as? Peg else {
+            return false
         }
-        let radius = coder.decodeDouble(forKey: PegKeys.radius.rawValue)
 
-        self.init(colour: colour, position: position, radius: radius)
+        return ObjectIdentifier(otherPeg) == ObjectIdentifier(self)
     }
 
-    convenience init?(colour: PegColour, position: Position) {
-        self.init(colour: colour, position: position, radius: Self.DefaultPegRadius)
-        assert(checkRepresentation())
-    }
-
-    // MARK: Class methods
-    func movePeg(toPosition: Position) {
-        position = toPosition
-        assert(checkRepresentation())
-    }
-
-    func getPosition() -> Position {
-        position
-    }
-
-    /// Checks the representation invariants.
-    private func checkRepresentation() -> Bool {
-        radius > 0
-    }
-
-    /// Encodes the peg instance to support persistence of peg data.
-    func encode(with coder: NSCoder) {
-        coder.encode(colour.rawValue, forKey: PegKeys.colour.rawValue)
-        coder.encode(radius, forKey: PegKeys.radius.rawValue)
-        coder.encode(position, forKey: PegKeys.position.rawValue)
+    func isOutOfBounds(lowerX: Double, upperX: Double, lowerY: Double, upperY: Double) -> Bool {
+        position.x + radius > upperX ||
+        position.x - radius < lowerX ||
+        position.y - radius < lowerY ||
+        position.y + radius > upperY
     }
 }

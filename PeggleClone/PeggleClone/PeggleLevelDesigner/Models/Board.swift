@@ -18,9 +18,9 @@ enum BoardKeys: String, CodingKey {
     case pegs, height, width, name
 }
 
-public class Board: NSObject, BoardProtocol, NSSecureCoding {
+public class Board {
     // MARK: Variables and Properties
-    var pegs: Set<Peg>
+    var objects: Set<BoardObjectWrapper>
     let height: Double
     let width: Double
     var name: String = DefaultBoardName
@@ -30,162 +30,99 @@ public class Board: NSObject, BoardProtocol, NSSecureCoding {
 
     // MARK: Initializers
     init(width: Double, height: Double) {
-        self.pegs = Set()
+        self.objects = []
         self.width = width
         self.height = height
     }
 
-    init(pegs: Set<Peg>, width: Double, height: Double, name: String) {
-        self.pegs = pegs
+    init(objects: Set<BoardObjectWrapper>, width: Double, height: Double, name: String) {
+        self.objects = objects
         self.width = width
         self.height = height
         self.name = name
     }
 
-    /// Required initializer for conforming with NSSecureCoding protocol to support persistence of board data.
-    public required convenience init?(coder: NSCoder) {
-        guard let pegs = coder.decodeObject(of: [NSSet.self, Peg.self], forKey: BoardKeys.pegs.rawValue) as? Set<Peg>,
-              let name = coder.decodeObject(of: NSString.self, forKey: BoardKeys.name.rawValue) as? String
-        else {
-            return nil
-        }
-        let height = coder.decodeDouble(forKey: BoardKeys.height.rawValue)
-        let width = coder.decodeDouble(forKey: BoardKeys.width.rawValue)
-
-        self.init(pegs: pegs, width: width, height: height, name: name)
-    }
-
-    // MARK: BoardProtocol methods
-
-    /// Adds a new peg onto the board.
-    ///
-    /// If the added peg already exists in the board, the peg is not added.
-    /// If the added peg overlaps another existing peg
-    /// on the board or is out of the board's bounds, the peg is not added.
-    ///
-    /// If the peg is added, a notification is sent to the observers of the
-    /// instance of the Board class.
-    func addPeg(_ addedPeg: Peg) {
-        if pegs.contains(addedPeg) {
-            return
-        }
-
-        if findOverlappingPegs(with: addedPeg)
-            || isPegOutOfBounds(addedPeg) {
-            return
-        }
-
-        pegs.insert(addedPeg)
-
-        sendNotification(of: .pegAdded, with: addedPeg)
-    }
-
-    /// Removes a specified peg from the board.
-    ///
-    /// If the board does not contain the specified peg, do nothing.
-    ///
-    /// If the peg is removed, a notification is sent to observers of the
-    /// instance of the Board class.
-    func removePeg(_ removedPeg: Peg) {
-        if !pegs.contains(removedPeg) {
-            return
-        }
-
-        pegs.remove(removedPeg)
-
-        sendNotification(of: .pegDeleted, with: removedPeg)
-    }
-
-    /// Removes all pegs from the board.
-    ///
-    /// Notification is sent to observers of the instance of Board class.
-    func removeAllPegs() {
-        pegs = Set()
-
-        sendNotification(of: .boardCleared, with: nil)
-    }
-
-    /// Moves a specified peg to the new specified position on the board.
-    ///
-    /// If moving the peg will cause overlap with another peg or
-    /// out of board's bounds, the peg is not moved.
-    ///
-    /// If the peg is moved, a notification sent to observers of instance of
-    /// Board class.
-    func movePeg(_ movedPeg: Peg, toPosition newPosition: Position) {
-        if !pegs.contains(movedPeg) {
-            return
-        }
-
-        let oldPosition = movedPeg.getPosition()
-
-        movedPeg.movePeg(toPosition: newPosition)
-
-        if findOverlappingPegs(with: movedPeg)
-            || isPegOutOfBounds(movedPeg) {
-            movedPeg.movePeg(toPosition: oldPosition)
-            return
-        }
-
-        sendNotification(of: .pegMoved, with: movedPeg)
-    }
-
-    /// Finds a peg object on the board by its Object Identifier.
-    func findPegById(_ id: ObjectIdentifier) -> Peg? {
-        pegs.first(where: { peg in
-            ObjectIdentifier(peg) == id
-        })
-    }
-
-    /// Sends a notification to all observers of the Board class instance with a specified
-    /// notification type and peg.
     private func sendNotification(of type: NSNotification.Name, with object: Peg?) {
         NotificationCenter.default.post(name: type, object: object)
     }
 
-    /// Checks whether there are any pegs which will overlap the newly added peg.
-    ///
-    /// If there is an overlap with another peg, return true. Else, return false.
-    private func findOverlappingPegs(with pegToCheck: Peg) -> Bool {
-        pegs.contains(where: { peg in
-            if peg === pegToCheck {
+    func addObject(addedObjectWrapper: BoardObjectWrapper) {
+        if objects.contains(addedObjectWrapper) {
+            return
+        }
+
+        if hasOverlappingObjects(with: addedObjectWrapper) ||
+            isOutOfBounds(addedObjectWrapper) {
+            return
+        }
+
+        objects.insert(addedObjectWrapper)
+        sendNotification(of: .objectAdded, with: addedObjectWrapper)
+    }
+
+    func removeObject(removedObjectWrapper: BoardObjectWrapper) {
+        if !objects.contains(removedObjectWrapper) {
+            print("doesn't contain")
+            return
+        }
+
+        objects.remove(removedObjectWrapper)
+        sendNotification(of: .objectDeleted, with: removedObjectWrapper)
+    }
+
+    func moveObject(movedObjectWrapper: BoardObjectWrapper, to newPosition: CGPoint) {
+        if !objects.contains(movedObjectWrapper) {
+            return
+        }
+
+        let movedObject = movedObjectWrapper.object
+        let oldPosition = movedObject.position
+        movedObject.position = newPosition
+
+        if hasOverlappingObjects(with: movedObjectWrapper) ||
+            isOutOfBounds(movedObjectWrapper) {
+            movedObject.position = oldPosition
+            return
+        }
+
+        print(movedObjectWrapper.object)
+        sendNotification(of: .objectMoved, with: movedObjectWrapper)
+    }
+
+    func hasOverlappingObjects(with checkedObjectWrapper: BoardObjectWrapper) -> Bool {
+        objects.contains(where: { objectWrapper in
+            let checkedObject = checkedObjectWrapper.object
+            let boardObject = objectWrapper.object
+
+            // Doesn't overlap with itself
+            if checkedObject.isEqual(to: boardObject) {
                 return false
             }
 
-            let distance = calculateEuclidianDistance(firstPeg: peg, secondPeg: pegToCheck)
-            return distance < (pegToCheck.radius + peg.radius)
+            return boardObject.isOverlapping(with: checkedObject)
         })
     }
 
-    /// Checks whether the newly added peg is out of the board's bounds.
-    ///
-    /// If the peg is out of bounds, return true. Else, return false.
-    private func isPegOutOfBounds(_ pegToCheck: Peg) -> Bool {
-        let position = pegToCheck.getPosition()
-        let pegRadius = pegToCheck.radius
-        if position.xPos + pegRadius > width
-            || position.xPos - pegRadius < 0
-            || position.yPos + pegRadius > height
-            || position.yPos - pegRadius < 0 {
-            return true
-        }
-        return false
+    func isOutOfBounds(_ checkedObjectWrapper: BoardObjectWrapper) -> Bool {
+        checkedObjectWrapper.object.isOutOfBounds(lowerX: 0,
+                                                  upperX: width,
+                                                  lowerY: 0,
+                                                  upperY: height)
     }
 
-    /// Calculates the 2D Euclidian distance between two pegs.
-    private func calculateEuclidianDistance(firstPeg: Peg, secondPeg: Peg) -> Double {
-        let firstPegPosition = firstPeg.getPosition()
-        let secondPegPosition = secondPeg.getPosition()
-        let distance = sqrt(pow(firstPegPosition.xPos - secondPegPosition.xPos, 2)
-             + pow(firstPegPosition.yPos - secondPegPosition.yPos, 2))
-        return distance
+    func removeAllObjects() {
+        objects = Set()
     }
 
-    /// Encodes the board instance to support persistence of board data.
-    public func encode(with coder: NSCoder) {
-        coder.encode(pegs, forKey: BoardKeys.pegs.rawValue)
-        coder.encode(width, forKey: BoardKeys.width.rawValue)
-        coder.encode(height, forKey: BoardKeys.height.rawValue)
-        coder.encode(name, forKey: BoardKeys.name.rawValue)
+    private func sendNotification(of type: NSNotification.Name, with object: BoardObjectWrapper?) {
+        NotificationCenter.default.post(name: type, object: object)
     }
+
+//    /// Encodes the board instance to support persistence of board data.
+//    public func encode(with coder: NSCoder) {
+//        coder.encode(objects, forKey: BoardKeys.pegs.rawValue)
+//        coder.encode(width, forKey: BoardKeys.width.rawValue)
+//        coder.encode(height, forKey: BoardKeys.height.rawValue)
+//        coder.encode(name, forKey: BoardKeys.name.rawValue)
+//    }
 }

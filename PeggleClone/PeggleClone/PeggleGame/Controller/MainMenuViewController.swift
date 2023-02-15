@@ -8,12 +8,9 @@
 import UIKit
 
 class MainMenuViewController: UIViewController {
-    @IBOutlet var startButton: ButtonUIImageView!
-    @IBOutlet var levelDesignerButton: ButtonUIImageView!
+    @IBOutlet var startButton: UIButton!
+    @IBOutlet var levelDesignerButton: UIButton!
 
-    func segueToChooseLevel() {
-
-    }
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: goToChooseLevelViewSegue, sender: self)
     }
@@ -21,9 +18,9 @@ class MainMenuViewController: UIViewController {
     @IBAction func levelDesignerButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: goToLevelBuilderViewSegue, sender: self)
     }
-    
+
     @IBAction func unwindFromChooseLevelViewController(_ segue: UIStoryboardSegue) {}
-        
+
     @IBAction func unwindFromLevelBuilderViewController(_ segue: UIStoryboardSegue) {}
 //      TODO: Remove if unnecessary
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

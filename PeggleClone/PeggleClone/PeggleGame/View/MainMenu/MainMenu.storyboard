@@ -60,6 +60,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="levelDesignerButton" destination="66k-OK-DA5" id="vW6-9h-gpU"/>
+                        <outlet property="startButton" destination="cEE-oE-HFR" id="4fu-hc-7Ao"/>
                         <segue destination="fip-1G-Rl5" kind="presentation" identifier="goToLevelBuilderView" modalPresentationStyle="fullScreen" id="dAw-jd-q3M"/>
                         <segue destination="Hcu-xQ-hb9" kind="presentation" identifier="goToChooseLevelView" modalPresentationStyle="fullScreen" id="5S4-kO-77Q"/>
                     </connections>

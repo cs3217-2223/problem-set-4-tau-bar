@@ -54,11 +54,11 @@ class GameViewController: UIViewController {
     }
 
     func createPegNode(from peg: Peg) -> PegNode? {
-        let pos = peg.getPosition()
-        if peg.colour == PegColour.blue {
-            return BluePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + defaultHeightBuffer))
-        } else if peg.colour == PegColour.orange {
-            return OrangePegNode(position: CGPoint(x: pos.xPos, y: pos.yPos + defaultHeightBuffer))
+        let pos = peg.position
+        if peg.colour == PegColor.blue {
+            return BluePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
+        } else if peg.colour == PegColor.orange {
+            return OrangePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
         } else {
             return nil
         }
@@ -69,8 +69,9 @@ class GameViewController: UIViewController {
 
         boardScene?.setupBoard()
 
-        for peg in board?.pegs ?? [] {
-            guard let pegNode = createPegNode(from: peg) else { continue }
+        for objectWrapper in board?.objects ?? [] {
+            guard let peg = objectWrapper.object as? Peg,
+                  let pegNode = createPegNode(from: peg) else { continue }
             boardScene?.addPegNode(pegNode)
         }
     }

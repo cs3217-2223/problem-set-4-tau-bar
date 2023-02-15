@@ -12,11 +12,12 @@ class LevelBuilderViewController: UIViewController {
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var loadButton: UIButton!
+
     // MARK: Model objects
     var board: Board? {
         didSet {
-            removeAllBoardPegsFromBoardView()
-            loadPegsFromModelOnBoard()
+            removeAllBoardObjectsFromView()
+            loadObjectsFromModelOnBoard()
             setTextFieldText(to: board?.name ?? Board.DefaultBoardName)
         }
     }
@@ -31,24 +32,25 @@ class LevelBuilderViewController: UIViewController {
             setButtonOpaque(selectedButton)
         }
     }
-    var currentSelectedColour: PegColour? {
+    var currentSelectedColour: PegColor? {
         guard let selectedButton = selectedButton else { return nil }
-        return buttonColours[selectedButton]
+        return buttonColors[selectedButton]
     }
-    var pegToViewDict: [Peg: BoardPegView] = [:]
+    var objectsToViews: [BoardObjectWrapper: UIView] = [:]
+    var viewsToObjects: [UIView: BoardObjectWrapper] = [:]
     let notificationCenter = NotificationCenter.default
-    var buttonColours: [SelectPegButton: PegColour] = [:]
+    var buttonColors: [SelectPegButton: PegColor] = [:]
 
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        DataManager.sharedInstance.createBoardData()
+        //        DataManager.sharedInstance.createBoardData()
 
         // Set up peg buttons
         buttons = [bluePegButton, orangePegButton, deletePegButton]
-        buttonColours[bluePegButton] = PegColour.blue
-        buttonColours[orangePegButton] = PegColour.orange
+        buttonColors[bluePegButton] = PegColor.blue
+        buttonColors[orangePegButton] = PegColor.orange
 
         // Initialize empty board with current boardView size
         // if no board passed to controller
@@ -58,12 +60,12 @@ class LevelBuilderViewController: UIViewController {
 
         // Register for notifications from model
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(addPegToBoardView), name: .pegAdded, object: nil)
+                                               selector: #selector(addObjectToBoardView), name: .objectAdded, object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(deletePegFromBoardView), name: .pegDeleted,
+                                               selector: #selector(deleteObjectFromBoardView), name: .objectDeleted,
                                                object: nil)
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(movePegOnBoardView), name: .pegMoved, object: nil)
+                                               selector: #selector(moveObjectOnBoardView), name: .objectMoved, object: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(clearBoardView), name: .boardCleared, object: nil)
         NotificationCenter.default.addObserver(self,
@@ -88,13 +90,17 @@ class LevelBuilderViewController: UIViewController {
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: boardView)
         if let addedPegColour = currentSelectedColour {
-            addPeg(at: tapLocation, with: addedPegColour)
+            guard let newPeg = Peg(colour: addedPegColour, position: tapLocation) else {
+                return
+            }
+
+            addObject(addedObjectWrapper: BoardObjectWrapper(object: newPeg))
         }
     }
 
     /// Resets the level to be empty when the reset button is tapped.
     @IBAction func resetButtonTapped(_ sender: Any) {
-        resetBoard()
+        board?.removeAllObjects()
     }
 
     @IBAction func startButtonTapped(_ sender: Any) {
@@ -124,44 +130,66 @@ class LevelBuilderViewController: UIViewController {
         }
 
         board.name = levelName
-        DataManager.sharedInstance.saveBoard(board, onComplete: alertUserLevelSaved)
+        //        DataManager.sharedInstance.saveBoard(board, onComplete: alertUserLevelSaved)
+    }
+
+    func addObject(addedObjectWrapper: BoardObjectWrapper) {
+        board?.addObject(addedObjectWrapper: addedObjectWrapper)
+    }
+
+    func deleteObject(of deletedView: UIView) {
+        guard let deletedObjectWrapper = viewsToObjects[deletedView] else {
+            return
+        }
+
+        board?.removeObject(removedObjectWrapper: deletedObjectWrapper)
+    }
+
+    func moveObject(of sender: UIPanGestureRecognizer) {
+        guard let movedView = sender.view,
+              let movedObjectWrapper = viewsToObjects[movedView] else {
+            return
+        }
+
+        let newLocation = sender.location(in: boardView)
+        board?.moveObject(movedObjectWrapper: movedObjectWrapper, to: newLocation)
     }
 
     // MARK: Notification Functions
-    /// Adds a peg to the board view when receive .pegAdded notification from board model.
-    @objc func addPegToBoardView(_ notification: Notification) {
-        guard let newPeg = notification.object as? Peg else {
+    /// Adds a peg to the board view when receive .objectAdded notification from board model.
+    @objc func addObjectToBoardView(_ notification: Notification) {
+        guard let newObjectWrapper = notification.object as? BoardObjectWrapper else {
             return
         }
 
-        insertPegSubview(with: newPeg)
+        insertSubview(for: newObjectWrapper)
     }
 
-    /// Deletes a peg from the board view when receive .pegDeleted notification from board model.
-    @objc func deletePegFromBoardView(_ notification: Notification) {
-        guard let deletedPeg = notification.object as? Peg else {
+    /// Deletes a peg from the board view when receive .objectDeleted notification from board model.
+    @objc func deleteObjectFromBoardView(_ notification: Notification) {
+        guard let deletedObjectWrapper = notification.object as? BoardObjectWrapper,
+              let deletedView = objectsToViews[deletedObjectWrapper] else {
             return
         }
 
-        let deletedBoardPegView = pegToViewDict[deletedPeg]
-
-        deletedBoardPegView?.removeFromSuperview()
-        pegToViewDict.removeValue(forKey: deletedPeg)
+        deletedView.removeFromSuperview()
+        objectsToViews.removeValue(forKey: deletedObjectWrapper)
+        viewsToObjects.removeValue(forKey: deletedView)
     }
 
-    /// Moves a peg on the board view when receive .pegMoved notification from board model.
-    @objc func movePegOnBoardView(_ notification: Notification) {
-        guard let movedPeg = notification.object as? Peg else { return }
+    /// Moves a peg on the board view when receive .objectMoved notification from board model.
+    @objc func moveObjectOnBoardView(_ notification: Notification) {
+        guard let movedObjectWrapper = notification.object as? BoardObjectWrapper else { return }
 
-        let movedPegView = pegToViewDict[movedPeg]
+        let movedView = objectsToViews[movedObjectWrapper]
 
-        movedPegView?.center.x = movedPeg.getPosition().xPos
-        movedPegView?.center.y = movedPeg.getPosition().yPos
+        movedView?.center.x = movedObjectWrapper.object.position.x
+        movedView?.center.y = movedObjectWrapper.object.position.y
     }
 
     /// Clears board view when receive .boardCleared notification from board model.
     @objc func clearBoardView(_ notification: Notification) {
-        removeAllBoardPegsFromBoardView()
+        removeAllBoardObjectsFromView()
     }
 
     @objc func notifyUserSaved() {
@@ -170,47 +198,6 @@ class LevelBuilderViewController: UIViewController {
 
     @objc func notifyUserSaveError() {
         alertUserSaveError()
-    }
-
-    // MARK: Model functions
-    /// Add a new peg to the board model.
-    func addPeg(at tapLocation: CGPoint, with colour: PegColour) {
-        guard let addedPeg = Peg(colour: colour,
-                                 position: Position(xPos: tapLocation.x, yPos: tapLocation.y))
-        else {
-            return
-        }
-
-        board?.addPeg(addedPeg)
-    }
-
-    /// Delete a peg from the board model.
-    func deletePeg(of deletedPegView: BoardPegView) {
-        guard let deletedId = deletedPegView.id,
-              let deletedPeg = board?.findPegById(deletedId)
-        else {
-            return
-        }
-
-        board?.removePeg(deletedPeg)
-    }
-
-    /// Move a peg on the board model.
-    func movePeg(of sender: UIPanGestureRecognizer) {
-        guard let movedBoardPegView = sender.view as? BoardPegView,
-              let movedId = movedBoardPegView.id,
-              let movedPeg = board?.findPegById(movedId)
-        else {
-            return
-        }
-
-        let newLocation = sender.location(in: boardView)
-        board?.movePeg(movedPeg, toPosition: convertCgPointToPosition(newLocation))
-    }
-
-    /// Resets the board model.
-    func resetBoard() {
-        board?.removeAllPegs()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -252,27 +239,15 @@ class LevelBuilderViewController: UIViewController {
         })
     }
 
-    /// Loads the pegs from the board model onto the level builder board view.
-    private func loadPegsFromModelOnBoard() {
-        board?.pegs.forEach({ peg in
-            insertPegSubview(with: peg)
+    private func loadObjectsFromModelOnBoard() {
+        board?.objects.forEach({
+            insertSubview(for: $0)
         })
-    }
-
-    /// Inserts the specified peg as a subview of the controller's board view.
-    private func insertPegSubview(with newPeg: Peg) {
-        let newLocation = convertPositionToCgPoint(newPeg.getPosition())
-        guard let newPegImageView = createBoardPegView(with: newPeg, at: newLocation) else { return }
-
-        newPegImageView.delegate = self
-
-        boardView.addSubview(newPegImageView)
-        pegToViewDict[newPeg] = newPegImageView
     }
 
     /// Creates a new `BoardPegView` using the data from the specified `Peg` and location.
     private func createBoardPegView(with addedPeg: Peg, at tapLocation: CGPoint) -> BoardPegView? {
-        let pegSize = getPegDiameter(addedPeg)
+        let pegSize = addedPeg.radius * 2
         guard let pegImageUrl = getImageUrl(from: addedPeg.colour) else { return nil }
         let newPegImageView = BoardPegView(image: UIImage(named: pegImageUrl), id: ObjectIdentifier(addedPeg))
         newPegImageView.frame = CGRect(x: tapLocation.x - addedPeg.radius,
@@ -282,27 +257,30 @@ class LevelBuilderViewController: UIViewController {
         return newPegImageView
     }
 
-    /// Removes all the board pegs from the board view.
-    func removeAllBoardPegsFromBoardView() {
-        pegToViewDict.values.forEach({ boardPegView in boardPegView.removeFromSuperview() })
-
-        pegToViewDict = [:]
+    func removeAllBoardObjectsFromView() {
+        objectsToViews.values.forEach({ $0.removeFromSuperview() })
+        objectsToViews = [:]
+        viewsToObjects = [:]
     }
 
-    private func getPegDiameter(_ peg: Peg) -> Double {
-        peg.radius * 2
+    // TODO: Cleanup this function
+    func insertSubview(for objectWrapper: BoardObjectWrapper) {
+        let object = objectWrapper.object
+
+        if object is Peg {
+            guard let peg = object as? Peg,
+                  let newPegView = createBoardPegView(with: peg, at: peg.position) else {
+                return
+            }
+            boardView.addSubview(newPegView)
+            newPegView.delegate = self
+            objectsToViews[objectWrapper] = newPegView
+            viewsToObjects[newPegView] = objectWrapper
+        }
     }
 
     func isDeletePegButton(selectedButton: SelectPegButton?) -> Bool {
         selectedButton == deletePegButton
-    }
-
-    private func convertCgPointToPosition(_ location: CGPoint) -> Position {
-        Position(xPos: location.x, yPos: location.y)
-    }
-
-    private func convertPositionToCgPoint(_ position: Position) -> CGPoint {
-        CGPoint(x: position.xPos, y: position.yPos)
     }
 
     /// Presents an alert to user that no level name was entered.
@@ -331,9 +309,9 @@ class LevelBuilderViewController: UIViewController {
 
     // MARK: Remove Notification
     deinit {
-        notificationCenter.removeObserver(self, name: .pegAdded, object: nil)
-        notificationCenter.removeObserver(self, name: .pegDeleted, object: nil)
-        notificationCenter.removeObserver(self, name: .pegMoved, object: nil)
+        notificationCenter.removeObserver(self, name: .objectAdded, object: nil)
+        notificationCenter.removeObserver(self, name: .objectDeleted, object: nil)
+        notificationCenter.removeObserver(self, name: .objectMoved, object: nil)
         notificationCenter.removeObserver(self, name: .boardCleared, object: nil)
         notificationCenter.removeObserver(self, name: .dataSaved, object: nil)
         notificationCenter.removeObserver(self, name: .dataSaveError, object: nil)

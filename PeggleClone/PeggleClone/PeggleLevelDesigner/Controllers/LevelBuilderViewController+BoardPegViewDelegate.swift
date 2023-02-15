@@ -13,7 +13,7 @@ extension LevelBuilderViewController: BoardPegViewDelegate {
     /// Deletes a board peg that was long pressed from the level.
     /// Delegate function for long press on `BoardPegView`.
     func userDidLongPress(boardPegView: BoardPegView) {
-        deletePeg(of: boardPegView)
+        deleteObject(of: boardPegView)
     }
 
     /// Deletes a board peg from the level if the user taps on it and if the delete peg button is selected.
@@ -21,7 +21,7 @@ extension LevelBuilderViewController: BoardPegViewDelegate {
     /// Delegate function for tap on `BoardPegView`.
     func userDidTap(boardPegView: BoardPegView) {
         if isDeletePegButton(selectedButton: selectedButton) {
-            deletePeg(of: boardPegView)
+            deleteObject(of: boardPegView)
         }
     }
 
@@ -29,6 +29,6 @@ extension LevelBuilderViewController: BoardPegViewDelegate {
     /// Otherwise, do nothing.
     /// Delegate function for pan on `BoardPegView`.
     func userDidPan(sender: UIPanGestureRecognizer) {
-        movePeg(of: sender)
+        moveObject(of: sender)
     }
 }

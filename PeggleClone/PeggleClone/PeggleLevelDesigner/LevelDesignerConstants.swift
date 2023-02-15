@@ -6,25 +6,25 @@
 //
 import Foundation
 
-enum PegColour: String {
+enum PegColor: String {
     case blue, orange
 }
 
-let colourToImageUrl: [PegColour: String] = [PegColour.blue: "peg-blue", PegColour.orange: "peg-orange"]
+let colourToImageUrl: [PegColor: String] = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange"]
 
-func getImageUrl(from colour: PegColour) -> String? {
+func getImageUrl(from colour: PegColor) -> String? {
     colourToImageUrl[colour]
 }
 
 extension Notification.Name {
-    static var pegAdded: Notification.Name {
-          .init(rawValue: "Board.pegAdded") }
+    static var objectAdded: Notification.Name {
+          .init(rawValue: "Board.objectAdded") }
 
-    static var pegDeleted: Notification.Name {
-          .init(rawValue: "Board.pegDeleted") }
+    static var objectDeleted: Notification.Name {
+          .init(rawValue: "Board.objectDeleted") }
 
-    static var pegMoved: Notification.Name {
-          .init(rawValue: "Board.pegMoved") }
+    static var objectMoved: Notification.Name {
+          .init(rawValue: "Board.objectMoved") }
 
     static var boardCleared: Notification.Name {
           .init(rawValue: "Board.cleared") }
