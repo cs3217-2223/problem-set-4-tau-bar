@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -88,22 +88,8 @@
                                                     <action selector="saveButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Njr-Iw-vZg"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMv-Gk-b16">
-                                                <rect key="frame" x="30" y="25" width="100" height="100"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="XXd-pk-hDS"/>
-                                                    <constraint firstAttribute="height" constant="100" id="nqw-iv-lFB"/>
-                                                </constraints>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Blue Peg">
-                                                    <backgroundConfiguration key="background" image="peg-blue"/>
-                                                </buttonConfiguration>
-                                                <connections>
-                                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="icU-FC-NTh"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mp5-0o-7Ih">
-                                                <rect key="frame" x="180" y="25" width="100" height="100"/>
+                                                <rect key="frame" x="275" y="25" width="100" height="100"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="XIc-3X-lu5"/>
                                                     <constraint firstAttribute="width" constant="100" id="z7c-NW-h7T"/>
@@ -143,6 +129,30 @@
                                                     <action selector="resetButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JtG-T4-DPt"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X5h-en-DeJ">
+                                                <rect key="frame" x="25" y="25" width="78" height="34.5"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="chevron.left" catalog="system" title="Back">
+                                                    <color key="baseForegroundColor" name="AccentColor"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <segue destination="Fa3-BI-ye1" kind="unwind" unwindAction="unwindFromLevelBuilderViewController:" id="oQE-Q9-OGa"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMv-Gk-b16">
+                                                <rect key="frame" x="150" y="25" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="XXd-pk-hDS"/>
+                                                    <constraint firstAttribute="height" constant="100" id="nqw-iv-lFB"/>
+                                                </constraints>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="Blue Peg">
+                                                    <backgroundConfiguration key="background" image="peg-blue"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="icU-FC-NTh"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.50980392159999999" green="0.76470588240000004" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -153,16 +163,18 @@
                                             <constraint firstAttribute="trailing" secondItem="lBk-2r-IYC" secondAttribute="trailing" constant="26" id="GZB-Xm-0vs"/>
                                             <constraint firstItem="IsX-5G-N6v" firstAttribute="top" secondItem="Mp5-0o-7Ih" secondAttribute="bottom" constant="21" id="I0R-3b-W44"/>
                                             <constraint firstItem="DIX-hW-oNx" firstAttribute="top" secondItem="cMv-Gk-b16" secondAttribute="bottom" constant="20" id="Ncw-uY-1qm"/>
+                                            <constraint firstItem="Mp5-0o-7Ih" firstAttribute="leading" secondItem="cMv-Gk-b16" secondAttribute="trailing" constant="25" id="OuA-e0-lAq"/>
+                                            <constraint firstItem="cMv-Gk-b16" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="150" id="PI8-5Z-vc1"/>
                                             <constraint firstItem="Ndm-X7-A97" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="25" id="RU0-0B-w7w"/>
+                                            <constraint firstItem="X5h-en-DeJ" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="25" id="SfT-HB-h7K"/>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="186" id="TVx-l8-9vd"/>
                                             <constraint firstItem="IsX-5G-N6v" firstAttribute="leading" secondItem="Gq9-0X-Gkz" secondAttribute="trailing" constant="75" id="Yiq-VM-bQM"/>
+                                            <constraint firstItem="X5h-en-DeJ" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="25" id="YoF-W4-CYD"/>
                                             <constraint firstItem="XbQ-F7-vbO" firstAttribute="top" secondItem="Mp5-0o-7Ih" secondAttribute="bottom" constant="20" id="Yuc-sk-Jn3"/>
-                                            <constraint firstItem="Mp5-0o-7Ih" firstAttribute="leading" secondItem="cMv-Gk-b16" secondAttribute="trailing" constant="50" id="cMP-UU-TT7"/>
                                             <constraint firstItem="cMv-Gk-b16" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="25" id="eaa-RF-U6h"/>
                                             <constraint firstItem="Gq9-0X-Gkz" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="30" id="gLT-CN-xYI"/>
                                             <constraint firstAttribute="trailing" secondItem="Ndm-X7-A97" secondAttribute="trailing" constant="26" id="o78-oT-prW"/>
                                             <constraint firstItem="Gq9-0X-Gkz" firstAttribute="top" secondItem="cMv-Gk-b16" secondAttribute="bottom" constant="20" id="qpo-sT-36h"/>
-                                            <constraint firstItem="cMv-Gk-b16" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="30" id="woO-JC-BCO"/>
                                             <constraint firstItem="Mp5-0o-7Ih" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="25" id="ydx-9O-ZcC"/>
                                             <constraint firstItem="DIX-hW-oNx" firstAttribute="leading" secondItem="Gq9-0X-Gkz" secondAttribute="trailing" constant="10" id="yy0-zJ-Orv"/>
                                         </constraints>
@@ -215,6 +227,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="Fa3-BI-ye1" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="fmD-56-xRH">
                     <connections>
                         <action selector="didTapView:" destination="BYZ-38-t0r" id="O2b-tY-xsa"/>
@@ -278,6 +291,7 @@
     </scenes>
     <resources>
         <image name="background" width="4000" height="3000"/>
+        <image name="chevron.left" catalog="system" width="97" height="128"/>
         <image name="delete" width="256" height="256"/>
         <image name="peg-blue" width="128" height="128"/>
         <image name="peg-orange" width="128" height="128"/>

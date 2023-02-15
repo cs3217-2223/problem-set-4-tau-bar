@@ -101,8 +101,7 @@ class LevelBuilderViewController: UIViewController {
         performSegue(withIdentifier: "goToGameView", sender: self)
     }
 
-    @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {
-    }
+    @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {}
 
     /// Opens the view showing the saved levels when the load button is tapped.
     @IBAction func loadButtonTapped(_ sender: Any) {
