@@ -61,6 +61,7 @@
 		61B13BC5299D8C18005242E8 /* BoardObjectWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */; };
 		61B13BC6299DB19C005242E8 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DB63DD299CC0AF0048663D /* UtilityFunctions.swift */; };
 		61B13BC8299DB23C005242E8 /* BoardObjectWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BC7299DB23C005242E8 /* BoardObjectWrapperTests.swift */; };
+		61B13BD6299DBA5E005242E8 /* BoardModelData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BD3299DBA5E005242E8 /* BoardModelData.xcdatamodeld */; };
 		61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA5298A339C00297265 /* MSKNode.swift */; };
 		61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA7298A363B00297265 /* MSKConstants.swift */; };
 		61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */; };
@@ -207,6 +208,8 @@
 		61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPolygonPhysicsBody.swift; sourceTree = "<group>"; };
 		61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardObjectWrapper.swift; sourceTree = "<group>"; };
 		61B13BC7299DB23C005242E8 /* BoardObjectWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardObjectWrapperTests.swift; sourceTree = "<group>"; };
+		61B13BD4299DBA5E005242E8 /* BoardModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoardModel.xcdatamodel; sourceTree = "<group>"; };
+		61B13BD5299DBA5E005242E8 /* BoardModelData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoardModelData.xcdatamodel; sourceTree = "<group>"; };
 		61CDDEA5298A339C00297265 /* MSKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKNode.swift; sourceTree = "<group>"; };
 		61CDDEA7298A363B00297265 /* MSKConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKConstants.swift; sourceTree = "<group>"; };
 		61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsWorld.swift; sourceTree = "<group>"; };
@@ -410,6 +413,7 @@
 		619D848629890A96007C8683 = {
 			isa = PBXGroup;
 			children = (
+				61B13BD3299DBA5E005242E8 /* BoardModelData.xcdatamodeld */,
 				619D849129890A96007C8683 /* PeggleClone */,
 				619D84A829890A9A007C8683 /* PeggleCloneTests */,
 				619D84B229890A9A007C8683 /* PeggleCloneUITests */,
@@ -430,6 +434,7 @@
 		619D849129890A96007C8683 /* PeggleClone */ = {
 			isa = PBXGroup;
 			children = (
+				61B13BC9299DB7AD005242E8 /* Storage */,
 				61DB63D8299CB9380048663D /* PeggleGame */,
 				61A16158299CB142000ADBAC /* Constants */,
 				610FED71298E616300875BBA /* PeggleLevelDesigner */,
@@ -485,6 +490,13 @@
 				61DB63DD299CC0AF0048663D /* UtilityFunctions.swift */,
 			);
 			path = Constants;
+			sourceTree = "<group>";
+		};
+		61B13BC9299DB7AD005242E8 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		61CDDEA3298A333A00297265 /* MySpriteKit */ = {
@@ -763,6 +775,7 @@
 				614298E6299B418100D39C75 /* ChooseLevelViewController.swift in Sources */,
 				61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */,
 				612F7A792990CF51005540DF /* BallNode.swift in Sources */,
+				61B13BD6299DBA5E005242E8 /* BoardModelData.xcdatamodeld in Sources */,
 				612F7A752990CC38005540DF /* BluePegNode.swift in Sources */,
 				61A1615A299CB14C000ADBAC /* SegueNames.swift in Sources */,
 				61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */,
@@ -1223,6 +1236,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		61B13BD3299DBA5E005242E8 /* BoardModelData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				61B13BD4299DBA5E005242E8 /* BoardModel.xcdatamodel */,
+				61B13BD5299DBA5E005242E8 /* BoardModelData.xcdatamodel */,
+			);
+			currentVersion = 61B13BD4299DBA5E005242E8 /* BoardModel.xcdatamodel */;
+			path = BoardModelData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 619D848729890A96007C8683 /* Project object */;
 }

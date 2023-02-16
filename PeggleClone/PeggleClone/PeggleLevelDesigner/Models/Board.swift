@@ -14,10 +14,6 @@
  */
 import Foundation
 
-enum BoardKeys: String, CodingKey {
-    case pegs, height, width, name
-}
-
 public class Board {
     /// The set of board objects on the board.
     var objects: Set<BoardObjectWrapper>
