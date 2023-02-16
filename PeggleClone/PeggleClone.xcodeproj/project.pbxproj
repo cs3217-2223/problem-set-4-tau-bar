@@ -15,11 +15,9 @@
 		610FED9E298E616400875BBA /* LevelSelectViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED84298E616400875BBA /* LevelSelectViewControllerDelegate.swift */; };
 		610FED9F298E616400875BBA /* LevelSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED85298E616400875BBA /* LevelSelectViewController.swift */; };
 		610FEDA0298E616400875BBA /* LevelBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED86298E616400875BBA /* LevelBuilderViewController.swift */; };
-		610FEDA1298E616400875BBA /* BoardPegViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED88298E616400875BBA /* BoardPegViewDelegate.swift */; };
-		610FEDA2298E616400875BBA /* BoardPegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED89298E616400875BBA /* BoardPegView.swift */; };
+		610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */; };
+		610FEDA2298E616400875BBA /* BoardObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED89298E616400875BBA /* BoardObjectView.swift */; };
 		610FEDA3298E616400875BBA /* SelectPegButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED8A298E616400875BBA /* SelectPegButton.swift */; };
-		610FEDA4298E616400875BBA /* LevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED8B298E616400875BBA /* LevelTableViewCell.swift */; };
-		610FEDA5298E616400875BBA /* LevelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 610FED8C298E616400875BBA /* LevelTableViewCell.xib */; };
 		610FEDAC298E62AF00875BBA /* LevelDesignerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED72298E616400875BBA /* LevelDesignerConstants.swift */; };
 		612F7A752990CC38005540DF /* BluePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A742990CC38005540DF /* BluePegNode.swift */; };
 		612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A762990CF08005540DF /* OrangePegNode.swift */; };
@@ -61,7 +59,13 @@
 		61B13BC5299D8C18005242E8 /* BoardObjectWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */; };
 		61B13BC6299DB19C005242E8 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DB63DD299CC0AF0048663D /* UtilityFunctions.swift */; };
 		61B13BC8299DB23C005242E8 /* BoardObjectWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BC7299DB23C005242E8 /* BoardObjectWrapperTests.swift */; };
-		61B13BD6299DBA5E005242E8 /* BoardModelData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BD3299DBA5E005242E8 /* BoardModelData.xcdatamodeld */; };
+		61B13BE1299DC095005242E8 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE0299DC095005242E8 /* Block.swift */; };
+		61B13BE3299DDB02005242E8 /* DetectOverlap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE2299DDB02005242E8 /* DetectOverlap.swift */; };
+		61B13BE5299DDCB9005242E8 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE4299DDCB9005242E8 /* BlockView.swift */; };
+		61B13BE7299DDE9D005242E8 /* BoardPegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE6299DDE9D005242E8 /* BoardPegView.swift */; };
+		61B30C7A299E506100ADE396 /* LevelSelect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B30C79299E506100ADE396 /* LevelSelect.storyboard */; };
+		61BD3D6F299E667700EED58C /* LevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD3D6E299E667700EED58C /* LevelTableViewCell.swift */; };
+		61BD3D75299E679000EED58C /* LevelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BD3D74299E679000EED58C /* LevelTableViewCell.xib */; };
 		61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA5298A339C00297265 /* MSKNode.swift */; };
 		61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA7298A363B00297265 /* MSKConstants.swift */; };
 		61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */; };
@@ -163,11 +167,9 @@
 		610FED84298E616400875BBA /* LevelSelectViewControllerDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectViewControllerDelegate.swift; sourceTree = "<group>"; };
 		610FED85298E616400875BBA /* LevelSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelSelectViewController.swift; sourceTree = "<group>"; };
 		610FED86298E616400875BBA /* LevelBuilderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBuilderViewController.swift; sourceTree = "<group>"; };
-		610FED88298E616400875BBA /* BoardPegViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPegViewDelegate.swift; sourceTree = "<group>"; };
-		610FED89298E616400875BBA /* BoardPegView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardPegView.swift; sourceTree = "<group>"; };
+		610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardObjectViewDelegate.swift; sourceTree = "<group>"; };
+		610FED89298E616400875BBA /* BoardObjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardObjectView.swift; sourceTree = "<group>"; };
 		610FED8A298E616400875BBA /* SelectPegButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPegButton.swift; sourceTree = "<group>"; };
-		610FED8B298E616400875BBA /* LevelTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelTableViewCell.swift; sourceTree = "<group>"; };
-		610FED8C298E616400875BBA /* LevelTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LevelTableViewCell.xib; sourceTree = "<group>"; };
 		610FED8E298E616400875BBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LevelBuilder.storyboard; sourceTree = "<group>"; };
 		612F7A742990CC38005540DF /* BluePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluePegNode.swift; sourceTree = "<group>"; };
 		612F7A762990CF08005540DF /* OrangePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangePegNode.swift; sourceTree = "<group>"; };
@@ -208,8 +210,13 @@
 		61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPolygonPhysicsBody.swift; sourceTree = "<group>"; };
 		61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardObjectWrapper.swift; sourceTree = "<group>"; };
 		61B13BC7299DB23C005242E8 /* BoardObjectWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardObjectWrapperTests.swift; sourceTree = "<group>"; };
-		61B13BD4299DBA5E005242E8 /* BoardModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoardModel.xcdatamodel; sourceTree = "<group>"; };
-		61B13BD5299DBA5E005242E8 /* BoardModelData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BoardModelData.xcdatamodel; sourceTree = "<group>"; };
+		61B13BE0299DC095005242E8 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
+		61B13BE2299DDB02005242E8 /* DetectOverlap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectOverlap.swift; sourceTree = "<group>"; };
+		61B13BE4299DDCB9005242E8 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
+		61B13BE6299DDE9D005242E8 /* BoardPegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPegView.swift; sourceTree = "<group>"; };
+		61B30C79299E506100ADE396 /* LevelSelect.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LevelSelect.storyboard; sourceTree = "<group>"; };
+		61BD3D6E299E667700EED58C /* LevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTableViewCell.swift; sourceTree = "<group>"; };
+		61BD3D74299E679000EED58C /* LevelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevelTableViewCell.xib; sourceTree = "<group>"; };
 		61CDDEA5298A339C00297265 /* MSKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKNode.swift; sourceTree = "<group>"; };
 		61CDDEA7298A363B00297265 /* MSKConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKConstants.swift; sourceTree = "<group>"; };
 		61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsWorld.swift; sourceTree = "<group>"; };
@@ -303,6 +310,8 @@
 				610FED7C298E616400875BBA /* Peg.swift */,
 				61DB63D9299CB9910048663D /* BoardObject.swift */,
 				61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */,
+				61B13BE0299DC095005242E8 /* Block.swift */,
+				61B13BE2299DDB02005242E8 /* DetectOverlap.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -322,12 +331,9 @@
 		610FED87298E616400875BBA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				610FED88298E616400875BBA /* BoardPegViewDelegate.swift */,
-				610FED89298E616400875BBA /* BoardPegView.swift */,
-				610FED8A298E616400875BBA /* SelectPegButton.swift */,
-				610FED8B298E616400875BBA /* LevelTableViewCell.swift */,
-				610FED8D298E616400875BBA /* LevelBuilder.storyboard */,
-				610FED8C298E616400875BBA /* LevelTableViewCell.xib */,
+				61BD3D67299E549900EED58C /* Board */,
+				61B30C7C299E545500ADE396 /* Level Select */,
+				61B30C7B299E543600ADE396 /* LevelBuilder */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -413,7 +419,6 @@
 		619D848629890A96007C8683 = {
 			isa = PBXGroup;
 			children = (
-				61B13BD3299DBA5E005242E8 /* BoardModelData.xcdatamodeld */,
 				619D849129890A96007C8683 /* PeggleClone */,
 				619D84A829890A9A007C8683 /* PeggleCloneTests */,
 				619D84B229890A9A007C8683 /* PeggleCloneUITests */,
@@ -497,6 +502,36 @@
 			children = (
 			);
 			path = Storage;
+			sourceTree = "<group>";
+		};
+		61B30C7B299E543600ADE396 /* LevelBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				610FED8A298E616400875BBA /* SelectPegButton.swift */,
+				610FED8D298E616400875BBA /* LevelBuilder.storyboard */,
+			);
+			path = LevelBuilder;
+			sourceTree = "<group>";
+		};
+		61B30C7C299E545500ADE396 /* Level Select */ = {
+			isa = PBXGroup;
+			children = (
+				61B30C79299E506100ADE396 /* LevelSelect.storyboard */,
+				61BD3D6E299E667700EED58C /* LevelTableViewCell.swift */,
+				61BD3D74299E679000EED58C /* LevelTableViewCell.xib */,
+			);
+			path = "Level Select";
+			sourceTree = "<group>";
+		};
+		61BD3D67299E549900EED58C /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */,
+				610FED89298E616400875BBA /* BoardObjectView.swift */,
+				61B13BE6299DDE9D005242E8 /* BoardPegView.swift */,
+				61B13BE4299DDCB9005242E8 /* BlockView.swift */,
+			);
+			path = Board;
 			sourceTree = "<group>";
 		};
 		61CDDEA3298A333A00297265 /* MySpriteKit */ = {
@@ -721,9 +756,10 @@
 				619D849F29890A9A007C8683 /* LaunchScreen.storyboard in Resources */,
 				61F651842997809600B2FDEB /* LevelBuilder.storyboard in Resources */,
 				614298E0299B38EA00D39C75 /* MainMenu.storyboard in Resources */,
+				61BD3D75299E679000EED58C /* LevelTableViewCell.xib in Resources */,
 				619D849C29890A9A007C8683 /* Assets.xcassets in Resources */,
 				614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */,
-				610FEDA5298E616400875BBA /* LevelTableViewCell.xib in Resources */,
+				61B30C7A299E506100ADE396 /* LevelSelect.storyboard in Resources */,
 				619D849A29890A96007C8683 /* Game.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,13 +805,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B13BE3299DDB02005242E8 /* DetectOverlap.swift in Sources */,
 				61F48D6A2999067900B33D50 /* BoardScene+PegNodeDelegate.swift in Sources */,
+				61B13BE7299DDE9D005242E8 /* BoardPegView.swift in Sources */,
 				612F7A8329913AFC005540DF /* BoardSceneDelegate.swift in Sources */,
 				61F48D74299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift in Sources */,
 				614298E6299B418100D39C75 /* ChooseLevelViewController.swift in Sources */,
 				61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */,
 				612F7A792990CF51005540DF /* BallNode.swift in Sources */,
-				61B13BD6299DBA5E005242E8 /* BoardModelData.xcdatamodeld in Sources */,
 				612F7A752990CC38005540DF /* BluePegNode.swift in Sources */,
 				61A1615A299CB14C000ADBAC /* SegueNames.swift in Sources */,
 				61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */,
@@ -783,13 +820,15 @@
 				61F48D6C299906CF00B33D50 /* BoardScene+BallNodeDelegate.swift in Sources */,
 				617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */,
 				61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */,
-				610FEDA1298E616400875BBA /* BoardPegViewDelegate.swift in Sources */,
+				610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */,
 				61B13BBB299D667D005242E8 /* BoardObjectWrapper.swift in Sources */,
 				61F48D70299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift in Sources */,
 				61AF44CD298C9B0C00A9181A /* MSKCirclePhysicsBody.swift in Sources */,
 				61F6517F2997397500B2FDEB /* BallPhysicsBodyDelegate.swift in Sources */,
 				61CDDEBB298AA6E800297265 /* MSKScene.swift in Sources */,
 				617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */,
+				61B13BE1299DC095005242E8 /* Block.swift in Sources */,
+				61B13BE5299DDCB9005242E8 /* BlockView.swift in Sources */,
 				612F7A7D29912CAB005540DF /* PegPhysicsBody.swift in Sources */,
 				612F7A8129913400005540DF /* PegPhysicsBodyDelegate.swift in Sources */,
 				619D849729890A96007C8683 /* GameViewController.swift in Sources */,
@@ -800,8 +839,9 @@
 				610FED9F298E616400875BBA /* LevelSelectViewController.swift in Sources */,
 				61F48D72299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift in Sources */,
 				619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */,
-				610FEDA2298E616400875BBA /* BoardPegView.swift in Sources */,
+				610FEDA2298E616400875BBA /* BoardObjectView.swift in Sources */,
 				610FED9E298E616400875BBA /* LevelSelectViewControllerDelegate.swift in Sources */,
+				61BD3D6F299E667700EED58C /* LevelTableViewCell.swift in Sources */,
 				612F7A7B2990F099005540DF /* PegNodeDelegate.swift in Sources */,
 				614298E2299B3A4D00D39C75 /* MainMenuViewController.swift in Sources */,
 				610FEDA0298E616400875BBA /* LevelBuilderViewController.swift in Sources */,
@@ -821,7 +861,6 @@
 				610FED91298E616400875BBA /* LevelDesignerConstants.swift in Sources */,
 				617D2DE7298BBC7F00461FC9 /* PegNode.swift in Sources */,
 				610FEDA3298E616400875BBA /* SelectPegButton.swift in Sources */,
-				610FEDA4298E616400875BBA /* LevelTableViewCell.swift in Sources */,
 				61AF44CF298CA17F00A9181A /* UtilFunctions.swift in Sources */,
 				61AF44D1298CA31600A9181A /* MSKPolygonPhysicsBody.swift in Sources */,
 				617D2DE5298BBC1C00461FC9 /* BoardScene.swift in Sources */,
@@ -1236,20 +1275,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		61B13BD3299DBA5E005242E8 /* BoardModelData.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				61B13BD4299DBA5E005242E8 /* BoardModel.xcdatamodel */,
-				61B13BD5299DBA5E005242E8 /* BoardModelData.xcdatamodel */,
-			);
-			currentVersion = 61B13BD4299DBA5E005242E8 /* BoardModel.xcdatamodel */;
-			path = BoardModelData.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 619D848729890A96007C8683 /* Project object */;
 }

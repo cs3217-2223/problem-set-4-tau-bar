@@ -56,7 +56,7 @@ final class BoardTests: XCTestCase {
         guard let overlappedObject = Peg(colour: .orange, position: overlappedObjectPosition, radius: 1.0) else {
             return XCTFail("Created object should not be nil.")
         }
-        
+
         board?.addObject(BoardObjectWrapper(object: overlappedObject))
         XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
 
@@ -120,7 +120,7 @@ final class BoardTests: XCTestCase {
         guard let pegWrapper = pegWrapper else { return }
         board?.addObject(pegWrapper)
         XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
-        
+
         let position = CGPoint(x: screenCenterX, y: screenCenterY)
         guard let pegNotInBoard = Peg(colour: PegColor.orange, position: position) else {
             return XCTFail("Created object should not be nil.")
@@ -148,7 +148,7 @@ final class BoardTests: XCTestCase {
         else {
             return XCTFail("Created object should not be nil.")
         }
-        
+
         let movedObjectWrapper = BoardObjectWrapper(object: movedObject)
         board?.addObject(movedObjectWrapper)
         XCTAssertEqual(board?.objects.count, 2, "Board should have 2 pegs.")

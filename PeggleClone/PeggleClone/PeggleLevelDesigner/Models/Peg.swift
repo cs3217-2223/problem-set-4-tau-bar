@@ -71,6 +71,10 @@ class Peg: BoardObject {
         return distanceBetween < (otherObject.radius + radius)
     }
 
+    func isOverlapping(with otherObject: Block) -> Bool {
+        DetectOverlap.detectOverlap(objectA: otherObject, objectB: self)
+    }
+
     func isEqual(to otherObject: BoardObject) -> Bool {
         guard let otherPeg = otherObject as? Peg else {
             return false

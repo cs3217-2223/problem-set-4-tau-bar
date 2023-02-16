@@ -7,10 +7,10 @@
 
 import UIKit
 
-protocol BoardPegViewDelegate: AnyObject {
-    func userDidLongPress(boardPegView: BoardPegView)
+protocol BoardObjectViewDelegate: AnyObject {
+    func userDidLongPress(boardObjectView: BoardObjectView)
 
-    func userDidTap(boardPegView: BoardPegView)
+    func userDidTap(boardObjectView: BoardObjectView)
 
     func userDidPan(sender: UIPanGestureRecognizer)
 }

@@ -1,15 +1,16 @@
 //
 //  LevelTableViewCell.swift
-//  PeggleLevelDesigner
+//  PeggleClone
 //
-//  Created by Taufiq Abdul Rahman on 24/1/23.
+//  Created by Taufiq Abdul Rahman on 16/2/23.
 //
 
+import Foundation
 import UIKit
 
 class LevelTableViewCell: UITableViewCell {
 
-    @IBOutlet var label: UILabel!
+    @IBOutlet weak var label: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

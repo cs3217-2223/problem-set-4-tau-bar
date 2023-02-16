@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Level Select View Controller-->
+        <scene sceneID="bIU-R3-j2Q">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ehp-q2-2Ot" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="LevelSelectViewController" id="hUO-zI-RGo" customClass="LevelSelectViewController" customModule="PeggleClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="UQv-F1-aRu">
+                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O4x-sn-2ax">
+                                <rect key="frame" x="651" y="34" width="149" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Delete All Levels">
+                                    <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="deleteAllLevelsButtonTapped:" destination="hUO-zI-RGo" eventType="touchUpInside" id="R7e-fc-uwB"/>
+                                </connections>
+                            </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="NlX-Om-VW7">
+                                <rect key="frame" x="0.0" y="84" width="820" height="1076"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lCe-Fi-4J6">
+                                <rect key="frame" x="20" y="34" width="103" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="New Level"/>
+                                <connections>
+                                    <action selector="newLevelButtonTapped:" destination="hUO-zI-RGo" eventType="touchUpInside" id="E4v-FE-zqB"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ES9-nG-hI0"/>
+                        <constraints>
+                            <constraint firstItem="NlX-Om-VW7" firstAttribute="bottom" secondItem="ES9-nG-hI0" secondAttribute="bottom" id="6vo-3B-JWV"/>
+                            <constraint firstItem="NlX-Om-VW7" firstAttribute="trailing" secondItem="ES9-nG-hI0" secondAttribute="trailing" id="Adv-Jz-lae"/>
+                            <constraint firstItem="NlX-Om-VW7" firstAttribute="top" secondItem="O4x-sn-2ax" secondAttribute="bottom" constant="15" id="GdH-HE-ET4"/>
+                            <constraint firstItem="O4x-sn-2ax" firstAttribute="top" secondItem="UQv-F1-aRu" secondAttribute="topMargin" constant="10" id="GoQ-1g-tHr"/>
+                            <constraint firstItem="lCe-Fi-4J6" firstAttribute="top" secondItem="ES9-nG-hI0" secondAttribute="top" constant="10" id="LA4-rw-WUa"/>
+                            <constraint firstItem="lCe-Fi-4J6" firstAttribute="leading" secondItem="ES9-nG-hI0" secondAttribute="leading" constant="20" id="XjZ-BB-APj"/>
+                            <constraint firstItem="ES9-nG-hI0" firstAttribute="trailing" secondItem="O4x-sn-2ax" secondAttribute="trailing" constant="20" id="g6Q-bf-8Rs"/>
+                            <constraint firstItem="NlX-Om-VW7" firstAttribute="leading" secondItem="ES9-nG-hI0" secondAttribute="leading" id="ixn-Rp-Tb9"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="deleteAllLevelsButton" destination="O4x-sn-2ax" id="5my-ww-H2O"/>
+                        <outlet property="tableView" destination="NlX-Om-VW7" id="IqP-a8-wG3"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="838.53658536585363" y="-27.457627118644069"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

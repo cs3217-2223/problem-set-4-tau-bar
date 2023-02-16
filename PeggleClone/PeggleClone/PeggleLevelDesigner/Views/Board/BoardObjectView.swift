@@ -1,16 +1,16 @@
 import UIKit
 
-@IBDesignable class BoardPegView: UIImageView {
+@IBDesignable class BoardObjectView: UIImageView {
     var id: ObjectIdentifier?
-    weak var delegate: BoardPegViewDelegate?
+    weak var delegate: BoardObjectViewDelegate?
 
     private func setup() {
         self.isUserInteractionEnabled = true
 
         let longPressGestureRecognizer = UILongPressGestureRecognizer(target: self,
-                                                                      action: #selector(didLongPressIntoBoardPeg))
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapIntoBoardPeg))
-        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanBoardPeg))
+                                                                      action: #selector(didLongPressBoardObject))
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapBoardObject))
+        let panGestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(didPanBoardObject))
 
         self.addGestureRecognizer(longPressGestureRecognizer)
         self.addGestureRecognizer(tapGestureRecognizer)
@@ -38,21 +38,22 @@ import UIKit
         setup()
     }
 
+    // TODO: need to fix invisible pixel bug
     override func layoutSubviews() {
         super.layoutSubviews()
         self.layer.cornerRadius = self.frame.size.height / 2
         self.clipsToBounds = true
     }
 
-    @objc func didLongPressIntoBoardPeg(_ sender: UILongPressGestureRecognizer) {
-        delegate?.userDidLongPress(boardPegView: self)
+    @objc func didLongPressBoardObject(_ sender: UILongPressGestureRecognizer) {
+        delegate?.userDidLongPress(boardObjectView: self)
     }
 
-    @objc func didTapIntoBoardPeg(_ sender: UITapGestureRecognizer) {
-        delegate?.userDidTap(boardPegView: self)
+    @objc func didTapBoardObject(_ sender: UITapGestureRecognizer) {
+        delegate?.userDidTap(boardObjectView: self)
     }
 
-    @objc func didPanBoardPeg(_ sender: UIPanGestureRecognizer) {
+    @objc func didPanBoardObject(_ sender: UIPanGestureRecognizer) {
         delegate?.userDidPan(sender: sender)
     }
 }

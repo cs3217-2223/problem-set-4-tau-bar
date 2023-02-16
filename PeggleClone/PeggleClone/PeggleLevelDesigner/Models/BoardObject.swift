@@ -15,6 +15,7 @@ protocol BoardObject: AnyObject {
 
     func isOverlapping(with otherObject: BoardObject) -> Bool
     func isOverlapping(with otherObject: Peg) -> Bool
+    func isOverlapping(with otherObject: Block) -> Bool
     func isEqual(to otherObject: BoardObject) -> Bool
 
     ///  Checks whether the object  is within the specified bounds,
