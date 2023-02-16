@@ -20,8 +20,6 @@
 		610FEDA3298E616400875BBA /* SelectPegButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED8A298E616400875BBA /* SelectPegButton.swift */; };
 		610FEDA4298E616400875BBA /* LevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED8B298E616400875BBA /* LevelTableViewCell.swift */; };
 		610FEDA5298E616400875BBA /* LevelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 610FED8C298E616400875BBA /* LevelTableViewCell.xib */; };
-		610FEDA9298E617900875BBA /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED7A298E616400875BBA /* Board.swift */; };
-		610FEDAA298E617C00875BBA /* Peg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED7C298E616400875BBA /* Peg.swift */; };
 		610FEDAC298E62AF00875BBA /* LevelDesignerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED72298E616400875BBA /* LevelDesignerConstants.swift */; };
 		612F7A752990CC38005540DF /* BluePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A742990CC38005540DF /* BluePegNode.swift */; };
 		612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A762990CF08005540DF /* OrangePegNode.swift */; };
@@ -57,6 +55,12 @@
 		61AF44CF298CA17F00A9181A /* UtilFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AF44CE298CA17F00A9181A /* UtilFunctions.swift */; };
 		61AF44D1298CA31600A9181A /* MSKPolygonPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */; };
 		61B13BBB299D667D005242E8 /* BoardObjectWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */; };
+		61B13BC2299D8C18005242E8 /* Board.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED7A298E616400875BBA /* Board.swift */; };
+		61B13BC3299D8C18005242E8 /* Peg.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED7C298E616400875BBA /* Peg.swift */; };
+		61B13BC4299D8C18005242E8 /* BoardObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DB63D9299CB9910048663D /* BoardObject.swift */; };
+		61B13BC5299D8C18005242E8 /* BoardObjectWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */; };
+		61B13BC6299DB19C005242E8 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DB63DD299CC0AF0048663D /* UtilityFunctions.swift */; };
+		61B13BC8299DB23C005242E8 /* BoardObjectWrapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BC7299DB23C005242E8 /* BoardObjectWrapperTests.swift */; };
 		61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA5298A339C00297265 /* MSKNode.swift */; };
 		61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA7298A363B00297265 /* MSKConstants.swift */; };
 		61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */; };
@@ -202,6 +206,7 @@
 		61AF44CE298CA17F00A9181A /* UtilFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UtilFunctions.swift; sourceTree = "<group>"; };
 		61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPolygonPhysicsBody.swift; sourceTree = "<group>"; };
 		61B13BBA299D667D005242E8 /* BoardObjectWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardObjectWrapper.swift; sourceTree = "<group>"; };
+		61B13BC7299DB23C005242E8 /* BoardObjectWrapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardObjectWrapperTests.swift; sourceTree = "<group>"; };
 		61CDDEA5298A339C00297265 /* MSKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKNode.swift; sourceTree = "<group>"; };
 		61CDDEA7298A363B00297265 /* MSKConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKConstants.swift; sourceTree = "<group>"; };
 		61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsWorld.swift; sourceTree = "<group>"; };
@@ -272,6 +277,7 @@
 			children = (
 				610FED69298E5FE100875BBA /* BoardTests.swift */,
 				610FED6A298E5FE100875BBA /* PegTests.swift */,
+				61B13BC7299DB23C005242E8 /* BoardObjectWrapperTests.swift */,
 			);
 			path = ModelTests;
 			sourceTree = "<group>";
@@ -813,13 +819,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61B13BC3299D8C18005242E8 /* Peg.swift in Sources */,
 				61F06FB82998A6F900AA3964 /* PegNodeTests.swift in Sources */,
 				61F06FAF299894C600AA3964 /* MSKSpriteNodeTests.swift in Sources */,
 				61F06FD32998ACDC00AA3964 /* PegPhysicsBodyTests.swift in Sources */,
 				61F06F9629986AB300AA3964 /* MSKPolygonPhysicsBody.swift in Sources */,
 				61F06FC52998A85C00AA3964 /* PegPhysicsBody.swift in Sources */,
 				61F06F9829986ADB00AA3964 /* UtilFunctions.swift in Sources */,
-				610FEDAA298E617C00875BBA /* Peg.swift in Sources */,
 				61F06FC62998A85C00AA3964 /* BallPhysicsBodyDelegate.swift in Sources */,
 				61F06F9A2998708100AA3964 /* MSKPolygonPhysicsBodyTests.swift in Sources */,
 				61F06FAA2998900100AA3964 /* MSKScene.swift in Sources */,
@@ -830,7 +836,9 @@
 				61F06F9D2998737100AA3964 /* MSKPhysicsBodyTests.swift in Sources */,
 				61F06F942998674A00AA3964 /* MSKCirclePhysicsBody.swift in Sources */,
 				61F06FBE2998A74E00AA3964 /* CannonNode.swift in Sources */,
+				61B13BC5299D8C18005242E8 /* BoardObjectWrapper.swift in Sources */,
 				61F06FC42998A85C00AA3964 /* PegPhysicsBodyDelegate.swift in Sources */,
+				61B13BC8299DB23C005242E8 /* BoardObjectWrapperTests.swift in Sources */,
 				61F06FC22998A84F00AA3964 /* Constants.swift in Sources */,
 				619D84AA29890A9A007C8683 /* PeggleCloneTests.swift in Sources */,
 				61F06F9F29987EF500AA3964 /* MSKPhysicsWorldTests.swift in Sources */,
@@ -854,7 +862,7 @@
 				61F06FA829988FBC00AA3964 /* MSKNodeTests.swift in Sources */,
 				61F06FD52998AEBD00AA3964 /* BallPhysicsBodyTests.swift in Sources */,
 				61F06FC82998A86000AA3964 /* BoardSceneDelegate.swift in Sources */,
-				610FEDA9298E617900875BBA /* Board.swift in Sources */,
+				61B13BC6299DB19C005242E8 /* UtilityFunctions.swift in Sources */,
 				61F06F9529986A8A00AA3964 /* MSKPhysicsBodyDelegate.swift in Sources */,
 				61F48D7B29990B2F00B33D50 /* BoardView+BoardSceneDelegate.swift in Sources */,
 				610FED6C298E5FE100875BBA /* BoardTests.swift in Sources */,
@@ -863,7 +871,9 @@
 				61F06FA929988FFE00AA3964 /* MSKNode.swift in Sources */,
 				61F06FBC2998A74A00AA3964 /* BluePegNode.swift in Sources */,
 				61F06FC12998A74E00AA3964 /* BallNodeDelegate.swift in Sources */,
+				61B13BC2299D8C18005242E8 /* Board.swift in Sources */,
 				61F06F9729986AC400AA3964 /* MSKConstants.swift in Sources */,
+				61B13BC4299D8C18005242E8 /* BoardObject.swift in Sources */,
 				61F48D7D29990B3800B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */,
 				61F06FB12998955400AA3964 /* MSKSceneTests.swift in Sources */,
 				61F06FCE2998AB2A00AA3964 /* BallNodeTests.swift in Sources */,

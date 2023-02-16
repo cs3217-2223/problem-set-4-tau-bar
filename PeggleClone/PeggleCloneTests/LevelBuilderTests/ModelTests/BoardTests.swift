@@ -1,6 +1,6 @@
 //
 //  BoardTests.swift
-//  PeggleLevelDesignerTests
+//  ObjectgleLevelDesignerTests
 //
 //  Created by Taufiq Abdul Rahman on 20/1/23.
 //
@@ -10,221 +10,185 @@ import XCTest
 final class BoardTests: XCTestCase {
     let defaultBoardWidth: Double = 500
     let defaultBoardHeight: Double = 700
-    let screenCentreX: Double = 250
-    let screenCentreY: Double = 350
+    let screenCenterX: Double = 250
+    let screenCenterY: Double = 350
+    var pegWrapper: BoardObjectWrapper?
+    var board: Board?
 
-    func testConstructBoard_shouldReturnNonNil() {
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
+    override func setUp() {
+        super.setUp()
+        board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
+        guard let peg = Peg(colour: .orange, position: CGPoint(x: 250, y: 350)) else {
+            return
+        }
+        pegWrapper = BoardObjectWrapper(object: peg)
+    }
 
+    override func tearDown() {
+        board?.removeAllObjects()
+        board = nil
+    }
+
+    func testInit() {
         XCTAssertNotNil(board, "Board should not be nil.")
     }
 
-    func testAddPeg_shouldInsertPeg() {
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        let position = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let addedPeg = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
-        }
-
-        expectation(forNotification: .pegAdded, object: addedPeg)
-        board.addPeg(addedPeg)
+    func testAddObject_shouldInsertObject() {
+        expectation(forNotification: .objectAdded, object: pegWrapper)
+        guard let pegWrapper = pegWrapper else { return }
+        board?.addObject(pegWrapper)
         waitForExpectations(timeout: 4)
-        XCTAssertEqual(board.pegs.count, 1, "Pegs count should be 1 after adding peg.")
+        XCTAssertEqual(board?.objects.count, 1, "Objects count should be 1 after adding object.")
     }
 
-    func testAddPeg_pegAlreadyExists_shouldNotAddNewPeg() {
-        let position = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let addedPeg = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
-        }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(addedPeg)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
+    func testAddObject_pegAlreadyExists_shouldNotAddNewObject() {
+        guard let pegWrapper = pegWrapper else { return }
+        board?.addObject(pegWrapper)
+        XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
 
-        board.addPeg(addedPeg)
+        board?.addObject(pegWrapper)
 
-        XCTAssertEqual(board.pegs.count, 1, "Board should still have 1 peg.")
+        XCTAssertEqual(board?.objects.count, 1, "Board should still have 1 object.")
     }
 
-    func testAddPeg_pegOverlapping_shouldNotAddNewPeg() {
-        let overlappedPegPosition = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let overlappedPeg = Peg(colour: PegColour.orange, position: overlappedPegPosition, radius: 1.0) else {
-            return XCTFail("Created peg should not be nil.")
+    func testAddObject_pegOverlapping_shouldNotAddNewObject() {
+        let overlappedObjectPosition = CGPoint(x: screenCenterX, y: screenCenterY)
+        guard let overlappedObject = Peg(colour: .orange, position: overlappedObjectPosition, radius: 1.0) else {
+            return XCTFail("Created object should not be nil.")
         }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(overlappedPeg)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
+        
+        board?.addObject(BoardObjectWrapper(object: overlappedObject))
+        XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
 
-        let addedPegPosition = Position(xPos: screenCentreX + 1.0, yPos: screenCentreY + 1.0)
-        guard let addedPeg = Peg(colour: PegColour.orange, position: addedPegPosition, radius: 1.0) else {
-            return XCTFail("Created peg should not be nil.")
-        }
+        guard let pegWrapper = pegWrapper else { return }
+        board?.addObject(pegWrapper)
 
-        board.addPeg(addedPeg)
-
-        XCTAssertEqual(board.pegs.count, 1, "Board should still have 1 peg.")
+        XCTAssertEqual(board?.objects.count, 1, "Board should still have 1 object.")
     }
 
-    func testAddPeg_pegOutOfBounds_shouldNotAddNewPeg() {
-        let outOfBoundsPosition = Position(xPos: defaultBoardWidth, yPos: defaultBoardHeight)
-        guard let outOfBoundsPeg = Peg(colour: PegColour.orange, position: outOfBoundsPosition, radius: 1.0) else {
-            return XCTFail("Created peg should not be nil.")
+    func testAddObject_pegOutOfBounds_shouldNotAddNewObject() {
+        let outOfBoundsPosition = CGPoint(x: defaultBoardWidth, y: defaultBoardHeight)
+        guard let outOfBoundsObject = Peg(colour: PegColor.orange, position: outOfBoundsPosition, radius: 1.0) else {
+            return XCTFail("Created object should not be nil.")
         }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
 
-        board.addPeg(outOfBoundsPeg)
+        board?.addObject(BoardObjectWrapper(object: outOfBoundsObject))
 
-        XCTAssertEqual(board.pegs.count, 0, "Board should have 0 pegs.")
+        XCTAssertEqual(board?.objects.count, 0, "Board should have 0 pegs.")
     }
 
-    func testRemovePeg_shouldRemovePeg() {
-        let position = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let removedPeg = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
-        }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(removedPeg)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
+    func testRemoveObject_shouldRemoveObject() {
+        guard let pegWrapper = pegWrapper else { return }
+        board?.addObject(pegWrapper)
+        XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
 
-        expectation(forNotification: .pegDeleted, object: removedPeg)
-        board.removePeg(removedPeg)
+        expectation(forNotification: .objectDeleted, object: pegWrapper)
+        board?.removeObject(pegWrapper)
         waitForExpectations(timeout: 4)
 
-        XCTAssertEqual(board.pegs.count, 0, "Board should have 0 pegs.")
+        XCTAssertEqual(board?.objects.count, 0, "Board should have 0 pegs.")
     }
 
-    func testRemovePeg_pegNotInBoard_shouldDoNothing() {
-        let position = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let pegInBoard = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
-        }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(pegInBoard)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
+    func testRemoveObject_pegNotInBoard_shouldDoNothing() {
+        guard let pegWrapper = pegWrapper else { return }
+        board?.addObject(pegWrapper)
+        XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
 
-        guard let pegNotInBoard = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
+        guard let pegNotInBoard = Peg(colour: PegColor.orange, position: CGPoint(x: screenCenterX, y: screenCenterY)) else {
+            return XCTFail("Created object should not be nil.")
         }
 
-        board.removePeg(pegNotInBoard)
+        board?.removeObject(BoardObjectWrapper(object: pegNotInBoard))
 
-        XCTAssertEqual(board.pegs.count, 1, "Board should still have 1 peg.")
+        XCTAssertEqual(board?.objects.count, 1, "Board should still have 1 object.")
     }
 
-    func testMovePeg_pegInBoard_withinBounds_noOverlap_shouldMovePeg() {
-        let position = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let movedPeg = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
-        }
+    func testMoveObject_pegInBoard_withinBounds_noOverlap_shouldMoveObject() {
+        guard let pegWrapper = pegWrapper else { return }
+        board?.addObject(pegWrapper)
+        XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
 
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(movedPeg)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
-
-        let newPosition = Position(xPos: screenCentreX + 2.0, yPos: screenCentreY + 2.0)
-        expectation(forNotification: .pegMoved, object: movedPeg)
-        board.movePeg(movedPeg, toPosition: newPosition)
+        let newPosition = CGPoint(x: screenCenterX + 2.0, y: screenCenterY + 2.0)
+        expectation(forNotification: .objectMoved, object: pegWrapper)
+        board?.moveObject(pegWrapper, to: newPosition)
         waitForExpectations(timeout: 4)
 
-        XCTAssertEqual(movedPeg.getPosition(), newPosition, "Peg position should have changed.")
+        XCTAssertEqual(pegWrapper.object.position, newPosition, "Peg position should have changed.")
     }
 
-    func testMovePeg_pegNotInBoard_shouldDoNothing() {
-        let position = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let pegInBoard = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
+    func testMoveObject_pegNotInBoard_shouldDoNothing() {
+        guard let pegWrapper = pegWrapper else { return }
+        board?.addObject(pegWrapper)
+        XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
+        
+        let position = CGPoint(x: screenCenterX, y: screenCenterY)
+        guard let pegNotInBoard = Peg(colour: PegColor.orange, position: position) else {
+            return XCTFail("Created object should not be nil.")
         }
 
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(pegInBoard)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
-        guard let pegNotInBoard = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
-        }
+        let newPosition = CGPoint(x: screenCenterX + 1.0, y: screenCenterY + 1.0)
+        board?.moveObject(BoardObjectWrapper(object: pegNotInBoard), to: newPosition)
 
-        let newPosition = Position(xPos: screenCentreX + 1.0, yPos: screenCentreY + 1.0)
-        board.movePeg(pegNotInBoard, toPosition: newPosition)
-
-        XCTAssertEqual(board.pegs.count, 1, "Board should still have 1 peg.")
-        XCTAssertEqual(pegInBoard.getPosition(), position, "Peg should not have changed.")
+        XCTAssertEqual(board?.objects.count, 1, "Board should still have 1 object.")
+        XCTAssertEqual(pegWrapper.object.position, position, "Peg should not have changed.")
     }
 
-    func testMovePeg_pegOverlapping_shouldNotMovePeg() {
-        let overlappedPegPosition = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let overlappedPeg = Peg(colour: PegColour.orange, position: overlappedPegPosition, radius: 1.0)
+    func testMoveObject_pegOverlapping_shouldNotMoveObject() {
+        let overlappedObjectPosition = CGPoint(x: screenCenterX, y: screenCenterY)
+        guard let overlappedObject = Peg(colour: PegColor.orange, position: overlappedObjectPosition, radius: 1.0)
         else {
-            return XCTFail("Created peg should not be nil.")
+            return XCTFail("Created object should not be nil.")
         }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(overlappedPeg)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
 
-        let movedPegInitialPosition = Position(xPos: screenCentreX + 10.0, yPos: screenCentreY + 10.0)
-        guard let movedPeg = Peg(colour: PegColour.orange, position: movedPegInitialPosition, radius: 1.0)
+        board?.addObject(BoardObjectWrapper(object: overlappedObject))
+        XCTAssertEqual(board?.objects.count, 1, "Board should have 1 object.")
+
+        let movedObjectInitialPosition = CGPoint(x: screenCenterX + 10.0, y: screenCenterY + 10.0)
+        guard let movedObject = Peg(colour: PegColor.orange, position: movedObjectInitialPosition, radius: 1.0)
         else {
-            return XCTFail("Created peg should not be nil.")
+            return XCTFail("Created object should not be nil.")
         }
-        board.addPeg(movedPeg)
-        XCTAssertEqual(board.pegs.count, 2, "Board should have 2 pegs.")
+        
+        let movedObjectWrapper = BoardObjectWrapper(object: movedObject)
+        board?.addObject(movedObjectWrapper)
+        XCTAssertEqual(board?.objects.count, 2, "Board should have 2 pegs.")
 
-        let overlappingPosition = Position(xPos: overlappedPegPosition.xPos, yPos: overlappedPegPosition.yPos)
-        let originalPosition = movedPeg.getPosition()
-        board.movePeg(movedPeg, toPosition: overlappingPosition)
+        let overlappingPosition = CGPoint(x: overlappedObjectPosition.x, y: overlappedObjectPosition.y)
+        let originalPosition = movedObject.position
+        board?.moveObject(movedObjectWrapper, to: overlappingPosition)
 
-        XCTAssertEqual(movedPeg.getPosition(), originalPosition, "Peg should not have moved.")
+        XCTAssertEqual(movedObjectWrapper.object.position, originalPosition, "Peg should not have moved.")
 
     }
 
-    func testMovePeg_pegOutOfBounds_shouldNotMovePeg() {
-        let initialPosition = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let outOfBoundsPeg = Peg(colour: PegColour.orange, position: initialPosition, radius: 1.0) else {
-            return XCTFail("Created peg should not be nil.")
-        }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
+    func testMoveObject_pegOutOfBounds_shouldNotMoveObject() {
+        let outOfBoundsPosition = CGPoint(x: defaultBoardWidth, y: defaultBoardHeight)
+        let originalPosition = pegWrapper?.object.position
 
-        let outOfBoundsPosition = Position(xPos: defaultBoardWidth, yPos: defaultBoardHeight)
-        let originalPosition = outOfBoundsPeg.getPosition()
+        guard let pegWrapper = pegWrapper else { return }
+        board?.moveObject(pegWrapper, to: outOfBoundsPosition)
 
-        board.movePeg(outOfBoundsPeg, toPosition: outOfBoundsPosition)
-
-        XCTAssertEqual(outOfBoundsPeg.getPosition(), originalPosition,
+        XCTAssertEqual(pegWrapper.object.position, originalPosition,
                        "Peg should not be moved to an out of bounds position.")
     }
 
-    func testFindPegById_ifPegExists_returnsPeg() {
-        let position = Position(xPos: screenCentreX, yPos: screenCentreY)
-        guard let pegInBoard = Peg(colour: PegColour.orange, position: position) else {
-            return XCTFail("Created peg should not be nil.")
+    func removeAllObjects_shouldRemoveAllObjects() {
+        let position1 = CGPoint(x: screenCenterX, y: screenCenterY)
+        let position2 = CGPoint(x: screenCenterX + 5, y: screenCenterY + 5)
+        guard let peg1 = Peg(colour: PegColor.orange, position: position1) else {
+            return XCTFail("Created object should not be nil.")
         }
-
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(pegInBoard)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 1 peg.")
-
-        let pegId = ObjectIdentifier(pegInBoard)
-        let foundPeg = board.findPegById(pegId)
-
-        XCTAssertEqual(foundPeg, pegInBoard, "Peg with wrong id returned.")
-    }
-
-    func removeAllPegs_shouldRemoveAllPegs() {
-        let position1 = Position(xPos: screenCentreX, yPos: screenCentreY)
-        let position2 = Position(xPos: screenCentreX + 5, yPos: screenCentreY + 5)
-        guard let peg1 = Peg(colour: PegColour.orange, position: position1) else {
-            return XCTFail("Created peg should not be nil.")
+        guard let peg2 = Peg(colour: PegColor.blue, position: position2) else {
+            return XCTFail("Created object should not be nil.")
         }
-        guard let peg2 = Peg(colour: PegColour.blue, position: position2) else {
-            return XCTFail("Created peg should not be nil.")
-        }
-        let board = Board(width: defaultBoardWidth, height: defaultBoardHeight)
-        board.addPeg(peg1)
-        board.addPeg(peg2)
-        XCTAssertEqual(board.pegs.count, 1, "Board should have 2 pegs.")
+        board?.addObject(BoardObjectWrapper(object: peg1))
+        board?.addObject(BoardObjectWrapper(object: peg2))
+        XCTAssertEqual(board?.objects.count, 2, "Board should have 2 pegs.")
 
         expectation(forNotification: .boardCleared, object: nil)
-        board.removeAllPegs()
+        board?.removeAllObjects()
         waitForExpectations(timeout: 4)
-        XCTAssertEqual(board.pegs.count, 0, "Board should have 0 pegs.")
+        XCTAssertEqual(board?.objects.count, 0, "Board should have 0 pegs.")
     }
 
 }

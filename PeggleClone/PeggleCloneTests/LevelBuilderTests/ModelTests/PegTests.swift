@@ -8,31 +8,42 @@
 import XCTest
 
 final class PegTests: XCTestCase {
+    var peg: Peg?
+
+    override func setUp() {
+        super.setUp()
+        peg = Peg(colour: .orange, position: .zero, radius: 1.5)
+    }
+
+    override func tearDown() {
+        peg = nil
+    }
+
+    func testInit() {
+        XCTAssertNotNil(peg, "Peg should not be nil.")
+    }
 
     func testConstructPeg_validRadius_shouldReturnNonNil() {
-        let pegPosition = Position(xPos: 0.0, yPos: 0.0)
-        let peg = Peg(colour: PegColour.orange, position: pegPosition, radius: 1.5)
-
         XCTAssertNotNil(peg, "Peg should not be nil.")
-        XCTAssertEqual(peg?.colour, PegColour.orange)
-        XCTAssertEqual(peg?.getPosition(), pegPosition)
+        XCTAssertEqual(peg?.colour, .orange)
+        XCTAssertEqual(peg?.position, .zero)
         XCTAssertEqual(peg?.radius, 1.5)
     }
 
     func testConstructPeg_invalidRadius_shouldReturnNil() {
-        let pegRadiusZero = Peg(colour: PegColour.orange, position: Position(xPos: 0.0, yPos: 0.0), radius: 0.0)
-        let pegRadiusNegative = Peg(colour: PegColour.orange, position: Position(xPos: 0.0, yPos: 0.0), radius: -1.5)
+        let pegRadiusZero = Peg(colour: .orange, position: .zero, radius: 0.0)
+        let pegRadiusNegative = Peg(colour: .orange, position: .zero, radius: -1.5)
 
         XCTAssertNil(pegRadiusZero, "Peg with radius zero should not be created.")
         XCTAssertNil(pegRadiusNegative, "Peg with negative radius should not be created.")
     }
 
     func testMovePeg_toNewPosition_shouldChangePosition() {
-        let peg = Peg(colour: PegColour.orange, position: Position(xPos: 0.0, yPos: 0.0), radius: 1.5)
-        let newPosition = Position(xPos: 1.0, yPos: 2.0)
+        let peg = Peg(colour: .orange, position: .zero, radius: 1.5)
+        let newPosition = CGPoint(x: 1.0, y: 1.0)
 
-        peg?.movePeg(toPosition: newPosition)
+        peg?.move(to: newPosition)
 
-        XCTAssertEqual(peg?.getPosition(), newPosition, "Peg should have new position.")
+        XCTAssertEqual(peg?.position, newPosition, "Peg should have new position.")
     }
 }

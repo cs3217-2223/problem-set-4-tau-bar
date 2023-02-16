@@ -7,6 +7,8 @@
 
 import Foundation
 
+/// Wrapper for the `BoardObject` object type. This is required to conform to `Hashable` protocol
+/// while allowing the use of `BoardObject` type.
 class BoardObjectWrapper: Hashable {
     var object: BoardObject
 

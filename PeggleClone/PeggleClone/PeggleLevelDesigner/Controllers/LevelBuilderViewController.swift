@@ -134,7 +134,7 @@ class LevelBuilderViewController: UIViewController {
     }
 
     func addObject(addedObjectWrapper: BoardObjectWrapper) {
-        board?.addObject(addedObjectWrapper: addedObjectWrapper)
+        board?.addObject(addedObjectWrapper)
     }
 
     func deleteObject(of deletedView: UIView) {
@@ -142,7 +142,7 @@ class LevelBuilderViewController: UIViewController {
             return
         }
 
-        board?.removeObject(removedObjectWrapper: deletedObjectWrapper)
+        board?.removeObject(deletedObjectWrapper)
     }
 
     func moveObject(of sender: UIPanGestureRecognizer) {
@@ -152,7 +152,7 @@ class LevelBuilderViewController: UIViewController {
         }
 
         let newLocation = sender.location(in: boardView)
-        board?.moveObject(movedObjectWrapper: movedObjectWrapper, to: newLocation)
+        board?.moveObject(movedObjectWrapper, to: newLocation)
     }
 
     // MARK: Notification Functions

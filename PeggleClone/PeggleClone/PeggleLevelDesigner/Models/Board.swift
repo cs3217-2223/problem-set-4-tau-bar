@@ -19,22 +19,46 @@ enum BoardKeys: String, CodingKey {
 }
 
 public class Board {
-    // MARK: Variables and Properties
+    /// The set of board objects on the board.
     var objects: Set<BoardObjectWrapper>
+
+    /// The height of the board.
     let height: Double
+
+    /// The width of the board.
     let width: Double
+
+    /// The name of the board.
     var name: String = DefaultBoardName
 
+    /// The default board name.
     static let DefaultBoardName = ""
+
     public static var supportsSecureCoding = true
 
     // MARK: Initializers
+    /**
+     Initializes a board instance with the specified `width` and `height` values.
+     
+     - Parameters:
+        - width: The width of the board.
+        - height: The height of the board.
+     */
     init(width: Double, height: Double) {
         self.objects = []
         self.width = width
         self.height = height
     }
 
+    /**
+     Initializes a board instance with the specified `objects`, `width`, `height`, and `name` values.
+     
+     - Parameters:
+        - objects: The set of board objects to be on the board.
+        - width: The width of the board.
+        - height: The height of the board.
+        - name: The name of the board.
+     */
     init(objects: Set<BoardObjectWrapper>, width: Double, height: Double, name: String) {
         self.objects = objects
         self.width = width
@@ -42,11 +66,14 @@ public class Board {
         self.name = name
     }
 
-    private func sendNotification(of type: NSNotification.Name, with object: Peg?) {
-        NotificationCenter.default.post(name: type, object: object)
-    }
-
-    func addObject(addedObjectWrapper: BoardObjectWrapper) {
+    /**
+     Adds a `BoardObjectWrapper` to the board if it does not overlap with any other objects on the board
+     and is within the board's bounds. If the object already exists, do nothing.
+     
+     - Parameters:
+        - addedObjectWrapper: The `BoardObjectWrapper` to be added.
+     */
+    func addObject(_ addedObjectWrapper: BoardObjectWrapper) {
         if objects.contains(addedObjectWrapper) {
             return
         }
@@ -60,9 +87,14 @@ public class Board {
         sendNotification(of: .objectAdded, with: addedObjectWrapper)
     }
 
-    func removeObject(removedObjectWrapper: BoardObjectWrapper) {
+    /**
+     Removes a `BoardObjectWrapper` from the board. If the object doesn't exist, do nothing.
+     
+     - Parameters:
+        - removedObjectWrapper: The `BoardObjectWrapper` to be removed.
+     */
+    func removeObject(_ removedObjectWrapper: BoardObjectWrapper) {
         if !objects.contains(removedObjectWrapper) {
-            print("doesn't contain")
             return
         }
 
@@ -70,7 +102,15 @@ public class Board {
         sendNotification(of: .objectDeleted, with: removedObjectWrapper)
     }
 
-    func moveObject(movedObjectWrapper: BoardObjectWrapper, to newPosition: CGPoint) {
+    /**
+     Moves a `BoardObjectWrapper` to a new position if the new position does not overlap
+     with any other objects on the board and is within the board's bounds.
+     
+     - Parameters:
+        - movedObjectWrapper: The `BoardObjectWrapper` to be moved.
+        - newPosition: The new position to move the object to.
+     */
+    func moveObject(_ movedObjectWrapper: BoardObjectWrapper, to newPosition: CGPoint) {
         if !objects.contains(movedObjectWrapper) {
             return
         }
@@ -85,10 +125,10 @@ public class Board {
             return
         }
 
-        print(movedObjectWrapper.object)
         sendNotification(of: .objectMoved, with: movedObjectWrapper)
     }
 
+    /// Checks whether the specified object is overlapping with any other objects on the board.
     func hasOverlappingObjects(with checkedObjectWrapper: BoardObjectWrapper) -> Bool {
         objects.contains(where: { objectWrapper in
             let checkedObject = checkedObjectWrapper.object
@@ -103,6 +143,7 @@ public class Board {
         })
     }
 
+    /// Checks whther the object is out of bounds of the board.
     func isOutOfBounds(_ checkedObjectWrapper: BoardObjectWrapper) -> Bool {
         checkedObjectWrapper.object.isOutOfBounds(lowerX: 0,
                                                   upperX: width,
