@@ -20,9 +20,8 @@ extension LevelBuilderViewController: BoardObjectViewDelegate {
     /// Otherwise, do nothing.
     /// Delegate function for tap on `BoardObjectView`.
     func userDidTap(boardObjectView: BoardObjectView) {
-        if isDeletePegButton(selectedButton: selectedButton) {
-            deleteObject(of: boardObjectView)
-        }
+        guard let object = viewsToObjects[boardObjectView] else { return }
+        actionsDelegate?.didTapBoardObject(object)
     }
 
     /// Moves a peg on the board that was panned to the new location on the level if valid.

@@ -17,7 +17,6 @@
 		610FEDA0298E616400875BBA /* LevelBuilderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED86298E616400875BBA /* LevelBuilderViewController.swift */; };
 		610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */; };
 		610FEDA2298E616400875BBA /* BoardObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED89298E616400875BBA /* BoardObjectView.swift */; };
-		610FEDA3298E616400875BBA /* SelectPegButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED8A298E616400875BBA /* SelectPegButton.swift */; };
 		610FEDAC298E62AF00875BBA /* LevelDesignerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED72298E616400875BBA /* LevelDesignerConstants.swift */; };
 		612F7A752990CC38005540DF /* BluePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A742990CC38005540DF /* BluePegNode.swift */; };
 		612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A762990CF08005540DF /* OrangePegNode.swift */; };
@@ -62,8 +61,13 @@
 		61B13BE1299DC095005242E8 /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE0299DC095005242E8 /* Block.swift */; };
 		61B13BE3299DDB02005242E8 /* DetectOverlap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE2299DDB02005242E8 /* DetectOverlap.swift */; };
 		61B13BE5299DDCB9005242E8 /* BlockView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE4299DDCB9005242E8 /* BlockView.swift */; };
-		61B13BE7299DDE9D005242E8 /* BoardPegView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE6299DDE9D005242E8 /* BoardPegView.swift */; };
 		61B30C7A299E506100ADE396 /* LevelSelect.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61B30C79299E506100ADE396 /* LevelSelect.storyboard */; };
+		61B4014F299F7EFB0022142B /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4014E299F7EFB0022142B /* ToolsViewController.swift */; };
+		61B4015F299FAE9E0022142B /* LevelBuilderActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4015E299FAE9E0022142B /* LevelBuilderActionsDelegate.swift */; };
+		61B40161299FAF240022142B /* ToolsViewController+LevelBuilderActionsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B40160299FAF240022142B /* ToolsViewController+LevelBuilderActionsDelegate.swift */; };
+		61B40163299FAFBC0022142B /* ToolsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B40162299FAFBC0022142B /* ToolsViewControllerDelegate.swift */; };
+		61B40165299FB0590022142B /* LevelBuilderViewController+ToolsViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B40164299FB0590022142B /* LevelBuilderViewController+ToolsViewControllerDelegate.swift */; };
+		61B4016729A2CB030022142B /* ToolButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B4016629A2CB030022142B /* ToolButton.swift */; };
 		61BD3D6F299E667700EED58C /* LevelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BD3D6E299E667700EED58C /* LevelTableViewCell.swift */; };
 		61BD3D75299E679000EED58C /* LevelTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 61BD3D74299E679000EED58C /* LevelTableViewCell.xib */; };
 		61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61CDDEA5298A339C00297265 /* MSKNode.swift */; };
@@ -127,7 +131,7 @@
 		61F48D70299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D6F299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift */; };
 		61F48D72299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D71299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift */; };
 		61F48D74299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D73299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift */; };
-		61F48D762999093E00B33D50 /* LevelBuilderViewController+BoardPegViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D752999093E00B33D50 /* LevelBuilderViewController+BoardPegViewDelegate.swift */; };
+		61F48D762999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D752999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift */; };
 		61F48D7729990B2900B33D50 /* BoardScene+BallNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D6B299906CF00B33D50 /* BoardScene+BallNodeDelegate.swift */; };
 		61F48D7829990B2900B33D50 /* BoardScene+PegNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D692999067900B33D50 /* BoardScene+PegNodeDelegate.swift */; };
 		61F48D7929990B2D00B33D50 /* MSKView+MSKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D71299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift */; };
@@ -169,7 +173,6 @@
 		610FED86298E616400875BBA /* LevelBuilderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LevelBuilderViewController.swift; sourceTree = "<group>"; };
 		610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardObjectViewDelegate.swift; sourceTree = "<group>"; };
 		610FED89298E616400875BBA /* BoardObjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardObjectView.swift; sourceTree = "<group>"; };
-		610FED8A298E616400875BBA /* SelectPegButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectPegButton.swift; sourceTree = "<group>"; };
 		610FED8E298E616400875BBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LevelBuilder.storyboard; sourceTree = "<group>"; };
 		612F7A742990CC38005540DF /* BluePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluePegNode.swift; sourceTree = "<group>"; };
 		612F7A762990CF08005540DF /* OrangePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangePegNode.swift; sourceTree = "<group>"; };
@@ -213,8 +216,13 @@
 		61B13BE0299DC095005242E8 /* Block.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Block.swift; sourceTree = "<group>"; };
 		61B13BE2299DDB02005242E8 /* DetectOverlap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetectOverlap.swift; sourceTree = "<group>"; };
 		61B13BE4299DDCB9005242E8 /* BlockView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockView.swift; sourceTree = "<group>"; };
-		61B13BE6299DDE9D005242E8 /* BoardPegView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPegView.swift; sourceTree = "<group>"; };
 		61B30C79299E506100ADE396 /* LevelSelect.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LevelSelect.storyboard; sourceTree = "<group>"; };
+		61B4014E299F7EFB0022142B /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
+		61B4015E299FAE9E0022142B /* LevelBuilderActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelBuilderActionsDelegate.swift; sourceTree = "<group>"; };
+		61B40160299FAF240022142B /* ToolsViewController+LevelBuilderActionsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ToolsViewController+LevelBuilderActionsDelegate.swift"; sourceTree = "<group>"; };
+		61B40162299FAFBC0022142B /* ToolsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewControllerDelegate.swift; sourceTree = "<group>"; };
+		61B40164299FB0590022142B /* LevelBuilderViewController+ToolsViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LevelBuilderViewController+ToolsViewControllerDelegate.swift"; sourceTree = "<group>"; };
+		61B4016629A2CB030022142B /* ToolButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolButton.swift; sourceTree = "<group>"; };
 		61BD3D6E299E667700EED58C /* LevelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTableViewCell.swift; sourceTree = "<group>"; };
 		61BD3D74299E679000EED58C /* LevelTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LevelTableViewCell.xib; sourceTree = "<group>"; };
 		61CDDEA5298A339C00297265 /* MSKNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKNode.swift; sourceTree = "<group>"; };
@@ -252,7 +260,7 @@
 		61F48D6F299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSKNode+MSKPhysicsBodyDelegate.swift"; sourceTree = "<group>"; };
 		61F48D71299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MSKView+MSKSceneDelegate.swift"; sourceTree = "<group>"; };
 		61F48D73299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LevelBuilderViewController+LevelSelectViewControllerDelegate.swift"; sourceTree = "<group>"; };
-		61F48D752999093E00B33D50 /* LevelBuilderViewController+BoardPegViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LevelBuilderViewController+BoardPegViewDelegate.swift"; sourceTree = "<group>"; };
+		61F48D752999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LevelBuilderViewController+BoardObjectViewDelegate.swift"; sourceTree = "<group>"; };
 		61F6517E2997397500B2FDEB /* BallPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		61F65182299740D900B2FDEB /* BallNodeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallNodeDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -319,11 +327,8 @@
 		610FED83298E616400875BBA /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				610FED84298E616400875BBA /* LevelSelectViewControllerDelegate.swift */,
-				610FED85298E616400875BBA /* LevelSelectViewController.swift */,
-				610FED86298E616400875BBA /* LevelBuilderViewController.swift */,
-				61F48D73299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift */,
-				61F48D752999093E00B33D50 /* LevelBuilderViewController+BoardPegViewDelegate.swift */,
+				61B40152299F7F4C0022142B /* LevelBuilder */,
+				61B40151299F7F400022142B /* LevelSelect */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -507,8 +512,8 @@
 		61B30C7B299E543600ADE396 /* LevelBuilder */ = {
 			isa = PBXGroup;
 			children = (
-				610FED8A298E616400875BBA /* SelectPegButton.swift */,
 				610FED8D298E616400875BBA /* LevelBuilder.storyboard */,
+				61B4016629A2CB030022142B /* ToolButton.swift */,
 			);
 			path = LevelBuilder;
 			sourceTree = "<group>";
@@ -523,12 +528,43 @@
 			path = "Level Select";
 			sourceTree = "<group>";
 		};
+		61B40151299F7F400022142B /* LevelSelect */ = {
+			isa = PBXGroup;
+			children = (
+				610FED84298E616400875BBA /* LevelSelectViewControllerDelegate.swift */,
+				610FED85298E616400875BBA /* LevelSelectViewController.swift */,
+			);
+			path = LevelSelect;
+			sourceTree = "<group>";
+		};
+		61B40152299F7F4C0022142B /* LevelBuilder */ = {
+			isa = PBXGroup;
+			children = (
+				61B4015B299F88200022142B /* Tools */,
+				610FED86298E616400875BBA /* LevelBuilderViewController.swift */,
+				61B4015E299FAE9E0022142B /* LevelBuilderActionsDelegate.swift */,
+				61F48D73299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift */,
+				61F48D752999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift */,
+				61B40164299FB0590022142B /* LevelBuilderViewController+ToolsViewControllerDelegate.swift */,
+			);
+			path = LevelBuilder;
+			sourceTree = "<group>";
+		};
+		61B4015B299F88200022142B /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				61B4014E299F7EFB0022142B /* ToolsViewController.swift */,
+				61B40160299FAF240022142B /* ToolsViewController+LevelBuilderActionsDelegate.swift */,
+				61B40162299FAFBC0022142B /* ToolsViewControllerDelegate.swift */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
 		61BD3D67299E549900EED58C /* Board */ = {
 			isa = PBXGroup;
 			children = (
 				610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */,
 				610FED89298E616400875BBA /* BoardObjectView.swift */,
-				61B13BE6299DDE9D005242E8 /* BoardPegView.swift */,
 				61B13BE4299DDCB9005242E8 /* BlockView.swift */,
 			);
 			path = Board;
@@ -807,11 +843,11 @@
 			files = (
 				61B13BE3299DDB02005242E8 /* DetectOverlap.swift in Sources */,
 				61F48D6A2999067900B33D50 /* BoardScene+PegNodeDelegate.swift in Sources */,
-				61B13BE7299DDE9D005242E8 /* BoardPegView.swift in Sources */,
 				612F7A8329913AFC005540DF /* BoardSceneDelegate.swift in Sources */,
 				61F48D74299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift in Sources */,
 				614298E6299B418100D39C75 /* ChooseLevelViewController.swift in Sources */,
 				61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */,
+				61B40165299FB0590022142B /* LevelBuilderViewController+ToolsViewControllerDelegate.swift in Sources */,
 				612F7A792990CF51005540DF /* BallNode.swift in Sources */,
 				612F7A752990CC38005540DF /* BluePegNode.swift in Sources */,
 				61A1615A299CB14C000ADBAC /* SegueNames.swift in Sources */,
@@ -832,27 +868,32 @@
 				612F7A7D29912CAB005540DF /* PegPhysicsBody.swift in Sources */,
 				612F7A8129913400005540DF /* PegPhysicsBodyDelegate.swift in Sources */,
 				619D849729890A96007C8683 /* GameViewController.swift in Sources */,
+				61B40163299FAFBC0022142B /* ToolsViewControllerDelegate.swift in Sources */,
 				610FED99298E616400875BBA /* Peg.swift in Sources */,
 				612F7A7F29912CC9005540DF /* BallPhysicsBody.swift in Sources */,
 				612F7A8529913D55005540DF /* CannonNode.swift in Sources */,
 				61554C292997B0FA00BD761A /* Constants.swift in Sources */,
 				610FED9F298E616400875BBA /* LevelSelectViewController.swift in Sources */,
+				61B40161299FAF240022142B /* ToolsViewController+LevelBuilderActionsDelegate.swift in Sources */,
 				61F48D72299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift in Sources */,
 				619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */,
 				610FEDA2298E616400875BBA /* BoardObjectView.swift in Sources */,
 				610FED9E298E616400875BBA /* LevelSelectViewControllerDelegate.swift in Sources */,
+				61B4014F299F7EFB0022142B /* ToolsViewController.swift in Sources */,
 				61BD3D6F299E667700EED58C /* LevelTableViewCell.swift in Sources */,
 				612F7A7B2990F099005540DF /* PegNodeDelegate.swift in Sources */,
 				614298E2299B3A4D00D39C75 /* MainMenuViewController.swift in Sources */,
+				61B4016729A2CB030022142B /* ToolButton.swift in Sources */,
 				610FEDA0298E616400875BBA /* LevelBuilderViewController.swift in Sources */,
 				619D849329890A96007C8683 /* AppDelegate.swift in Sources */,
 				61CDDEBD298AAC1200297265 /* MSKView.swift in Sources */,
+				61B4015F299FAE9E0022142B /* LevelBuilderActionsDelegate.swift in Sources */,
 				61DB63DE299CC0AF0048663D /* UtilityFunctions.swift in Sources */,
 				61F48D6E2999073D00B33D50 /* BoardView+BoardSceneDelegate.swift in Sources */,
 				619D849529890A96007C8683 /* SceneDelegate.swift in Sources */,
 				610FED97298E616400875BBA /* Board.swift in Sources */,
 				61F48D662999053D00B33D50 /* PegNode+PegPhysicsBodyDelegate.swift in Sources */,
-				61F48D762999093E00B33D50 /* LevelBuilderViewController+BoardPegViewDelegate.swift in Sources */,
+				61F48D762999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift in Sources */,
 				61F65183299740D900B2FDEB /* BallNodeDelegate.swift in Sources */,
 				61F48D68299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */,
 				61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */,
@@ -860,7 +901,6 @@
 				612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */,
 				610FED91298E616400875BBA /* LevelDesignerConstants.swift in Sources */,
 				617D2DE7298BBC7F00461FC9 /* PegNode.swift in Sources */,
-				610FEDA3298E616400875BBA /* SelectPegButton.swift in Sources */,
 				61AF44CF298CA17F00A9181A /* UtilFunctions.swift in Sources */,
 				61AF44D1298CA31600A9181A /* MSKPolygonPhysicsBody.swift in Sources */,
 				617D2DE5298BBC1C00461FC9 /* BoardScene.swift in Sources */,

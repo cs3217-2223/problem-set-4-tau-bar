@@ -202,145 +202,39 @@
                                     <outletCollection property="gestureRecognizers" destination="fmD-56-xRH" appends="YES" id="Bz1-ao-DqO"/>
                                 </connections>
                             </view>
-                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mp5-0o-7Ih">
-                                <rect key="frame" x="70" y="1048" width="50" height="50"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tkH-1j-NGt">
+                                <rect key="frame" x="0.0" y="1033" width="744" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="4wm-5X-elU"/>
-                                    <constraint firstAttribute="width" constant="50" id="DL5-jb-zJU"/>
+                                    <constraint firstAttribute="height" constant="100" id="xqw-Gn-Ine"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Orange Peg">
-                                    <backgroundConfiguration key="background" image="peg-orange"/>
-                                </buttonConfiguration>
                                 <connections>
-                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mlv-4z-uQd"/>
+                                    <segue destination="9qP-8e-c0W" kind="embed" id="M88-qE-Z2N"/>
                                 </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMv-Gk-b16">
-                                <rect key="frame" x="145" y="1048" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="9aZ-h2-Ojr"/>
-                                    <constraint firstAttribute="height" constant="50" id="Zo7-ux-Ug0"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Blue Peg">
-                                    <backgroundConfiguration key="background" image="peg-blue"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="icU-FC-NTh"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.20000000298023224" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQq-jC-04G">
-                                <rect key="frame" x="295" y="1048" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="bvl-Nn-vjO"/>
-                                    <constraint firstAttribute="height" constant="50" id="m60-Fs-1IY"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Zombie Peg">
-                                    <backgroundConfiguration key="background" image="peg-green"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plR-b6-c3Q"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.20000000298023224" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z15-bC-08Z">
-                                <rect key="frame" x="370" y="1048" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="hJn-01-eJs"/>
-                                    <constraint firstAttribute="height" constant="50" id="iRH-db-Fiy"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Confusement Peg">
-                                    <backgroundConfiguration key="background" image="peg-red"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HKG-1o-HoS"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" alpha="0.20000000298023224" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kab-nh-8Hi">
-                                <rect key="frame" x="220" y="1048" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="9ND-DO-Md9"/>
-                                    <constraint firstAttribute="width" constant="50" id="HUt-AJ-np8"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Block">
-                                    <backgroundConfiguration key="background" image="black"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EL7-of-3AH"/>
-                                </connections>
-                            </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Jd-Z3-mIm">
-                                <rect key="frame" x="521" y="1068" width="118" height="31"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="114" id="Ect-1n-Lgj"/>
-                                </constraints>
-                                <color key="minimumTrackTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </slider>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93p-J1-avi">
-                                <rect key="frame" x="564" y="1042" width="32" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndm-X7-A97">
-                                <rect key="frame" x="658" y="1048" width="50" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="50" id="A6x-eC-RuG"/>
-                                    <constraint firstAttribute="height" constant="50" id="b0n-cn-hb3"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain">
-                                    <backgroundConfiguration key="background" image="delete"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mUB-h0-Crd"/>
-                                </connections>
-                            </button>
+                            </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ndm-X7-A97" firstAttribute="leading" secondItem="9Jd-Z3-mIm" secondAttribute="trailing" constant="21" id="3al-WU-tjz"/>
-                            <constraint firstItem="Kab-nh-8Hi" firstAttribute="leading" secondItem="cMv-Gk-b16" secondAttribute="trailing" constant="25" id="3i1-bG-TKa"/>
+                            <constraint firstItem="tkH-1j-NGt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1Pb-qo-Ahs"/>
+                            <constraint firstAttribute="bottom" secondItem="tkH-1j-NGt" secondAttribute="bottom" id="4N2-6h-L52"/>
                             <constraint firstItem="a5n-U7-fNX" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="7Rb-rV-gFy"/>
-                            <constraint firstItem="oQq-jC-04G" firstAttribute="leading" secondItem="Kab-nh-8Hi" secondAttribute="trailing" constant="25" id="8jX-V7-Yic"/>
-                            <constraint firstItem="Mp5-0o-7Ih" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="70" id="8y4-4V-Ysz"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Mp5-0o-7Ih" secondAttribute="bottom" constant="15" id="CaD-19-QZ7"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Kab-nh-8Hi" secondAttribute="bottom" constant="15" id="FIj-4h-5B9"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="z15-bC-08Z" secondAttribute="bottom" constant="15" id="HR3-TW-gXc"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="z15-bC-08Z" secondAttribute="bottom" constant="15" id="Hqz-Vc-Wy1"/>
                             <constraint firstAttribute="bottom" secondItem="vsl-h7-nc6" secondAttribute="bottom" constant="100" id="Hya-Jh-0kC"/>
                             <constraint firstItem="vsl-h7-nc6" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="bottom" id="IIk-Pg-rFG"/>
                             <constraint firstItem="a5n-U7-fNX" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="Iay-6g-oSo"/>
-                            <constraint firstItem="Ndm-X7-A97" firstAttribute="leading" secondItem="93p-J1-avi" secondAttribute="trailing" constant="62" id="J0X-Dk-61L"/>
-                            <constraint firstItem="cMv-Gk-b16" firstAttribute="leading" secondItem="Mp5-0o-7Ih" secondAttribute="trailing" constant="25" id="NXC-kY-hwM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Ndm-X7-A97" secondAttribute="bottom" constant="15" id="PrF-Cd-IlF"/>
-                            <constraint firstItem="9Jd-Z3-mIm" firstAttribute="top" secondItem="93p-J1-avi" secondAttribute="bottom" constant="5" id="Q8F-oc-xug"/>
                             <constraint firstItem="vsl-h7-nc6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="10" id="TK0-sd-8gx"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Kab-nh-8Hi" secondAttribute="bottom" constant="15" id="dAb-SN-Pmt"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oQq-jC-04G" secondAttribute="bottom" constant="15" id="fsV-nr-Vaq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="cMv-Gk-b16" secondAttribute="bottom" constant="15" id="kyF-Xv-Sie"/>
-                            <constraint firstItem="z15-bC-08Z" firstAttribute="leading" secondItem="oQq-jC-04G" secondAttribute="trailing" constant="25" id="nDN-mG-9KW"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="9Jd-Z3-mIm" secondAttribute="bottom" constant="15" id="q4F-mf-4Tc"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oQq-jC-04G" secondAttribute="bottom" constant="15" id="y24-EH-Laf"/>
+                            <constraint firstItem="tkH-1j-NGt" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="YSK-ne-8P5"/>
                             <constraint firstAttribute="trailing" secondItem="vsl-h7-nc6" secondAttribute="trailing" constant="10" id="yyG-4E-icb"/>
                             <constraint firstItem="a5n-U7-fNX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="z7i-va-3ud"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ndm-X7-A97" secondAttribute="trailing" constant="36" id="zoe-je-Hph"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bluePegButton" destination="cMv-Gk-b16" id="ZvK-ZO-wjy"/>
                         <outlet property="boardView" destination="vsl-h7-nc6" id="n4d-qT-moh"/>
-                        <outlet property="deletePegButton" destination="Ndm-X7-A97" id="gAU-wr-XaA"/>
                         <outlet property="levelNameTextField" destination="XbQ-F7-vbO" id="EfO-tS-itl"/>
                         <outlet property="loadButton" destination="Gq9-0X-Gkz" id="q4Q-09-cdg"/>
-                        <outlet property="orangePegButton" destination="Mp5-0o-7Ih" id="gyQ-Re-iXh"/>
                         <outlet property="resetButton" destination="IsX-5G-N6v" id="l9e-Fu-cPW"/>
                         <outlet property="saveButton" destination="DIX-hW-oNx" id="S2j-DO-V0h"/>
+                        <outlet property="startButton" destination="5g0-oH-zqk" id="X1H-HG-5d0"/>
                         <segue destination="pNe-0A-aRC" kind="presentation" identifier="goToGameView" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="hp7-xm-TTN"/>
                     </connections>
                 </viewController>
@@ -351,7 +245,151 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="131.70731707317074" y="-27.457627118644069"/>
+            <point key="canvasLocation" x="130.64516129032259" y="-27.802294792586054"/>
+        </scene>
+        <!--Tools View Controller-->
+        <scene sceneID="GiS-z2-9iy">
+            <objects>
+                <viewController id="9qP-8e-c0W" customClass="ToolsViewController" customModule="PeggleClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9Xe-FA-fNX">
+                        <rect key="frame" x="0.0" y="0.0" width="744" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mp5-0o-7Ih" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="40" y="34" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="4wm-5X-elU"/>
+                                    <constraint firstAttribute="width" constant="50" id="DL5-jb-zJU"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Orange Peg">
+                                    <backgroundConfiguration key="background" image="peg-orange"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="LiB-Bg-phn"/>
+                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Mlv-4z-uQd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cMv-Gk-b16" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="110" y="34" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="9aZ-h2-Ojr"/>
+                                    <constraint firstAttribute="height" constant="50" id="Zo7-ux-Ug0"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Blue Peg">
+                                    <backgroundConfiguration key="background" image="peg-blue"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="mzw-cY-sKu"/>
+                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="icU-FC-NTh"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.20000000298023224" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oQq-jC-04G" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="250" y="34" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="bvl-Nn-vjO"/>
+                                    <constraint firstAttribute="height" constant="50" id="m60-Fs-1IY"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Zombie Peg">
+                                    <backgroundConfiguration key="background" image="peg-green"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="SEr-GZ-4k9"/>
+                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plR-b6-c3Q"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.20000000298023224" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z15-bC-08Z" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="320" y="34" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="hJn-01-eJs"/>
+                                    <constraint firstAttribute="height" constant="50" id="iRH-db-Fiy"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Confusement Peg">
+                                    <backgroundConfiguration key="background" image="peg-red"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="v69-OJ-Au5"/>
+                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="HKG-1o-HoS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" alpha="0.20000000298023224" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kab-nh-8Hi" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="180" y="34" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="9ND-DO-Md9"/>
+                                    <constraint firstAttribute="width" constant="50" id="HUt-AJ-np8"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Block">
+                                    <backgroundConfiguration key="background" image="black"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="5vl-Vi-QKB"/>
+                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EL7-of-3AH"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Jd-Z3-mIm">
+                                <rect key="frame" x="528" y="56.5" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="Ect-1n-Lgj"/>
+                                </constraints>
+                                <color key="minimumTrackTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </slider>
+                            <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndm-X7-A97" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="674" y="24" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="A6x-eC-RuG"/>
+                                    <constraint firstAttribute="height" constant="50" id="b0n-cn-hb3"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain">
+                                    <backgroundConfiguration key="background" image="delete"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="W7S-jU-ZF5"/>
+                                    <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="mUB-h0-Crd"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Size" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93p-J1-avi">
+                                <rect key="frame" x="571" y="16" width="32" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="9Jd-Z3-mIm" firstAttribute="top" secondItem="93p-J1-avi" secondAttribute="bottom" constant="20" id="0hd-bP-gm0"/>
+                            <constraint firstItem="oQq-jC-04G" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="2Yo-wo-Vs7"/>
+                            <constraint firstItem="Ndm-X7-A97" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" id="2u8-Yz-65R"/>
+                            <constraint firstItem="cMv-Gk-b16" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="7VI-Qu-1MU"/>
+                            <constraint firstItem="93p-J1-avi" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="top" constant="16" id="8nc-rO-mRO"/>
+                            <constraint firstItem="Kab-nh-8Hi" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="Dzy-rS-EsB"/>
+                            <constraint firstItem="Kab-nh-8Hi" firstAttribute="leading" secondItem="cMv-Gk-b16" secondAttribute="trailing" constant="20" id="GtH-gJ-6QC"/>
+                            <constraint firstItem="Ndm-X7-A97" firstAttribute="leading" secondItem="93p-J1-avi" secondAttribute="trailing" constant="71" id="IzL-lG-CZD"/>
+                            <constraint firstItem="Mp5-0o-7Ih" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="Kl6-46-knv"/>
+                            <constraint firstItem="z15-bC-08Z" firstAttribute="leading" secondItem="oQq-jC-04G" secondAttribute="trailing" constant="20" id="S5n-lx-O1Z"/>
+                            <constraint firstItem="z15-bC-08Z" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="dyh-Xs-9DZ"/>
+                            <constraint firstItem="Mp5-0o-7Ih" firstAttribute="leading" secondItem="9Xe-FA-fNX" secondAttribute="leading" constant="40" id="fBH-W1-JBP"/>
+                            <constraint firstItem="Ndm-X7-A97" firstAttribute="leading" secondItem="9Jd-Z3-mIm" secondAttribute="trailing" constant="30" id="kRb-B3-ltJ"/>
+                            <constraint firstItem="Ndm-X7-A97" firstAttribute="trailing" secondItem="9Xe-FA-fNX" secondAttribute="trailingMargin" id="kpd-oE-ua3"/>
+                            <constraint firstItem="cMv-Gk-b16" firstAttribute="leading" secondItem="Mp5-0o-7Ih" secondAttribute="trailing" constant="20" id="rLZ-6Q-4kr"/>
+                            <constraint firstItem="oQq-jC-04G" firstAttribute="leading" secondItem="Kab-nh-8Hi" secondAttribute="trailing" constant="20" id="xmi-wy-Zy7"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="blockButton" destination="Kab-nh-8Hi" id="99a-rz-fK3"/>
+                        <outlet property="bluePegButton" destination="cMv-Gk-b16" id="OfE-x0-PQ1"/>
+                        <outlet property="confusementPegButton" destination="z15-bC-08Z" id="OR1-ba-pMP"/>
+                        <outlet property="deleteButton" destination="Ndm-X7-A97" id="0Py-Q8-Bbb"/>
+                        <outlet property="orangePegButton" destination="Mp5-0o-7Ih" id="VZi-uE-PdR"/>
+                        <outlet property="zombiePegButton" destination="oQq-jC-04G" id="Vd2-nS-IvM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="U3i-i7-NMO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="154" y="452"/>
         </scene>
     </scenes>
     <resources>

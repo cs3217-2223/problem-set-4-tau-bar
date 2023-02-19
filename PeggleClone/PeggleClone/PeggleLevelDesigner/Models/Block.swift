@@ -16,13 +16,16 @@ class Block: BoardObject {
 
     var width: Double
 
-    static let defaultHeight: Double = 20.0
-    static let defaultWidth: Double = 20.0
+    let asset: String
+
+    static let defaultHeight: Double = 40.0
+    static let defaultWidth: Double = 40.0
+    static let defaultBlockRotation = 0.0
 
     init?(position: CGPoint,
-          rotation: Double,
-          height: Double,
-          width: Double) {
+          rotation: Double = defaultBlockRotation,
+          height: Double = defaultHeight,
+          width: Double = defaultWidth) {
         self.position = position
         self.rotation = rotation
         if height < 0 || width < 0 {
@@ -30,6 +33,7 @@ class Block: BoardObject {
         }
         self.height = height
         self.width = width
+        self.asset = "black"
     }
 
     func isOverlapping(with otherObject: BoardObject) -> Bool {

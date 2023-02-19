@@ -113,11 +113,6 @@ public class Board {
         let movedObject = movedObjectWrapper.object
         let oldPosition = movedObject.position
         movedObject.position = newPosition
-        print(newPosition.x)
-        print(newPosition.y)
-        print(width)
-        print(movedObject.width)
-        print("------")
 
         if hasOverlappingObjects(with: movedObjectWrapper) ||
             isOutOfBounds(movedObjectWrapper) {

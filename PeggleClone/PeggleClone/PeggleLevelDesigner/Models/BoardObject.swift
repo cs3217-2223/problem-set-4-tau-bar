@@ -12,6 +12,7 @@ protocol BoardObject: AnyObject {
     var rotation: Double { get set }
     var height: Double { get }
     var width: Double { get }
+    var asset: String { get }
 
     func isOverlapping(with otherObject: BoardObject) -> Bool
     func isOverlapping(with otherObject: Peg) -> Bool

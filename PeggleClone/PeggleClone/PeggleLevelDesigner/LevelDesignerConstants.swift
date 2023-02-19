@@ -6,16 +6,6 @@
 //
 import Foundation
 
-enum PegColor: String {
-    case blue, orange
-}
-
-let colourToImageUrl: [PegColor: String] = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange"]
-
-func getImageUrl(from colour: PegColor) -> String? {
-    colourToImageUrl[colour]
-}
-
 extension Notification.Name {
     static var objectAdded: Notification.Name {
           .init(rawValue: "Board.objectAdded") }

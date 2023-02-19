@@ -1,18 +1,17 @@
 import UIKit
 import CoreData
 
-// TODO: Break this up into smaller VCs
 class LevelBuilderViewController: UIViewController {
-    // MARK: View objects
-    @IBOutlet var bluePegButton: SelectPegButton!
-    @IBOutlet var orangePegButton: SelectPegButton!
-    @IBOutlet var deletePegButton: SelectPegButton!
+    // MARK: View objectsn!
     @IBOutlet var levelNameTextField: UITextField!
     @IBOutlet var boardView: UIView!
     @IBOutlet var startButton: UIButton!
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var loadButton: UIButton!
+
+    // TODO - Ensure no strong reference cycles here
+    var actionsDelegate: LevelBuilderActionsDelegate?
 
     // MARK: Model objects
     var board: Board? {
@@ -24,23 +23,9 @@ class LevelBuilderViewController: UIViewController {
     }
 
     // MARK: Variables and properties
-    var buttons: [SelectPegButton] = []
-    var selectedButton: SelectPegButton? {
-        didSet {
-            let unselectedButtons = buttons.filter({ button in button != selectedButton })
-            setButtonsTranslucent(unselectedButtons)
-            guard let selectedButton = selectedButton else { return }
-            setButtonOpaque(selectedButton)
-        }
-    }
-    var currentSelectedColour: PegColor? {
-        guard let selectedButton = selectedButton else { return nil }
-        return buttonColors[selectedButton]
-    }
     var objectsToViews: [BoardObjectWrapper: BoardObjectView] = [:]
     var viewsToObjects: [BoardObjectView: BoardObjectWrapper] = [:]
     let notificationCenter = NotificationCenter.default
-    var buttonColors: [SelectPegButton: PegColor] = [:]
 
     // MARK: View lifecycle
     override func viewDidLoad() {
@@ -50,10 +35,10 @@ class LevelBuilderViewController: UIViewController {
         boardView.setNeedsLayout()
         boardView.layoutIfNeeded()
 
-        // Set up peg buttons
-        buttons = [bluePegButton, orangePegButton, deletePegButton]
-        buttonColors[bluePegButton] = PegColor.blue
-        buttonColors[orangePegButton] = PegColor.orange
+        // Set up delegates
+        guard let toolsViewController = self.children[0] as? ToolsViewController else { return }
+        self.actionsDelegate = toolsViewController
+        toolsViewController.delegate = self
 
         // Initialize empty board with current boardView size
         // if no board passed to controller
@@ -85,27 +70,16 @@ class LevelBuilderViewController: UIViewController {
                                                object: nil)
 
         // Select blue peg button by default when view is loaded
-        selectButton(bluePegButton)
+//        selectButton(bluePegButton)
     }
 
     // MARK: Interaction handler functions
-    /// Selects the peg button that was tapped.
-    @IBAction func pegButtonTapped(_ sender: SelectPegButton) {
-        selectButton(sender)
-    }
-
     /// Runs when the board view is tapped.
     /// If an add peg button is selected, a peg is added.
     /// Otherwise, do nothing.
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: boardView)
-        if let addedPegColour = currentSelectedColour {
-            guard let newPeg = Peg(colour: addedPegColour, position: tapLocation) else {
-                return
-            }
-
-            addObject(addedObjectWrapper: BoardObjectWrapper(object: newPeg))
-        }
+        actionsDelegate?.didTapBoard(at: tapLocation)
     }
 
     /// Resets the level to be empty when the reset button is tapped.
@@ -115,17 +89,6 @@ class LevelBuilderViewController: UIViewController {
 
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "goToGameView", sender: self)
-    }
-
-    @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {}
-
-    /// Opens the view showing the saved levels when the load button is tapped.
-    @IBAction func loadButtonTapped(_ sender: Any) {
-        guard let levelSelectVC = self
-            .storyboard?.instantiateViewController(identifier: "LevelSelectViewController")
-                as? LevelSelectViewController else { return }
-        levelSelectVC.delegate = self
-        self.present(levelSelectVC, animated: true)
     }
 
     /// Saves the level with the current level name.
@@ -141,6 +104,17 @@ class LevelBuilderViewController: UIViewController {
 
         board.name = levelName
         //        DataManager.sharedInstance.saveBoard(board, onComplete: alertUserLevelSaved)
+    }
+
+    @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {}
+
+    /// Opens the view showing the saved levels when the load button is tapped.
+    @IBAction func loadButtonTapped(_ sender: Any) {
+        guard let levelSelectVC = self
+            .storyboard?.instantiateViewController(identifier: "LevelSelectViewController")
+                as? LevelSelectViewController else { return }
+        levelSelectVC.delegate = self
+        self.present(levelSelectVC, animated: true)
     }
 
     func addObject(addedObjectWrapper: BoardObjectWrapper) {
@@ -218,7 +192,7 @@ class LevelBuilderViewController: UIViewController {
 
     // MARK: Helper functions
     func createEmptyBoard() -> Board {
-        return Board(width: boardView.frame.width, height: boardView.frame.height)
+        Board(width: boardView.frame.width, height: boardView.frame.height)
     }
 
     /// Sets a new text to the level name text field.
@@ -231,23 +205,6 @@ class LevelBuilderViewController: UIViewController {
         levelNameTextField.text
     }
 
-    /// Set the button which was selected to be opaque.
-    func selectButton(_ button: SelectPegButton) {
-        selectedButton = button
-    }
-
-    /// Sets a peg button to be opaque.
-    func setButtonOpaque(_ button: SelectPegButton) {
-        button.alpha = SelectPegButton.SelectedAlphaValue
-    }
-
-    /// Set the buttons to lower opacity.
-    func setButtonsTranslucent(_ unselectedButtons: [SelectPegButton]) {
-        unselectedButtons.forEach({ button in
-            button.alpha = SelectPegButton.UnselectedAlphaValue
-        })
-    }
-
     private func loadObjectsFromModelOnBoard() {
         board?.objects.forEach({
             insertSubview(for: $0)
@@ -255,15 +212,15 @@ class LevelBuilderViewController: UIViewController {
     }
 
     /// Creates a new `BoardPegView` using the data from the specified `Peg` and location.
-    private func createBoardPegView(with addedPeg: Peg, at tapLocation: CGPoint) -> BoardObjectView? {
-        let pegSize = addedPeg.radius * 2
-        guard let pegImageUrl = getImageUrl(from: addedPeg.colour) else { return nil }
-        let newPegImageView = BoardPegView(image: UIImage(named: pegImageUrl))
-        newPegImageView.frame = CGRect(x: tapLocation.x - addedPeg.radius,
-                                       y: tapLocation.y - addedPeg.radius,
-                                       width: pegSize, height: pegSize)
-        newPegImageView.delegate = self
-        return newPegImageView
+    private func createBoardObjectView(with addedObject: BoardObject, at tapLocation: CGPoint) -> BoardObjectView? {
+        let height = addedObject.height
+        let width = addedObject.width
+        let newObjectView = BoardObjectView(image: UIImage(named: addedObject.asset))
+        newObjectView.frame = CGRect(x: tapLocation.x - (width / 2),
+                                       y: tapLocation.y - (height / 2),
+                                       width: width, height: height)
+        newObjectView.delegate = self
+        return newObjectView
     }
 
     func removeAllBoardObjectsFromView() {
@@ -275,27 +232,16 @@ class LevelBuilderViewController: UIViewController {
     // TODO: Cleanup this function
     func insertSubview(for objectWrapper: BoardObjectWrapper) {
         let object = objectWrapper.object
-        var newView: BoardObjectView?
+        let newView = createBoardObjectView(with: object, at: object.position)
 
-        if object is Peg {
-            guard let peg = object as? Peg else {
-                return
-            }
-            newView = createBoardPegView(with: peg, at: peg.position)
-        }
-        
         // Check whether the newView was set
         guard let viewToInsert = newView else { return }
         boardView.addSubview(viewToInsert)
         viewToInsert.delegate = self
-        
+
         // Update dictionaries
         objectsToViews[objectWrapper] = viewToInsert
         viewsToObjects[viewToInsert] = objectWrapper
-    }
-
-    func isDeletePegButton(selectedButton: SelectPegButton?) -> Bool {
-        selectedButton == deletePegButton
     }
 
     /// Presents an alert to user that no level name was entered.

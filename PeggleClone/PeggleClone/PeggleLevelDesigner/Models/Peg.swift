@@ -16,7 +16,13 @@ enum PegKeys: String, CodingKey {
     case colour, radius, position
 }
 
+enum PegColor: String {
+    case blue, orange, yellow, red
+}
+
 class Peg: BoardObject {
+    static let pegAssets = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange", PegColor.red: "peg-red", PegColor.yellow: "peg-yellow"]
+
     var position: CGPoint
 
     var rotation: Double
@@ -33,6 +39,8 @@ class Peg: BoardObject {
 
     let radius: Double
 
+    let asset: String
+
     static let defaultPegRadius = 20.0
     static let defaultPegRotation = 0.0
     static var supportsSecureCoding = true
@@ -42,13 +50,17 @@ class Peg: BoardObject {
           position: CGPoint,
           rotation: Double = defaultPegRotation,
           radius: Double = defaultPegRadius) {
-        self.colour = colour
-        self.position = position
-        self.rotation = rotation
         if radius <= 0 {
             return nil
         }
+
+        guard let asset = Peg.pegAssets[colour] else { return nil }
+
+        self.asset = asset
         self.radius = radius
+        self.colour = colour
+        self.position = position
+        self.rotation = rotation
     }
 
     convenience init?(colour: PegColor, position: CGPoint) {
