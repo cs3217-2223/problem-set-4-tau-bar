@@ -126,7 +126,6 @@ public class Board {
     func resizeObject(_ resizedObjectWrapper: BoardObjectWrapper, to newSize: Double) {
         let resizedObject = resizedObjectWrapper.object
         let oldWidth = resizedObject.width
-        let oldHeight = resizedObject.height
         resizedObject.setSize(to: newSize)
 
         if hasOverlappingObjects(with: resizedObjectWrapper) ||
@@ -139,6 +138,21 @@ public class Board {
         sendNotification(of: .objectResizeSuccess, with: resizedObjectWrapper)
     }
 
+    func rotateObject(_ rotatedObjectWrapper: BoardObjectWrapper, to rotation: Double) {
+        let rotatedObject = rotatedObjectWrapper.object
+        let oldRotation = rotatedObject.rotation
+        rotatedObject.rotation = rotation
+
+        if hasOverlappingObjects(with: rotatedObjectWrapper) ||
+            isOutOfBounds(rotatedObjectWrapper) {
+            rotatedObject.rotation = oldRotation
+            sendNotification(of: .objectRotateFail, with: rotatedObjectWrapper)
+            return
+        }
+
+        sendNotification(of: .objectRotateSuccess, with: rotatedObjectWrapper)
+    }
+
     /// Checks whether the specified object is overlapping with any other objects on the board.
     func hasOverlappingObjects(with checkedObjectWrapper: BoardObjectWrapper) -> Bool {
         objects.contains(where: { objectWrapper in
@@ -149,14 +163,14 @@ public class Board {
             if checkedObject.isEqual(to: boardObject) {
                 return false
             }
-            
+
             return boardObject.isOverlapping(with: checkedObject)
         })
     }
 
     /// Checks whther the object is out of bounds of the board.
     func isOutOfBounds(_ checkedObjectWrapper: BoardObjectWrapper) -> Bool {
-        return checkedObjectWrapper.object.isOutOfBounds(lowerX: 0,
+        checkedObjectWrapper.object.isOutOfBounds(lowerX: 0,
                                                   upperX: width,
                                                   lowerY: 0,
                                                   upperY: height)
@@ -164,6 +178,7 @@ public class Board {
 
     func removeAllObjects() {
         objects = Set()
+        sendNotification(of: .boardCleared, with: nil)
     }
 
     private func sendNotification(of type: NSNotification.Name, with object: BoardObjectWrapper?) {

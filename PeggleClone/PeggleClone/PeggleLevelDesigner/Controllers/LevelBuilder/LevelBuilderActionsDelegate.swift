@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LevelBuilderActionsDelegate {
+protocol LevelBuilderActionsDelegate: AnyObject {
     func didTapBoardObject(_ object: BoardObjectWrapper)
     func didTapBoard(at location: CGPoint)
     func unselectAllTools()

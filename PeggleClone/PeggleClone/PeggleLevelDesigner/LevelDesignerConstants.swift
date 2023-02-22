@@ -22,6 +22,12 @@ extension Notification.Name {
     static var objectResizeFail: Notification.Name {
           .init(rawValue: "Board.objectResizeFail") }
 
+    static var objectRotateSuccess: Notification.Name {
+          .init(rawValue: "Board.objectRotateSuccess") }
+
+    static var objectRotateFail: Notification.Name {
+          .init(rawValue: "Board.objectRotateFail") }
+
     static var boardCleared: Notification.Name {
           .init(rawValue: "Board.cleared") }
 

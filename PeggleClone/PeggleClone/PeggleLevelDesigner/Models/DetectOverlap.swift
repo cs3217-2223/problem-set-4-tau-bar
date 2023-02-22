@@ -16,18 +16,17 @@ class DetectOverlap {
     static func doPegAndBlockOverlap(peg: Peg, block: Block) -> Bool {
         let circleDistance = (x: abs(peg.position.x - block.position.x), y: abs(peg.position.y - block.position.y))
 
-        if circleDistance.x > (block.width/2 + peg.radius) { return false }
-        if circleDistance.y > (block.height/2 + peg.radius) { return false }
+        if circleDistance.x > (block.width / 2 + peg.radius) { return false }
+        if circleDistance.y > (block.height / 2 + peg.radius) { return false }
 
-        if circleDistance.x <= (block.width/2) { return true }
-        if circleDistance.y <= (block.height/2) { return true }
+        if circleDistance.x <= (block.width / 2) { return true }
+        if circleDistance.y <= (block.height / 2) { return true }
 
-        let cornerDistanceSq = pow(circleDistance.x - block.width/2, 2) +
-                                 pow(circleDistance.y - block.height/2, 2)
+        let cornerDistanceSq = pow(circleDistance.x - block.width / 2, 2) +
+                                 pow(circleDistance.y - block.height / 2, 2)
 
         return (cornerDistanceSq <= pow(peg.radius, 2))
     }
-
 
     static func detectOverlap(objectA: Peg, objectB: Peg) -> Bool {
         let distanceBetween = calculateEuclideanDistance(positionA: objectA.position, positionB: objectB.position)
@@ -39,15 +38,15 @@ class DetectOverlap {
         let aTop = objectA.position.y + objectA.height
         let bRight = objectB.position.x + objectB.width
         let bTop = objectB.position.y + objectB.height
-        
+
         if objectA.position.x >= bRight || objectB.position.x >= aRight {
             return false // rectangles do not overlap on X-axis
         }
-        
+
         if objectA.position.y >= bTop || objectB.position.y >= aTop {
             return false // rectangles do not overlap on Y-axis
         }
-        
+
         return true // rectangles overlap on both X and Y axes
     }
 

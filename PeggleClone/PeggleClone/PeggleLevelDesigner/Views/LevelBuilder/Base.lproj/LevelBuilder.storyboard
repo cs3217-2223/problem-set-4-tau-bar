@@ -57,7 +57,7 @@
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="resetButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JtG-T4-DPt"/>
+                                            <action selector="resetButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4hU-8P-Svq"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIX-hW-oNx" userLabel="Save Button">
@@ -72,7 +72,7 @@
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="saveButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Njr-Iw-vZg"/>
+                                            <action selector="saveButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hBc-rf-8k0"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Whg-lF-Ebp">
@@ -87,6 +87,9 @@
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="voY-F2-tBU" kind="unwind" unwindAction="unwindFromLevelBuilderViewController:" id="Dwq-6m-U8u"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e4-8o-MiD">
                                         <rect key="frame" x="250" y="35" width="50" height="21"/>
@@ -146,7 +149,7 @@
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="resetButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GYj-RD-ZQZ"/>
+                                            <action selector="startButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELn-02-P4x"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -239,6 +242,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <exit id="voY-F2-tBU" userLabel="Exit" sceneMemberID="exit"/>
                 <tapGestureRecognizer id="fmD-56-xRH">
                     <connections>
                         <action selector="didTapView:" destination="BYZ-38-t0r" id="O2b-tY-xsa"/>
@@ -340,8 +344,19 @@
                                     <action selector="didChangeSize:" destination="9qP-8e-c0W" eventType="valueChanged" id="o2u-gf-mRq"/>
                                 </connections>
                             </slider>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="C6s-Bz-lHe">
+                                <rect key="frame" x="391" y="56" width="118" height="31"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="114" id="ZQS-oT-G05"/>
+                                </constraints>
+                                <color key="minimumTrackTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="didChangeRotation:" destination="9qP-8e-c0W" eventType="valueChanged" id="H1Z-NL-KeV"/>
+                                    <action selector="didChangeSize:" destination="9qP-8e-c0W" eventType="valueChanged" id="8k9-Tn-hdv"/>
+                                </connections>
+                            </slider>
                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndm-X7-A97" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
-                                <rect key="frame" x="674" y="24" width="50" height="50"/>
+                                <rect key="frame" x="674" y="34" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="A6x-eC-RuG"/>
                                     <constraint firstAttribute="height" constant="50" id="b0n-cn-hb3"/>
@@ -361,33 +376,45 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rotation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Em6-h1-Qrn">
+                                <rect key="frame" x="418" y="16" width="64" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yrf-cu-f38"/>
                         <constraints>
                             <constraint firstItem="9Jd-Z3-mIm" firstAttribute="top" secondItem="93p-J1-avi" secondAttribute="bottom" constant="20" id="0hd-bP-gm0"/>
                             <constraint firstItem="oQq-jC-04G" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="2Yo-wo-Vs7"/>
-                            <constraint firstItem="Ndm-X7-A97" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" id="2u8-Yz-65R"/>
                             <constraint firstItem="cMv-Gk-b16" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="7VI-Qu-1MU"/>
                             <constraint firstItem="93p-J1-avi" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="top" constant="16" id="8nc-rO-mRO"/>
+                            <constraint firstItem="Ndm-X7-A97" firstAttribute="top" secondItem="Yrf-cu-f38" secondAttribute="top" constant="10" id="Bxl-bM-Oqi"/>
+                            <constraint firstItem="C6s-Bz-lHe" firstAttribute="top" secondItem="Em6-h1-Qrn" secondAttribute="bottom" constant="19" id="CvG-9R-4ry"/>
                             <constraint firstItem="Kab-nh-8Hi" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="Dzy-rS-EsB"/>
                             <constraint firstItem="Kab-nh-8Hi" firstAttribute="leading" secondItem="cMv-Gk-b16" secondAttribute="trailing" constant="20" id="GtH-gJ-6QC"/>
                             <constraint firstItem="Ndm-X7-A97" firstAttribute="leading" secondItem="93p-J1-avi" secondAttribute="trailing" constant="71" id="IzL-lG-CZD"/>
                             <constraint firstItem="Mp5-0o-7Ih" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="Kl6-46-knv"/>
+                            <constraint firstItem="93p-J1-avi" firstAttribute="leading" secondItem="Em6-h1-Qrn" secondAttribute="trailing" constant="89" id="PQo-1u-yxf"/>
                             <constraint firstItem="z15-bC-08Z" firstAttribute="leading" secondItem="oQq-jC-04G" secondAttribute="trailing" constant="20" id="S5n-lx-O1Z"/>
                             <constraint firstItem="z15-bC-08Z" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="dyh-Xs-9DZ"/>
                             <constraint firstItem="Mp5-0o-7Ih" firstAttribute="leading" secondItem="9Xe-FA-fNX" secondAttribute="leading" constant="40" id="fBH-W1-JBP"/>
                             <constraint firstItem="Ndm-X7-A97" firstAttribute="leading" secondItem="9Jd-Z3-mIm" secondAttribute="trailing" constant="30" id="kRb-B3-ltJ"/>
                             <constraint firstItem="Ndm-X7-A97" firstAttribute="trailing" secondItem="9Xe-FA-fNX" secondAttribute="trailingMargin" id="kpd-oE-ua3"/>
+                            <constraint firstItem="9Jd-Z3-mIm" firstAttribute="leading" secondItem="C6s-Bz-lHe" secondAttribute="trailing" constant="23" id="mEo-rk-rwM"/>
                             <constraint firstItem="cMv-Gk-b16" firstAttribute="leading" secondItem="Mp5-0o-7Ih" secondAttribute="trailing" constant="20" id="rLZ-6Q-4kr"/>
                             <constraint firstItem="oQq-jC-04G" firstAttribute="leading" secondItem="Kab-nh-8Hi" secondAttribute="trailing" constant="20" id="xmi-wy-Zy7"/>
+                            <constraint firstAttribute="bottom" secondItem="C6s-Bz-lHe" secondAttribute="bottom" constant="14" id="yAW-7J-ef3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="angleSlider" destination="C6s-Bz-lHe" id="mrT-B3-qg6"/>
                         <outlet property="blockButton" destination="Kab-nh-8Hi" id="99a-rz-fK3"/>
                         <outlet property="bluePegButton" destination="cMv-Gk-b16" id="OfE-x0-PQ1"/>
                         <outlet property="confusementPegButton" destination="z15-bC-08Z" id="OR1-ba-pMP"/>
                         <outlet property="deleteButton" destination="Ndm-X7-A97" id="0Py-Q8-Bbb"/>
                         <outlet property="orangePegButton" destination="Mp5-0o-7Ih" id="VZi-uE-PdR"/>
+                        <outlet property="rotationLabel" destination="Em6-h1-Qrn" id="mIY-0i-RAA"/>
                         <outlet property="sizeLabel" destination="93p-J1-avi" id="H8l-sS-Yg0"/>
                         <outlet property="sizeSlider" destination="9Jd-Z3-mIm" id="wOH-UN-lja"/>
                         <outlet property="zombiePegButton" destination="oQq-jC-04G" id="Vd2-nS-IvM"/>

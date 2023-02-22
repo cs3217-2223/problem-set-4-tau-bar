@@ -60,10 +60,10 @@ class Block: BoardObject {
     }
 
     func isOutOfBounds(lowerX: Double, upperX: Double, lowerY: Double, upperY: Double) -> Bool {
-        let blockLowerX = position.x - width/2
-        let blockUpperX = position.x + width/2
-        let blockLowerY = position.y - height/2
-        let blockUpperY = position.y + height/2
+        let blockLowerX = position.x - width / 2
+        let blockUpperX = position.x + width / 2
+        let blockLowerY = position.y - height / 2
+        let blockUpperY = position.y + height / 2
 
         return blockLowerX < lowerX || blockUpperX > upperX || blockLowerY < lowerY || blockUpperY > upperY
     }

@@ -2,6 +2,7 @@ import UIKit
 import CoreData
 
 class LevelBuilderViewController: UIViewController {
+    // IBOutlets
     @IBOutlet var levelNameTextField: UITextField!
     @IBOutlet var boardView: UIView!
     @IBOutlet var startButton: UIButton!
@@ -9,10 +10,11 @@ class LevelBuilderViewController: UIViewController {
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var loadButton: UIButton!
 
-    // TODO - Ensure no strong reference cycles here
-    var actionsDelegate: LevelBuilderActionsDelegate?
+    // Delegate references
+    weak var actionsDelegate: LevelBuilderActionsDelegate?
     var selectedObject: BoardObjectWrapper?
-    // MARK: Model objects
+    
+    // Model objects
     var board: Board? {
         didSet {
             removeAllBoardObjectsFromView()
@@ -21,12 +23,11 @@ class LevelBuilderViewController: UIViewController {
         }
     }
 
-    // MARK: Variables and properties
+    // Helper variables & properties
     var objectsToViews: [BoardObjectWrapper: BoardObjectView] = [:]
     var viewsToObjects: [BoardObjectView: BoardObjectWrapper] = [:]
     let notificationCenter = NotificationCenter.default
 
-    // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -45,35 +46,23 @@ class LevelBuilderViewController: UIViewController {
             board = createEmptyBoard()
         }
 
-        // Register for notifications from model
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(addObjectToBoardView),
-                                               name: .objectAdded,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(deleteObjectFromBoardView),
-                                               name: .objectDeleted,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(moveObjectOnBoardView),
+        // Register for relevant notifications
+        NotificationCenter.default.addObserver(self, selector: #selector(addObjectToBoardView),
+                                               name: .objectAdded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteObjectFromBoardView),
+                                               name: .objectDeleted, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(moveObjectOnBoardView),
                                                name: .objectMoved, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(clearBoardView),
+        NotificationCenter.default.addObserver(self, selector: #selector(clearBoardView),
                                                name: .boardCleared, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(notifyUserSaved),
+        NotificationCenter.default.addObserver(self, selector: #selector(notifyUserSaved),
                                                name: .dataSaved, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(notifyUserSaveError),
-                                               name: .dataSaveError,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(resizeObjectOnBoardView),
-                                               name: .objectResizeSuccess,
-                                               object: nil)
-
-        // Select blue peg button by default when view is loaded
-//        selectButton(bluePegButton)
+        NotificationCenter.default.addObserver(self, selector: #selector(notifyUserSaveError),
+                                               name: .dataSaveError, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(resizeObjectOnBoardView),
+                                               name: .objectResizeSuccess, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(rotatedObjectOnBoardView),
+                                               name: .objectRotateSuccess, object: nil)
     }
 
     // MARK: Interaction handler functions
@@ -190,6 +179,15 @@ class LevelBuilderViewController: UIViewController {
         resizedView?.center.y = resizedObjectWrapper.object.position.y
     }
 
+    @objc func rotatedObjectOnBoardView(_ notification: Notification) {
+        guard let rotatedObjectWrapper = notification.object as? BoardObjectWrapper else { return }
+
+        guard let rotatedView = objectsToViews[rotatedObjectWrapper] else { return }
+        rotatedView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+        rotatedView.contentMode = .scaleToFill
+        rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
+    }
+
     /// Clears board view when receive .boardCleared notification from board model.
     @objc func clearBoardView(_ notification: Notification) {
         removeAllBoardObjectsFromView()
@@ -291,9 +289,11 @@ class LevelBuilderViewController: UIViewController {
         notificationCenter.removeObserver(self, name: .objectAdded, object: nil)
         notificationCenter.removeObserver(self, name: .objectDeleted, object: nil)
         notificationCenter.removeObserver(self, name: .objectMoved, object: nil)
+        notificationCenter.removeObserver(self, name: .objectResizeSuccess, object: nil)
+        notificationCenter.removeObserver(self, name: .objectRotateSuccess, object: nil)
         notificationCenter.removeObserver(self, name: .boardCleared, object: nil)
         notificationCenter.removeObserver(self, name: .dataSaved, object: nil)
         notificationCenter.removeObserver(self, name: .dataSaveError, object: nil)
-
     }
 }
+

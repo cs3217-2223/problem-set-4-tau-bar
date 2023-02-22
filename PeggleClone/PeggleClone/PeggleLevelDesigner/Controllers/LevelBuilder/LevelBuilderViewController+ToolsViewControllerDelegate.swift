@@ -48,4 +48,9 @@ extension LevelBuilderViewController: ToolsViewControllerDelegate {
         })
     }
 
+    func didRotateObject(to rotation: Double) {
+        guard let selectedObject = selectedObject else { return }
+        board?.rotateObject(selectedObject, to: rotation)
+    }
+
 }
