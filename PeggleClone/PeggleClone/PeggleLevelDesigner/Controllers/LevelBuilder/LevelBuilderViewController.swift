@@ -13,7 +13,7 @@ class LevelBuilderViewController: UIViewController {
     // Delegate references
     weak var actionsDelegate: LevelBuilderActionsDelegate?
     var selectedObject: BoardObjectWrapper?
-    
+
     // Model objects
     var board: Board? {
         didSet {
@@ -27,6 +27,8 @@ class LevelBuilderViewController: UIViewController {
     var objectsToViews: [BoardObjectWrapper: BoardObjectView] = [:]
     var viewsToObjects: [BoardObjectView: BoardObjectWrapper] = [:]
     let notificationCenter = NotificationCenter.default
+
+        var angle = 0.0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +65,19 @@ class LevelBuilderViewController: UIViewController {
                                                name: .objectResizeSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(rotatedObjectOnBoardView),
                                                name: .objectRotateSuccess, object: nil)
+
+        // Do any additional setup after loading the view.
+
+//        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateFrame), userInfo: nil, repeats: true)
+
     }
+
+//    @objc func updateFrame(_ timer: Timer) {
+//            angle += 0.1
+//            objectsToViews.values.forEach({ rotatedView in
+//                rotatedView.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1)
+//            })
+//        }
 
     // MARK: Interaction handler functions
     /// Runs when the board view is tapped.
@@ -183,9 +197,10 @@ class LevelBuilderViewController: UIViewController {
         guard let rotatedObjectWrapper = notification.object as? BoardObjectWrapper else { return }
 
         guard let rotatedView = objectsToViews[rotatedObjectWrapper] else { return }
-        rotatedView.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-        rotatedView.contentMode = .scaleToFill
-        rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
+        UIView.animate(withDuration: 0.5, animations: {
+          rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
+        })
+        
     }
 
     /// Clears board view when receive .boardCleared notification from board model.
@@ -253,6 +268,8 @@ class LevelBuilderViewController: UIViewController {
         // Check whether the newView was set
         guard let viewToInsert = newView else { return }
         boardView.addSubview(viewToInsert)
+        viewToInsert.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
+//        viewToInsert.contentMode = .scaleToFill
         viewToInsert.delegate = self
 
         // Update dictionaries
@@ -296,4 +313,3 @@ class LevelBuilderViewController: UIViewController {
         notificationCenter.removeObserver(self, name: .dataSaveError, object: nil)
     }
 }
-

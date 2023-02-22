@@ -382,6 +382,13 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="XCX-Xe-Rad">
+                                <rect key="frame" x="413" y="0.0" width="94" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="didChangeStepper:" destination="9qP-8e-c0W" eventType="valueChanged" id="SLF-BW-tcN"/>
+                                </connections>
+                            </stepper>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Yrf-cu-f38"/>
                         <constraints>
@@ -417,6 +424,7 @@
                         <outlet property="rotationLabel" destination="Em6-h1-Qrn" id="mIY-0i-RAA"/>
                         <outlet property="sizeLabel" destination="93p-J1-avi" id="H8l-sS-Yg0"/>
                         <outlet property="sizeSlider" destination="9Jd-Z3-mIm" id="wOH-UN-lja"/>
+                        <outlet property="stepper" destination="XCX-Xe-Rad" id="q5k-Jj-8zi"/>
                         <outlet property="zombiePegButton" destination="oQq-jC-04G" id="Vd2-nS-IvM"/>
                     </connections>
                 </viewController>
