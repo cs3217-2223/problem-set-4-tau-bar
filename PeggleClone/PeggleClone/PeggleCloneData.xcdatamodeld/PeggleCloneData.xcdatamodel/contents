@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="BlockData" representedClassName="BlockData" syncable="YES" codeGenerationType="class">
+        <attribute name="height" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rotation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="width" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="boardData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BoardData" inverseName="blockDatas" inverseEntity="BoardData"/>
+        <relationship name="positionData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CGPointData"/>
+    </entity>
+    <entity name="BoardData" representedClassName="BoardData" syncable="YES" codeGenerationType="class">
+        <attribute name="height" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="width" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="blockDatas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BlockData" inverseName="boardData" inverseEntity="BlockData"/>
+        <relationship name="pegDatas" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PegData" inverseName="boardData" inverseEntity="PegData"/>
+    </entity>
+    <entity name="CGPointData" representedClassName="CGPointData" syncable="YES" codeGenerationType="class">
+        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <entity name="PegColorData" representedClassName="PegColorData" syncable="YES" codeGenerationType="class">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <relationship name="pegData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PegData" inverseName="colorData" inverseEntity="PegData"/>
+    </entity>
+    <entity name="PegData" representedClassName="PegData" syncable="YES" codeGenerationType="class">
+        <attribute name="radius" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="rotation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="boardData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BoardData" inverseName="pegDatas" inverseEntity="BoardData"/>
+        <relationship name="colorData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PegColorData" inverseName="pegData" inverseEntity="PegColorData"/>
+        <relationship name="positionData" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CGPointData"/>
+    </entity>
+</model>

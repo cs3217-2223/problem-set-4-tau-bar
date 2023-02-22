@@ -55,9 +55,9 @@ class GameViewController: UIViewController {
 
     func createPegNode(from peg: Peg) -> PegNode? {
         let pos = peg.position
-        if peg.colour == PegColor.blue {
+        if peg.color == PegColor.blue {
             return BluePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
-        } else if peg.colour == PegColor.orange {
+        } else if peg.color == PegColor.orange {
             return OrangePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
         } else {
             return nil

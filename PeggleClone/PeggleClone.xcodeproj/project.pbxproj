@@ -33,6 +33,23 @@
 		614298E6299B418100D39C75 /* ChooseLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614298E5299B418100D39C75 /* ChooseLevelViewController.swift */; };
 		61554C292997B0FA00BD761A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61554C282997B0FA00BD761A /* Constants.swift */; };
 		615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */; };
+		615E43EA29A639FF009F03BC /* PeggleCloneData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 615E43E829A639FF009F03BC /* PeggleCloneData.xcdatamodeld */; };
+		615E43EC29A63C67009F03BC /* StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43EB29A63C67009F03BC /* StoredData.swift */; };
+		615E43EE29A63CE2009F03BC /* FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43ED29A63CE2009F03BC /* FetchedData.swift */; };
+		615E43F029A64954009F03BC /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43EF29A64954009F03BC /* DataManager.swift */; };
+		615E43F229A649B7009F03BC /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43F129A649B7009F03BC /* CoreDataManager.swift */; };
+		615E43F429A64AB5009F03BC /* StorageError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43F329A64AB5009F03BC /* StorageError.swift */; };
+		615E43F729A64DD9009F03BC /* Board+StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43F629A64DD9009F03BC /* Board+StoredData.swift */; };
+		615E43F929A64E55009F03BC /* CGPoint+StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43F829A64E55009F03BC /* CGPoint+StoredData.swift */; };
+		615E43FB29A64EAB009F03BC /* CGPoint+FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43FA29A64EAB009F03BC /* CGPoint+FetchedData.swift */; };
+		615E43FD29A64EDF009F03BC /* Peg+StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43FC29A64EDF009F03BC /* Peg+StoredData.swift */; };
+		615E43FF29A64F65009F03BC /* PegColor+StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E43FE29A64F65009F03BC /* PegColor+StoredData.swift */; };
+		615E440129A65034009F03BC /* PegColor+FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E440029A65034009F03BC /* PegColor+FetchedData.swift */; };
+		615E440329A65149009F03BC /* Peg+FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E440229A65149009F03BC /* Peg+FetchedData.swift */; };
+		615E440529A652AA009F03BC /* LevelDesignerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E440429A652AA009F03BC /* LevelDesignerError.swift */; };
+		615E440929A65CB9009F03BC /* Block+StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E440829A65CB9009F03BC /* Block+StoredData.swift */; };
+		615E440B29A65D63009F03BC /* Block+FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E440A29A65D63009F03BC /* Block+FetchedData.swift */; };
+		615E440D29A65E20009F03BC /* Board+FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615E440C29A65E20009F03BC /* Board+FetchedData.swift */; };
 		617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */; };
 		617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DDE298BBBB100461FC9 /* BoardView.swift */; };
 		617D2DE5298BBC1C00461FC9 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DE4298BBC1C00461FC9 /* BoardScene.swift */; };
@@ -189,6 +206,23 @@
 		614298E5299B418100D39C75 /* ChooseLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLevelViewController.swift; sourceTree = "<group>"; };
 		61554C282997B0FA00BD761A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
+		615E43E929A639FF009F03BC /* PeggleCloneData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeggleCloneData.xcdatamodel; sourceTree = "<group>"; };
+		615E43EB29A63C67009F03BC /* StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoredData.swift; sourceTree = "<group>"; };
+		615E43ED29A63CE2009F03BC /* FetchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchedData.swift; sourceTree = "<group>"; };
+		615E43EF29A64954009F03BC /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
+		615E43F129A649B7009F03BC /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		615E43F329A64AB5009F03BC /* StorageError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageError.swift; sourceTree = "<group>"; };
+		615E43F629A64DD9009F03BC /* Board+StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Board+StoredData.swift"; sourceTree = "<group>"; };
+		615E43F829A64E55009F03BC /* CGPoint+StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+StoredData.swift"; sourceTree = "<group>"; };
+		615E43FA29A64EAB009F03BC /* CGPoint+FetchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGPoint+FetchedData.swift"; sourceTree = "<group>"; };
+		615E43FC29A64EDF009F03BC /* Peg+StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Peg+StoredData.swift"; sourceTree = "<group>"; };
+		615E43FE29A64F65009F03BC /* PegColor+StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PegColor+StoredData.swift"; sourceTree = "<group>"; };
+		615E440029A65034009F03BC /* PegColor+FetchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PegColor+FetchedData.swift"; sourceTree = "<group>"; };
+		615E440229A65149009F03BC /* Peg+FetchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Peg+FetchedData.swift"; sourceTree = "<group>"; };
+		615E440429A652AA009F03BC /* LevelDesignerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelDesignerError.swift; sourceTree = "<group>"; };
+		615E440829A65CB9009F03BC /* Block+StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Block+StoredData.swift"; sourceTree = "<group>"; };
+		615E440A29A65D63009F03BC /* Block+FetchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Block+FetchedData.swift"; sourceTree = "<group>"; };
+		615E440C29A65E20009F03BC /* Board+FetchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Board+FetchedData.swift"; sourceTree = "<group>"; };
 		617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKSceneDelegate.swift; sourceTree = "<group>"; };
 		617D2DDE298BBBB100461FC9 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		617D2DE4298BBC1C00461FC9 /* BoardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
@@ -307,6 +341,7 @@
 				610FED79298E616400875BBA /* Models */,
 				610FED83298E616400875BBA /* Controllers */,
 				610FED87298E616400875BBA /* Views */,
+				615E440429A652AA009F03BC /* LevelDesignerError.swift */,
 			);
 			path = PeggleLevelDesigner;
 			sourceTree = "<group>";
@@ -314,6 +349,7 @@
 		610FED79298E616400875BBA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				615E43F529A64DBB009F03BC /* Storage Extensions */,
 				610FED7A298E616400875BBA /* Board.swift */,
 				610FED7C298E616400875BBA /* Peg.swift */,
 				61DB63D9299CB9910048663D /* BoardObject.swift */,
@@ -349,6 +385,23 @@
 				614298DF299B38EA00D39C75 /* MainMenu.storyboard */,
 			);
 			path = MainMenu;
+			sourceTree = "<group>";
+		};
+		615E43F529A64DBB009F03BC /* Storage Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				615E43F629A64DD9009F03BC /* Board+StoredData.swift */,
+				615E43F829A64E55009F03BC /* CGPoint+StoredData.swift */,
+				615E43FA29A64EAB009F03BC /* CGPoint+FetchedData.swift */,
+				615E43FC29A64EDF009F03BC /* Peg+StoredData.swift */,
+				615E43FE29A64F65009F03BC /* PegColor+StoredData.swift */,
+				615E440029A65034009F03BC /* PegColor+FetchedData.swift */,
+				615E440229A65149009F03BC /* Peg+FetchedData.swift */,
+				615E440829A65CB9009F03BC /* Block+StoredData.swift */,
+				615E440A29A65D63009F03BC /* Block+FetchedData.swift */,
+				615E440C29A65E20009F03BC /* Board+FetchedData.swift */,
+			);
+			path = "Storage Extensions";
 			sourceTree = "<group>";
 		};
 		617D2DDD298BBA3300461FC9 /* View */ = {
@@ -455,6 +508,7 @@
 				619D849D29890A9A007C8683 /* LaunchScreen.storyboard */,
 				619D84A029890A9A007C8683 /* Info.plist */,
 				61554C282997B0FA00BD761A /* Constants.swift */,
+				615E43E829A639FF009F03BC /* PeggleCloneData.xcdatamodeld */,
 			);
 			path = PeggleClone;
 			sourceTree = "<group>";
@@ -505,6 +559,11 @@
 		61B13BC9299DB7AD005242E8 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
+				615E43EB29A63C67009F03BC /* StoredData.swift */,
+				615E43ED29A63CE2009F03BC /* FetchedData.swift */,
+				615E43EF29A64954009F03BC /* DataManager.swift */,
+				615E43F129A649B7009F03BC /* CoreDataManager.swift */,
+				615E43F329A64AB5009F03BC /* StorageError.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -842,14 +901,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				61B13BE3299DDB02005242E8 /* DetectOverlap.swift in Sources */,
+				615E440B29A65D63009F03BC /* Block+FetchedData.swift in Sources */,
 				61F48D6A2999067900B33D50 /* BoardScene+PegNodeDelegate.swift in Sources */,
 				612F7A8329913AFC005540DF /* BoardSceneDelegate.swift in Sources */,
 				61F48D74299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift in Sources */,
+				615E440929A65CB9009F03BC /* Block+StoredData.swift in Sources */,
 				614298E6299B418100D39C75 /* ChooseLevelViewController.swift in Sources */,
 				61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */,
 				61B40165299FB0590022142B /* LevelBuilderViewController+ToolsViewControllerDelegate.swift in Sources */,
 				612F7A792990CF51005540DF /* BallNode.swift in Sources */,
 				612F7A752990CC38005540DF /* BluePegNode.swift in Sources */,
+				615E43F929A64E55009F03BC /* CGPoint+StoredData.swift in Sources */,
 				61A1615A299CB14C000ADBAC /* SegueNames.swift in Sources */,
 				61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */,
 				615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */,
@@ -860,13 +922,16 @@
 				61B13BBB299D667D005242E8 /* BoardObjectWrapper.swift in Sources */,
 				61F48D70299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift in Sources */,
 				61AF44CD298C9B0C00A9181A /* MSKCirclePhysicsBody.swift in Sources */,
+				615E43EC29A63C67009F03BC /* StoredData.swift in Sources */,
 				61F6517F2997397500B2FDEB /* BallPhysicsBodyDelegate.swift in Sources */,
 				61CDDEBB298AA6E800297265 /* MSKScene.swift in Sources */,
 				617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */,
 				61B13BE1299DC095005242E8 /* Block.swift in Sources */,
 				61B13BE5299DDCB9005242E8 /* BlockView.swift in Sources */,
 				612F7A7D29912CAB005540DF /* PegPhysicsBody.swift in Sources */,
+				615E43F429A64AB5009F03BC /* StorageError.swift in Sources */,
 				612F7A8129913400005540DF /* PegPhysicsBodyDelegate.swift in Sources */,
+				615E43FF29A64F65009F03BC /* PegColor+StoredData.swift in Sources */,
 				619D849729890A96007C8683 /* GameViewController.swift in Sources */,
 				61B40163299FAFBC0022142B /* ToolsViewControllerDelegate.swift in Sources */,
 				610FED99298E616400875BBA /* Peg.swift in Sources */,
@@ -878,11 +943,16 @@
 				61F48D72299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift in Sources */,
 				619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */,
 				610FEDA2298E616400875BBA /* BoardObjectView.swift in Sources */,
+				615E440129A65034009F03BC /* PegColor+FetchedData.swift in Sources */,
+				615E43F229A649B7009F03BC /* CoreDataManager.swift in Sources */,
 				610FED9E298E616400875BBA /* LevelSelectViewControllerDelegate.swift in Sources */,
+				615E440329A65149009F03BC /* Peg+FetchedData.swift in Sources */,
 				61B4014F299F7EFB0022142B /* ToolsViewController.swift in Sources */,
 				61BD3D6F299E667700EED58C /* LevelTableViewCell.swift in Sources */,
 				612F7A7B2990F099005540DF /* PegNodeDelegate.swift in Sources */,
 				614298E2299B3A4D00D39C75 /* MainMenuViewController.swift in Sources */,
+				615E440529A652AA009F03BC /* LevelDesignerError.swift in Sources */,
+				615E43F729A64DD9009F03BC /* Board+StoredData.swift in Sources */,
 				61B4016729A2CB030022142B /* ToolButton.swift in Sources */,
 				610FEDA0298E616400875BBA /* LevelBuilderViewController.swift in Sources */,
 				619D849329890A96007C8683 /* AppDelegate.swift in Sources */,
@@ -891,15 +961,21 @@
 				61DB63DE299CC0AF0048663D /* UtilityFunctions.swift in Sources */,
 				61F48D6E2999073D00B33D50 /* BoardView+BoardSceneDelegate.swift in Sources */,
 				619D849529890A96007C8683 /* SceneDelegate.swift in Sources */,
+				615E43F029A64954009F03BC /* DataManager.swift in Sources */,
+				615E43FB29A64EAB009F03BC /* CGPoint+FetchedData.swift in Sources */,
 				610FED97298E616400875BBA /* Board.swift in Sources */,
+				615E43EA29A639FF009F03BC /* PeggleCloneData.xcdatamodeld in Sources */,
 				61F48D662999053D00B33D50 /* PegNode+PegPhysicsBodyDelegate.swift in Sources */,
+				615E440D29A65E20009F03BC /* Board+FetchedData.swift in Sources */,
 				61F48D762999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift in Sources */,
 				61F65183299740D900B2FDEB /* BallNodeDelegate.swift in Sources */,
 				61F48D68299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */,
 				61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */,
 				61DB63DA299CB9910048663D /* BoardObject.swift in Sources */,
+				615E43EE29A63CE2009F03BC /* FetchedData.swift in Sources */,
 				612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */,
 				610FED91298E616400875BBA /* LevelDesignerConstants.swift in Sources */,
+				615E43FD29A64EDF009F03BC /* Peg+StoredData.swift in Sources */,
 				617D2DE7298BBC7F00461FC9 /* PegNode.swift in Sources */,
 				61AF44CF298CA17F00A9181A /* UtilFunctions.swift in Sources */,
 				61AF44D1298CA31600A9181A /* MSKPolygonPhysicsBody.swift in Sources */,
@@ -1154,8 +1230,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeggleClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = MainMenu;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1182,8 +1258,8 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PeggleClone/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIMainStoryboardFile = MainMenu;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1315,6 +1391,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		615E43E829A639FF009F03BC /* PeggleCloneData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				615E43E929A639FF009F03BC /* PeggleCloneData.xcdatamodel */,
+			);
+			currentVersion = 615E43E929A639FF009F03BC /* PeggleCloneData.xcdatamodel */;
+			path = PeggleCloneData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 619D848729890A96007C8683 /* Project object */;
 }

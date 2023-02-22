@@ -23,9 +23,8 @@ class ToolsViewController: UIViewController {
     @IBOutlet var angleSlider: UISlider!
     @IBOutlet var rotationLabel: UILabel!
 
-    @IBOutlet weak var stepper: UIStepper!
-    
-    
+    @IBOutlet var stepper: UIStepper!
+
     var selectedButton: ToolButton? {
         didSet {
             setButtonsTranslucent()
@@ -42,7 +41,7 @@ class ToolsViewController: UIViewController {
 
         angleSlider.minimumValue = -.pi
         angleSlider.maximumValue = .pi
-        
+
         stepper.stepValue = 0.1
 
         hideObjectSpecificTools()
@@ -77,7 +76,7 @@ class ToolsViewController: UIViewController {
     @IBAction func didChangeStepper(_ sender: Any) {
         delegate?.didRotateObject(to: Double(stepper.value))
     }
-    
+
     func setButtonsTranslucent() {
         deleteButton.alpha = ToolButton.unselectedAlphaValue
         confusementPegButton.alpha = ToolButton.unselectedAlphaValue

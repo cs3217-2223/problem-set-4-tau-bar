@@ -22,6 +22,9 @@ class LevelBuilderViewController: UIViewController {
             setTextFieldText(to: board?.name ?? Board.DefaultBoardName)
         }
     }
+    
+    // Data Manager
+    let dataManager: DataManager = DataManager()
 
     // Helper variables & properties
     var objectsToViews: [BoardObjectWrapper: BoardObjectView] = [:]
@@ -67,17 +70,7 @@ class LevelBuilderViewController: UIViewController {
                                                name: .objectRotateSuccess, object: nil)
 
         // Do any additional setup after loading the view.
-
-//        _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateFrame), userInfo: nil, repeats: true)
-
     }
-
-//    @objc func updateFrame(_ timer: Timer) {
-//            angle += 0.1
-//            objectsToViews.values.forEach({ rotatedView in
-//                rotatedView.layer.transform = CATransform3DMakeRotation(angle, 0, 0, 1)
-//            })
-//        }
 
     // MARK: Interaction handler functions
     /// Runs when the board view is tapped.
@@ -109,18 +102,20 @@ class LevelBuilderViewController: UIViewController {
         }
 
         board.name = levelName
-        //        DataManager.sharedInstance.saveBoard(board, onComplete: alertUserLevelSaved)
+        do {
+            try dataManager.save(board: board)
+            alertUserLevelSaved()
+        } catch {
+            print(error)
+            alertUserSaveError()
+        }
     }
 
     @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {}
 
     /// Opens the view showing the saved levels when the load button is tapped.
     @IBAction func loadButtonTapped(_ sender: Any) {
-        guard let levelSelectVC = self
-            .storyboard?.instantiateViewController(identifier: "LevelSelectViewController")
-                as? LevelSelectViewController else { return }
-        levelSelectVC.delegate = self
-        self.present(levelSelectVC, animated: true)
+        performSegue(withIdentifier: "goToLevelSelect", sender: sender)
     }
 
     func addObject(addedObjectWrapper: BoardObjectWrapper) {
@@ -200,7 +195,7 @@ class LevelBuilderViewController: UIViewController {
         UIView.animate(withDuration: 0.5, animations: {
           rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
         })
-        
+
     }
 
     /// Clears board view when receive .boardCleared notification from board model.
@@ -220,6 +215,10 @@ class LevelBuilderViewController: UIViewController {
         if segue.identifier == "goToGameView" {
             guard let gameVc = segue.destination as? GameViewController else { return }
             gameVc.board = board
+        } else if segue.identifier == "goToLevelSelect" {
+            guard let levelSelectVc = segue.destination as? LevelSelectViewController else { return }
+            levelSelectVc.dataManager = dataManager
+            levelSelectVc.delegate = self
         }
     }
 

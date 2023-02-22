@@ -10,6 +10,14 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--LevelSelectViewController-->
+        <scene sceneID="cud-La-0sy">
+            <objects>
+                <viewControllerPlaceholder storyboardName="LevelSelect" referencedIdentifier="LevelSelectViewController" id="jcO-ft-jbN" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2gz-JC-p6Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-502" y="-254"/>
+        </scene>
         <!--GameVC-->
         <scene sceneID="dXP-Mc-hYG">
             <objects>
@@ -18,7 +26,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kyS-fK-fiM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-340" y="15"/>
+            <point key="canvasLocation" x="-436" y="354"/>
         </scene>
         <!--Level Builder View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -239,6 +247,7 @@
                         <outlet property="saveButton" destination="DIX-hW-oNx" id="S2j-DO-V0h"/>
                         <outlet property="startButton" destination="5g0-oH-zqk" id="X1H-HG-5d0"/>
                         <segue destination="pNe-0A-aRC" kind="presentation" identifier="goToGameView" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="hp7-xm-TTN"/>
+                        <segue destination="jcO-ft-jbN" kind="presentation" identifier="goToLevelSelect" id="xdc-A9-kRL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

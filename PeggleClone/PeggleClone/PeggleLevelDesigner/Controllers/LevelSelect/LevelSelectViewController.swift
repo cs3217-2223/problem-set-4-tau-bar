@@ -13,10 +13,11 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
 
     var boards: [Board] = []
     var delegate: LevelSelectViewControllerDelegate?
+    var dataManager: DataManager?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.)
+        // Do any additional setup after loading the view.
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.registerTableViewCells()
@@ -32,7 +33,6 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
 
     /// Deletes all saved boards when user taps on the 'Delete All Levels' button.
     @IBAction func deleteAllLevelsButtonTapped(_ sender: Any) {
-//        DataManager.sharedInstance.deleteAllBoards()
         reloadTableView()
     }
 
@@ -68,20 +68,29 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] _, _, _ in
-            boards.remove(at: indexPath.row)
-//            DataManager.sharedInstance.saveBoards(boards)
+            do {
+                try dataManager?.delete(board: boards[indexPath.row])
+                boards.remove(at: indexPath.row)
+                try loadBoardDatas()
+            } catch {
+                print(error)
+                print("Unable to fetch board data from Core Data.")
+            }
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
+
         return UISwipeActionsConfiguration(actions: [delete])
     }
 
     /// Retrieves latest board data from the Data Manager to populate the table.
     func reloadTableView() {
-//        let data = DataManager.sharedInstance.retrieveData()
-//        guard let boards: [Board] = data?.value(forKey: DataCodingKeys.boards.rawValue) as? [Board] else { return }
-//        self.boards = boards
-
-        tableView.reloadData()
+        do {
+            boards = []
+            try loadBoardDatas()
+            tableView.reloadData()
+        } catch {
+            print(error)
+        }
     }
 
     private func registerTableViewCells() {
@@ -93,5 +102,16 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
 
     private func dismissLevelSelect() {
         self.dismiss(animated: true)
+    }
+    
+    private func loadBoardDatas() throws {
+        let boardDatas = try dataManager?.fetchAllLevelData()
+        boardDatas?.forEach({
+            do {
+                try boards.append(Board.createBoard(with: $0))
+            } catch {
+                print("Board data was invalid, skipping.")
+            }
+        })
     }
 }

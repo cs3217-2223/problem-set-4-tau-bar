@@ -22,10 +22,4 @@ class MainMenuViewController: UIViewController {
     @IBAction func unwindFromChooseLevelViewController(_ segue: UIStoryboardSegue) {}
 
     @IBAction func unwindFromLevelBuilderViewController(_ segue: UIStoryboardSegue) {}
-//      TODO: Remove if unnecessary
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "goToChooseLevelView" {
-//            guard let chooseLevelVc = segue.destination as? ChooseLevelViewController else { return }
-//        }
-//    }
 }

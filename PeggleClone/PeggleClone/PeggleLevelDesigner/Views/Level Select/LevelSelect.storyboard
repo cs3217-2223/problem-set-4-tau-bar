@@ -12,7 +12,6 @@
         <!--Level Select View Controller-->
         <scene sceneID="bIU-R3-j2Q">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Ehp-q2-2Ot" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LevelSelectViewController" id="hUO-zI-RGo" customClass="LevelSelectViewController" customModule="PeggleClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UQv-F1-aRu">
                         <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
@@ -58,6 +57,7 @@
                         <outlet property="tableView" destination="NlX-Om-VW7" id="IqP-a8-wG3"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ehp-q2-2Ot" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="838.53658536585363" y="-27.457627118644069"/>
         </scene>

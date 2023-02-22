@@ -35,7 +35,7 @@ class Peg: BoardObject {
         radius * 2
     }
 
-    let colour: PegColor
+    let color: PegColor
 
     var radius: Double
 
@@ -46,6 +46,19 @@ class Peg: BoardObject {
     static var supportsSecureCoding = true
 
     // MARK: Initializers
+    required init(color: PegColor,
+          position: CGPoint,
+          rotation: Double = defaultPegRotation,
+          radius: Double = defaultPegRadius,
+          asset: String) {
+
+        self.asset = asset
+        self.radius = radius
+        self.color = color
+        self.position = position
+        self.rotation = rotation
+    }
+
     init?(colour: PegColor,
           position: CGPoint,
           rotation: Double = defaultPegRotation,
@@ -58,7 +71,7 @@ class Peg: BoardObject {
 
         self.asset = asset
         self.radius = radius
-        self.colour = colour
+        self.color = colour
         self.position = position
         self.rotation = rotation
     }
