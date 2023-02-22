@@ -59,6 +59,16 @@ class DataManager {
             context.delete(datum)
         }
     }
+    
+    func deleteAllBoards() throws {
+        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = BoardData.fetchRequest()
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        do {
+            try context.execute(deleteRequest)
+        } catch let error as NSError {
+            print(error)
+        }
+    }
 
     private func findBoards(with name: String) throws -> [BoardData] {
         let fetchRequest = createBoardDataFetchRequest(with: "name == '\(name)'")

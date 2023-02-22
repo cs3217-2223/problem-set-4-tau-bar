@@ -33,7 +33,12 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
 
     /// Deletes all saved boards when user taps on the 'Delete All Levels' button.
     @IBAction func deleteAllLevelsButtonTapped(_ sender: Any) {
-        reloadTableView()
+        do {
+            try dataManager?.deleteAllBoards()
+            reloadTableView()
+        } catch {
+            print(error)
+        }
     }
 
     /// Returns the number of rows that the table should load.
@@ -69,8 +74,8 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] _, _, _ in
             do {
-                try dataManager?.delete(board: boards[indexPath.row])
                 boards.remove(at: indexPath.row)
+                try dataManager?.delete(board: boards[indexPath.row])
                 try loadBoardDatas()
             } catch {
                 print(error)
@@ -85,7 +90,6 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
     /// Retrieves latest board data from the Data Manager to populate the table.
     func reloadTableView() {
         do {
-            boards = []
             try loadBoardDatas()
             tableView.reloadData()
         } catch {
@@ -106,6 +110,7 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
     
     private func loadBoardDatas() throws {
         let boardDatas = try dataManager?.fetchAllLevelData()
+        boards = []
         boardDatas?.forEach({
             do {
                 try boards.append(Board.createBoard(with: $0))
