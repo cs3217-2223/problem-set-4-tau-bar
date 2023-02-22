@@ -123,6 +123,24 @@ public class Board {
         sendNotification(of: .objectMoved, with: movedObjectWrapper)
     }
 
+    func resizeObject(_ resizedObjectWrapper: BoardObjectWrapper, to newSize: Double) {
+        let resizedObject = resizedObjectWrapper.object
+        let oldWidth = resizedObject.width
+        let oldHeight = resizedObject.height
+        resizedObject.setSize(to: newSize)
+        print("Inside Board")
+        print(newSize)
+
+        if hasOverlappingObjects(with: resizedObjectWrapper) ||
+            isOutOfBounds(resizedObjectWrapper) {
+            resizedObject.setSize(to: oldWidth)
+            sendNotification(of: .objectResizeFail, with: resizedObjectWrapper)
+            return
+        }
+
+        sendNotification(of: .objectResizeSuccess, with: resizedObjectWrapper)
+    }
+
     /// Checks whether the specified object is overlapping with any other objects on the board.
     func hasOverlappingObjects(with checkedObjectWrapper: BoardObjectWrapper) -> Bool {
         objects.contains(where: { objectWrapper in

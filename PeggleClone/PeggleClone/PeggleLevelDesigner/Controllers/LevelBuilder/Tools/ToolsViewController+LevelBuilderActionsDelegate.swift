@@ -8,19 +8,25 @@
 import Foundation
 
 extension ToolsViewController: LevelBuilderActionsDelegate {
-    func didTapBoardObject(_ object: BoardObjectWrapper) {
-        guard let selectedButton = selectedButton else { return }
+    func unselectAllTools() {
+        selectedButton = nil
+    }
 
-        if selectedButton === deleteButton {
+    func didTapBoardObject(_ object: BoardObjectWrapper) {
+        // When delete button selected, should delete object
+        if selectedButton != nil, selectedButton === deleteButton {
             delegate?.didRemoveObject(object)
             return
+        } else {
+            // Else it should select the peg & show the size/rotation editors
+            delegate?.didSelectObject(object)
+            showObjectSpecificTools(for: object)
         }
     }
 
     // TODO: Potentially refactor this
     func didTapBoard(at location: CGPoint) {
         guard let selectedButton = selectedButton else { return }
-
         switch selectedButton {
         case bluePegButton:
             guard let bluePeg = Peg(colour: .blue, position: location) else { return }
@@ -48,6 +54,7 @@ extension ToolsViewController: LevelBuilderActionsDelegate {
             delegate?.didAddObject(blockWrapper)
             return
         default:
+            unselectObject()
             return
         }
     }

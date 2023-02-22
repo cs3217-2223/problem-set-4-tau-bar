@@ -16,6 +16,12 @@ extension Notification.Name {
     static var objectMoved: Notification.Name {
           .init(rawValue: "Board.objectMoved") }
 
+    static var objectResizeSuccess: Notification.Name {
+          .init(rawValue: "Board.objectResizeSuccess") }
+
+    static var objectResizeFail: Notification.Name {
+          .init(rawValue: "Board.objectResizeFail") }
+
     static var boardCleared: Notification.Name {
           .init(rawValue: "Board.cleared") }
 

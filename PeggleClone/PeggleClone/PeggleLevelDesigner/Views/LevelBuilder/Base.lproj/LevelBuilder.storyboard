@@ -336,6 +336,9 @@
                                     <constraint firstAttribute="width" constant="114" id="Ect-1n-Lgj"/>
                                 </constraints>
                                 <color key="minimumTrackTintColor" red="0.0" green="0.45882352939999999" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <action selector="didChangeSize:" destination="9qP-8e-c0W" eventType="valueChanged" id="o2u-gf-mRq"/>
+                                </connections>
                             </slider>
                             <button opaque="NO" alpha="0.20000000000000001" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ndm-X7-A97" customClass="ToolButton" customModule="PeggleClone" customModuleProvider="target">
                                 <rect key="frame" x="674" y="24" width="50" height="50"/>
@@ -359,6 +362,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
+                        <viewLayoutGuide key="safeArea" id="Yrf-cu-f38"/>
                         <constraints>
                             <constraint firstItem="9Jd-Z3-mIm" firstAttribute="top" secondItem="93p-J1-avi" secondAttribute="bottom" constant="20" id="0hd-bP-gm0"/>
                             <constraint firstItem="oQq-jC-04G" firstAttribute="top" secondItem="9Xe-FA-fNX" secondAttribute="topMargin" constant="10" id="2Yo-wo-Vs7"/>
@@ -384,6 +388,8 @@
                         <outlet property="confusementPegButton" destination="z15-bC-08Z" id="OR1-ba-pMP"/>
                         <outlet property="deleteButton" destination="Ndm-X7-A97" id="0Py-Q8-Bbb"/>
                         <outlet property="orangePegButton" destination="Mp5-0o-7Ih" id="VZi-uE-PdR"/>
+                        <outlet property="sizeLabel" destination="93p-J1-avi" id="H8l-sS-Yg0"/>
+                        <outlet property="sizeSlider" destination="9Jd-Z3-mIm" id="wOH-UN-lja"/>
                         <outlet property="zombiePegButton" destination="oQq-jC-04G" id="Vd2-nS-IvM"/>
                     </connections>
                 </viewController>

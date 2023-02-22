@@ -2,7 +2,6 @@ import UIKit
 import CoreData
 
 class LevelBuilderViewController: UIViewController {
-    // MARK: View objectsn!
     @IBOutlet var levelNameTextField: UITextField!
     @IBOutlet var boardView: UIView!
     @IBOutlet var startButton: UIButton!
@@ -12,7 +11,7 @@ class LevelBuilderViewController: UIViewController {
 
     // TODO - Ensure no strong reference cycles here
     var actionsDelegate: LevelBuilderActionsDelegate?
-
+    var selectedObject: BoardObjectWrapper?
     // MARK: Model objects
     var board: Board? {
         didSet {
@@ -67,6 +66,10 @@ class LevelBuilderViewController: UIViewController {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(notifyUserSaveError),
                                                name: .dataSaveError,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(resizeObjectOnBoardView),
+                                               name: .objectResizeSuccess,
                                                object: nil)
 
         // Select blue peg button by default when view is loaded
@@ -139,6 +142,10 @@ class LevelBuilderViewController: UIViewController {
         board?.moveObject(movedObjectWrapper, to: newLocation)
     }
 
+    func resizeObject(_ object: BoardObjectWrapper, to newSize: Double) {
+        board?.resizeObject(object, to: newSize)
+    }
+
     // MARK: Notification Functions
     /// Adds a peg to the board view when receive .objectAdded notification from board model.
     @objc func addObjectToBoardView(_ notification: Notification) {
@@ -168,6 +175,19 @@ class LevelBuilderViewController: UIViewController {
         let movedView = objectsToViews[movedObjectWrapper]
         movedView?.center.x = movedObjectWrapper.object.position.x
         movedView?.center.y = movedObjectWrapper.object.position.y
+    }
+
+    @objc func resizeObjectOnBoardView(_ notification: Notification) {
+        guard let resizedObjectWrapper = notification.object as? BoardObjectWrapper else { return }
+
+        let resizedView = objectsToViews[resizedObjectWrapper]
+        var frame = resizedView?.frame
+        frame?.size.height = resizedObjectWrapper.object.height
+        frame?.size.width = resizedObjectWrapper.object.width
+        guard let frame = frame else { return }
+        resizedView?.frame = frame
+        resizedView?.center.x = resizedObjectWrapper.object.position.x
+        resizedView?.center.y = resizedObjectWrapper.object.position.y
     }
 
     /// Clears board view when receive .boardCleared notification from board model.
@@ -211,7 +231,6 @@ class LevelBuilderViewController: UIViewController {
         })
     }
 
-    /// Creates a new `BoardPegView` using the data from the specified `Peg` and location.
     private func createBoardObjectView(with addedObject: BoardObject, at tapLocation: CGPoint) -> BoardObjectView? {
         let height = addedObject.height
         let width = addedObject.width
@@ -229,7 +248,6 @@ class LevelBuilderViewController: UIViewController {
         viewsToObjects = [:]
     }
 
-    // TODO: Cleanup this function
     func insertSubview(for objectWrapper: BoardObjectWrapper) {
         let object = objectWrapper.object
         let newView = createBoardObjectView(with: object, at: object.position)

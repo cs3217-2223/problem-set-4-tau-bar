@@ -62,4 +62,8 @@ class Block: BoardObject {
         return false
     }
 
+    func setSize(to newSize: Double) {
+        height = newSize
+        width = newSize
+    }
 }

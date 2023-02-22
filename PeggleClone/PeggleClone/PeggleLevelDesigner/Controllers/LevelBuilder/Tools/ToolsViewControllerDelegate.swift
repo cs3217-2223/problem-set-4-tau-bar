@@ -10,6 +10,9 @@ import Foundation
 protocol ToolsViewControllerDelegate {
     func didAddObject(_ object: BoardObjectWrapper)
     func didRemoveObject(_ object: BoardObjectWrapper)
-    func didChangeSize(of object: BoardObjectWrapper, to size: Double)
-    // TODO - Add didRotateObject here as wellblue}
+    func didChangeSize(to size: Double)
+//    func didRotateObject(_ object: BoardObjectWrapper)
+    // TODO - Add didRotateObject here as well
+    func didSelectObject(_ object: BoardObjectWrapper)
+    func didUnselectObject()
 }

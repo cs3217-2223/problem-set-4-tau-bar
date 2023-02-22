@@ -16,8 +16,36 @@ extension LevelBuilderViewController: ToolsViewControllerDelegate {
         board?.removeObject(object)
     }
 
-    func didChangeSize(of object: BoardObjectWrapper, to size: Double) {
-        // TODO - Add implementation --> need to add implementation into board as well to ensure that cannot change size if overlap/out of bounds
+    func didChangeSize(to size: Double) {
+        guard let selectedObject = selectedObject else { return }
+        resizeObject(selectedObject, to: size)
+    }
+
+    func didSelectObject(_ object: BoardObjectWrapper) {
+        selectedObject = object
+        highlightObject(object)
+        actionsDelegate?.unselectAllTools()
+    }
+
+    func didUnselectObject() {
+        selectedObject = nil
+        unhighlightObject()
+    }
+
+    func highlightObject(_ object: BoardObjectWrapper) {
+        objectsToViews.values.forEach({ view in
+            if view != objectsToViews[object] {
+                view.alpha = 0.5
+            } else {
+                view.alpha = 1
+            }
+        })
+    }
+
+    func unhighlightObject() {
+        objectsToViews.values.forEach({ view in
+            view.alpha = 1
+        })
     }
 
 }

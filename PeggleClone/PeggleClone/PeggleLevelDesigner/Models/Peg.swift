@@ -37,7 +37,7 @@ class Peg: BoardObject {
 
     let colour: PegColor
 
-    let radius: Double
+    var radius: Double
 
     let asset: String
 
@@ -100,5 +100,9 @@ class Peg: BoardObject {
         position.x - radius < lowerX ||
         position.y - radius < lowerY ||
         position.y + radius > upperY
+    }
+
+    func setSize(to newSize: Double) {
+        radius = newSize / 2
     }
 }
