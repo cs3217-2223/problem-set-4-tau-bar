@@ -45,7 +45,9 @@ class Block: BoardObject {
     }
 
     func isOverlapping(with otherObject: Block) -> Bool {
-        // TODO: Change the implementation for this
+        if DetectOverlap.detectOverlap(objectA: self, objectB: otherObject) {
+            return true
+        }
         return false
     }
 
@@ -58,8 +60,12 @@ class Block: BoardObject {
     }
 
     func isOutOfBounds(lowerX: Double, upperX: Double, lowerY: Double, upperY: Double) -> Bool {
-        // TODO: Change implementation for this
-        return false
+        let blockLowerX = position.x - width/2
+        let blockUpperX = position.x + width/2
+        let blockLowerY = position.y - height/2
+        let blockUpperY = position.y + height/2
+
+        return blockLowerX < lowerX || blockUpperX > upperX || blockLowerY < lowerY || blockUpperY > upperY
     }
 
     func setSize(to newSize: Double) {

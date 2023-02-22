@@ -50,7 +50,6 @@ class ToolsViewController: UIViewController {
     }
 
     @IBAction func didChangeSize(_ sender: Any) {
-        print(sizeSlider.value)
         delegate?.didChangeSize(to: Double(sizeSlider.value))
     }
 

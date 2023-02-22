@@ -79,8 +79,7 @@ class Peg: BoardObject {
 
     /// Checks whether the peg object is overlapping with another `Peg`.
     func isOverlapping(with otherObject: Peg) -> Bool {
-        let distanceBetween = calculateEuclideanDistance(positionA: position, positionB: otherObject.position)
-        return distanceBetween < (otherObject.radius + radius)
+        DetectOverlap.detectOverlap(objectA: otherObject, objectB: self)
     }
 
     func isOverlapping(with otherObject: Block) -> Bool {

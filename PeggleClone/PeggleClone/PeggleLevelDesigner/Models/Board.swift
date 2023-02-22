@@ -128,8 +128,6 @@ public class Board {
         let oldWidth = resizedObject.width
         let oldHeight = resizedObject.height
         resizedObject.setSize(to: newSize)
-        print("Inside Board")
-        print(newSize)
 
         if hasOverlappingObjects(with: resizedObjectWrapper) ||
             isOutOfBounds(resizedObjectWrapper) {
@@ -151,14 +149,14 @@ public class Board {
             if checkedObject.isEqual(to: boardObject) {
                 return false
             }
-
+            
             return boardObject.isOverlapping(with: checkedObject)
         })
     }
 
     /// Checks whther the object is out of bounds of the board.
     func isOutOfBounds(_ checkedObjectWrapper: BoardObjectWrapper) -> Bool {
-        checkedObjectWrapper.object.isOutOfBounds(lowerX: 0,
+        return checkedObjectWrapper.object.isOutOfBounds(lowerX: 0,
                                                   upperX: width,
                                                   lowerY: 0,
                                                   upperY: height)

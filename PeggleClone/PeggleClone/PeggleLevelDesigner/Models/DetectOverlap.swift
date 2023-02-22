@@ -10,33 +10,57 @@ import Foundation
 class DetectOverlap {
     // TODO: Modify functions
     static func detectOverlap(objectA: Block, objectB: Peg) -> Bool {
-        // Calculate the vector from the center of the block to the center of the peg
-        let centerToCenter = CGPoint(x: objectB.position.x - objectA.position.x, y: objectB.position.y - objectA.position.y)
-
-        // Calculate the closest point on the block to the center of the peg
-        let closestPoint = closestPointOnBlock(block: objectA, point: objectB.position)
-
-        // Calculate the vector from the closest point to the center of the peg
-        let closestToCenter = CGPoint(x: objectB.position.x - closestPoint.x, y: objectB.position.y - closestPoint.y)
-
-        // Check if the distance between the closest point and the center of the peg is less than the peg's radius
-        return hypot(closestToCenter.x, closestToCenter.y) < objectB.radius
+        doPegAndBlockOverlap(peg: objectB, block: objectA)
     }
 
-    static func closestPointOnBlock(block: Block, point: CGPoint) -> CGPoint {
-        // Calculate the position of the point relative to the block's center
-        let position = CGPoint(x: point.x - block.position.x, y: point.y - block.position.y)
+    static func doPegAndBlockOverlap(peg: Peg, block: Block) -> Bool {
+        let circleDistance = (x: abs(peg.position.x - block.position.x), y: abs(peg.position.y - block.position.y))
 
-        // Calculate the angle between the x-axis and the block's edges
-        let angle = atan2(block.height, block.width)
+        if circleDistance.x > (block.width/2 + peg.radius) { return false }
+        if circleDistance.y > (block.height/2 + peg.radius) { return false }
 
-        // Calculate the length of the vector from the block's center to the closest point on the block
-        let length = min(abs(position.x / cos(angle)), abs(position.y / sin(angle)))
+        if circleDistance.x <= (block.width/2) { return true }
+        if circleDistance.y <= (block.height/2) { return true }
 
-        // Calculate the position of the closest point on the block relative to the block's center
-        let closestPosition = CGPoint(x: length * cos(angle), y: length * sin(angle))
+        let cornerDistanceSq = pow(circleDistance.x - block.width/2, 2) +
+                                 pow(circleDistance.y - block.height/2, 2)
 
-        // Convert the position back to global coordinates
-        return CGPoint(x: block.position.x + closestPosition.x, y: block.position.y + closestPosition.y)
+        return (cornerDistanceSq <= pow(peg.radius, 2))
+    }
+
+
+    static func detectOverlap(objectA: Peg, objectB: Peg) -> Bool {
+        let distanceBetween = calculateEuclideanDistance(positionA: objectA.position, positionB: objectB.position)
+        return distanceBetween < (objectA.radius + objectB.radius)
+    }
+
+    static func detectOverlap(objectA: Block, objectB: Block) -> Bool {
+        let aRight = objectA.position.x + objectA.width
+        let aTop = objectA.position.y + objectA.height
+        let bRight = objectB.position.x + objectB.width
+        let bTop = objectB.position.y + objectB.height
+        
+        if objectA.position.x >= bRight || objectB.position.x >= aRight {
+            return false // rectangles do not overlap on X-axis
+        }
+        
+        if objectA.position.y >= bTop || objectB.position.y >= aTop {
+            return false // rectangles do not overlap on Y-axis
+        }
+        
+        return true // rectangles overlap on both X and Y axes
+    }
+
+    static func getAbsoluteVertices(of block: Block) -> [CGPoint] {
+        var vertices: [CGPoint] = []
+        vertices.append(CGPoint(x: block.position.x - block.width / 2, y: block.position.x - block.height / 2))
+        vertices.append(CGPoint(x: block.position.x - block.width / 2, y: block.position.x + block.height / 2))
+        vertices.append(CGPoint(x: block.position.x + block.width / 2, y: block.position.x + block.height / 2))
+        vertices.append(CGPoint(x: block.position.x + block.width / 2, y: block.position.x - block.height / 2))
+        return vertices
+    }
+
+    static func dotProduct(vectorA: SIMD2<Double>, vectorB: SIMD2<Double>) -> Double {
+        vectorA.x * vectorB.x + vectorA.y * vectorB.y
     }
 }
