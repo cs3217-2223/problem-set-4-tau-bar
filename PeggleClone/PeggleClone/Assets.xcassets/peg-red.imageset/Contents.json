@@ -1,16 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "peg-red@1x.png",
+      "filename" : "year-removebg-preview(1)@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "peg-red@2x.png",
+      "filename" : "year-removebg-preview(1)@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "year-removebg-preview(1)@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

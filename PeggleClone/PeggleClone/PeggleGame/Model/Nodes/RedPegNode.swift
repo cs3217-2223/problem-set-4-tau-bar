@@ -13,7 +13,7 @@ class RedPegNode: PegNode {
     }
 
     override func didCollideWithBall() {
-        image = UIImage(named: "peg-pink-glow")
+        image = UIImage(named: "peg-red-glow")
         super.didCollideWithBall()
     }
 }

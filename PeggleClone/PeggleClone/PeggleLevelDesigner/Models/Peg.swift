@@ -17,11 +17,11 @@ enum PegKeys: String, CodingKey {
 }
 
 enum PegColor: String {
-    case blue, orange, yellow, red
+    case blue, orange, purple, red
 }
 
 class Peg: BoardObject {
-    static let pegAssets = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange", PegColor.red: "peg-red", PegColor.yellow: "peg-yellow"]
+    static let pegAssets = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange", PegColor.red: "peg-red", PegColor.purple: "peg-purple"]
 
     var position: CGPoint
 

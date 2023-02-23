@@ -326,7 +326,7 @@
                                 </constraints>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Zombie Peg">
-                                    <backgroundConfiguration key="background" image="peg-green"/>
+                                    <backgroundConfiguration key="background" image="peg-purple"/>
                                 </buttonConfiguration>
                                 <connections>
                                     <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="SEr-GZ-4k9"/>
@@ -465,9 +465,9 @@
     <resources>
         <image name="black" width="174" height="156"/>
         <image name="delete" width="256" height="256"/>
-        <image name="peg-blue" width="128" height="128"/>
-        <image name="peg-green" width="128" height="128"/>
-        <image name="peg-orange" width="128" height="128"/>
+        <image name="peg-blue" width="109" height="108.5"/>
+        <image name="peg-orange" width="128.5" height="127.5"/>
+        <image name="peg-purple" width="128.5" height="128.5"/>
         <image name="peg-red" width="128" height="128"/>
         <image name="space-background" width="1080" height="1920"/>
         <namedColor name="AccentColor">

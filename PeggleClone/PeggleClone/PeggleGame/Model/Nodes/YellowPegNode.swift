@@ -9,11 +9,11 @@ import UIKit
 
 class YellowPegNode: PegNode {
     init(position: CGPoint, radius: Double, rotation: Double) {
-        super.init(position: position, image: UIImage(named: "peg-yellow"), radius: radius, rotation: rotation)
+        super.init(position: position, image: UIImage(named: "peg-purple"), radius: radius, rotation: rotation)
     }
 
     override func didCollideWithBall() {
-        image = UIImage(named: "peg-yellow-glow")
+        image = UIImage(named: "peg-purple-glow")
         super.didCollideWithBall()
     }
 }

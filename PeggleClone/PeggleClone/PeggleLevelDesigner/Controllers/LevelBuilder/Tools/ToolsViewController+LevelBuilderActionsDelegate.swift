@@ -39,7 +39,7 @@ extension ToolsViewController: LevelBuilderActionsDelegate {
             delegate?.didAddObject(orangePegWrapper)
             return
         case zombiePegButton:
-            guard let zombiePeg = Peg(colour: .yellow, position: location) else { return }
+            guard let zombiePeg = Peg(colour: .purple, position: location) else { return }
             let zombiePegWrapper = BoardObjectWrapper(object: zombiePeg)
             delegate?.didAddObject(zombiePegWrapper)
             return

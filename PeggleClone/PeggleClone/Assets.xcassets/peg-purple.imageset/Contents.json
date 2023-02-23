@@ -1,16 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "peg-purple@1x.png",
+      "filename" : "year_1_-removebg-preview@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "peg-purple@2x.png",
+      "filename" : "year_1_-removebg-preview@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "year_1_-removebg-preview@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
