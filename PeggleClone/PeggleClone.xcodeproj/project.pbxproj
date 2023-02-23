@@ -54,6 +54,11 @@
 		617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DDE298BBBB100461FC9 /* BoardView.swift */; };
 		617D2DE5298BBC1C00461FC9 /* BoardScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DE4298BBC1C00461FC9 /* BoardScene.swift */; };
 		617D2DE7298BBC7F00461FC9 /* PegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DE6298BBC7F00461FC9 /* PegNode.swift */; };
+		6186658129A71EA80040D7D2 /* BoardObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658029A71EA80040D7D2 /* BoardObjectNode.swift */; };
+		6186658329A71FC90040D7D2 /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658229A71FC90040D7D2 /* NodeFactory.swift */; };
+		6186658529A720960040D7D2 /* RedPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658429A720960040D7D2 /* RedPegNode.swift */; };
+		6186658729A720F10040D7D2 /* YellowPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658629A720F10040D7D2 /* YellowPegNode.swift */; };
+		6186658929A721190040D7D2 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658829A721190040D7D2 /* BlockNode.swift */; };
 		619D849329890A96007C8683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849229890A96007C8683 /* AppDelegate.swift */; };
 		619D849529890A96007C8683 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849429890A96007C8683 /* SceneDelegate.swift */; };
 		619D849729890A96007C8683 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849629890A96007C8683 /* GameViewController.swift */; };
@@ -227,6 +232,11 @@
 		617D2DDE298BBBB100461FC9 /* BoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardView.swift; sourceTree = "<group>"; };
 		617D2DE4298BBC1C00461FC9 /* BoardScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardScene.swift; sourceTree = "<group>"; };
 		617D2DE6298BBC7F00461FC9 /* PegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegNode.swift; sourceTree = "<group>"; };
+		6186658029A71EA80040D7D2 /* BoardObjectNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardObjectNode.swift; sourceTree = "<group>"; };
+		6186658229A71FC90040D7D2 /* NodeFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NodeFactory.swift; sourceTree = "<group>"; };
+		6186658429A720960040D7D2 /* RedPegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedPegNode.swift; sourceTree = "<group>"; };
+		6186658629A720F10040D7D2 /* YellowPegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YellowPegNode.swift; sourceTree = "<group>"; };
+		6186658829A721190040D7D2 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		619D848F29890A96007C8683 /* PeggleClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeggleClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		619D849229890A96007C8683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		619D849429890A96007C8683 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -470,6 +480,11 @@
 				61F65182299740D900B2FDEB /* BallNodeDelegate.swift */,
 				61F48D652999053D00B33D50 /* PegNode+PegPhysicsBodyDelegate.swift */,
 				61F48D67299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift */,
+				6186658029A71EA80040D7D2 /* BoardObjectNode.swift */,
+				6186658229A71FC90040D7D2 /* NodeFactory.swift */,
+				6186658429A720960040D7D2 /* RedPegNode.swift */,
+				6186658629A720F10040D7D2 /* YellowPegNode.swift */,
+				6186658829A721190040D7D2 /* BlockNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -914,16 +929,19 @@
 				615E43F929A64E55009F03BC /* CGPoint+StoredData.swift in Sources */,
 				61A1615A299CB14C000ADBAC /* SegueNames.swift in Sources */,
 				61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */,
+				6186658129A71EA80040D7D2 /* BoardObjectNode.swift in Sources */,
 				615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */,
 				61F48D6C299906CF00B33D50 /* BoardScene+BallNodeDelegate.swift in Sources */,
 				617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */,
 				61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */,
 				610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */,
+				6186658729A720F10040D7D2 /* YellowPegNode.swift in Sources */,
 				61B13BBB299D667D005242E8 /* BoardObjectWrapper.swift in Sources */,
 				61F48D70299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift in Sources */,
 				61AF44CD298C9B0C00A9181A /* MSKCirclePhysicsBody.swift in Sources */,
 				615E43EC29A63C67009F03BC /* StoredData.swift in Sources */,
 				61F6517F2997397500B2FDEB /* BallPhysicsBodyDelegate.swift in Sources */,
+				6186658929A721190040D7D2 /* BlockNode.swift in Sources */,
 				61CDDEBB298AA6E800297265 /* MSKScene.swift in Sources */,
 				617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */,
 				61B13BE1299DC095005242E8 /* Block.swift in Sources */,
@@ -975,6 +993,8 @@
 				615E43EE29A63CE2009F03BC /* FetchedData.swift in Sources */,
 				612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */,
 				610FED91298E616400875BBA /* LevelDesignerConstants.swift in Sources */,
+				6186658329A71FC90040D7D2 /* NodeFactory.swift in Sources */,
+				6186658529A720960040D7D2 /* RedPegNode.swift in Sources */,
 				615E43FD29A64EDF009F03BC /* Peg+StoredData.swift in Sources */,
 				617D2DE7298BBC7F00461FC9 /* PegNode.swift in Sources */,
 				61AF44CF298CA17F00A9181A /* UtilFunctions.swift in Sources */,

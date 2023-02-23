@@ -21,6 +21,6 @@ class BallPhysicsBody: MSKCirclePhysicsBody {
     }
 
     func isStationary() -> Bool {
-        areApproxEqual(position, positionLast) && acceleration.x == 0
+        PhysicsUtil.areApproxEqual(position, positionLast) && acceleration.x == 0
     }
 }

@@ -28,8 +28,10 @@ class BoardScene: MSKScene {
         setUpBorders()
     }
 
-    func addPegNode(_ addedNode: PegNode) {
+    func addBoardNode(_ addedNode: BoardObjectNode) {
         super.addNode(addedNode)
+
+        guard let addedNode = addedNode as? PegNode else { return }
         addedNode.delegate = self
     }
 
@@ -52,7 +54,7 @@ class BoardScene: MSKScene {
         // Rotate cannon to aim at target location
         let shotVector = SIMD2<Double>(x: tapLocation.x - ballOldPos.x, y: tapLocation.y - ballOldPos.y)
         let downVector = SIMD2<Double>(x: 0, y: 1.0)
-        let angleBetween = findAngleBetween(vectorA: shotVector, vectorB: downVector)
+        let angleBetween = PhysicsUtil.findAngleBetween(vectorA: shotVector, vectorB: downVector)
 
         guard let cannonPosX = cannon?.position.x else { return }
         if tapLocation.x > cannonPosX {
@@ -68,7 +70,7 @@ class BoardScene: MSKScene {
 
     private func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
         let shotVector = SIMD2<Double>(x: tapLocation.x - oldPosition.x, y: tapLocation.y - oldPosition.y)
-        let directionVector = findUnitVector(of: shotVector) * defaultDirectionVectorMultiplier
+        let directionVector = PhysicsUtil.findUnitVector(of: shotVector) * defaultDirectionVectorMultiplier
         let newPos = CGPoint(x: oldPosition.x + directionVector.x, y: oldPosition.y + directionVector.y)
         return newPos
     }

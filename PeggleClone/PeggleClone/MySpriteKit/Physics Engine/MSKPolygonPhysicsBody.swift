@@ -94,7 +94,7 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
             return false
         }
 
-        guard let collisionVector = findCollisionVector(polygon: self, circle: body) else { return false }
+        guard let collisionVector = PhysicsUtil.findCollisionVector(polygon: self, circle: body) else { return false }
 
         self.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
         body.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
@@ -107,7 +107,9 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
             return false
         }
 
-        guard let collisionVector = findCollisionVector(polygonA: self, polygonB: body) else { return false }
+        guard let collisionVector = PhysicsUtil.findCollisionVector(polygonA: self, polygonB: body) else {
+            return false
+        }
 
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
         body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
@@ -116,8 +118,8 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
 
     /// Returns the width of the polygon.
     func getWidth() -> Double {
-        var minA = maxDoubleValue
-        var maxA = minDoubleValue
+        var minA = PhysicsUtil.maxDoubleValue
+        var maxA = PhysicsUtil.minDoubleValue
         for vertex in vertices {
             minA = Double.minimum(minA, vertex.x)
             maxA = Double.maximum(maxA, vertex.x)
@@ -128,8 +130,8 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
 
     /// Returns the height of the polygon.
     func getHeight() -> Double {
-        var minA = maxDoubleValue
-        var maxA = minDoubleValue
+        var minA = PhysicsUtil.maxDoubleValue
+        var maxA = PhysicsUtil.minDoubleValue
         for vertex in vertices {
             minA = Double.minimum(minA, vertex.y)
             maxA = Double.maximum(maxA, vertex.y)

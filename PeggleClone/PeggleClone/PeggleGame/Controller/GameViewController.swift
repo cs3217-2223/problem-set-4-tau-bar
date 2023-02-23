@@ -70,9 +70,9 @@ class GameViewController: UIViewController {
         boardScene?.setupBoard()
 
         for objectWrapper in board?.objects ?? [] {
-            guard let peg = objectWrapper.object as? Peg,
-                  let pegNode = createPegNode(from: peg) else { continue }
-            boardScene?.addPegNode(pegNode)
+            let object = objectWrapper.object
+            guard let objectNode = NodeFactory.createNode(from: object) else { return }
+            boardScene?.addBoardNode(objectNode)
         }
     }
 

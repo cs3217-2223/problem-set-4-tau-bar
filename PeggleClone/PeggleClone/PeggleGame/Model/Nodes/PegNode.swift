@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PegNode: MSKSpriteNode {
+class PegNode: BoardObjectNode {
     weak var delegate: PegNodeDelegate?
     var isHit = false
     init(position: CGPoint, image: UIImage?) {

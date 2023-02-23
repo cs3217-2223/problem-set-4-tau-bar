@@ -107,7 +107,7 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
     private func dismissLevelSelect() {
         self.dismiss(animated: true)
     }
-    
+
     private func loadBoardDatas() throws {
         let boardDatas = try dataManager?.fetchAllLevelData()
         boards = []

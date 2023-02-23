@@ -22,14 +22,16 @@ class LevelBuilderViewController: UIViewController {
             setTextFieldText(to: board?.name ?? Board.DefaultBoardName)
         }
     }
-    
+
     // Data Manager
-    let dataManager: DataManager = DataManager()
+    let dataManager = DataManager()
 
     // Helper variables & properties
     var objectsToViews: [BoardObjectWrapper: BoardObjectView] = [:]
     var viewsToObjects: [BoardObjectView: BoardObjectWrapper] = [:]
     let notificationCenter = NotificationCenter.default
+
+    var testView: BoardObjectView?
 
         var angle = 0.0
 
@@ -190,12 +192,21 @@ class LevelBuilderViewController: UIViewController {
 
     @objc func rotatedObjectOnBoardView(_ notification: Notification) {
         guard let rotatedObjectWrapper = notification.object as? BoardObjectWrapper else { return }
-
+        let rotatedObject = rotatedObjectWrapper.object
         guard let rotatedView = objectsToViews[rotatedObjectWrapper] else { return }
-        UIView.animate(withDuration: 0.5, animations: {
-          rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
-        })
-
+//        testView = BoardObjectView(image: UIImage(named: "black"))
+//        guard let testView = testView else { return }
+//        testView.frame = CGRect(x: rotatedObject.position.x, y: rotatedObject.position.y, width: rotatedObject.width, height: rotatedObject.height)
+//        testView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
+        rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
+//        rotatedView.removeFromSuperview()
+//        boardView.addSubview(testView)
+//        objectsToViews[rotatedObjectWrapper] = testView
+//        print(testView.frame)
+//        print(rotatedView.frame)
+//        rotatedView.frame = testView.frame
+//        print(rotatedView.frame)
+//        print(")))))))")
     }
 
     /// Clears board view when receive .boardCleared notification from board model.
@@ -267,9 +278,8 @@ class LevelBuilderViewController: UIViewController {
         // Check whether the newView was set
         guard let viewToInsert = newView else { return }
         boardView.addSubview(viewToInsert)
-        viewToInsert.layer.anchorPoint = CGPoint(x: 0.5, y: 0.5)
-//        viewToInsert.contentMode = .scaleToFill
         viewToInsert.delegate = self
+        viewToInsert.layer.transform = CATransform3DMakeRotation(object.rotation, 0, 0, 1)
 
         // Update dictionaries
         objectsToViews[objectWrapper] = viewToInsert

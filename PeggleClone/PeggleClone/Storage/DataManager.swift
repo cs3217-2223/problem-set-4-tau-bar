@@ -52,14 +52,14 @@ class DataManager {
         let request = BoardData.fetchRequest()
         return try context.fetch(request)
     }
-    
+
     func delete(board: Board) throws {
         guard let boardData = try? findBoards(with: board.name) else { return }
         for datum in boardData {
             context.delete(datum)
         }
     }
-    
+
     func deleteAllBoards() throws {
         let fetchRequest: NSFetchRequest<NSFetchRequestResult> = BoardData.fetchRequest()
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
@@ -81,7 +81,7 @@ class DataManager {
         request.predicate = predicate
         return request
     }
-    
+
     private func sendNotification(of type: NSNotification.Name) {
         NotificationCenter.default.post(name: type, object: nil)
     }

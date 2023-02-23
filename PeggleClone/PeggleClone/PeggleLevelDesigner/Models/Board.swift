@@ -184,12 +184,4 @@ public class Board {
     private func sendNotification(of type: NSNotification.Name, with object: BoardObjectWrapper?) {
         NotificationCenter.default.post(name: type, object: object)
     }
-
-//    /// Encodes the board instance to support persistence of board data.
-//    public func encode(with coder: NSCoder) {
-//        coder.encode(objects, forKey: BoardKeys.pegs.rawValue)
-//        coder.encode(width, forKey: BoardKeys.width.rawValue)
-//        coder.encode(height, forKey: BoardKeys.height.rawValue)
-//        coder.encode(name, forKey: BoardKeys.name.rawValue)
-//    }
 }

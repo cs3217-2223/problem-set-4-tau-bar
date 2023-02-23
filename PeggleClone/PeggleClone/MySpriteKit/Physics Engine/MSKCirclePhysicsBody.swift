@@ -105,7 +105,7 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
 
         let minDistance = self.radius + body.radius
         let collisionAxis = self.position - body.position
-        let collisionAxisLength = getLength(of: collisionAxis)
+        let collisionAxisLength = PhysicsUtil.getLength(of: collisionAxis)
 
         // Checks whether the objects are overlapping.
         if collisionAxisLength < minDistance {
@@ -129,7 +129,7 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
             return false
         }
 
-        guard let collisionVector = findCollisionVector(polygon: body, circle: self) else { return false }
+        guard let collisionVector = PhysicsUtil.findCollisionVector(polygon: body, circle: self) else { return false }
         body.updatePosition(by: collisionVector.normal * collisionVector.minDepth / 2)
         self.updatePosition(by: -collisionVector.normal * collisionVector.minDepth / 2)
         return true

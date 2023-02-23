@@ -32,8 +32,8 @@ extension Board {
 
         return board
     }
-    
-    static private func populateBoard(pegDatas: [PegData], blockDatas: [BlockData], board: Board) throws {
+
+    private static func populateBoard(pegDatas: [PegData], blockDatas: [BlockData], board: Board) throws {
         try pegDatas.forEach({ pegData in
             let peg = try Peg.createPeg(with: pegData)
             board.objects.insert(BoardObjectWrapper(object: peg))
