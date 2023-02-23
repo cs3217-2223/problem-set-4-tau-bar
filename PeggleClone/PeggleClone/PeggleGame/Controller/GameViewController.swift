@@ -17,6 +17,12 @@ class GameViewController: UIViewController {
     @IBOutlet weak var firstLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var thirdLabel: UILabel!
+    var musicPlayer: MusicPlayer?
+    
+    override func viewDidAppear(_ animated: Bool) {
+        musicPlayer = MusicPlayer()
+        musicPlayer?.startGameMusic()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +46,8 @@ class GameViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        musicPlayer?.stopGameMusic()
 
         // Remove reference to displayLink to prevent memory leak
         displayLink.remove(from: .current, forMode: RunLoop.Mode.default)

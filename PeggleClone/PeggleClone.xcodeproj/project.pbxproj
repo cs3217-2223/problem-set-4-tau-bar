@@ -32,6 +32,9 @@
 		614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614298E3299B409000D39C75 /* ChooseLevel.storyboard */; };
 		614298E6299B418100D39C75 /* ChooseLevelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614298E5299B418100D39C75 /* ChooseLevelViewController.swift */; };
 		614B106E29A7BD8800D39064 /* get_schwifty.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 614B106D29A7BD8800D39064 /* get_schwifty.ttf */; };
+		614B107029A7E59700D39064 /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614B106F29A7E59700D39064 /* MusicPlayer.swift */; };
+		614B107229A7E68A00D39064 /* backgroundMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 614B107129A7E68A00D39064 /* backgroundMusic.mp3 */; };
+		614B107429A7E98E00D39064 /* game.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 614B107329A7E98E00D39064 /* game.mp3 */; };
 		61554C292997B0FA00BD761A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61554C282997B0FA00BD761A /* Constants.swift */; };
 		615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */; };
 		615E43EA29A639FF009F03BC /* PeggleCloneData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 615E43E829A639FF009F03BC /* PeggleCloneData.xcdatamodeld */; };
@@ -227,6 +230,9 @@
 		614298E3299B409000D39C75 /* ChooseLevel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseLevel.storyboard; sourceTree = "<group>"; };
 		614298E5299B418100D39C75 /* ChooseLevelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseLevelViewController.swift; sourceTree = "<group>"; };
 		614B106D29A7BD8800D39064 /* get_schwifty.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = get_schwifty.ttf; sourceTree = "<group>"; };
+		614B106F29A7E59700D39064 /* MusicPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
+		614B107129A7E68A00D39064 /* backgroundMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = backgroundMusic.mp3; sourceTree = "<group>"; };
+		614B107329A7E98E00D39064 /* game.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = game.mp3; sourceTree = "<group>"; };
 		61554C282997B0FA00BD761A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MSKPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		615E43E929A639FF009F03BC /* PeggleCloneData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = PeggleCloneData.xcdatamodel; sourceTree = "<group>"; };
@@ -435,6 +441,8 @@
 		614B106A29A7BD0300D39064 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				614B107329A7E98E00D39064 /* game.mp3 */,
+				614B107129A7E68A00D39064 /* backgroundMusic.mp3 */,
 				614B106D29A7BD8800D39064 /* get_schwifty.ttf */,
 			);
 			path = Resources;
@@ -729,6 +737,7 @@
 				617D2DE0298BBBEB00461FC9 /* Controller */,
 				617D2DDD298BBA3300461FC9 /* View */,
 				61F07CED29A7440100C7A7A4 /* PeggleGameConstants.swift */,
+				614B106F29A7E59700D39064 /* MusicPlayer.swift */,
 			);
 			path = PeggleGame;
 			sourceTree = "<group>";
@@ -935,9 +944,11 @@
 				614298E0299B38EA00D39C75 /* MainMenu.storyboard in Resources */,
 				61BD3D75299E679000EED58C /* LevelTableViewCell.xib in Resources */,
 				614B106E29A7BD8800D39064 /* get_schwifty.ttf in Resources */,
+				614B107429A7E98E00D39064 /* game.mp3 in Resources */,
 				619D849C29890A9A007C8683 /* Assets.xcassets in Resources */,
 				614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */,
 				61B30C7A299E506100ADE396 /* LevelSelect.storyboard in Resources */,
+				614B107229A7E68A00D39064 /* backgroundMusic.mp3 in Resources */,
 				619D849A29890A96007C8683 /* Game.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1075,6 +1086,7 @@
 				61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */,
 				61DB63DA299CB9910048663D /* BoardObject.swift in Sources */,
 				615E43EE29A63CE2009F03BC /* FetchedData.swift in Sources */,
+				614B107029A7E59700D39064 /* MusicPlayer.swift in Sources */,
 				612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */,
 				610FED91298E616400875BBA /* LevelDesignerConstants.swift in Sources */,
 				6186658329A71FC90040D7D2 /* NodeFactory.swift in Sources */,

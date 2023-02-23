@@ -10,16 +10,15 @@ import UIKit
 class MainMenuViewController: UIViewController {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var levelDesignerButton: UIButton!
+    var musicPlayer: MusicPlayer?
     
-    override func viewDidLoad() {
-        for family: String in UIFont.familyNames
-        {
-            print(family)
-            for names: String in UIFont.fontNames(forFamilyName: family)
-            {
-                print("== \(names)")
-            }
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        musicPlayer = MusicPlayer()
+        musicPlayer?.startBackgroundMusic()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        musicPlayer?.stopBackgroundMusic()
     }
 
     @IBAction func startButtonTapped(_ sender: Any) {
