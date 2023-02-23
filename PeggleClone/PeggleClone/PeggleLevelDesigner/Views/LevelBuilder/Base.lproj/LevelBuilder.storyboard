@@ -47,6 +47,7 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="LOAD">
+                                            <fontDescription key="titleFontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
@@ -61,6 +62,7 @@
                                             <constraint firstAttribute="width" constant="75" id="q7i-79-Mcy"/>
                                         </constraints>
                                         <buttonConfiguration key="configuration" style="filled" title="RESET">
+                                            <fontDescription key="titleFontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
@@ -76,6 +78,7 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="SAVE">
+                                            <fontDescription key="titleFontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
@@ -92,6 +95,7 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="BACK">
+                                            <fontDescription key="titleFontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                                             <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
@@ -100,19 +104,19 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e4-8o-MiD">
-                                        <rect key="frame" x="250" y="35" width="50" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="250" y="35" width="53" height="17"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balls:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z93-ln-flZ">
-                                        <rect key="frame" x="250" y="91" width="41" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="250" y="87" width="43" height="17"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Level Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="XbQ-F7-vbO" userLabel="Level Name Input">
-                                        <rect key="frame" x="325" y="30" width="250" height="30"/>
+                                        <rect key="frame" x="328" y="30" width="250" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="axt-MY-Pzk"/>
                                             <constraint firstAttribute="width" constant="250" id="hTF-eG-ksk"/>
@@ -123,13 +127,18 @@
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="r3Z-Fs-PqP">
                                         <rect key="frame" x="250" y="129" width="94" height="32"/>
                                         <color key="backgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="didChangeBallCount:" destination="BYZ-38-t0r" eventType="valueChanged" id="DsV-W1-WZE"/>
                                         </connections>
                                     </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fym-f0-WEo">
-                                        <rect key="frame" x="299" y="91" width="8" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="308.5" y="86" width="11.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -140,13 +149,14 @@
                                             <segment title="Beat Score!"/>
                                             <segment title="Dodge"/>
                                         </segments>
+                                        <color key="selectedSegmentTintColor" red="0.4054582417" green="0.60026109220000001" blue="0.63047081230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="didChangeGameMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="pPB-iZ-1ue"/>
                                         </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCH-jX-hdQ">
-                                        <rect key="frame" x="474" y="89" width="93" height="21"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <rect key="frame" x="465" y="93" width="102" height="17"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -159,6 +169,7 @@
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="esX-o8-uvb"/>
                                         </constraints>
                                         <buttonConfiguration key="configuration" style="filled" title="START">
+                                            <fontDescription key="titleFontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="14"/>
                                             <color key="baseForegroundColor" systemColor="labelColor"/>
                                             <color key="baseBackgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
@@ -175,23 +186,23 @@
                                     <constraint firstItem="XbQ-F7-vbO" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="30" id="9KU-pb-pLL"/>
                                     <constraint firstItem="XbQ-F7-vbO" firstAttribute="leading" secondItem="7e4-8o-MiD" secondAttribute="trailing" constant="25" id="A5u-8i-koe"/>
                                     <constraint firstItem="Whg-lF-Ebp" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="30" id="Ame-98-VjX"/>
-                                    <constraint firstItem="r3Z-Fs-PqP" firstAttribute="top" secondItem="fym-f0-WEo" secondAttribute="bottom" constant="17" id="ITB-eS-Pnh"/>
+                                    <constraint firstItem="fym-f0-WEo" firstAttribute="leading" secondItem="Z93-ln-flZ" secondAttribute="trailing" constant="15.5" id="Gi1-Fq-Wg2"/>
                                     <constraint firstItem="DIX-hW-oNx" firstAttribute="leading" secondItem="Whg-lF-Ebp" secondAttribute="trailing" constant="20" id="JFL-e7-Tu1"/>
                                     <constraint firstAttribute="trailing" secondItem="5g0-oH-zqk" secondAttribute="trailing" constant="44" id="K9S-uO-T19"/>
-                                    <constraint firstItem="THa-aE-f7K" firstAttribute="top" secondItem="DCH-jX-hdQ" secondAttribute="bottom" constant="20" id="KF3-E4-SZI"/>
-                                    <constraint firstItem="fym-f0-WEo" firstAttribute="leading" secondItem="Z93-ln-flZ" secondAttribute="trailing" constant="8" id="MMw-oX-huK"/>
+                                    <constraint firstItem="5g0-oH-zqk" firstAttribute="leading" secondItem="DCH-jX-hdQ" secondAttribute="trailing" constant="57" id="L5d-gL-iP8"/>
                                     <constraint firstAttribute="bottom" secondItem="5g0-oH-zqk" secondAttribute="bottom" constant="76" id="N7D-ck-WJP"/>
                                     <constraint firstItem="DIX-hW-oNx" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="30" id="OQL-gf-4JY"/>
-                                    <constraint firstItem="DCH-jX-hdQ" firstAttribute="leading" secondItem="fym-f0-WEo" secondAttribute="trailing" constant="167" id="Sd6-cr-dXV"/>
+                                    <constraint firstAttribute="trailing" secondItem="THa-aE-f7K" secondAttribute="trailing" constant="88" id="Rse-w1-xmB"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="186" id="TVx-l8-9vd"/>
                                     <constraint firstItem="r3Z-Fs-PqP" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="250" id="Tb9-Bo-9Zh"/>
                                     <constraint firstItem="IsX-5G-N6v" firstAttribute="top" secondItem="DIX-hW-oNx" secondAttribute="bottom" constant="20" id="VMW-ay-7yM"/>
                                     <constraint firstItem="IsX-5G-N6v" firstAttribute="leading" secondItem="Gq9-0X-Gkz" secondAttribute="trailing" constant="20" id="Xaf-VZ-0Mn"/>
-                                    <constraint firstItem="THa-aE-f7K" firstAttribute="leading" secondItem="r3Z-Fs-PqP" secondAttribute="trailing" constant="40" id="XfJ-Bm-y1z"/>
                                     <constraint firstAttribute="bottom" secondItem="5g0-oH-zqk" secondAttribute="bottom" constant="76" id="XhW-Uh-eTN"/>
                                     <constraint firstItem="Whg-lF-Ebp" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="30" id="ZT7-np-jIX"/>
                                     <constraint firstItem="Z93-ln-flZ" firstAttribute="leading" secondItem="IsX-5G-N6v" secondAttribute="trailing" constant="50" id="dFH-JB-G9t"/>
                                     <constraint firstAttribute="bottom" secondItem="THa-aE-f7K" secondAttribute="bottom" constant="25" id="jJA-g9-Xat"/>
+                                    <constraint firstItem="r3Z-Fs-PqP" firstAttribute="top" secondItem="fym-f0-WEo" secondAttribute="bottom" constant="26" id="kbY-P4-IYP"/>
+                                    <constraint firstItem="THa-aE-f7K" firstAttribute="top" secondItem="DCH-jX-hdQ" secondAttribute="bottom" constant="20" id="qp1-H8-WTM"/>
                                     <constraint firstItem="7e4-8o-MiD" firstAttribute="leading" secondItem="DIX-hW-oNx" secondAttribute="trailing" constant="50" id="rCn-ue-W6k"/>
                                     <constraint firstItem="Gq9-0X-Gkz" firstAttribute="top" secondItem="Whg-lF-Ebp" secondAttribute="bottom" constant="20" id="tJG-VJ-Zqf"/>
                                     <constraint firstItem="Gq9-0X-Gkz" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="30" id="uvy-ia-byO"/>
@@ -202,7 +213,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vsl-h7-nc6" userLabel="BoardView">
                                 <rect key="frame" x="10" y="186" width="724" height="847"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="BHJ-dG-G4z">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space-background" translatesAutoresizingMaskIntoConstraints="NO" id="BHJ-dG-G4z">
                                         <rect key="frame" x="0.0" y="0.0" width="724" height="847"/>
                                     </imageView>
                                 </subviews>
@@ -230,7 +241,7 @@
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                        <color key="backgroundColor" red="0.093017112403222094" green="0.11379384050581487" blue="0.16726430259036462" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="tkH-1j-NGt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="1Pb-qo-Ahs"/>
@@ -452,21 +463,18 @@
         </scene>
     </scenes>
     <resources>
-        <image name="background" width="4000" height="3000"/>
         <image name="black" width="174" height="156"/>
         <image name="delete" width="256" height="256"/>
         <image name="peg-blue" width="128" height="128"/>
         <image name="peg-green" width="128" height="128"/>
         <image name="peg-orange" width="128" height="128"/>
         <image name="peg-red" width="128" height="128"/>
+        <image name="space-background" width="1080" height="1920"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemPurpleColor">
-            <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

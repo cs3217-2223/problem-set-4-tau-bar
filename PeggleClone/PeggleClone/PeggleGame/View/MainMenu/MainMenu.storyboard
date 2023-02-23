@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="ipad10_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="ipad7_9" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
@@ -8,37 +8,70 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="get_schwifty.ttf">
+            <string>GetSchwifty-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Main Menu View Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController modalPresentationStyle="fullScreen" id="Y6W-OH-hqX" userLabel="Main Menu View Controller" customClass="MainMenuViewController" customModule="PeggleClone" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                        <rect key="frame" x="0.0" y="0.0" width="744" height="1133"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="black" translatesAutoresizingMaskIntoConstraints="NO" id="euk-LY-VPX">
-                                <rect key="frame" x="0.0" y="0.0" width="820" height="1180"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main-menu-bg" translatesAutoresizingMaskIntoConstraints="NO" id="euk-LY-VPX">
+                                <rect key="frame" x="0.0" y="0.0" width="744" height="1133"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rick-and-morty-logo" translatesAutoresizingMaskIntoConstraints="NO" id="6dd-Ya-gLk">
-                                <rect key="frame" x="160" y="318" width="500" height="200"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rick-and-morty-logo" translatesAutoresizingMaskIntoConstraints="NO" id="6dd-Ya-gLk">
+                                <rect key="frame" x="-83" y="0.0" width="910" height="528"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="ERB-1o-JE3"/>
-                                    <constraint firstAttribute="width" constant="500" id="Fmf-Je-JOw"/>
+                                    <constraint firstAttribute="width" constant="910" id="5ZK-2k-Jff"/>
+                                    <constraint firstAttribute="height" constant="528" id="zPF-lv-5GJ"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="66k-OK-DA5">
-                                <rect key="frame" x="102" y="780" width="616" height="130"/>
+                                <rect key="frame" x="159.5" y="996" width="425" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="425" id="P0M-1l-jWn"/>
+                                    <constraint firstAttribute="height" constant="81" id="dmx-xn-0mo"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="level-designer-button 1"/>
+                                <buttonConfiguration key="configuration" style="plain" title="LEVEL DESIGNER">
+                                    <backgroundConfiguration key="background" cornerRadius="50">
+                                        <color key="backgroundColor" red="0.50980392159999999" green="0.76470588240000004" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="30"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="levelDesignerButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Llc-7g-rku"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GROMFLOMITE INVASION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zng-80-pZy">
+                                <rect key="frame" x="92.5" y="406" width="559" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="559" id="Ix8-Yh-SXo"/>
+                                    <constraint firstAttribute="height" constant="60" id="YiJ-kM-dVa"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GetSchwifty-Regular" family="Get Schwifty" pointSize="60"/>
+                                <color key="textColor" red="0.385152936" green="0.93238747119999998" blue="0.1817858815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEE-oE-HFR">
-                                <rect key="frame" x="107" y="618" width="606" height="122"/>
+                                <rect key="frame" x="159.5" y="863" width="425" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="425" id="PEG-xq-RYV"/>
+                                    <constraint firstAttribute="height" constant="81" id="qhI-gL-HhV"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="start-button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="START">
+                                    <backgroundConfiguration key="background" cornerRadius="50">
+                                        <color key="backgroundColor" red="0.50980392159999999" green="0.76470588240000004" blue="0.92549019610000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </backgroundConfiguration>
+                                    <fontDescription key="titleFontDescription" name="HiraginoSans-W6" family="Hiragino Sans" pointSize="30"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="startButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7PW-hV-8fE"/>
                                 </connections>
@@ -47,16 +80,20 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="euk-LY-VPX" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="03w-Gh-Fef"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="66k-OK-DA5" secondAttribute="bottom" constant="250" id="8fR-ze-6tO"/>
-                            <constraint firstItem="euk-LY-VPX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="KJI-fN-tZl"/>
-                            <constraint firstItem="6dd-Ya-gLk" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="NnX-8T-BWk"/>
-                            <constraint firstItem="euk-LY-VPX" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="bgx-Wl-LzQ"/>
-                            <constraint firstItem="66k-OK-DA5" firstAttribute="top" secondItem="cEE-oE-HFR" secondAttribute="bottom" constant="40" id="dtO-MX-cPI"/>
-                            <constraint firstItem="cEE-oE-HFR" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="h4O-NC-z8g"/>
-                            <constraint firstAttribute="bottom" secondItem="euk-LY-VPX" secondAttribute="bottom" id="jcf-mn-DxU"/>
-                            <constraint firstItem="66k-OK-DA5" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="tko-vf-1A7"/>
-                            <constraint firstItem="cEE-oE-HFR" firstAttribute="top" secondItem="6dd-Ya-gLk" secondAttribute="bottom" constant="100" id="wBw-gS-O9M"/>
+                            <constraint firstAttribute="bottom" secondItem="euk-LY-VPX" secondAttribute="bottom" id="3Pz-EK-DQQ"/>
+                            <constraint firstItem="66k-OK-DA5" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="AGm-uo-yz9"/>
+                            <constraint firstItem="Zng-80-pZy" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="CSV-et-TXp"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="66k-OK-DA5" secondAttribute="bottom" constant="36" id="KFx-6L-sAq"/>
+                            <constraint firstItem="66k-OK-DA5" firstAttribute="top" secondItem="cEE-oE-HFR" secondAttribute="bottom" constant="52" id="MC8-VW-ifX"/>
+                            <constraint firstItem="6dd-Ya-gLk" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Vzw-aT-C8l"/>
+                            <constraint firstItem="cEE-oE-HFR" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="Zue-1W-2wf"/>
+                            <constraint firstItem="66k-OK-DA5" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="gN5-RV-1wi"/>
+                            <constraint firstItem="Zng-80-pZy" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="topMargin" constant="382" id="ioZ-AE-f6j"/>
+                            <constraint firstItem="cEE-oE-HFR" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="lB2-Xa-yaE"/>
+                            <constraint firstItem="euk-LY-VPX" firstAttribute="trailing" secondItem="vDu-zF-Fre" secondAttribute="trailing" id="mll-XA-LG4"/>
+                            <constraint firstItem="euk-LY-VPX" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="oNH-4j-SmF"/>
+                            <constraint firstItem="euk-LY-VPX" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="rdk-6d-jPM"/>
+                            <constraint firstItem="6dd-Ya-gLk" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="uOq-sw-u2h"/>
                         </constraints>
                     </view>
                     <connections>
@@ -68,7 +105,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="51.951219512195124" y="-2.0338983050847457"/>
+            <point key="canvasLocation" x="51.612903225806456" y="-2.3830538393645191"/>
         </scene>
         <!--LevelBuilderViewController-->
         <scene sceneID="93P-aI-aY3">
@@ -88,10 +125,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="black" width="174" height="156"/>
-        <image name="level-designer-button 1" width="592" height="116"/>
+        <image name="main-menu-bg" width="1559" height="2400"/>
         <image name="rick-and-morty-logo" width="666" height="375"/>
-        <image name="start-button" width="582" height="108"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
