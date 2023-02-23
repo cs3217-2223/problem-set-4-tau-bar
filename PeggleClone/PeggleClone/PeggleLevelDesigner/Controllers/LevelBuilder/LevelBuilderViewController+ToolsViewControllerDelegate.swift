@@ -18,7 +18,7 @@ extension LevelBuilderViewController: ToolsViewControllerDelegate {
 
     func didChangeSize(to size: Double) {
         guard let selectedObject = selectedObject else { return }
-        resizeObject(selectedObject, to: size)
+        board?.resizeObject(selectedObject, to: size)
     }
 
     func didSelectObject(_ object: BoardObjectWrapper) {

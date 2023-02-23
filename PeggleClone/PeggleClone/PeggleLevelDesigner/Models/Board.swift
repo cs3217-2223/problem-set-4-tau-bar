@@ -17,20 +17,22 @@ import Foundation
 public class Board {
     /// The set of board objects on the board.
     var objects: Set<BoardObjectWrapper>
-
     /// The height of the board.
     let height: Double
-
     /// The width of the board.
     let width: Double
-
     /// The name of the board.
-    var name: String = DefaultBoardName
+    var name: String = defaultBoardName
+    /// Number of balls which are available to shoot on the board.
+    var balls: Int = defaultBalls
+    /// The board's game mode.
+    var gameMode: GameMode = .classic
 
     /// The default board name.
-    static let DefaultBoardName = ""
+    static let defaultBoardName = ""
 
-    public static var supportsSecureCoding = true
+    /// The default number of balls
+    static let defaultBalls = 1
 
     // MARK: Initializers
     /**

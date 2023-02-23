@@ -9,7 +9,7 @@ import Foundation
 
 extension PegNode: PegPhysicsBodyDelegate {
     @objc func didCollideWithBall() {
-        isHit = true
         delegate?.didCollideWithBall(pegNode: self)
+        isHit = true
     }
 }

@@ -10,5 +10,6 @@ import Foundation
 extension BoardScene: PegNodeDelegate {
     func didCollideWithBall(pegNode: PegNode) {
         boardSceneDelegate?.didCollideWithBall(updatedPegNode: pegNode)
+        gameState.didCollideWithBall(pegNode: pegNode)
     }
 }

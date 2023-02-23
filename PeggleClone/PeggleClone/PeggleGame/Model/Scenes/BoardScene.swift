@@ -8,6 +8,8 @@
 import Foundation
 
 class BoardScene: MSKScene {
+    var gameState: GameState
+
     weak var boardSceneDelegate: BoardSceneDelegate?
     private var ball: BallNode?
     private var cannon: CannonNode?
@@ -16,7 +18,8 @@ class BoardScene: MSKScene {
     private let defaultCannonHeight: Double = 50
     private let defaultBallStartingHeight: Double = 50
 
-    init(width: Double, height: Double) {
+    init(width: Double, height: Double, gameState: GameState) {
+        self.gameState = gameState
         super.init(physicsWorld: MSKPhysicsWorld(width: width, height: height))
     }
 
@@ -121,6 +124,7 @@ class BoardScene: MSKScene {
         guard let ball = ball else { return }
         removeNode(ball)
         self.ball = nil
+        gameState.ballsLeft -= 1
     }
 
     private func isOutOfBounds(node: BallNode) -> Bool {

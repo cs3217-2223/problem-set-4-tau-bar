@@ -123,6 +123,9 @@
                                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="10" translatesAutoresizingMaskIntoConstraints="NO" id="r3Z-Fs-PqP">
                                         <rect key="frame" x="250" y="129" width="94" height="32"/>
                                         <color key="backgroundColor" red="0.3859900832" green="0.64507979150000005" blue="0.67116826770000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="didChangeBallCount:" destination="BYZ-38-t0r" eventType="valueChanged" id="DsV-W1-WZE"/>
+                                        </connections>
                                     </stepper>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fym-f0-WEo">
                                         <rect key="frame" x="299" y="91" width="8" height="21"/>
@@ -137,6 +140,9 @@
                                             <segment title="Beat Score!"/>
                                             <segment title="Dodge"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="didChangeGameMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="pPB-iZ-1ue"/>
+                                        </connections>
                                     </segmentedControl>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCH-jX-hdQ">
                                         <rect key="frame" x="474" y="89" width="93" height="21"/>
@@ -240,7 +246,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ballCountLabel" destination="fym-f0-WEo" id="V3t-6k-Fqd"/>
+                        <outlet property="ballStepper" destination="r3Z-Fs-PqP" id="pnK-sY-Che"/>
                         <outlet property="boardView" destination="vsl-h7-nc6" id="n4d-qT-moh"/>
+                        <outlet property="gameModeSelect" destination="THa-aE-f7K" id="2fl-m5-5BI"/>
                         <outlet property="levelNameTextField" destination="XbQ-F7-vbO" id="EfO-tS-itl"/>
                         <outlet property="loadButton" destination="Gq9-0X-Gkz" id="q4Q-09-cdg"/>
                         <outlet property="resetButton" destination="IsX-5G-N6v" id="l9e-Fu-cPW"/>

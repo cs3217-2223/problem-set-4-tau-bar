@@ -9,6 +9,9 @@ class LevelBuilderViewController: UIViewController {
     @IBOutlet var resetButton: UIButton!
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var loadButton: UIButton!
+    @IBOutlet var ballStepper: UIStepper!
+    @IBOutlet var ballCountLabel: UILabel!
+    @IBOutlet var gameModeSelect: UISegmentedControl!
 
     // Delegate references
     weak var actionsDelegate: LevelBuilderActionsDelegate?
@@ -19,7 +22,7 @@ class LevelBuilderViewController: UIViewController {
         didSet {
             removeAllBoardObjectsFromView()
             loadObjectsFromModelOnBoard()
-            setTextFieldText(to: board?.name ?? Board.DefaultBoardName)
+            setTextFieldText(to: board?.name ?? Board.defaultBoardName)
         }
     }
 
@@ -31,14 +34,9 @@ class LevelBuilderViewController: UIViewController {
     var viewsToObjects: [BoardObjectView: BoardObjectWrapper] = [:]
     let notificationCenter = NotificationCenter.default
 
-    var testView: BoardObjectView?
-
-        var angle = 0.0
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        //        DataManager.sharedInstance.createBoardData()
         boardView.setNeedsLayout()
         boardView.layoutIfNeeded()
 
@@ -74,10 +72,7 @@ class LevelBuilderViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
-    // MARK: Interaction handler functions
-    /// Runs when the board view is tapped.
-    /// If an add peg button is selected, a peg is added.
-    /// Otherwise, do nothing.
+    // MARK: Functions for interactions with UI buttons
     @IBAction func didTapView(_ sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: boardView)
         actionsDelegate?.didTapBoard(at: tapLocation)
@@ -90,6 +85,20 @@ class LevelBuilderViewController: UIViewController {
 
     @IBAction func startButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "goToGameView", sender: self)
+    }
+
+    @IBAction func didChangeBallCount(_ sender: UIStepper) {
+        let newBalls = Int(ballStepper.value)
+        if newBalls >= LevelBuilderConstants.minBalls,
+           newBalls <= LevelBuilderConstants.maxBalls {
+            board?.balls = newBalls
+            ballCountLabel.text = String(newBalls)
+        }
+    }
+
+    @IBAction func didChangeGameMode(_ sender: UISegmentedControl) {
+        let mode = LevelBuilderConstants.gameModes[gameModeSelect.selectedSegmentIndex]
+        board?.gameMode = mode
     }
 
     /// Saves the level with the current level name.
@@ -113,13 +122,26 @@ class LevelBuilderViewController: UIViewController {
         }
     }
 
-    @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {}
-
     /// Opens the view showing the saved levels when the load button is tapped.
     @IBAction func loadButtonTapped(_ sender: Any) {
         performSegue(withIdentifier: "goToLevelSelect", sender: sender)
     }
 
+    // MARK: Functions for segues & unwinding
+    @IBAction func unwindFromGameViewController(_ segue: UIStoryboardSegue) {}
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToGameView" {
+            guard let gameVc = segue.destination as? GameViewController else { return }
+            gameVc.board = board
+        } else if segue.identifier == "goToLevelSelect" {
+            guard let levelSelectVc = segue.destination as? LevelSelectViewController else { return }
+            levelSelectVc.dataManager = dataManager
+            levelSelectVc.delegate = self
+        }
+    }
+
+    // MARK: Functions for interacting with model
     func addObject(addedObjectWrapper: BoardObjectWrapper) {
         board?.addObject(addedObjectWrapper)
     }
@@ -140,10 +162,6 @@ class LevelBuilderViewController: UIViewController {
 
         let newLocation = sender.location(in: boardView)
         board?.moveObject(movedObjectWrapper, to: newLocation)
-    }
-
-    func resizeObject(_ object: BoardObjectWrapper, to newSize: Double) {
-        board?.resizeObject(object, to: newSize)
     }
 
     // MARK: Notification Functions
@@ -194,19 +212,7 @@ class LevelBuilderViewController: UIViewController {
         guard let rotatedObjectWrapper = notification.object as? BoardObjectWrapper else { return }
         let rotatedObject = rotatedObjectWrapper.object
         guard let rotatedView = objectsToViews[rotatedObjectWrapper] else { return }
-//        testView = BoardObjectView(image: UIImage(named: "black"))
-//        guard let testView = testView else { return }
-//        testView.frame = CGRect(x: rotatedObject.position.x, y: rotatedObject.position.y, width: rotatedObject.width, height: rotatedObject.height)
-//        testView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
-        rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObjectWrapper.object.rotation, 0, 0, 1)
-//        rotatedView.removeFromSuperview()
-//        boardView.addSubview(testView)
-//        objectsToViews[rotatedObjectWrapper] = testView
-//        print(testView.frame)
-//        print(rotatedView.frame)
-//        rotatedView.frame = testView.frame
-//        print(rotatedView.frame)
-//        print(")))))))")
+        rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObject.rotation, 0, 0, 1)
     }
 
     /// Clears board view when receive .boardCleared notification from board model.
@@ -220,17 +226,6 @@ class LevelBuilderViewController: UIViewController {
 
     @objc func notifyUserSaveError() {
         alertUserSaveError()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "goToGameView" {
-            guard let gameVc = segue.destination as? GameViewController else { return }
-            gameVc.board = board
-        } else if segue.identifier == "goToLevelSelect" {
-            guard let levelSelectVc = segue.destination as? LevelSelectViewController else { return }
-            levelSelectVc.dataManager = dataManager
-            levelSelectVc.delegate = self
-        }
     }
 
     // MARK: Helper functions

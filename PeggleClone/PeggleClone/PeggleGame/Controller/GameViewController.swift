@@ -51,6 +51,11 @@ class GameViewController: UIViewController {
 
     @objc func step() {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
+        guard let isGameWon = boardScene?.gameState.isGameWon() else { return }
+        if isGameWon {
+            alertUserWon()
+            displayLink.isPaused = true
+        }
     }
 
     func createPegNode(from peg: Peg) -> PegNode? {
@@ -65,11 +70,15 @@ class GameViewController: UIViewController {
     }
 
     func setUpBoardScene() {
-        boardScene = BoardScene(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        guard let board = board else { return }
+        let gameState = PeggleGameConstants.createGameState(from: board)
+        boardScene = BoardScene(width: UIScreen.main.bounds.width,
+                                height: UIScreen.main.bounds.height,
+                                gameState: gameState)
 
         boardScene?.setupBoard()
 
-        for objectWrapper in board?.objects ?? [] {
+        for objectWrapper in board.objects {
             let object = objectWrapper.object
             guard let objectNode = NodeFactory.createNode(from: object) else { return }
             boardScene?.addBoardNode(objectNode)
@@ -79,5 +88,12 @@ class GameViewController: UIViewController {
     func setUpGameLoop() {
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
+    }
+
+    private func alertUserWon() {
+        let alert = UIAlertController(title: "YOU WIN", message: "Congratulations!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,
+                                      handler: { _ in self.dismiss(animated: true) }))
+        self.present(alert, animated: true, completion: nil)
     }
 }
