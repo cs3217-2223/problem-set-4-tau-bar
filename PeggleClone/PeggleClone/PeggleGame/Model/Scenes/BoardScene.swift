@@ -7,11 +7,17 @@
 
 import Foundation
 
+enum BucketDirection {
+    case right, left
+}
+
 class BoardScene: MSKScene {
     var gameState: GameState
 
     weak var boardSceneDelegate: BoardSceneDelegate?
     private var ball: BallNode?
+    private var bucket: BucketNode?
+    private var bucketDirection: BucketDirection = .right
     private var cannon: CannonNode?
     private var isCannonFired = false
     private let defaultDirectionVectorMultiplier: Double = 10.0
@@ -24,10 +30,24 @@ class BoardScene: MSKScene {
     }
 
     func setupBoard() {
+        // Add cannon node
         let cannonPosition = SIMD2<Double>(x: physicsWorld.width / 2, y: defaultCannonHeight)
         let newCannon = CannonNode(center: cannonPosition)
         addNode(newCannon)
         cannon = newCannon
+
+        // Add bucket node
+        let newBucket = BucketNode(center: SIMD2<Double>(physicsWorld.width / 2, physicsWorld.height - 50))
+        addNode(newBucket)
+        bucket = newBucket
+        bucket?.bucketDelegate = self
+
+        // Add bucket base & sides
+        guard let bucketPb = newBucket.physicsBody as? BucketPhysicsBody else { return }
+        physicsWorld.addBody(bucketPb.bucketBase)
+        physicsWorld.addBody(bucketPb.bucketLeft)
+        physicsWorld.addBody(bucketPb.bucketRight)
+
         setUpBorders()
     }
 
@@ -84,17 +104,41 @@ class BoardScene: MSKScene {
 
     override func update(timeInterval: TimeInterval) {
         super.update(timeInterval: timeInterval)
+        updateBucketPos()
         guard let ball = ball else { return }
         if isOutOfBounds(node: ball) {
             // Remove the balls out of the scene.
-            removeFiredBall()
-
-            // Remove nodes that are hit once ball is out of bounds.
-            removeHitPegs()
-
-            // Allow cannon to be fired again
-            isCannonFired = false
+            handleResetBall()
         }
+    }
+
+    func handleResetBall() {
+        removeFiredBall()
+
+        // Remove nodes that are hit once ball is out of bounds.
+        removeHitPegs()
+
+        // Allow cannon to be fired again
+        isCannonFired = false
+    }
+
+    private func updateBucketPos() {
+        guard let bucketPos = bucket?.position,
+              let bucketWidth = bucket?.getWidth(),
+              let bucketPb = bucket?.physicsBody as? BucketPhysicsBody else { return }
+
+        if bucketPos.x <= (bucketWidth / 2) {
+            bucketDirection = BucketDirection.right
+        } else if bucketPos.x >= physicsWorld.width - (bucketWidth / 2) {
+            bucketDirection = BucketDirection.left
+        }
+
+        var displacement = SIMD2<Double>(2.0, 0.0)
+        if bucketDirection == BucketDirection.left {
+            displacement = SIMD2<Double>(-2.0, 0.0)
+        }
+
+        bucketPb.move(by: displacement)
     }
 
     private func setUpBorders() {

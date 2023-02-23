@@ -35,9 +35,13 @@ class DodgeState: GameState {
     }
 
     func didCollideWithBall(pegNode: PegNode) {
-
         if !pegNode.isHit {
             hasBallHitPeg = true
         }
+    }
+
+    func didBallEnterBucket() {
+        ballsWithoutHittingLeft += 1
+        ballsLeft += 1
     }
 }

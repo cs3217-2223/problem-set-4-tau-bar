@@ -12,4 +12,5 @@ protocol GameState {
     func isGameWon() -> Bool
     func isGameLost() -> Bool
     func didCollideWithBall(pegNode: PegNode)
+    func didBallEnterBucket()
 }

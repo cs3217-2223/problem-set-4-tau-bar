@@ -12,12 +12,12 @@ class BlockNode: BoardObjectNode {
     var isHit = false
     init(position: CGPoint, width: Double, height: Double, rotation: Double) {
         let vertices = PhysicsUtil.getVerticesForRect(width: width, height: height)
-        let pegPhysicsBody = MSKPolygonPhysicsBody(vertices: vertices,
+        let blockPhysicsBody = MSKPolygonPhysicsBody(vertices: vertices,
                                                    position: SIMD2<Double>(position.x, position.y),
                                                    isDynamic: false,
                                                    rotation: rotation)
 
-        super.init(physicsBody: pegPhysicsBody,
+        super.init(physicsBody: blockPhysicsBody,
                    image: UIImage(named: "black"))
     }
 }

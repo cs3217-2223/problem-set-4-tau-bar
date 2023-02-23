@@ -33,4 +33,9 @@ class ScoreState: GameState {
             currentScore += PeggleGameConstants.getPoints(of: pegNode)
         }
     }
+
+    func didBallEnterBucket() {
+        ballsLeft += 1
+        currentScore += 1_000
+    }
 }

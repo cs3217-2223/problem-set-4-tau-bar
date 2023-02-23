@@ -29,4 +29,8 @@ class ClassicState: GameState {
             orangePegsLeft -= 1
         }
     }
+
+    func didBallEnterBucket() {
+        ballsLeft += 1
+    }
 }
