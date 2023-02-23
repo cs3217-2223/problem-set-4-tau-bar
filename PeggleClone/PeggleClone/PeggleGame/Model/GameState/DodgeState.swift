@@ -8,6 +8,12 @@
 import Foundation
 
 class DodgeState: GameState {
+    var firstLabel: String? {
+        "Chances Left:" + String(ballsWithoutHittingLeft)
+    }
+    var secondLabel: String?
+    var thirdLabel: String?
+    
     var ballsLeft: Int {
         didSet {
             // when scene subtracts balls left, update the ballsWithoutHittingLeft & hasBallHitPeg
@@ -42,6 +48,5 @@ class DodgeState: GameState {
 
     func didBallEnterBucket() {
         ballsWithoutHittingLeft += 1
-        ballsLeft += 1
     }
 }

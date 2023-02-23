@@ -9,7 +9,7 @@ import Foundation
 
 class NodeFactory {
     static func createNode(from boardObject: BoardObject) -> BoardObjectNode? {
-        let pos = CGPoint(x: boardObject.position.x, y: boardObject.position.y + defaultHeightBuffer)
+        let pos = CGPoint(x: boardObject.position.x, y: boardObject.position.y + PeggleCloneConstants.defaultBufferTop)
         let rotation = boardObject.rotation
         if let peg = boardObject as? Peg {
             switch peg.color {

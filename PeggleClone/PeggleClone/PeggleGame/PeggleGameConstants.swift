@@ -50,7 +50,7 @@ class PeggleGameConstants {
             board.objects.forEach({ object in
                 if let peg = object.object as? Peg {
                     maxPossibleScore += getPoints(of: peg)
-                    allowedTime += 2.0
+                    allowedTime += 5.0
                 }
             })
             let targetScore = Int(floor(0.9 * Double(maxPossibleScore)))

@@ -7,5 +7,6 @@
 
 import Foundation
 
-let defaultCannonRadius: Double = 50
-let defaultHeightBuffer: Double = 186
+class PeggleCloneConstants {
+    static let defaultBufferTop: Double = 186
+}

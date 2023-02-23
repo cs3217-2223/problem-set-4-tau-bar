@@ -13,11 +13,16 @@ class GameViewController: UIViewController {
     var count = 0
     var board: Board?
     @IBOutlet var boardView: BoardView!
-
+    @IBOutlet weak var ballsLeftLabel: UILabel!
+    @IBOutlet weak var firstLabel: UILabel!
+    @IBOutlet weak var secondLabel: UILabel!
+    @IBOutlet weak var thirdLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         setUpBoardScene()
+        updateGameDetails()
 
         // Set scene for board view
         guard let boardScene = boardScene else { return }
@@ -51,11 +56,27 @@ class GameViewController: UIViewController {
 
     @objc func step() {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
-        guard let isGameWon = boardScene?.gameState.isGameWon() else { return }
+        updateGameDetails()
+        
+        guard let isGameWon = boardScene?.gameState.isGameWon(),
+        let isGameLost = boardScene?.gameState.isGameLost() else { return }
         if isGameWon {
             alertUserWon()
             displayLink.isPaused = true
         }
+        
+        if isGameLost {
+            alertUserLost()
+            displayLink.isPaused = true
+        }
+    }
+    
+    func updateGameDetails() {
+        guard let gameState = boardScene?.gameState else { return }
+        firstLabel.text = gameState.firstLabel
+        secondLabel.text = gameState.secondLabel
+        thirdLabel.text = gameState.thirdLabel
+        ballsLeftLabel.text = String(gameState.ballsLeft)
     }
 
     func setUpBoardScene() {
@@ -81,6 +102,13 @@ class GameViewController: UIViewController {
 
     private func alertUserWon() {
         let alert = UIAlertController(title: "YOU WIN", message: "Congratulations!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,
+                                      handler: { _ in self.dismiss(animated: true) }))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func alertUserLost() {
+        let alert = UIAlertController(title: "GAME OVER", message: "You lose!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,
                                       handler: { _ in self.dismiss(animated: true) }))
         self.present(alert, animated: true, completion: nil)

@@ -11,6 +11,5 @@ extension BoardScene: BucketNodeDelegate {
     func didEnterBucket() {
         gameState.didBallEnterBucket()
         handleResetBall()
-        print("bucket")
     }
 }

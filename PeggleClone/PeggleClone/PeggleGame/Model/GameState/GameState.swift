@@ -9,6 +9,9 @@ import Foundation
 
 protocol GameState {
     var ballsLeft: Int { get set }
+    var firstLabel: String? { get }
+    var secondLabel: String? { get }
+    var thirdLabel: String? { get }
     func isGameWon() -> Bool
     func isGameLost() -> Bool
     func didCollideWithBall(pegNode: PegNode)

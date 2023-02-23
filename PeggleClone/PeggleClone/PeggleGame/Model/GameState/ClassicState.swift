@@ -8,6 +8,12 @@
 import Foundation
 
 class ClassicState: GameState {
+    var firstLabel: String? {
+        "Orange Pegs Left: " + String(orangePegsLeft)
+    }
+    var secondLabel: String?
+    var thirdLabel: String?
+    
     var orangePegsLeft: Int
     var ballsLeft: Int
 
