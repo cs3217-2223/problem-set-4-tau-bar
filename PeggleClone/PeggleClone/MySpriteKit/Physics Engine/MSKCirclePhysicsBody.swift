@@ -84,8 +84,8 @@ class MSKCirclePhysicsBody: MSKPhysicsBody {
                   radius: radius)
     }
 
-    convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>, isDynamic: Bool) {
-        self.init(position: center, isDynamic: isDynamic, radius: radius)
+    convenience init(circleOfRadius radius: CGFloat, center: SIMD2<Double>, isDynamic: Bool, rotation: Double) {
+        self.init(positionLast: center, position: center, isDynamic: isDynamic, radius: radius, angle: rotation)
     }
 
     /// Handles collision of the circle body with another unspecified type physics body.

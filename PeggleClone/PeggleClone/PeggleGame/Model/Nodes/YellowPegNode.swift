@@ -8,8 +8,8 @@
 import UIKit
 
 class YellowPegNode: PegNode {
-    init(position: CGPoint) {
-        super.init(position: position, image: UIImage(named: "peg-yellow"))
+    init(position: CGPoint, radius: Double, rotation: Double) {
+        super.init(position: position, image: UIImage(named: "peg-yellow"), radius: radius, rotation: rotation)
     }
 
     override func didCollideWithBall() {

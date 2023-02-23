@@ -29,6 +29,7 @@ class MSKView: UIView {
                                y: node.position.y,
                                width: node.getWidth(),
                                height: node.getHeight())
+        newView.layer.transform = CATransform3DMakeRotation(node.angle, 0, 0, 1)
         newView.center = node.position
         return newView
     }

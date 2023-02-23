@@ -9,20 +9,24 @@ import Foundation
 
 class NodeFactory {
     static func createNode(from boardObject: BoardObject) -> BoardObjectNode? {
-        let pos = boardObject.position
+        let pos = CGPoint(x: boardObject.position.x, y: boardObject.position.y + defaultHeightBuffer)
+        let rotation = boardObject.rotation
         if let peg = boardObject as? Peg {
             switch peg.color {
             case .blue:
-                return BluePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
+                return BluePegNode(position: pos, radius: peg.radius, rotation: rotation)
             case .orange:
-                return OrangePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
+                return OrangePegNode(position: pos, radius: peg.radius, rotation: rotation)
             case .red:
-                return RedPegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
+                return RedPegNode(position: pos, radius: peg.radius, rotation: rotation)
             case .yellow:
-                return YellowPegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
+                return YellowPegNode(position: pos, radius: peg.radius, rotation: rotation)
             }
         } else if boardObject is Block {
-            return BlockNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
+            return BlockNode(position: pos,
+                             width: boardObject.width,
+                             height: boardObject.height,
+                             rotation: boardObject.rotation)
         } else {
             // board object doesn't match any existing types
             return nil

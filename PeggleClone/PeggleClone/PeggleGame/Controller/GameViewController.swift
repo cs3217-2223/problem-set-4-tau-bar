@@ -58,17 +58,6 @@ class GameViewController: UIViewController {
         }
     }
 
-    func createPegNode(from peg: Peg) -> PegNode? {
-        let pos = peg.position
-        if peg.color == PegColor.blue {
-            return BluePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
-        } else if peg.color == PegColor.orange {
-            return OrangePegNode(position: CGPoint(x: pos.x, y: pos.y + defaultHeightBuffer))
-        } else {
-            return nil
-        }
-    }
-
     func setUpBoardScene() {
         guard let board = board else { return }
         let gameState = PeggleGameConstants.createGameState(from: board)

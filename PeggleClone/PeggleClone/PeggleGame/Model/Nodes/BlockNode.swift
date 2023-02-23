@@ -10,11 +10,12 @@ import UIKit
 class BlockNode: BoardObjectNode {
     weak var delegate: PegNodeDelegate?
     var isHit = false
-    init(position: CGPoint) {
-        let vertices = PhysicsUtil.getVerticesForRect(width: 40, height: 40)
+    init(position: CGPoint, width: Double, height: Double, rotation: Double) {
+        let vertices = PhysicsUtil.getVerticesForRect(width: width, height: height)
         let pegPhysicsBody = MSKPolygonPhysicsBody(vertices: vertices,
                                                    position: SIMD2<Double>(position.x, position.y),
-                                                   isDynamic: false)
+                                                   isDynamic: false,
+                                                   rotation: rotation)
 
         super.init(physicsBody: pegPhysicsBody,
                    image: UIImage(named: "black"))

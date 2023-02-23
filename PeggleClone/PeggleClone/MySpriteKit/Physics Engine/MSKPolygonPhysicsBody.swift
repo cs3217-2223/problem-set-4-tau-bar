@@ -62,7 +62,8 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
                      affectedByGravity: Bool = defaultAffectedByGravity,
                      isDynamic: Bool = defaultIsDynamic,
                      categoryBitMask: UInt32 = defaultCategoryBitMask,
-                     mass: Double = defaultMass) {
+                     mass: Double = defaultMass,
+                     rotation: Double = 0) {
         self.init(positionLast: position,
                   position: position,
                   acceleration: acceleration,
@@ -70,12 +71,13 @@ class MSKPolygonPhysicsBody: MSKPhysicsBody {
                   isDynamic: isDynamic,
                   categoryBitMask: categoryBitMask,
                   mass: mass,
-                  vertices: vertices
+                  vertices: vertices,
+                  angle: rotation
         )
     }
 
-    convenience init(polygon vertices: [SIMD2<Double>], center: SIMD2<Double>) {
-        self.init(vertices: vertices, position: center)
+    convenience init(polygon vertices: [SIMD2<Double>], center: SIMD2<Double>, rotation: Double) {
+        self.init(vertices: vertices, position: center, rotation: rotation)
     }
 
     // MARK: Methods

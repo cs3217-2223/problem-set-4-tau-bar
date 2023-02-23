@@ -10,10 +10,10 @@ import UIKit
 class PegNode: BoardObjectNode {
     weak var delegate: PegNodeDelegate?
     var isHit = false
-    init(position: CGPoint, image: UIImage?) {
-        let pegPhysicsBody = PegPhysicsBody(circleOfRadius: 20.0,
+    init(position: CGPoint, image: UIImage?, radius: Double, rotation: Double) {
+        let pegPhysicsBody = PegPhysicsBody(circleOfRadius: radius,
                                             center: SIMD2<Double>(x: position.x, y: position.y),
-                                            isDynamic: false)
+                                            isDynamic: false, rotation: rotation)
 
         super.init(physicsBody: pegPhysicsBody,
                    image: image)
