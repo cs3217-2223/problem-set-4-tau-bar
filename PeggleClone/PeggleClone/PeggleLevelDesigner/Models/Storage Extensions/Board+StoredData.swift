@@ -13,6 +13,8 @@ extension Board: StoredData {
         boardData.name = name
         boardData.height = height
         boardData.width = width
+        boardData.balls = Int16(balls)
+        boardData.gameModeData = gameMode.toCoreDataObject(context: context) as? GameModeData
 
         for object in objects {
             guard let peg = object.object as? Peg,

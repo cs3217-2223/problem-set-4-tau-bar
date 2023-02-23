@@ -26,7 +26,13 @@ extension Board {
             throw StorageError.invalidBoardData
         }
 
+        guard let gameModeData = data.gameModeData else {
+            throw StorageError.invalidGameMode
+        }
+
         let board = Board(objects: Set(), width: data.width, height: data.height, name: name)
+        board.balls = Int(data.balls)
+        board.gameMode = try GameMode(data: gameModeData)
 
         try populateBoard(pegDatas: pegDatas, blockDatas: blockDatas, board: board)
 

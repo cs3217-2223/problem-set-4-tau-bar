@@ -54,7 +54,8 @@ class MSKPhysicsWorld {
     ///   - yPos: y-coordinate of the midpoint of the border.
     ///   - width: Width of the border.
     func addTopBorder(xPos: Double, yPos: Double, width: Double) {
-        let horizontalBorderVertices = PhysicsUtil.getVerticesForRect(width: width + borderBuffer * 2, height: borderBuffer * 2)
+        let horizontalBorderVertices = PhysicsUtil.getVerticesForRect(width: width + borderBuffer * 2,
+                                                                      height: borderBuffer * 2)
         let topBorderPos = SIMD2<Double>(x: xPos, y: yPos - borderBuffer)
         addBorder(vertices: horizontalBorderVertices, postion: topBorderPos)
     }
@@ -65,7 +66,8 @@ class MSKPhysicsWorld {
     ///   - yPos: y-coordinate of the midpoint of the border.
     ///   - height: Height of the border.
     func addLeftBorder(xPos: Double, yPos: Double, height: Double) {
-        let verticalBorderVertices = PhysicsUtil.getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
+        let verticalBorderVertices = PhysicsUtil.getVerticesForRect(width: borderBuffer * 2,
+                                                                    height: height + borderBuffer * 2)
 
         let leftBorderPos = SIMD2<Double>(x: xPos - borderBuffer, y: height / 2)
         addBorder(vertices: verticalBorderVertices, postion: leftBorderPos)
@@ -77,7 +79,8 @@ class MSKPhysicsWorld {
     ///   - yPos: y-coordinate of the midpoint of the border.
     ///   - height: Height of the border.
     func addRightBorder(xPos: Double, yPos: Double, height: Double) {
-        let verticalBorderVertices = PhysicsUtil.getVerticesForRect(width: borderBuffer * 2, height: height + borderBuffer * 2)
+        let verticalBorderVertices = PhysicsUtil.getVerticesForRect(width: borderBuffer * 2,
+                                                                    height: height + borderBuffer * 2)
 
         let rightBorderPos = SIMD2<Double>(x: xPos + borderBuffer, y: height / 2)
         addBorder(vertices: verticalBorderVertices, postion: rightBorderPos)

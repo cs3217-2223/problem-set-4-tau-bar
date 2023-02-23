@@ -14,4 +14,5 @@ enum StorageError: Error {
     case invalidPegData
     case invalidBlockData
     case invalidBoardData
+    case invalidGameMode
 }

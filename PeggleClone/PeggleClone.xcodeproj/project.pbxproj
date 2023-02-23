@@ -152,6 +152,8 @@
 		61F07CEC29A734C100C7A7A4 /* ScoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CEB29A734C100C7A7A4 /* ScoreState.swift */; };
 		61F07CEE29A7440100C7A7A4 /* PeggleGameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CED29A7440100C7A7A4 /* PeggleGameConstants.swift */; };
 		61F07CF029A744EA00C7A7A4 /* DodgeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CEF29A744EA00C7A7A4 /* DodgeState.swift */; };
+		61F07CF229A75EF200C7A7A4 /* GameMode+StoredData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CF129A75EF200C7A7A4 /* GameMode+StoredData.swift */; };
+		61F07CF429A75FBF00C7A7A4 /* GameMode+FetchedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CF329A75FBF00C7A7A4 /* GameMode+FetchedData.swift */; };
 		61F48D662999053D00B33D50 /* PegNode+PegPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D652999053D00B33D50 /* PegNode+PegPhysicsBodyDelegate.swift */; };
 		61F48D68299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D67299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift */; };
 		61F48D6A2999067900B33D50 /* BoardScene+PegNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F48D692999067900B33D50 /* BoardScene+PegNodeDelegate.swift */; };
@@ -310,6 +312,8 @@
 		61F07CEB29A734C100C7A7A4 /* ScoreState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreState.swift; sourceTree = "<group>"; };
 		61F07CED29A7440100C7A7A4 /* PeggleGameConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeggleGameConstants.swift; sourceTree = "<group>"; };
 		61F07CEF29A744EA00C7A7A4 /* DodgeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DodgeState.swift; sourceTree = "<group>"; };
+		61F07CF129A75EF200C7A7A4 /* GameMode+StoredData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameMode+StoredData.swift"; sourceTree = "<group>"; };
+		61F07CF329A75FBF00C7A7A4 /* GameMode+FetchedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameMode+FetchedData.swift"; sourceTree = "<group>"; };
 		61F48D652999053D00B33D50 /* PegNode+PegPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PegNode+PegPhysicsBodyDelegate.swift"; sourceTree = "<group>"; };
 		61F48D67299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BallNode+BallPhysicsBodyDelegate.swift"; sourceTree = "<group>"; };
 		61F48D692999067900B33D50 /* BoardScene+PegNodeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoardScene+PegNodeDelegate.swift"; sourceTree = "<group>"; };
@@ -425,6 +429,8 @@
 				615E440829A65CB9009F03BC /* Block+StoredData.swift */,
 				615E440A29A65D63009F03BC /* Block+FetchedData.swift */,
 				615E440C29A65E20009F03BC /* Board+FetchedData.swift */,
+				61F07CF129A75EF200C7A7A4 /* GameMode+StoredData.swift */,
+				61F07CF329A75FBF00C7A7A4 /* GameMode+FetchedData.swift */,
 			);
 			path = "Storage Extensions";
 			sourceTree = "<group>";
@@ -977,6 +983,7 @@
 				61CDDEBB298AA6E800297265 /* MSKScene.swift in Sources */,
 				617D2DDA298BB2FF00461FC9 /* MSKSceneDelegate.swift in Sources */,
 				61B13BE1299DC095005242E8 /* Block.swift in Sources */,
+				61F07CF229A75EF200C7A7A4 /* GameMode+StoredData.swift in Sources */,
 				61B13BE5299DDCB9005242E8 /* BlockView.swift in Sources */,
 				612F7A7D29912CAB005540DF /* PegPhysicsBody.swift in Sources */,
 				615E43F429A64AB5009F03BC /* StorageError.swift in Sources */,
@@ -1023,6 +1030,7 @@
 				615E440D29A65E20009F03BC /* Board+FetchedData.swift in Sources */,
 				61F48D762999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift in Sources */,
 				61F65183299740D900B2FDEB /* BallNodeDelegate.swift in Sources */,
+				61F07CF429A75FBF00C7A7A4 /* GameMode+FetchedData.swift in Sources */,
 				61F48D68299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */,
 				61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */,
 				61DB63DA299CB9910048663D /* BoardObject.swift in Sources */,

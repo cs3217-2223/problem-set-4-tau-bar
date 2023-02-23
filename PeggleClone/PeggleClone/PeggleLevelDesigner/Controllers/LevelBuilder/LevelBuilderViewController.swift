@@ -22,7 +22,7 @@ class LevelBuilderViewController: UIViewController {
         didSet {
             removeAllBoardObjectsFromView()
             loadObjectsFromModelOnBoard()
-            setTextFieldText(to: board?.name ?? Board.defaultBoardName)
+            setInputValues()
         }
     }
 
@@ -229,6 +229,14 @@ class LevelBuilderViewController: UIViewController {
     }
 
     // MARK: Helper functions
+    private func setInputValues() {
+        guard let balls = board?.balls, let gameMode = board?.gameMode else { return }
+        ballStepper.value = Double(balls)
+        ballCountLabel.text = String(balls)
+        gameModeSelect.selectedSegmentIndex = LevelBuilderConstants.gameModes.firstIndex(of: gameMode) ?? 0
+        setTextFieldText(to: board?.name ?? Board.defaultBoardName)
+    }
+
     func createEmptyBoard() -> Board {
         Board(width: boardView.frame.width, height: boardView.frame.height)
     }
@@ -260,13 +268,13 @@ class LevelBuilderViewController: UIViewController {
         return newObjectView
     }
 
-    func removeAllBoardObjectsFromView() {
+    private func removeAllBoardObjectsFromView() {
         objectsToViews.values.forEach({ $0.removeFromSuperview() })
         objectsToViews = [:]
         viewsToObjects = [:]
     }
 
-    func insertSubview(for objectWrapper: BoardObjectWrapper) {
+    private func insertSubview(for objectWrapper: BoardObjectWrapper) {
         let object = objectWrapper.object
         let newView = createBoardObjectView(with: object, at: object.position)
 
