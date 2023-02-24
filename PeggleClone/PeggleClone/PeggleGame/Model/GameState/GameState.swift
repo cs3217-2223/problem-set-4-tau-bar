@@ -16,4 +16,13 @@ protocol GameState {
     func isGameLost() -> Bool
     func didCollideWithBall(pegNode: PegNode)
     func didBallEnterBucket()
+    func startGame()
+}
+
+extension GameState {
+    func startGame() {
+        // by default, don't need to do anything when game starts.
+        // however, in future game states such as timer might need
+        // to know when the game actually starts.
+    }
 }

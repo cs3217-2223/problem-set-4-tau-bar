@@ -133,6 +133,7 @@
                         <outlet property="firstLabel" destination="6UK-mO-ODu" id="AdW-V6-hYt"/>
                         <outlet property="secondLabel" destination="BnZ-o1-Chk" id="dLc-Se-e4D"/>
                         <outlet property="thirdLabel" destination="mIW-wf-NE7" id="GJI-o7-3LN"/>
+                        <segue destination="Llt-xU-xCK" kind="presentation" identifier="goToChooseMaster" id="x9q-fq-vQ6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -144,6 +145,14 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-18.548387096774192" y="3.4421888790820829"/>
+        </scene>
+        <!--ChooseMasterVC-->
+        <scene sceneID="dOB-7g-ijs">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="ChooseMasterVC" storyboardName="ChooseMaster" referencedIdentifier="ChooseMasterVC" id="Llt-xU-xCK" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cpy-CV-xcb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="456" y="-110"/>
         </scene>
     </scenes>
     <resources>

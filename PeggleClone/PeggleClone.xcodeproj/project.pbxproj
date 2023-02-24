@@ -18,6 +18,14 @@
 		610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */; };
 		610FEDA2298E616400875BBA /* BoardObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED89298E616400875BBA /* BoardObjectView.swift */; };
 		610FEDAC298E62AF00875BBA /* LevelDesignerConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 610FED72298E616400875BBA /* LevelDesignerConstants.swift */; };
+		611A0A8129A86B6400B3AE25 /* ChooseMaster.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 611A0A8029A86B6400B3AE25 /* ChooseMaster.storyboard */; };
+		611A0A8329A86CFF00B3AE25 /* ChooseMasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8229A86CFF00B3AE25 /* ChooseMasterViewController.swift */; };
+		611A0A8629A86F7A00B3AE25 /* GameFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8529A86F7900B3AE25 /* GameFighter.swift */; };
+		611A0A8829A8705200B3AE25 /* GameCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8729A8705200B3AE25 /* GameCharacter.swift */; };
+		611A0A8A29A8708A00B3AE25 /* CharacterImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8929A8708A00B3AE25 /* CharacterImageView.swift */; };
+		611A0A8C29A871DB00B3AE25 /* RickFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8B29A871DB00B3AE25 /* RickFighter.swift */; };
+		611A0A8E29A8720800B3AE25 /* MortyFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8D29A8720800B3AE25 /* MortyFighter.swift */; };
+		611A0A9029A8722A00B3AE25 /* GameFighterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8F29A8722A00B3AE25 /* GameFighterFactory.swift */; };
 		612F7A752990CC38005540DF /* BluePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A742990CC38005540DF /* BluePegNode.swift */; };
 		612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A762990CF08005540DF /* OrangePegNode.swift */; };
 		612F7A792990CF51005540DF /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A782990CF51005540DF /* BallNode.swift */; };
@@ -185,6 +193,8 @@
 		61F6517F2997397500B2FDEB /* BallPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F6517E2997397500B2FDEB /* BallPhysicsBodyDelegate.swift */; };
 		61F65183299740D900B2FDEB /* BallNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F65182299740D900B2FDEB /* BallNodeDelegate.swift */; };
 		61F651842997809600B2FDEB /* LevelBuilder.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 610FED8D298E616400875BBA /* LevelBuilder.storyboard */; };
+		61F9F20D29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F9F20C29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift */; };
+		61F9F20F29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F9F20E29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -216,6 +226,14 @@
 		610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardObjectViewDelegate.swift; sourceTree = "<group>"; };
 		610FED89298E616400875BBA /* BoardObjectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoardObjectView.swift; sourceTree = "<group>"; };
 		610FED8E298E616400875BBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LevelBuilder.storyboard; sourceTree = "<group>"; };
+		611A0A8029A86B6400B3AE25 /* ChooseMaster.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseMaster.storyboard; sourceTree = "<group>"; };
+		611A0A8229A86CFF00B3AE25 /* ChooseMasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMasterViewController.swift; sourceTree = "<group>"; };
+		611A0A8529A86F7900B3AE25 /* GameFighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFighter.swift; sourceTree = "<group>"; };
+		611A0A8729A8705200B3AE25 /* GameCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameCharacter.swift; sourceTree = "<group>"; };
+		611A0A8929A8708A00B3AE25 /* CharacterImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterImageView.swift; sourceTree = "<group>"; };
+		611A0A8B29A871DB00B3AE25 /* RickFighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RickFighter.swift; sourceTree = "<group>"; };
+		611A0A8D29A8720800B3AE25 /* MortyFighter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MortyFighter.swift; sourceTree = "<group>"; };
+		611A0A8F29A8722A00B3AE25 /* GameFighterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameFighterFactory.swift; sourceTree = "<group>"; };
 		612F7A742990CC38005540DF /* BluePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BluePegNode.swift; sourceTree = "<group>"; };
 		612F7A762990CF08005540DF /* OrangePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrangePegNode.swift; sourceTree = "<group>"; };
 		612F7A782990CF51005540DF /* BallNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallNode.swift; sourceTree = "<group>"; };
@@ -347,6 +365,8 @@
 		61F48D752999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LevelBuilderViewController+BoardObjectViewDelegate.swift"; sourceTree = "<group>"; };
 		61F6517E2997397500B2FDEB /* BallPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		61F65182299740D900B2FDEB /* BallNodeDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallNodeDelegate.swift; sourceTree = "<group>"; };
+		61F9F20C29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseMasterViewControllerDelegate.swift; sourceTree = "<group>"; };
+		61F9F20E29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+ChooseMasterViewControllerDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -430,6 +450,18 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		611A0A8429A86F6D00B3AE25 /* GameFighter */ = {
+			isa = PBXGroup;
+			children = (
+				611A0A8529A86F7900B3AE25 /* GameFighter.swift */,
+				611A0A8729A8705200B3AE25 /* GameCharacter.swift */,
+				611A0A8B29A871DB00B3AE25 /* RickFighter.swift */,
+				611A0A8D29A8720800B3AE25 /* MortyFighter.swift */,
+				611A0A8F29A8722A00B3AE25 /* GameFighterFactory.swift */,
+			);
+			path = GameFighter;
+			sourceTree = "<group>";
+		};
 		614298E7299B4AD400D39C75 /* MainMenu */ = {
 			isa = PBXGroup;
 			children = (
@@ -475,6 +507,8 @@
 				619D849829890A96007C8683 /* Game.storyboard */,
 				614298E3299B409000D39C75 /* ChooseLevel.storyboard */,
 				61F48D6D2999073D00B33D50 /* BoardView+BoardSceneDelegate.swift */,
+				611A0A8029A86B6400B3AE25 /* ChooseMaster.storyboard */,
+				611A0A8929A8708A00B3AE25 /* CharacterImageView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -485,6 +519,9 @@
 				619D849629890A96007C8683 /* GameViewController.swift */,
 				614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */,
 				614298E5299B418100D39C75 /* ChooseLevelViewController.swift */,
+				611A0A8229A86CFF00B3AE25 /* ChooseMasterViewController.swift */,
+				61F9F20C29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift */,
+				61F9F20E29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -492,6 +529,7 @@
 		617D2DE3298BBC1300461FC9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				611A0A8429A86F6D00B3AE25 /* GameFighter */,
 				61F07CE829A7328900C7A7A4 /* GameState */,
 				6185CD52299686C100FDEAEE /* Nodes */,
 				6185CD51299686B200FDEAEE /* Physics */,
@@ -947,6 +985,7 @@
 				614B107429A7E98E00D39064 /* game.mp3 in Resources */,
 				619D849C29890A9A007C8683 /* Assets.xcassets in Resources */,
 				614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */,
+				611A0A8129A86B6400B3AE25 /* ChooseMaster.storyboard in Resources */,
 				61B30C7A299E506100ADE396 /* LevelSelect.storyboard in Resources */,
 				614B107229A7E68A00D39064 /* backgroundMusic.mp3 in Resources */,
 				619D849A29890A96007C8683 /* Game.storyboard in Resources */,
@@ -998,11 +1037,14 @@
 				615E440B29A65D63009F03BC /* Block+FetchedData.swift in Sources */,
 				61F07D0229A76EBF00C7A7A4 /* BucketNodeDelegate.swift in Sources */,
 				61F48D6A2999067900B33D50 /* BoardScene+PegNodeDelegate.swift in Sources */,
+				61F9F20F29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift in Sources */,
 				61F07CF029A744EA00C7A7A4 /* DodgeState.swift in Sources */,
 				612F7A8329913AFC005540DF /* BoardSceneDelegate.swift in Sources */,
+				611A0A8A29A8708A00B3AE25 /* CharacterImageView.swift in Sources */,
 				61F48D74299908D100B33D50 /* LevelBuilderViewController+LevelSelectViewControllerDelegate.swift in Sources */,
 				615E440929A65CB9009F03BC /* Block+StoredData.swift in Sources */,
 				614298E6299B418100D39C75 /* ChooseLevelViewController.swift in Sources */,
+				611A0A8629A86F7A00B3AE25 /* GameFighter.swift in Sources */,
 				61CDDEA6298A339C00297265 /* MSKNode.swift in Sources */,
 				61B40165299FB0590022142B /* LevelBuilderViewController+ToolsViewControllerDelegate.swift in Sources */,
 				61F07CEA29A7329800C7A7A4 /* ClassicState.swift in Sources */,
@@ -1017,6 +1059,7 @@
 				617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */,
 				61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */,
 				610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */,
+				611A0A9029A8722A00B3AE25 /* GameFighterFactory.swift in Sources */,
 				6186658729A720F10040D7D2 /* YellowPegNode.swift in Sources */,
 				61B13BBB299D667D005242E8 /* BoardObjectWrapper.swift in Sources */,
 				61F48D70299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift in Sources */,
@@ -1032,6 +1075,7 @@
 				61F07CFA29A76B2600C7A7A4 /* BucketBasePhysicsBody.swift in Sources */,
 				61F07CF229A75EF200C7A7A4 /* GameMode+StoredData.swift in Sources */,
 				61B13BE5299DDCB9005242E8 /* BlockView.swift in Sources */,
+				611A0A8C29A871DB00B3AE25 /* RickFighter.swift in Sources */,
 				612F7A7D29912CAB005540DF /* PegPhysicsBody.swift in Sources */,
 				615E43F429A64AB5009F03BC /* StorageError.swift in Sources */,
 				612F7A8129913400005540DF /* PegPhysicsBodyDelegate.swift in Sources */,
@@ -1052,6 +1096,7 @@
 				615E440129A65034009F03BC /* PegColor+FetchedData.swift in Sources */,
 				615E43F229A649B7009F03BC /* CoreDataManager.swift in Sources */,
 				610FED9E298E616400875BBA /* LevelSelectViewControllerDelegate.swift in Sources */,
+				61F9F20D29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift in Sources */,
 				615E440329A65149009F03BC /* Peg+FetchedData.swift in Sources */,
 				61B4014F299F7EFB0022142B /* ToolsViewController.swift in Sources */,
 				61BD3D6F299E667700EED58C /* LevelTableViewCell.swift in Sources */,
@@ -1060,11 +1105,13 @@
 				615E440529A652AA009F03BC /* LevelDesignerError.swift in Sources */,
 				615E43F729A64DD9009F03BC /* Board+StoredData.swift in Sources */,
 				61F07CE529A72F4400C7A7A4 /* GameMode.swift in Sources */,
+				611A0A8E29A8720800B3AE25 /* MortyFighter.swift in Sources */,
 				61B4016729A2CB030022142B /* ToolButton.swift in Sources */,
 				610FEDA0298E616400875BBA /* LevelBuilderViewController.swift in Sources */,
 				61F07CF829A76A0100C7A7A4 /* BucketPhysicsBody.swift in Sources */,
 				61F07CE329A72B3B00C7A7A4 /* LevelBuilderConstants.swift in Sources */,
 				619D849329890A96007C8683 /* AppDelegate.swift in Sources */,
+				611A0A8829A8705200B3AE25 /* GameCharacter.swift in Sources */,
 				61F07CEE29A7440100C7A7A4 /* PeggleGameConstants.swift in Sources */,
 				61CDDEBD298AAC1200297265 /* MSKView.swift in Sources */,
 				61B4015F299FAE9E0022142B /* LevelBuilderActionsDelegate.swift in Sources */,
@@ -1085,6 +1132,7 @@
 				61F48D68299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */,
 				61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */,
 				61DB63DA299CB9910048663D /* BoardObject.swift in Sources */,
+				611A0A8329A86CFF00B3AE25 /* ChooseMasterViewController.swift in Sources */,
 				615E43EE29A63CE2009F03BC /* FetchedData.swift in Sources */,
 				614B107029A7E59700D39064 /* MusicPlayer.swift in Sources */,
 				612F7A772990CF08005540DF /* OrangePegNode.swift in Sources */,

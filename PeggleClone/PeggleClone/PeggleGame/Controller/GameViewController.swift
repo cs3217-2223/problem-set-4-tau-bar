@@ -13,17 +13,21 @@ class GameViewController: UIViewController {
     var count = 0
     var board: Board?
     @IBOutlet var boardView: BoardView!
-    @IBOutlet weak var ballsLeftLabel: UILabel!
-    @IBOutlet weak var firstLabel: UILabel!
-    @IBOutlet weak var secondLabel: UILabel!
-    @IBOutlet weak var thirdLabel: UILabel!
+    @IBOutlet var ballsLeftLabel: UILabel!
+    @IBOutlet var firstLabel: UILabel!
+    @IBOutlet var secondLabel: UILabel!
+    @IBOutlet var thirdLabel: UILabel!
     var musicPlayer: MusicPlayer?
-    
+    var gameFighter: GameFighter?
+
     override func viewDidAppear(_ animated: Bool) {
+        // first time entering
         musicPlayer = MusicPlayer()
         musicPlayer?.startGameMusic()
+        
+        performSegue(withIdentifier: "goToChooseMaster", sender: self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -33,20 +37,11 @@ class GameViewController: UIViewController {
         // Set scene for board view
         guard let boardScene = boardScene else { return }
         boardView.setScene(boardScene)
-
-        // Set up game loop
-        setUpGameLoop()
-
-        begin()
-    }
-
-    func begin() {
-        boardView.presentScene()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        
+
         musicPlayer?.stopGameMusic()
 
         // Remove reference to displayLink to prevent memory leak
@@ -65,20 +60,20 @@ class GameViewController: UIViewController {
     @objc func step() {
         boardView.refresh(timeInterval: displayLink.targetTimestamp - displayLink.timestamp)
         updateGameDetails()
-        
+
         guard let isGameWon = boardScene?.gameState.isGameWon(),
         let isGameLost = boardScene?.gameState.isGameLost() else { return }
         if isGameWon {
             alertUserWon()
             displayLink.isPaused = true
         }
-        
+
         if isGameLost {
             alertUserLost()
             displayLink.isPaused = true
         }
     }
-    
+
     func updateGameDetails() {
         guard let gameState = boardScene?.gameState else { return }
         firstLabel.text = gameState.firstLabel
@@ -103,9 +98,17 @@ class GameViewController: UIViewController {
         }
     }
 
-    func setUpGameLoop() {
+    func startGameLoop() {
         displayLink = CADisplayLink(target: self, selector: #selector(step))
         displayLink.add(to: .current, forMode: RunLoop.Mode.default)
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToChooseMaster" {
+            guard let vc = segue.destination as? ChooseMasterViewController else { return }
+            // do any additional setup
+            vc.delegate = self
+        }
     }
 
     private func alertUserWon() {
@@ -114,7 +117,7 @@ class GameViewController: UIViewController {
                                       handler: { _ in self.dismiss(animated: true) }))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
     private func alertUserLost() {
         let alert = UIAlertController(title: "GAME OVER", message: "You lose!", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,

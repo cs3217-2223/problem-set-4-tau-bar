@@ -11,12 +11,12 @@ class MainMenuViewController: UIViewController {
     @IBOutlet var startButton: UIButton!
     @IBOutlet var levelDesignerButton: UIButton!
     var musicPlayer: MusicPlayer?
-    
+
     override func viewDidAppear(_ animated: Bool) {
         musicPlayer = MusicPlayer()
         musicPlayer?.startBackgroundMusic()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         musicPlayer?.stopBackgroundMusic()
     }

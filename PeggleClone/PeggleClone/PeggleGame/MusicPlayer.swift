@@ -25,17 +25,17 @@ class MusicPlayer {
             }
         }
     }
-    
+
     func stopBackgroundMusic() {
         guard let audioPlayer = audioPlayer else { return }
         audioPlayer.stop()
     }
-    
+
     func startGameMusic() {
         if let bundle = Bundle.main.path(forResource: "game", ofType: "mp3") {
             let backgroundMusic = NSURL(fileURLWithPath: bundle)
             do {
-                audioPlayer = try AVAudioPlayer(contentsOf:backgroundMusic as URL)
+                audioPlayer = try AVAudioPlayer(contentsOf: backgroundMusic as URL)
                 guard let audioPlayer = audioPlayer else { return }
                 audioPlayer.numberOfLoops = -1
                 audioPlayer.prepareToPlay()
@@ -45,7 +45,7 @@ class MusicPlayer {
             }
         }
     }
-    
+
     func stopGameMusic() {
         guard let audioPlayer = audioPlayer else { return }
         audioPlayer.stop()

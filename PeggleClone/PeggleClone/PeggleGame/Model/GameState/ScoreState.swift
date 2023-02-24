@@ -21,25 +21,22 @@ class ScoreState: GameState {
         }
         return String(Int(floor(seconds)))
     }
-    
+
     var ballsLeft: Int
     let scoreToHit: Int
-    var timeLeft: Double
+    var timeLimit: Double
     var currentScore: Int = 0
     var timer: Timer?
-    var isTimerUp: Bool = false
+    var isTimerUp = false
 
     init(scoreToHit: Int, timeLimit: Double, ballsLeft: Int) {
         self.ballsLeft = ballsLeft
         self.scoreToHit = scoreToHit
-        self.timeLeft = timeLimit
-        self.timer = Timer.scheduledTimer(withTimeInterval: timeLimit, repeats: false) { _ in
-            self.isTimerUp = true
-        }
+        self.timeLimit = timeLimit
     }
 
     func isGameWon() -> Bool {
-        return currentScore >= scoreToHit
+        currentScore >= scoreToHit
     }
 
     func isGameLost() -> Bool {
@@ -56,5 +53,11 @@ class ScoreState: GameState {
     func didBallEnterBucket() {
         ballsLeft += 1
         currentScore += 10
+    }
+    
+    func startGame() {
+        self.timer = Timer.scheduledTimer(withTimeInterval: self.timeLimit, repeats: false) { _ in
+            self.isTimerUp = true
+        }
     }
 }

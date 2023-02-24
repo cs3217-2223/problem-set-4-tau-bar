@@ -9,7 +9,7 @@ import UIKit
 
 class CannonNode: MSKSpriteNode {
     static let defaultCannonRadius: Double = 50
-    
+
     init(center: SIMD2<Double>) {
         let cannonPb = MSKCirclePhysicsBody(position: center,
                                             isDynamic: false,

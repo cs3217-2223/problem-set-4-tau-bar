@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad7_9" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="get_schwifty.ttf">
+            <string>GetSchwifty-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Choose Master View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="ChooseMasterVC" id="Y6W-OH-hqX" customClass="ChooseMasterViewController" customModule="PeggleClone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="744" height="1133"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rick" translatesAutoresizingMaskIntoConstraints="NO" id="IWV-Hp-TAx" customClass="CharacterImageView" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="65" y="116" width="301" height="901"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="301" id="5G3-kc-Gm4"/>
+                                    <constraint firstAttribute="height" constant="901" id="9ud-Xx-Dcz"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="morty" translatesAutoresizingMaskIntoConstraints="NO" id="Oho-qB-KWh" customClass="CharacterImageView" customModule="PeggleClone" customModuleProvider="target">
+                                <rect key="frame" x="395" y="116" width="301" height="901"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="901" id="Wn6-3A-w6Y"/>
+                                    <constraint firstAttribute="width" constant="301" id="YrI-OC-lc3"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose your Master!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="42m-b6-vez">
+                                <rect key="frame" x="192" y="16" width="360" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="360" id="6Tw-GV-VQO"/>
+                                    <constraint firstAttribute="height" constant="75" id="YMw-8n-uE2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="GetSchwifty-Regular" family="Get Schwifty" pointSize="40"/>
+                                <color key="textColor" red="0.385152936" green="0.93238747119999998" blue="0.1817858815" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Td-qu-fQo">
+                                <rect key="frame" x="239" y="975" width="266" height="81"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="81" id="2bq-Jh-B7d"/>
+                                    <constraint firstAttribute="width" constant="266" id="Llx-5l-Cpz"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="FIGHT!">
+                                    <fontDescription key="titleFontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="30"/>
+                                    <color key="baseBackgroundColor" red="0.65522044899999998" green="0.79511851069999995" blue="0.3309212923" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="didTapFightButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="MXY-4h-mIs"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.22727257009999999" green="0.27748999000000002" blue="0.4036254883" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="42m-b6-vez" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="2fY-Fg-09k"/>
+                            <constraint firstItem="IWV-Hp-TAx" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="65" id="ImN-kP-61c"/>
+                            <constraint firstItem="IWV-Hp-TAx" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="NET-7e-pBc"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Oho-qB-KWh" secondAttribute="trailing" constant="48" id="PPg-VI-haQ"/>
+                            <constraint firstItem="Oho-qB-KWh" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="bew-97-h8l"/>
+                            <constraint firstItem="42m-b6-vez" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" constant="16" id="hw0-MZ-zl6"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="6Td-qu-fQo" secondAttribute="bottom" constant="57" id="hy6-c3-Lge"/>
+                            <constraint firstItem="6Td-qu-fQo" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="qjk-G4-GIV"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fightButton" destination="6Td-qu-fQo" id="mo5-3H-Tx6"/>
+                        <outlet property="morty" destination="Oho-qB-KWh" id="KJF-yV-4dA"/>
+                        <outlet property="rick" destination="IWV-Hp-TAx" id="aVk-bd-R4T"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="128.2258064516129" y="-27.27272727272727"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="morty" width="242" height="448"/>
+        <image name="rick" width="269" height="554"/>
+    </resources>
+</document>

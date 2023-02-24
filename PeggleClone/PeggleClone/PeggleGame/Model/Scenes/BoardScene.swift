@@ -50,6 +50,10 @@ class BoardScene: MSKScene {
 
         setUpBorders()
     }
+    
+    func begin() {
+        gameState.startGame()
+    }
 
     func addBoardNode(_ addedNode: BoardObjectNode) {
         super.addNode(addedNode)

@@ -13,7 +13,7 @@ class DodgeState: GameState {
     }
     var secondLabel: String?
     var thirdLabel: String?
-    
+
     var ballsLeft: Int {
         didSet {
             // when scene subtracts balls left, update the ballsWithoutHittingLeft & hasBallHitPeg

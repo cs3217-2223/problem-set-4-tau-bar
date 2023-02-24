@@ -13,7 +13,7 @@ class ClassicState: GameState {
     }
     var secondLabel: String?
     var thirdLabel: String?
-    
+
     var orangePegsLeft: Int
     var ballsLeft: Int
 
