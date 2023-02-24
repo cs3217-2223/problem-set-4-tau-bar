@@ -48,6 +48,11 @@ extension ToolsViewController: LevelBuilderActionsDelegate {
             let confPegWrapper = BoardObjectWrapper(object: confPeg)
             delegate?.didAddObject(confPegWrapper)
             return
+        case greenPegButton:
+            guard let greenPeg = Peg(colour: .green, position: location) else { return }
+            let greenPegWrapper = BoardObjectWrapper(object: greenPeg)
+            delegate?.didAddObject(greenPegWrapper)
+            return
         case blockButton:
             guard let block = Block(position: location) else { return }
             let blockWrapper = BoardObjectWrapper(object: block)

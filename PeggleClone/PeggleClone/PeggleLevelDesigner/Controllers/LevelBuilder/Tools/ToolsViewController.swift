@@ -16,7 +16,8 @@ class ToolsViewController: UIViewController {
     @IBOutlet var blockButton: ToolButton!
     @IBOutlet var bluePegButton: ToolButton!
     @IBOutlet var orangePegButton: ToolButton!
-
+    @IBOutlet weak var greenPegButton: ToolButton!
+    
     @IBOutlet var sizeSlider: UISlider!
     @IBOutlet var sizeLabel: UILabel!
 

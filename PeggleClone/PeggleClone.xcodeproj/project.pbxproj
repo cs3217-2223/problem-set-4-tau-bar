@@ -35,6 +35,7 @@
 		612F7A8129913400005540DF /* PegPhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A8029913400005540DF /* PegPhysicsBodyDelegate.swift */; };
 		612F7A8329913AFC005540DF /* BoardSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A8229913AFC005540DF /* BoardSceneDelegate.swift */; };
 		612F7A8529913D55005540DF /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A8429913D55005540DF /* CannonNode.swift */; };
+		6131657929A8C27B001C636D /* GreenPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657829A8C27B001C636D /* GreenPegNode.swift */; };
 		614298E0299B38EA00D39C75 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614298DF299B38EA00D39C75 /* MainMenu.storyboard */; };
 		614298E2299B3A4D00D39C75 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */; };
 		614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614298E3299B409000D39C75 /* ChooseLevel.storyboard */; };
@@ -243,6 +244,7 @@
 		612F7A8029913400005540DF /* PegPhysicsBodyDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PegPhysicsBodyDelegate.swift; sourceTree = "<group>"; };
 		612F7A8229913AFC005540DF /* BoardSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardSceneDelegate.swift; sourceTree = "<group>"; };
 		612F7A8429913D55005540DF /* CannonNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CannonNode.swift; sourceTree = "<group>"; };
+		6131657829A8C27B001C636D /* GreenPegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GreenPegNode.swift; sourceTree = "<group>"; };
 		614298DF299B38EA00D39C75 /* MainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		614298E3299B409000D39C75 /* ChooseLevel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseLevel.storyboard; sourceTree = "<group>"; };
@@ -584,6 +586,7 @@
 				61F07CF529A7697A00C7A7A4 /* BucketNode.swift */,
 				61F07CFF29A76E2B00C7A7A4 /* BucketNode+BucketBasePhysicsBodyDelegate.swift */,
 				61F07D0129A76EBF00C7A7A4 /* BucketNodeDelegate.swift */,
+				6131657829A8C27B001C636D /* GreenPegNode.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -1033,6 +1036,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6131657929A8C27B001C636D /* GreenPegNode.swift in Sources */,
 				61B13BE3299DDB02005242E8 /* DetectOverlap.swift in Sources */,
 				615E440B29A65D63009F03BC /* Block+FetchedData.swift in Sources */,
 				61F07D0229A76EBF00C7A7A4 /* BucketNodeDelegate.swift in Sources */,

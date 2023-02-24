@@ -17,11 +17,11 @@ enum PegKeys: String, CodingKey {
 }
 
 enum PegColor: String {
-    case blue, orange, purple, red
+    case blue, orange, purple, red, green
 }
 
 class Peg: BoardObject {
-    static let pegAssets = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange", PegColor.red: "peg-red", PegColor.purple: "peg-purple"]
+    static let pegAssets = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange", PegColor.red: "peg-red", PegColor.purple: "peg-purple", PegColor.green: "peg-green"]
 
     var position: CGPoint
 
@@ -47,10 +47,10 @@ class Peg: BoardObject {
 
     // MARK: Initializers
     required init(color: PegColor,
-          position: CGPoint,
-          rotation: Double = defaultPegRotation,
-          radius: Double = defaultPegRadius,
-          asset: String) {
+                  position: CGPoint,
+                  rotation: Double = defaultPegRotation,
+                  radius: Double = defaultPegRadius,
+                  asset: String) {
 
         self.asset = asset
         self.radius = radius
