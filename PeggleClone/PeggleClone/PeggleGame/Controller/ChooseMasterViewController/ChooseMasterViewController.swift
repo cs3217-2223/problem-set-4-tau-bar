@@ -21,6 +21,9 @@ class ChooseMasterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // prevents interactive dismissal of view controller
+        self.isModalInPresentation = true
+
         let mortyGestureRecognizer = UITapGestureRecognizer(target: self,
                                                             action: #selector(imageTapped(tapGestureRecognizer:)))
         let rickGestureRecognizer = UITapGestureRecognizer(target: self,

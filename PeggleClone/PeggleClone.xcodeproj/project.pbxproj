@@ -585,12 +585,87 @@
 			path = "Preloaded Levels";
 			sourceTree = "<group>";
 		};
-		614298E7299B4AD400D39C75 /* MainMenu */ = {
+		613165B029AA93F8001C636D /* GameViewController */ = {
 			isa = PBXGroup;
 			children = (
-				614298DF299B38EA00D39C75 /* MainMenu.storyboard */,
+				619D849629890A96007C8683 /* GameViewController.swift */,
+				61F9F20E29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift */,
+				613165A229AA85D6001C636D /* GameViewController+BoardSceneDelegate.swift */,
 			);
-			path = MainMenu;
+			path = GameViewController;
+			sourceTree = "<group>";
+		};
+		613165B129AA940B001C636D /* ChooseLevelViewController */ = {
+			isa = PBXGroup;
+			children = (
+				614298E5299B418100D39C75 /* ChooseLevelViewController.swift */,
+			);
+			path = ChooseLevelViewController;
+			sourceTree = "<group>";
+		};
+		613165B229AA9417001C636D /* ChooseMasterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				611A0A8229A86CFF00B3AE25 /* ChooseMasterViewController.swift */,
+				61F9F20C29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift */,
+			);
+			path = ChooseMasterViewController;
+			sourceTree = "<group>";
+		};
+		613165B329AA9426001C636D /* MainMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */,
+			);
+			path = MainMenuViewController;
+			sourceTree = "<group>";
+		};
+		613165B429AA9436001C636D /* BoardView */ = {
+			isa = PBXGroup;
+			children = (
+				61F48D6D2999073D00B33D50 /* BoardView+BoardSceneDelegate.swift */,
+				617D2DDE298BBBB100461FC9 /* BoardView.swift */,
+			);
+			path = BoardView;
+			sourceTree = "<group>";
+		};
+		613165B529AA9485001C636D /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */,
+				61CDDEBA298AA6E800297265 /* MSKScene.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		613165B629AA9493001C636D /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				61CDDEA5298A339C00297265 /* MSKNode.swift */,
+				61CDDEBE298AACC600297265 /* MSKSpriteNode.swift */,
+				61F48D6F299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		613165B729AA94A2001C636D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				61CDDEBC298AAC1200297265 /* MSKView.swift */,
+				61F48D71299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		613165B829AA94B1001C636D /* Bodies */ = {
+			isa = PBXGroup;
+			children = (
+				619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */,
+				615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */,
+				61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBody.swift */,
+				61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */,
+			);
+			path = Bodies;
 			sourceTree = "<group>";
 		};
 		614B106A29A7BD0300D39064 /* Resources */ = {
@@ -629,11 +704,10 @@
 		617D2DDD298BBA3300461FC9 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				614298E7299B4AD400D39C75 /* MainMenu */,
-				617D2DDE298BBBB100461FC9 /* BoardView.swift */,
+				613165B429AA9436001C636D /* BoardView */,
 				619D849829890A96007C8683 /* Game.storyboard */,
+				614298DF299B38EA00D39C75 /* MainMenu.storyboard */,
 				614298E3299B409000D39C75 /* ChooseLevel.storyboard */,
-				61F48D6D2999073D00B33D50 /* BoardView+BoardSceneDelegate.swift */,
 				611A0A8029A86B6400B3AE25 /* ChooseMaster.storyboard */,
 				611A0A8929A8708A00B3AE25 /* CharacterImageView.swift */,
 			);
@@ -643,13 +717,10 @@
 		617D2DE0298BBBEB00461FC9 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				619D849629890A96007C8683 /* GameViewController.swift */,
-				614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */,
-				614298E5299B418100D39C75 /* ChooseLevelViewController.swift */,
-				611A0A8229A86CFF00B3AE25 /* ChooseMasterViewController.swift */,
-				61F9F20C29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift */,
-				61F9F20E29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift */,
-				613165A229AA85D6001C636D /* GameViewController+BoardSceneDelegate.swift */,
+				613165B329AA9426001C636D /* MainMenuViewController */,
+				613165B229AA9417001C636D /* ChooseMasterViewController */,
+				613165B129AA940B001C636D /* ChooseLevelViewController */,
+				613165B029AA93F8001C636D /* GameViewController */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -768,13 +839,10 @@
 		619D84C229890AF7007C8683 /* Physics Engine */ = {
 			isa = PBXGroup;
 			children = (
-				619D84C329890B6A007C8683 /* MSKPhysicsBody.swift */,
+				613165B829AA94B1001C636D /* Bodies */,
 				61CDDEA7298A363B00297265 /* MSKConstants.swift */,
 				61CDDEA9298A428300297265 /* MSKPhysicsWorld.swift */,
-				61AF44CC298C9B0C00A9181A /* MSKCirclePhysicsBody.swift */,
 				61AF44CE298CA17F00A9181A /* UtilFunctions.swift */,
-				61AF44D0298CA31600A9181A /* MSKPolygonPhysicsBody.swift */,
-				615B02F9298E508700A38993 /* MSKPhysicsBodyDelegate.swift */,
 			);
 			path = "Physics Engine";
 			sourceTree = "<group>";
@@ -874,13 +942,9 @@
 		61CDDEA4298A334F00297265 /* Scene Renderers */ = {
 			isa = PBXGroup;
 			children = (
-				61CDDEA5298A339C00297265 /* MSKNode.swift */,
-				61CDDEBA298AA6E800297265 /* MSKScene.swift */,
-				61CDDEBC298AAC1200297265 /* MSKView.swift */,
-				61CDDEBE298AACC600297265 /* MSKSpriteNode.swift */,
-				617D2DD9298BB2FF00461FC9 /* MSKSceneDelegate.swift */,
-				61F48D6F299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift */,
-				61F48D71299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift */,
+				613165B729AA94A2001C636D /* Views */,
+				613165B629AA9493001C636D /* Nodes */,
+				613165B529AA9485001C636D /* Scenes */,
 			);
 			path = "Scene Renderers";
 			sourceTree = "<group>";
