@@ -12,6 +12,7 @@ class ChooseLevelViewController: UIViewController, UITableViewDataSource, UITabl
     var boards: [Board] = []
     private var dataManager = DataManager()
     @IBOutlet var tableView: UITableView!
+    private var selectedBoard: Board?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,19 @@ class ChooseLevelViewController: UIViewController, UITableViewDataSource, UITabl
 
         reloadTableView()
     }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        selectedBoard = nil
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "chooseLevelToGame" {
+            guard let gameVc = segue.destination as? GameViewController else { return }
+            gameVc.board = selectedBoard
+        }
+    }
+    
+    @IBAction func unwindFromGameViewControllerToChooseLevel(_ segue: UIStoryboardSegue) {}
 
     /// Returns the number of rows that the table should load.
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -78,11 +92,10 @@ class ChooseLevelViewController: UIViewController, UITableViewDataSource, UITabl
         return UITableViewCell()
     }
 
-    /// Loads selected board to the LevelBuilderViewController (delegate) when a row is tapped.
+    /// Play board when row is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedBoard = boards[indexPath.row]
-//        self.delegate?.loadBoard(selectedBoard)
-        self.dismiss(animated: true)
+        selectedBoard = boards[indexPath.row]
+        performSegue(withIdentifier: "chooseLevelToGame", sender: nil)
     }
 
     /// Specifies the height of the table cell view.

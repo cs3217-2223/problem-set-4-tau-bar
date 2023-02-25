@@ -30,7 +30,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Exit" titleAlignment="leading"/>
                                         <connections>
-                                            <segue destination="gmW-Us-W4C" kind="unwind" unwindAction="unwindFromGameViewController:" id="YQ6-ve-L2h"/>
+                                            <segue destination="gmW-Us-W4C" kind="unwind" unwindAction="unwindFromGameViewControllerToChooseLevel:" id="ob5-eI-Jwk"/>
                                         </connections>
                                     </button>
                                     <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRD-WX-vgM" userLabel="DetailsView">

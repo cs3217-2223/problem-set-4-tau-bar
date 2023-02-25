@@ -44,12 +44,23 @@
                     <connections>
                         <outlet property="backButton" destination="Y90-PX-LGV" id="Wik-vS-4rQ"/>
                         <outlet property="tableView" destination="kz2-t5-B5X" id="TD0-VR-lfb"/>
+                        <segue destination="ZYW-yT-8du" kind="presentation" identifier="chooseLevelToGame" modalPresentationStyle="fullScreen" id="EfU-9U-y27"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="OPn-QB-qsO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="10.97560975609756" y="-2.0338983050847457"/>
+        </scene>
+        <!--GameVC-->
+        <scene sceneID="fi8-VG-UTm">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Game" referencedIdentifier="GameVC" id="ZYW-yT-8du" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8aw-aI-8kW"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Fpg-Nv-wdG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="537" y="-109"/>
         </scene>
     </scenes>
     <resources>
