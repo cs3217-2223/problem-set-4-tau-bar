@@ -62,7 +62,7 @@ class DataManager {
         try context.save()
     }
 
-    func fetchAllLevelData() throws -> [BoardData] {
+    func fetchAllBoardData() throws -> [BoardData] {
         let request = BoardData.fetchRequest()
         return try context.fetch(request)
     }

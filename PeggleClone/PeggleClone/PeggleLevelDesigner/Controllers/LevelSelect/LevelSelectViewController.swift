@@ -109,7 +109,7 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
     }
 
     private func loadBoardDatas() throws {
-        let boardDatas = try dataManager?.fetchAllLevelData()
+        let boardDatas = try dataManager?.fetchAllBoardData()
         boards = []
         boardDatas?.forEach({
             do {
