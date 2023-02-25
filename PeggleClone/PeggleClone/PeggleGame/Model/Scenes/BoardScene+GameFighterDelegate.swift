@@ -8,21 +8,38 @@
 import UIKit
 
 extension BoardScene: GameFighterDelegate {
-    static let defaultExplosionRadius: Double = 250
     func createExplosionAt(pegNode: PegNode) {
+        guard let pegNode = pegNode as? GreenPegNode else { return }
+        
+        if pegNode.isExploding {
+            return
+        }
+        
+        pegNode.isExploding = true
+        pegNode.image = UIImage(named: "peg-purple-glow")
+        delegate?.didUpdateNodeImage(pegNode)
         // remove exploding node
         removeNode(pegNode)
         
-        let radius = BoardScene.defaultExplosionRadius
+        let radius = PeggleGameConstants.defaultExplosionRadius
+        
+        // add an explosion node for a short time to
+        // simulate collision between pegs and explosion "body"
         let explosionNode = addExplosionNode(at: pegNode.position, radius: radius)
+        
+        // remove nodes which are within 1/2 blast radius
+        removeNodesByExplosion(within: radius / 2, of: pegNode.position)
+        
+        // move nodes which are within blast radius
+        moveNodesByExplosion(within: radius, awayFrom: pegNode.position)
+        
+        // trigger other green nodes within blast radius
+        triggerOtherGreenWithinExplosion(within: radius, awayFrom: pegNode.position)
 
-        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [unowned self] _ in
+        // remove explosion node after time interval
+        _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [unowned self] _ in
             removeNode(explosionNode)
         }
-
-        // Remove nodes which are within 1/2 blast radius
-        removeNodes(within: radius / 2, of: pegNode.position)
-        moveNodes(within: radius, awayFrom: pegNode.position)
     }
 
     func setSpookyBall() {
@@ -42,9 +59,10 @@ extension BoardScene: GameFighterDelegate {
         return explosionNode
     }
 
-    private func removeNodes(within radius: Double, of location: CGPoint) {
+    private func removeNodesByExplosion(within radius: Double, of location: CGPoint) {
         for node in nodes {
-            if node is BallNode || node is ExplosionNode || node is GreenPegNode {
+            // does not get removed by explosion
+            if PeggleGameConstants.nonExplodableNodes.contains(where: { $0 == type(of: node) }) {
                 continue
             }
 
@@ -54,24 +72,42 @@ extension BoardScene: GameFighterDelegate {
         }
     }
 
-    private func moveNodes(within radius: Double, awayFrom location: CGPoint) {
+    private func moveNodesByExplosion(within radius: Double, awayFrom location: CGPoint) {
         for node in nodes {
-            if isWithin(position: node.position, isWithin: radius, of: location), !(node is BallNode) {
+            // does not get moved by explosion
+            if PeggleGameConstants.nonExplodableNodes.contains(where: { $0 == type(of: node) }) {
+                continue
+            }
+
+            if isWithin(position: node.position, isWithin: radius, of: location) {
                 node.physicsBody.isDynamic = true
-                _ = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { [unowned self] _ in
+                _ = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
                     node.physicsBody.isDynamic = false
-                    if let node = node as? GreenPegNode {
-                        createExplosionAt(pegNode: node)
-                    }
                 }
             }
         }
     }
 
+    private func triggerOtherGreenWithinExplosion(within radius: Double, awayFrom location: CGPoint) {
+        for node in nodes {
+            if let node = node as? GreenPegNode, isWithin(position: node.position, isWithin: radius, of: location) {
+                // mark node for explosion
+                node.image = UIImage(named: "peg-green-glow")
+                delegate?.didUpdateNodeImage(node)
+                
+                // after time interval, create explosion
+                _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { [unowned self] _ in
+                    createExplosionAt(pegNode: node)
+                }
+                
+            }
+        }
+    }
+
     private func isWithin(position: CGPoint, isWithin radius: Double, of location: CGPoint) -> Bool {
-        let dx = Double(position.x - location.x)
-        let dy = Double(position.y - location.y)
-        let distance = sqrt(dx * dx + dy * dy)
+        let diffX = Double(position.x - location.x)
+        let diffY = Double(position.y - location.y)
+        let distance = sqrt(diffX * diffX + diffY * diffY)
         return distance <= radius
     }
 }

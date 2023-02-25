@@ -22,7 +22,8 @@ extension BoardView: BoardSceneDelegate {
 
     func didAddExplosion(at location: CGPoint, duration: TimeInterval, radius: Double) {
         let explosionImageView = UIImageView()
-        explosionImageView.frame = CGRect(x: location.x, y: location.y, width: 500, height: 500)
+        let size = PeggleGameConstants.defaultExplosionRadius * 2
+        explosionImageView.frame = CGRect(x: location.x, y: location.y, width: size, height: size)
         explosionImageView.center = location
         var explosionImages: [UIImage] = []
         for idx in 0...10 {

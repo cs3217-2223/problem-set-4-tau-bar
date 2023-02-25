@@ -11,7 +11,12 @@ class PeggleGameConstants {
     static let bluePegPoints = 100
     static let orangePegPoints = 500
     static let defaultPegPoints = 10
-
+    static let defaultExplosionRadius: Double = 100
+    static let nonExplodableNodes: [MSKSpriteNode.Type] = [GreenPegNode.self,
+                                                           BucketNode.self,
+                                                           BallNode.self,
+                                                           ExplosionNode.self]
+    static let nonMovableByExplosionNodes: [MSKSpriteNode.Type] = [GreenPegNode.self, BallNode.self, BucketNode.self]
     static func getPoints(of pegNode: PegNode) -> Int {
         if pegNode is BluePegNode {
             return bluePegPoints

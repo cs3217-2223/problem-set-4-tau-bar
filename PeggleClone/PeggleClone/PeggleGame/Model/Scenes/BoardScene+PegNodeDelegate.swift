@@ -16,4 +16,8 @@ extension BoardScene: PegNodeDelegate {
     func didActivatePower(pegNode: PegNode) {
         fighter?.performPower(pegNode: pegNode)
     }
+    
+    func didGlow(pegNode: PegNode) {
+        delegate?.didUpdateNodeImage(pegNode)
+    }
 }
