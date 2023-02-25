@@ -9,6 +9,6 @@ import UIKit
 class BoardView: MSKView {
     func setScene(_ scene: BoardScene) {
         super.setScene(scene)
-        scene.boardSceneDelegate = self
+        scene.addDelegate(delegate: self)
     }
 }

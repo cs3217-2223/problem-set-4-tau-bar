@@ -53,7 +53,7 @@ extension BoardScene: GameFighterDelegate {
                                                         isDynamic: false,
                                                         rotation: 0)
         let explosionNode = ExplosionNode(physicsBody: explosionPhysicsBody, image: nil)
-        boardSceneDelegate?.didAddExplosion(at: location, duration: 0.5, radius: radius)
+        boardSceneDelegates.forEach({ $0.didAddExplosion(at: location, duration: 0.5, radius: radius) })
         addNode(explosionNode)
 
         return explosionNode

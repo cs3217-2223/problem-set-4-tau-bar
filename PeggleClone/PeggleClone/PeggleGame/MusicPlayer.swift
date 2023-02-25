@@ -9,45 +9,66 @@ import Foundation
 import AVFoundation
 
 class MusicPlayer {
-    var audioPlayer: AVAudioPlayer?
+    var backgroundAudioPlayer: AVAudioPlayer?
+    var gameAudioPlayer: AVAudioPlayer?
+    var cannonAudioPlayer: AVAudioPlayer?
+    var explosionAudioPlayer: AVAudioPlayer?
+    var popAudioPlayer: AVAudioPlayer?
+    var deathAudioPlayer: AVAudioPlayer?
 
-    func startBackgroundMusic() {
-        if let bundle = Bundle.main.path(forResource: "backgroundMusic", ofType: "mp3") {
-            let backgroundMusic = NSURL(fileURLWithPath: bundle)
+    init() {
+        backgroundAudioPlayer = MusicPlayer.createAudioPlayer(resource: "backgroundMusic", type: "mp3", numLoops: -1)
+        gameAudioPlayer = MusicPlayer.createAudioPlayer(resource: "game", type: "mp3", numLoops: -1)
+        cannonAudioPlayer = MusicPlayer.createAudioPlayer(resource: "cannon", type: "mp3", numLoops: 0)
+        explosionAudioPlayer = MusicPlayer.createAudioPlayer(resource: "explosion", type: "wav", numLoops: 0)
+        popAudioPlayer = MusicPlayer.createAudioPlayer(resource: "pop", type: "mp3", numLoops: 0)
+        deathAudioPlayer = MusicPlayer.createAudioPlayer(resource: "death", type: "mp3", numLoops: 0)
+    }
+
+    static func createAudioPlayer(resource: String, type: String, numLoops: Int) -> AVAudioPlayer? {
+        if let bundle = Bundle.main.path(forResource: resource, ofType: type) {
+            let sound = NSURL(fileURLWithPath: bundle)
             do {
-                audioPlayer = try AVAudioPlayer(contentsOf: backgroundMusic as URL)
-                guard let audioPlayer = audioPlayer else { return }
-                audioPlayer.numberOfLoops = -1
+                let audioPlayer = try AVAudioPlayer(contentsOf: sound as URL)
+                audioPlayer.numberOfLoops = numLoops
                 audioPlayer.prepareToPlay()
-                audioPlayer.play()
+                return audioPlayer
             } catch {
                 print(error)
             }
         }
+        return nil
+    }
+
+    func startBackgroundMusic() {
+        backgroundAudioPlayer?.play()
     }
 
     func stopBackgroundMusic() {
-        guard let audioPlayer = audioPlayer else { return }
-        audioPlayer.stop()
+        backgroundAudioPlayer?.stop()
     }
 
     func startGameMusic() {
-        if let bundle = Bundle.main.path(forResource: "game", ofType: "mp3") {
-            let backgroundMusic = NSURL(fileURLWithPath: bundle)
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOf: backgroundMusic as URL)
-                guard let audioPlayer = audioPlayer else { return }
-                audioPlayer.numberOfLoops = -1
-                audioPlayer.prepareToPlay()
-                audioPlayer.play()
-            } catch {
-                print(error)
-            }
-        }
+        gameAudioPlayer?.play()
     }
 
     func stopGameMusic() {
-        guard let audioPlayer = audioPlayer else { return }
-        audioPlayer.stop()
+        gameAudioPlayer?.stop()
+    }
+
+    func playCannonSound() {
+        cannonAudioPlayer?.play()
+    }
+
+    func playExplosionSound() {
+        explosionAudioPlayer?.play()
+    }
+
+    func playPopSound() {
+        popAudioPlayer?.play()
+    }
+
+    func playDeathSound() {
+        deathAudioPlayer?.play()
     }
 }

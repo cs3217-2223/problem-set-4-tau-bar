@@ -14,7 +14,7 @@ class BucketNode: MSKSpriteNode {
         let bucketPhysicsBody = BucketPhysicsBody(position: center)
 
         super.init(physicsBody: bucketPhysicsBody,
-                   image: UIImage(named: "bucket"))
+                   image: UIImage(named: "game-bucket"))
 
         bucketPhysicsBody.bucketBase.bucketBaseDelegate = self
     }

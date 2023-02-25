@@ -9,6 +9,10 @@ import Foundation
 import UIKit
 
 extension BoardView: BoardSceneDelegate {
+    func didFireCannon() {
+        // TOOD: add something here
+    }
+
     func didCollideWithBall(updatedPegNode: PegNode) {
         nodeToView[updatedPegNode]?.image = updatedPegNode.image
     }

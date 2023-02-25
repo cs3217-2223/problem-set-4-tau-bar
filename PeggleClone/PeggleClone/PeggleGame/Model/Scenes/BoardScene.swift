@@ -18,7 +18,7 @@ class BoardScene: MSKScene {
         }
     }
 
-    weak var boardSceneDelegate: BoardSceneDelegate?
+    var boardSceneDelegates: [BoardSceneDelegate] = []
     var fighter: GameFighter? {
         didSet {
             fighter?.fighterDelegate = self
@@ -105,6 +105,7 @@ class BoardScene: MSKScene {
         guard let ball = ball else { return }
         addBallNode(ball)
         isCannonFired = true
+        boardSceneDelegates.forEach({ $0.didFireCannon() })
     }
 
     /// Checks whether a tap location is valid - i.e. below the cannon's height
@@ -204,8 +205,12 @@ class BoardScene: MSKScene {
         hitPegs.forEach({ hitNode in
             nodes.removeAll(where: { $0 == hitNode })
             physicsWorld.removeBody(hitNode.physicsBody)
-            boardSceneDelegate?.didRemovePegNode(removedNode: hitNode)
+            boardSceneDelegates.forEach({ $0.didRemovePegNode(removedNode: hitNode) })
         })
+    }
+
+    func addDelegate(delegate: BoardSceneDelegate) {
+        boardSceneDelegates.append(delegate)
     }
 
     private func isOutOfBounds(node: BallNode) -> Bool {

@@ -31,7 +31,7 @@ class GameViewController: UIViewController {
 
         performSegue(withIdentifier: "goToChooseMaster", sender: self)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -40,6 +40,7 @@ class GameViewController: UIViewController {
 
         // Set scene for board view
         guard let boardScene = boardScene else { return }
+        boardScene.addDelegate(delegate: self)
         boardView.setScene(boardScene)
     }
 

@@ -49,6 +49,11 @@
 		6131659A29AA76A9001C636D /* DefaultLevelThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659929AA76A9001C636D /* DefaultLevelThree.swift */; };
 		6131659D29AA7AE3001C636D /* PreloadedLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659C29AA7AE3001C636D /* PreloadedLevel.swift */; };
 		6131659F29AA7CD0001C636D /* LoadLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659E29AA7CD0001C636D /* LoadLevels.swift */; };
+		613165A329AA85D6001C636D /* GameViewController+BoardSceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613165A229AA85D6001C636D /* GameViewController+BoardSceneDelegate.swift */; };
+		613165A929AA8F44001C636D /* pop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 613165A829AA8F44001C636D /* pop.mp3 */; };
+		613165AB29AA9104001C636D /* death.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 613165AA29AA9103001C636D /* death.mp3 */; };
+		613165AD29AA9210001C636D /* cannon.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 613165AC29AA9210001C636D /* cannon.mp3 */; };
+		613165AF29AA924E001C636D /* explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 613165AE29AA924E001C636D /* explosion.wav */; };
 		614298E0299B38EA00D39C75 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614298DF299B38EA00D39C75 /* MainMenu.storyboard */; };
 		614298E2299B3A4D00D39C75 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */; };
 		614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614298E3299B409000D39C75 /* ChooseLevel.storyboard */; };
@@ -266,6 +271,11 @@
 		6131659929AA76A9001C636D /* DefaultLevelThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLevelThree.swift; sourceTree = "<group>"; };
 		6131659C29AA7AE3001C636D /* PreloadedLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadedLevel.swift; sourceTree = "<group>"; };
 		6131659E29AA7CD0001C636D /* LoadLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadLevels.swift; sourceTree = "<group>"; };
+		613165A229AA85D6001C636D /* GameViewController+BoardSceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GameViewController+BoardSceneDelegate.swift"; sourceTree = "<group>"; };
+		613165A829AA8F44001C636D /* pop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pop.mp3; sourceTree = "<group>"; };
+		613165AA29AA9103001C636D /* death.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = death.mp3; sourceTree = "<group>"; };
+		613165AC29AA9210001C636D /* cannon.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = cannon.mp3; sourceTree = "<group>"; };
+		613165AE29AA924E001C636D /* explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = explosion.wav; sourceTree = "<group>"; };
 		614298DF299B38EA00D39C75 /* MainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		614298E3299B409000D39C75 /* ChooseLevel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseLevel.storyboard; sourceTree = "<group>"; };
@@ -587,7 +597,11 @@
 			isa = PBXGroup;
 			children = (
 				614B107329A7E98E00D39064 /* game.mp3 */,
+				613165AA29AA9103001C636D /* death.mp3 */,
+				613165AC29AA9210001C636D /* cannon.mp3 */,
 				614B107129A7E68A00D39064 /* backgroundMusic.mp3 */,
+				613165AE29AA924E001C636D /* explosion.wav */,
+				613165A829AA8F44001C636D /* pop.mp3 */,
 				614B106D29A7BD8800D39064 /* get_schwifty.ttf */,
 			);
 			path = Resources;
@@ -635,6 +649,7 @@
 				611A0A8229A86CFF00B3AE25 /* ChooseMasterViewController.swift */,
 				61F9F20C29A87BB100F59B16 /* ChooseMasterViewControllerDelegate.swift */,
 				61F9F20E29A87C1E00F59B16 /* GameViewController+ChooseMasterViewControllerDelegate.swift */,
+				613165A229AA85D6001C636D /* GameViewController+BoardSceneDelegate.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1085,12 +1100,16 @@
 				61F651842997809600B2FDEB /* LevelBuilder.storyboard in Resources */,
 				614298E0299B38EA00D39C75 /* MainMenu.storyboard in Resources */,
 				61BD3D75299E679000EED58C /* LevelTableViewCell.xib in Resources */,
+				613165AD29AA9210001C636D /* cannon.mp3 in Resources */,
 				614B106E29A7BD8800D39064 /* get_schwifty.ttf in Resources */,
 				614B107429A7E98E00D39064 /* game.mp3 in Resources */,
 				619D849C29890A9A007C8683 /* Assets.xcassets in Resources */,
+				613165A929AA8F44001C636D /* pop.mp3 in Resources */,
 				614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */,
+				613165AF29AA924E001C636D /* explosion.wav in Resources */,
 				611A0A8129A86B6400B3AE25 /* ChooseMaster.storyboard in Resources */,
 				61B30C7A299E506100ADE396 /* LevelSelect.storyboard in Resources */,
+				613165AB29AA9104001C636D /* death.mp3 in Resources */,
 				614B107229A7E68A00D39064 /* backgroundMusic.mp3 in Resources */,
 				619D849A29890A96007C8683 /* Game.storyboard in Resources */,
 			);
@@ -1200,6 +1219,7 @@
 				61554C292997B0FA00BD761A /* Constants.swift in Sources */,
 				610FED9F298E616400875BBA /* LevelSelectViewController.swift in Sources */,
 				61B40161299FAF240022142B /* ToolsViewController+LevelBuilderActionsDelegate.swift in Sources */,
+				613165A329AA85D6001C636D /* GameViewController+BoardSceneDelegate.swift in Sources */,
 				61F48D72299907FC00B33D50 /* MSKView+MSKSceneDelegate.swift in Sources */,
 				61F07CEC29A734C100C7A7A4 /* ScoreState.swift in Sources */,
 				619D84C429890B6A007C8683 /* MSKPhysicsBody.swift in Sources */,
