@@ -22,7 +22,7 @@ class PegPhysicsBody: MSKCirclePhysicsBody {
 
     func collide(with body: BallPhysicsBody) -> Bool {
         if super.collide(with: body) {
-            pegPhysicsBodyDelegate?.didCollideWithBall()
+            pegPhysicsBodyDelegate?.didCollideWithBall(ballBody: body)
             return true
         } else {
             return false

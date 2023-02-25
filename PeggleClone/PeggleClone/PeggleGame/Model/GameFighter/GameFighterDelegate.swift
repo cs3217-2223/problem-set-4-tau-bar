@@ -9,5 +9,5 @@ import Foundation
 
 protocol GameFighterDelegate {
     func createExplosionAt(pegNode: PegNode)
-    func setSpookyBall()
+    func setSpookyBall(ballNode: BallNode)
 }

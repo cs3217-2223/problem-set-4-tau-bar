@@ -42,8 +42,8 @@ extension BoardScene: GameFighterDelegate {
         }
     }
 
-    func setSpookyBall() {
-        ball?.isSpooky = true
+    func setSpookyBall(ballNode: BallNode) {
+        ballNode.isSpooky = true
     }
 
     private func addExplosionNode(at location: CGPoint, radius: Double) -> ExplosionNode {

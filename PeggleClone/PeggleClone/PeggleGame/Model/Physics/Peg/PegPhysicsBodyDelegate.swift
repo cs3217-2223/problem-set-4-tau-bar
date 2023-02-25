@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PegPhysicsBodyDelegate: AnyObject {
-    func didCollideWithBall()
+    func didCollideWithBall(ballBody: BallPhysicsBody)
 }

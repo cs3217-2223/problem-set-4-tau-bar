@@ -8,7 +8,7 @@
 import Foundation
 
 extension BucketNode: BucketBasePhysicsBodyDelegate {
-    func didBallCollideWithBucketBase() {
-        bucketDelegate?.didEnterBucket()
+    func didBallCollideWithBucketBase(ball body: BallPhysicsBody) {
+        bucketDelegate?.didEnterBucket(ball: body)
     }
 }

@@ -7,13 +7,14 @@
 
 import UIKit
 
-class YellowPegNode: PegNode {
+class PurplePegNode: PegNode {
     init(position: CGPoint, radius: Double, rotation: Double) {
         super.init(position: position, image: UIImage(named: "peg-purple"), radius: radius, rotation: rotation)
     }
 
-    override func didCollideWithBall() {
+    override func didCollideWithBall(ballBody: BallPhysicsBody) {
         image = UIImage(named: "peg-purple-glow")
-        super.didCollideWithBall()
+        delegate?.didTurnIntoBall(pegNode: self)
+        super.didCollideWithBall(ballBody: ballBody)
     }
 }

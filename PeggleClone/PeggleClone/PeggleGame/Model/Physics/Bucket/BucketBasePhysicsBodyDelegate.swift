@@ -8,5 +8,5 @@
 import Foundation
 
 protocol BucketBasePhysicsBodyDelegate: AnyObject {
-    func didBallCollideWithBucketBase()
+    func didBallCollideWithBucketBase(ball: BallPhysicsBody)
 }

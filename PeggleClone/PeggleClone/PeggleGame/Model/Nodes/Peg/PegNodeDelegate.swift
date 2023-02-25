@@ -9,6 +9,7 @@ import Foundation
 
 protocol PegNodeDelegate: AnyObject {
     func didCollideWithBall(pegNode: PegNode)
-    func didActivatePower(pegNode: PegNode)
+    func didActivatePower(pegNode: PegNode, ballBody: BallPhysicsBody)
     func didGlow(pegNode: PegNode)
+    func didTurnIntoBall(pegNode: PegNode)
 }

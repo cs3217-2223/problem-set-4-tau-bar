@@ -20,7 +20,7 @@ class NodeFactory {
             case .red:
                 return RedPegNode(position: pos, radius: peg.radius, rotation: rotation)
             case .purple:
-                return YellowPegNode(position: pos, radius: peg.radius, rotation: rotation)
+                return PurplePegNode(position: pos, radius: peg.radius, rotation: rotation)
             case .green:
                 return GreenPegNode(position: pos, radius: peg.radius, rotation: rotation)
             }

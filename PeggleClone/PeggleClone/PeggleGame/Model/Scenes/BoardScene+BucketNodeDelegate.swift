@@ -8,9 +8,12 @@
 import Foundation
 
 extension BoardScene: BucketNodeDelegate {
-    func didEnterBucket() {
+    func didEnterBucket(ball body: BallPhysicsBody) {
         gameState.didBallEnterBucket()
-        handleResetBall()
+        guard let ballNode = nodes.first(where: {
+            ObjectIdentifier($0.physicsBody) == ObjectIdentifier(body)
+        }) as? BallNode else { return }
+        handleResetBall(ballNode: ballNode)
     }
 
     func didChangeSpooky(ballNode: BallNode) {

@@ -12,8 +12,8 @@ class RedPegNode: PegNode {
         super.init(position: position, image: UIImage(named: "peg-red"), radius: radius, rotation: rotation)
     }
 
-    override func didCollideWithBall() {
+    override func didCollideWithBall(ballBody: BallPhysicsBody) {
         image = UIImage(named: "peg-red-glow")
-        super.didCollideWithBall()
+        super.didCollideWithBall(ballBody: ballBody)
     }
 }

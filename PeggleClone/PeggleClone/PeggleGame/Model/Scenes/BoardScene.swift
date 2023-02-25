@@ -21,10 +21,10 @@ class BoardScene: MSKScene {
         }
     }
     var ball: BallNode?
+    var isCannonFired = false
     private var bucket: BucketNode?
     private var bucketDirection: BucketDirection = .right
     private var cannon: CannonNode?
-    private var isCannonFired = false
     private let defaultDirectionVectorMultiplier: Double = 10.0
     private let defaultCannonHeight: Double = 50
     private let defaultBallStartingHeight: Double = 50
@@ -112,40 +112,46 @@ class BoardScene: MSKScene {
     override func update(timeInterval: TimeInterval) {
         super.update(timeInterval: timeInterval)
         updateBucketPos()
-        guard let ball = ball else { return }
-        if isOutOfBounds(node: ball) {
-            handleResetBall()
+        
+        for node in nodes {
+            guard let ballNode = node as? BallNode else { continue }
+            if isOutOfBounds(node: ballNode) {
+                handleResetBall(ballNode: ballNode)
+            }
         }
+        
     }
 
-    func handleResetBall() {
-        guard let ball = ball else { return }
-        if ball.isSpooky {
-            resetSpookyBall()
+    func handleResetBall(ballNode: BallNode) {
+        if ballNode.isSpooky {
+            resetSpookyBall(ballNode: ballNode)
         } else {
-            removeFiredBall()
-
-            // Remove nodes that are hit once ball is out of bounds.
-            removeHitPegs()
-
-            // Allow cannon to be fired again
-            isCannonFired = false
+            removeNode(ballNode)
+            
+            // if it was the originally fired ball
+            if ballNode == ball {
+                self.ball = nil
+                gameState.ballsLeft -= 1
+                // Remove nodes that are hit once ball is out of bounds.
+                removeHitPegs()
+                
+                isCannonFired = false
+            }
         }
     }
 
     /// Resets the spooky ball by setting `isSpooky` to false & putting it at y = 0.
-    func resetSpookyBall() {
-        guard let ball = ball else { return }
-        var currentPos = ball.position
+    func resetSpookyBall(ballNode: BallNode) {
+        var currentPos = ballNode.position
         if currentPos.x > physicsWorld.width {
-            currentPos.x = physicsWorld.width - ball.getWidth()
+            currentPos.x = physicsWorld.width - ballNode.getWidth()
         } else if currentPos.x < 0 {
-            currentPos.x = 100
+            currentPos.x = ballNode.getWidth()
         }
 
         // Set the y position to be height / 2 to ensure doesn't collide with top border of world
-        ball.physicsBody.move(to: SIMD2<Double>(currentPos.x, ball.getHeight() / 2))
-        ball.isSpooky = false
+        ballNode.physicsBody.move(to: SIMD2<Double>(currentPos.x, ballNode.getHeight() / 2))
+        ballNode.isSpooky = false
     }
 
     /// Calculates the new position of the ball using `tapLocation` and ball's `oldPosition`.
@@ -196,13 +202,6 @@ class BoardScene: MSKScene {
             physicsWorld.removeBody(hitNode.physicsBody)
             boardSceneDelegate?.didRemovePegNode(removedNode: hitNode)
         })
-    }
-
-    private func removeFiredBall() {
-        guard let ball = ball else { return }
-        removeNode(ball)
-        self.ball = nil
-        gameState.ballsLeft -= 1
     }
 
     private func isOutOfBounds(node: BallNode) -> Bool {

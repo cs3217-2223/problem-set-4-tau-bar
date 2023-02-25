@@ -21,7 +21,7 @@ class BucketBasePhysicsBody: MSKPolygonPhysicsBody {
 
     func collide(with body: BallPhysicsBody) -> Bool {
         if super.collide(with: body) {
-            bucketBaseDelegate?.didBallCollideWithBucketBase()
+            bucketBaseDelegate?.didBallCollideWithBucketBase(ball: body)
             return true
         } else {
             return false

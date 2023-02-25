@@ -10,7 +10,7 @@ import Foundation
 struct MortyFighter: GameFighter {
     var fighterDelegate: GameFighterDelegate?
 
-    func performPower(pegNode: PegNode) {
+    func performPower(pegNode: PegNode, ballNode: BallNode) {
         fighterDelegate?.createExplosionAt(pegNode: pegNode)
     }
 }

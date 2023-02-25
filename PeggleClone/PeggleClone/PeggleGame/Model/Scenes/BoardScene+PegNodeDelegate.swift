@@ -13,11 +13,20 @@ extension BoardScene: PegNodeDelegate {
         gameState.didCollideWithBall(pegNode: pegNode)
     }
 
-    func didActivatePower(pegNode: PegNode) {
-        fighter?.performPower(pegNode: pegNode)
+    func didActivatePower(pegNode: PegNode, ballBody: BallPhysicsBody) {
+        let node = nodes.first(where: { ObjectIdentifier($0.physicsBody) == ObjectIdentifier(ballBody) })
+        guard let ballNode = node as? BallNode else { return }
+        fighter?.performPower(pegNode: pegNode, ballNode: ballNode)
     }
     
     func didGlow(pegNode: PegNode) {
         delegate?.didUpdateNodeImage(pegNode)
+    }
+    
+    func didTurnIntoBall(pegNode: PegNode) {
+        removeNode(pegNode)
+        let oldPosition = CGPoint(x: pegNode.physicsBody.positionLast.x, y: pegNode.physicsBody.positionLast.y)
+        let ballNode = BallNode(oldPosition: oldPosition, position: pegNode.position)
+        addBallNode(ballNode)
     }
 }

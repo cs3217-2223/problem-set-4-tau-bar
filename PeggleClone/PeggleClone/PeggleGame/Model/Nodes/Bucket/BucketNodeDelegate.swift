@@ -8,5 +8,5 @@
 import Foundation
 
 protocol BucketNodeDelegate: AnyObject {
-    func didEnterBucket()
+    func didEnterBucket(ball: BallPhysicsBody)
 }

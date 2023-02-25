@@ -31,7 +31,6 @@ extension MSKView: MSKSceneDelegate {
 
     func didUpdateNodeImage(_ node: MSKSpriteNode) {
         guard let image = node.image else { return }
-        print(image)
         nodeToView[node]?.image = image
     }
 }
