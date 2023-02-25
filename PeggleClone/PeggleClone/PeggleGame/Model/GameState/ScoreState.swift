@@ -8,6 +8,8 @@
 import Foundation
 
 class ScoreState: GameState {
+    var delegate: GameStateDelegate?
+    
     var firstLabel: String? {
         "Current Score:" + String(currentScore)
     }
@@ -41,7 +43,7 @@ class ScoreState: GameState {
 
     func isGameLost() -> Bool {
         // if time is up or no more balls, and score hasn't been hit -> lose
-        currentScore < scoreToHit && (isTimerUp || ballsLeft == 0)
+        currentScore < scoreToHit && (isTimerUp || ballsLeft == 0) && !(delegate?.haveUnclearedBallsInGame() ?? false)
     }
 
     func didCollideWithBall(pegNode: PegNode) {

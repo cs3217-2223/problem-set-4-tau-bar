@@ -8,6 +8,8 @@
 import Foundation
 
 class DodgeState: GameState {
+    var delegate: GameStateDelegate?
+    
     var firstLabel: String? {
         "Chances Left:" + String(ballsWithoutHittingLeft)
     }
@@ -37,7 +39,7 @@ class DodgeState: GameState {
     }
 
     func isGameLost() -> Bool {
-        ballsLeft == 0 && ballsWithoutHittingLeft <= 0
+        ballsLeft == 0 && ballsWithoutHittingLeft <= 0 && !(delegate?.haveUnclearedBallsInGame() ?? true)
     }
 
     func didCollideWithBall(pegNode: PegNode) {

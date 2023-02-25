@@ -20,7 +20,7 @@ class PegNode: BoardObjectNode, PegPhysicsBodyDelegate {
                    image: image)
         pegPhysicsBody.pegPhysicsBodyDelegate = self
     }
-    
+
     func didCollideWithBall(ballBody: BallPhysicsBody) {
         delegate?.didCollideWithBall(pegNode: self)
         isHit = true

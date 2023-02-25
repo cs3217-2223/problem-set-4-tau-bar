@@ -15,7 +15,11 @@ class PeggleGameConstants {
     static let nonExplodableNodes: [MSKSpriteNode.Type] = [GreenPegNode.self,
                                                            BucketNode.self,
                                                            BallNode.self,
-                                                           ExplosionNode.self]
+                                                           ExplosionNode.self,
+                                                           CannonNode.self]
+    static let nonUpsideDownNodes: [MSKSpriteNode.Type] = [BucketNode.self,
+                                                           ExplosionNode.self,
+                                                           CannonNode.self]
     static let nonMovableByExplosionNodes: [MSKSpriteNode.Type] = [GreenPegNode.self, BallNode.self, BucketNode.self]
     static func getPoints(of pegNode: PegNode) -> Int {
         if pegNode is BluePegNode {

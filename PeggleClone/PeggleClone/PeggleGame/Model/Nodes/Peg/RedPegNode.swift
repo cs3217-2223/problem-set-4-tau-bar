@@ -14,6 +14,9 @@ class RedPegNode: PegNode {
 
     override func didCollideWithBall(ballBody: BallPhysicsBody) {
         image = UIImage(named: "peg-red-glow")
+        if !isHit {
+            delegate?.didUpsideDown(pegNode: self)
+        }
         super.didCollideWithBall(ballBody: ballBody)
     }
 }

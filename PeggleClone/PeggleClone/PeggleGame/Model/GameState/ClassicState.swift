@@ -8,6 +8,8 @@
 import Foundation
 
 class ClassicState: GameState {
+    var delegate: GameStateDelegate?
+    
     var firstLabel: String? {
         "Orange Pegs Left: " + String(orangePegsLeft)
     }
@@ -27,7 +29,7 @@ class ClassicState: GameState {
     }
 
     func isGameLost() -> Bool {
-        orangePegsLeft > 0 && ballsLeft == 0
+        orangePegsLeft > 0 && ballsLeft == 0 && !(delegate?.haveUnclearedBallsInGame() ?? true)
     }
 
     func didCollideWithBall(pegNode: PegNode) {

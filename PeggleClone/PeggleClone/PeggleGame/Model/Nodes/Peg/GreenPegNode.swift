@@ -8,7 +8,7 @@
 import UIKit
 
 class GreenPegNode: PegNode {
-    var isExploding: Bool = false
+    var isExploding = false
     init(position: CGPoint, radius: Double, rotation: Double) {
         super.init(position: position, image: UIImage(named: "peg-green"), radius: radius, rotation: rotation)
     }

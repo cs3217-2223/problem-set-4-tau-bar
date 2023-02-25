@@ -12,7 +12,11 @@ enum BucketDirection {
 }
 
 class BoardScene: MSKScene {
-    var gameState: GameState
+    var gameState: GameState {
+        didSet {
+            gameState.delegate = self
+        }
+    }
 
     weak var boardSceneDelegate: BoardSceneDelegate?
     var fighter: GameFighter? {
@@ -112,14 +116,14 @@ class BoardScene: MSKScene {
     override func update(timeInterval: TimeInterval) {
         super.update(timeInterval: timeInterval)
         updateBucketPos()
-        
+
         for node in nodes {
             guard let ballNode = node as? BallNode else { continue }
             if isOutOfBounds(node: ballNode) {
                 handleResetBall(ballNode: ballNode)
             }
         }
-        
+
     }
 
     func handleResetBall(ballNode: BallNode) {
@@ -127,14 +131,14 @@ class BoardScene: MSKScene {
             resetSpookyBall(ballNode: ballNode)
         } else {
             removeNode(ballNode)
-            
+
             // if it was the originally fired ball
             if ballNode == ball {
                 self.ball = nil
                 gameState.ballsLeft -= 1
                 // Remove nodes that are hit once ball is out of bounds.
                 removeHitPegs()
-                
+
                 isCannonFired = false
             }
         }

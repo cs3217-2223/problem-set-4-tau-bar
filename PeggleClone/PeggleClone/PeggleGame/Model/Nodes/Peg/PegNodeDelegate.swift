@@ -12,4 +12,5 @@ protocol PegNodeDelegate: AnyObject {
     func didActivatePower(pegNode: PegNode, ballBody: BallPhysicsBody)
     func didGlow(pegNode: PegNode)
     func didTurnIntoBall(pegNode: PegNode)
+    func didUpsideDown(pegNode: PegNode)
 }

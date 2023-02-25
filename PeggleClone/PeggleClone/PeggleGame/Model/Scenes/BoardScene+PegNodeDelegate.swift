@@ -18,15 +18,24 @@ extension BoardScene: PegNodeDelegate {
         guard let ballNode = node as? BallNode else { return }
         fighter?.performPower(pegNode: pegNode, ballNode: ballNode)
     }
-    
+
     func didGlow(pegNode: PegNode) {
         delegate?.didUpdateNodeImage(pegNode)
     }
-    
+
     func didTurnIntoBall(pegNode: PegNode) {
         removeNode(pegNode)
         let oldPosition = CGPoint(x: pegNode.physicsBody.positionLast.x, y: pegNode.physicsBody.positionLast.y)
         let ballNode = BallNode(oldPosition: oldPosition, position: pegNode.position)
         addBallNode(ballNode)
     }
+
+    func didUpsideDown(pegNode: PegNode) {
+        for node in nodes where !PeggleGameConstants.nonUpsideDownNodes.contains(where: { type(of: node) == $0 }) {
+            let flippedY = physicsWorld.height - node.position.y
+            let flippedX = physicsWorld.width - node.position.x
+            node.physicsBody.move(to: SIMD2<Double>(flippedX, flippedY))
+        }
+    }
+
 }

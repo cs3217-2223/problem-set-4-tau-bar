@@ -10,29 +10,29 @@ import UIKit
 extension BoardScene: GameFighterDelegate {
     func createExplosionAt(pegNode: PegNode) {
         guard let pegNode = pegNode as? GreenPegNode else { return }
-        
+
         if pegNode.isExploding {
             return
         }
-        
+
         pegNode.isExploding = true
         pegNode.image = UIImage(named: "peg-purple-glow")
         delegate?.didUpdateNodeImage(pegNode)
         // remove exploding node
         removeNode(pegNode)
-        
+
         let radius = PeggleGameConstants.defaultExplosionRadius
-        
+
         // add an explosion node for a short time to
         // simulate collision between pegs and explosion "body"
         let explosionNode = addExplosionNode(at: pegNode.position, radius: radius)
-        
+
         // remove nodes which are within 1/2 blast radius
         removeNodesByExplosion(within: radius / 2, of: pegNode.position)
-        
+
         // move nodes which are within blast radius
         moveNodesByExplosion(within: radius, awayFrom: pegNode.position)
-        
+
         // trigger other green nodes within blast radius
         triggerOtherGreenWithinExplosion(within: radius, awayFrom: pegNode.position)
 
@@ -94,12 +94,12 @@ extension BoardScene: GameFighterDelegate {
                 // mark node for explosion
                 node.image = UIImage(named: "peg-green-glow")
                 delegate?.didUpdateNodeImage(node)
-                
+
                 // after time interval, create explosion
                 _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: false) { [unowned self] _ in
                     createExplosionAt(pegNode: node)
                 }
-                
+
             }
         }
     }

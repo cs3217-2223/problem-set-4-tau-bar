@@ -12,6 +12,7 @@ protocol GameState {
     var firstLabel: String? { get }
     var secondLabel: String? { get }
     var thirdLabel: String? { get }
+    var delegate: GameStateDelegate? { get set }
     func isGameWon() -> Bool
     func isGameLost() -> Bool
     func didCollideWithBall(pegNode: PegNode)
