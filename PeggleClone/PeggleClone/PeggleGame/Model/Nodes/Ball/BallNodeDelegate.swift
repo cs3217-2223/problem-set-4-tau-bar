@@ -9,6 +9,6 @@ import Foundation
 
 protocol BallNodeDelegate: AnyObject {
     func handleBallStuck()
-    
+
     func didChangeSpooky(ballNode: BallNode)
 }

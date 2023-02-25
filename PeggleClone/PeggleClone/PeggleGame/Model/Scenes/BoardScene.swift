@@ -59,7 +59,7 @@ class BoardScene: MSKScene {
     func begin() {
         gameState.startGame()
     }
-    
+
     /// Adds a `BoardObjectNode` to the scene.
     func addBoardNode(_ addedNode: BoardObjectNode) {
         super.addNode(addedNode)
@@ -117,7 +117,7 @@ class BoardScene: MSKScene {
             handleResetBall()
         }
     }
-    
+
     func handleResetBall() {
         guard let ball = ball else { return }
         if ball.isSpooky {
@@ -132,7 +132,7 @@ class BoardScene: MSKScene {
             isCannonFired = false
         }
     }
-    
+
     /// Resets the spooky ball by setting `isSpooky` to false & putting it at y = 0.
     func resetSpookyBall() {
         guard let ball = ball else { return }
@@ -142,12 +142,12 @@ class BoardScene: MSKScene {
         } else if currentPos.x < 0 {
             currentPos.x = 100
         }
-        
+
         // Set the y position to be height / 2 to ensure doesn't collide with top border of world
         ball.physicsBody.move(to: SIMD2<Double>(currentPos.x, ball.getHeight() / 2))
         ball.isSpooky = false
     }
-    
+
     /// Calculates the new position of the ball using `tapLocation` and ball's `oldPosition`.
     private func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
         let shotVector = SIMD2<Double>(x: tapLocation.x - oldPosition.x, y: tapLocation.y - oldPosition.y)

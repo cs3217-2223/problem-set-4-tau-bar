@@ -8,16 +8,21 @@
 import UIKit
 
 extension BoardScene: GameFighterDelegate {
-    func createExplosionAt(location: CGPoint, radius: Double) {
-        let explosionNode = addExplosionNode(at: location, radius: radius)
+    static let defaultExplosionRadius: Double = 250
+    func createExplosionAt(pegNode: PegNode) {
+        // remove exploding node
+        removeNode(pegNode)
         
-        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { _ in
-            self.removeNode(explosionNode)
+        let radius = BoardScene.defaultExplosionRadius
+        let explosionNode = addExplosionNode(at: pegNode.position, radius: radius)
+
+        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: false) { [unowned self] _ in
+            removeNode(explosionNode)
         }
 
         // Remove nodes which are within 1/2 blast radius
-        removeNodes(within: radius / 2, of: location)
-        moveNodes(within: radius, awayFrom: location)
+        removeNodes(within: radius / 2, of: pegNode.position)
+        moveNodes(within: radius, awayFrom: pegNode.position)
     }
 
     func setSpookyBall() {
@@ -33,13 +38,13 @@ extension BoardScene: GameFighterDelegate {
         let explosionNode = ExplosionNode(physicsBody: explosionPhysicsBody, image: nil)
         boardSceneDelegate?.didAddExplosion(at: location, duration: 0.5, radius: radius)
         addNode(explosionNode)
-        
+
         return explosionNode
     }
 
     private func removeNodes(within radius: Double, of location: CGPoint) {
         for node in nodes {
-            if node is BallNode || node is ExplosionNode {
+            if node is BallNode || node is ExplosionNode || node is GreenPegNode {
                 continue
             }
 
@@ -53,8 +58,11 @@ extension BoardScene: GameFighterDelegate {
         for node in nodes {
             if isWithin(position: node.position, isWithin: radius, of: location), !(node is BallNode) {
                 node.physicsBody.isDynamic = true
-                _ = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { _ in
+                _ = Timer.scheduledTimer(withTimeInterval: 2.0, repeats: false) { [unowned self] _ in
                     node.physicsBody.isDynamic = false
+                    if let node = node as? GreenPegNode {
+                        createExplosionAt(pegNode: node)
+                    }
                 }
             }
         }

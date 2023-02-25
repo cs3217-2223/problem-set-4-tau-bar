@@ -14,6 +14,6 @@ extension BoardScene: PegNodeDelegate {
     }
 
     func didActivatePower(pegNode: PegNode) {
-        fighter?.performPower(at: pegNode.position)
+        fighter?.performPower(pegNode: pegNode)
     }
 }

@@ -8,6 +8,6 @@
 import Foundation
 
 protocol GameFighterDelegate {
-    func createExplosionAt(location: CGPoint, radius: Double)
+    func createExplosionAt(pegNode: PegNode)
     func setSpookyBall()
 }

@@ -17,6 +17,6 @@ protocol MSKSceneDelegate: AnyObject {
     func didUpdateNode(_ node: MSKSpriteNode)
 
     func didRotateNode(_ node: MSKSpriteNode)
-    
+
     func didUpdateNodeImage(_ node: MSKSpriteNode)
 }

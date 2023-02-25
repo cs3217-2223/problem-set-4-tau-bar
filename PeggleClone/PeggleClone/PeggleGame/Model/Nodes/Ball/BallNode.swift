@@ -10,9 +10,8 @@ class BallNode: MSKSpriteNode {
     static let defaultImage = UIImage(named: "ball")
     static let spookyImage = UIImage(named: "peg-yellow")
     weak var delegate: BallNodeDelegate?
-    var isSpooky = true {
+    var isSpooky = false {
         didSet {
-            print("check")
             if isSpooky {
                 image = BallNode.spookyImage
             } else {

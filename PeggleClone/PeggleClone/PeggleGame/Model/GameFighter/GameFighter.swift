@@ -9,5 +9,5 @@ import Foundation
 
 protocol GameFighter {
     var fighterDelegate: GameFighterDelegate? { get set }
-    func performPower(at location: CGPoint)
+    func performPower(pegNode: PegNode)
 }

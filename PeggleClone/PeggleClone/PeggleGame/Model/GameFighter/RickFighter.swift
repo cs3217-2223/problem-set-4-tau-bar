@@ -10,7 +10,7 @@ import Foundation
 struct RickFighter: GameFighter {
     var fighterDelegate: GameFighterDelegate?
 
-    func performPower(at location: CGPoint) {
+    func performPower(pegNode: PegNode) {
         fighterDelegate?.setSpookyBall()
     }
 }

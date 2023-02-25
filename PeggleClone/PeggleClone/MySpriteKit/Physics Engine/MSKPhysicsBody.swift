@@ -44,7 +44,7 @@ protocol MSKPhysicsBody: AnyObject {
 
     /// Updates the position by the specified vector.
     func updatePosition(by vector: SIMD2<Double>)
-    
+
     /// Moves the physics body to a position, regardless of `isDynamic`.
     func move(to position: SIMD2<Double>)
 
@@ -112,7 +112,7 @@ extension MSKPhysicsBody {
         }
         position += vector
     }
-    
+
     /// Moves the physics body to `position`, regardless of `isDynamic`.
     func move(to position: SIMD2<Double>) {
         self.positionLast = position
