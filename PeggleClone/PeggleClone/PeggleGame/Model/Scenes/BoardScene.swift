@@ -59,7 +59,8 @@ class BoardScene: MSKScene {
     func begin() {
         gameState.startGame()
     }
-
+    
+    /// Adds a `BoardObjectNode` to the scene.
     func addBoardNode(_ addedNode: BoardObjectNode) {
         super.addNode(addedNode)
 
@@ -67,11 +68,13 @@ class BoardScene: MSKScene {
         addedNode.delegate = self
     }
 
+    /// Adds a `BallNode` to the scene.
     func addBallNode(_ ballNode: BallNode) {
         super.addNode(ballNode)
         ballNode.delegate = self
     }
 
+    /// Fires the cannon at the `tapLocation` by adding a new `BallNode` & setting `isCannonFired` to true.
     func fireCannon(at tapLocation: CGPoint) {
         if isCannonFired {
             return
@@ -100,35 +103,57 @@ class BoardScene: MSKScene {
         isCannonFired = true
     }
 
-    private func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
-        let shotVector = SIMD2<Double>(x: tapLocation.x - oldPosition.x, y: tapLocation.y - oldPosition.y)
-        let directionVector = PhysicsUtil.findUnitVector(of: shotVector) * defaultDirectionVectorMultiplier
-        let newPos = CGPoint(x: oldPosition.x + directionVector.x, y: oldPosition.y + directionVector.y)
-        return newPos
+    /// Checks whether a tap location is valid - i.e. below the cannon's height
+    func isValidLocation(location tapLocation: CGPoint) -> Bool {
+        tapLocation.y > defaultCannonHeight
     }
 
-    func isValidLocation(location: CGPoint) -> Bool {
-        location.y > defaultBallStartingHeight
-    }
-
+    /// Updates the state of the scene over the `timeInterval`.
     override func update(timeInterval: TimeInterval) {
         super.update(timeInterval: timeInterval)
         updateBucketPos()
         guard let ball = ball else { return }
         if isOutOfBounds(node: ball) {
-            // Remove the balls out of the scene.
             handleResetBall()
         }
     }
-
+    
     func handleResetBall() {
-        removeFiredBall()
+        guard let ball = ball else { return }
+        if ball.isSpooky {
+            resetSpookyBall()
+        } else {
+            removeFiredBall()
 
-        // Remove nodes that are hit once ball is out of bounds.
-        removeHitPegs()
+            // Remove nodes that are hit once ball is out of bounds.
+            removeHitPegs()
 
-        // Allow cannon to be fired again
-        isCannonFired = false
+            // Allow cannon to be fired again
+            isCannonFired = false
+        }
+    }
+    
+    /// Resets the spooky ball by setting `isSpooky` to false & putting it at y = 0.
+    func resetSpookyBall() {
+        guard let ball = ball else { return }
+        var currentPos = ball.position
+        if currentPos.x > physicsWorld.width {
+            currentPos.x = physicsWorld.width - ball.getWidth()
+        } else if currentPos.x < 0 {
+            currentPos.x = 100
+        }
+        
+        // Set the y position to be height / 2 to ensure doesn't collide with top border of world
+        ball.physicsBody.move(to: SIMD2<Double>(currentPos.x, ball.getHeight() / 2))
+        ball.isSpooky = false
+    }
+    
+    /// Calculates the new position of the ball using `tapLocation` and ball's `oldPosition`.
+    private func findNewBallPos(oldPosition: CGPoint, tapLocation: CGPoint) -> CGPoint {
+        let shotVector = SIMD2<Double>(x: tapLocation.x - oldPosition.x, y: tapLocation.y - oldPosition.y)
+        let directionVector = PhysicsUtil.findUnitVector(of: shotVector) * defaultDirectionVectorMultiplier
+        let newPos = CGPoint(x: oldPosition.x + directionVector.x, y: oldPosition.y + directionVector.y)
+        return newPos
     }
 
     private func updateBucketPos() {
@@ -181,6 +206,9 @@ class BoardScene: MSKScene {
     }
 
     private func isOutOfBounds(node: BallNode) -> Bool {
-        node.position.y - node.getHeight() > physicsWorld.height
+        node.position.y + node.getHeight() < 0 ||
+        node.position.y - node.getHeight() > physicsWorld.height ||
+        node.position.x - node.getWidth() > physicsWorld.width ||
+        node.position.x + node.getWidth() < 0
     }
 }

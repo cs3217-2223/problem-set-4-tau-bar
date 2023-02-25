@@ -28,4 +28,8 @@ extension MSKView: MSKSceneDelegate {
     func didRotateNode(_ node: MSKSpriteNode) {
         nodeToView[node]?.transform = CGAffineTransformMakeRotation(node.angle)
     }
+    
+    func didUpdateNodeImage(_ node: MSKSpriteNode) {
+        nodeToView[node]?.image = node.image
+    }
 }

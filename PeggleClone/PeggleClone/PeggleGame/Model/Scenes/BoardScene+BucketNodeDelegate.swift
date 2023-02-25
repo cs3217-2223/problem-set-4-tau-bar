@@ -12,4 +12,8 @@ extension BoardScene: BucketNodeDelegate {
         gameState.didBallEnterBucket()
         handleResetBall()
     }
+    
+    func didChangeSpooky(ballNode: BallNode) {
+        delegate?.didUpdateNodeImage(ballNode)
+    }
 }
