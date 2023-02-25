@@ -22,6 +22,18 @@ class Block: BoardObject {
     static let defaultWidth: Double = 40.0
     static let defaultBlockRotation = 0.0
 
+    required init(position: CGPoint,
+                  rotation: Double = defaultBlockRotation,
+                  height: Double = defaultHeight,
+                  width: Double = defaultWidth,
+                  asset: String = "black") {
+        self.position = position
+        self.rotation = rotation
+        self.height = height
+        self.width = width
+        self.asset = asset
+    }
+
     init?(position: CGPoint,
           rotation: Double = defaultBlockRotation,
           height: Double = defaultHeight,

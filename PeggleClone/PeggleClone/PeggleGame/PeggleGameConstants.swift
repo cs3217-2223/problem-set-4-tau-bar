@@ -5,9 +5,11 @@
 //  Created by Taufiq Abdul Rahman on 23/2/23.
 //
 
-import Foundation
+import UIKit
 
 class PeggleGameConstants {
+    static let boardHeight = UIScreen.main.bounds.width - 20
+    static let boardWidth = UIScreen.main.bounds.height - 286
     static let bluePegPoints = 100
     static let orangePegPoints = 500
     static let defaultPegPoints = 10
@@ -72,4 +74,5 @@ class PeggleGameConstants {
             return DodgeState(ballsWithoutHittingLeft: allowedBalls, ballsLeft: board.balls)
         }
     }
+
 }

@@ -9,7 +9,7 @@ import Foundation
 
 class ScoreState: GameState {
     var delegate: GameStateDelegate?
-    
+
     var firstLabel: String? {
         "Current Score:" + String(currentScore)
     }

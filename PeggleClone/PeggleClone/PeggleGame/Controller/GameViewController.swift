@@ -29,7 +29,45 @@ class GameViewController: UIViewController {
         musicPlayer = MusicPlayer()
         musicPlayer?.startGameMusic()
 
+        print(board?.gameMode)
+        print(board?.width)
+        print(board?.height)
+
+        board?.objects.forEach({ obj in
+            let object = obj.object
+            if let peg = object as? Peg {
+                print(getPegString(peg: peg))
+            } else if let block = object as? Block {
+                print(getBlockString(block: block))
+            }
+        })
+
         performSegue(withIdentifier: "goToChooseMaster", sender: self)
+    }
+
+    func getPegString(peg: Peg) -> String {
+        var str = ""
+        str += "BoardObjectWrapper(object: Peg(color: "
+        str += "PegColor." + peg.color.rawValue
+        str += ", \n position: CGPoint(x: "
+        str += String(Double(peg.position.x)) + ", y: "
+        str += String(Double(peg.position.y)) + ")"
+        str += ", \n rotation: " + String(peg.rotation)
+        str += ", \n radius: " + String(peg.radius)
+        str += ", \n asset: \"" + String(peg.asset) + "\")),"
+        return str
+    }
+
+    func getBlockString(block: Block) -> String {
+        var str = ""
+        str += "BoardObjectWrapper(object: Block(position: CGPoint(x: "
+        str += String(Double(block.position.x)) + ", y: "
+        str += String(Double(block.position.y)) + ")"
+        str += ", \n rotation: " + String(block.rotation)
+        str += ", \n height: " + String(block.height)
+        str += ", \n width: " + String(block.width) + ")),"
+//        Block(position: <#T##CGPoint#>, rotation: <#T##Double#>, height: <#T##Double#>, width: <#T##Double#>)
+        return str
     }
 
     override func viewDidLoad() {

@@ -9,7 +9,7 @@ import Foundation
 
 class ClassicState: GameState {
     var delegate: GameStateDelegate?
-    
+
     var firstLabel: String? {
         "Orange Pegs Left: " + String(orangePegsLeft)
     }

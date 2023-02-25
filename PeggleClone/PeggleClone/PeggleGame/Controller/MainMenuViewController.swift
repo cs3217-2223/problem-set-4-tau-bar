@@ -12,9 +12,22 @@ class MainMenuViewController: UIViewController {
     @IBOutlet var levelDesignerButton: UIButton!
     var musicPlayer: MusicPlayer?
 
+    // Data Manager
+    let dataManager = DataManager()
+
     override func viewDidAppear(_ animated: Bool) {
         musicPlayer = MusicPlayer()
         musicPlayer?.startBackgroundMusic()
+    }
+
+    override func viewDidLoad() {
+        do {
+            let loadLevels = LoadLevels(dataManager: dataManager)
+            try loadLevels.loadPreloadedLevels()
+        } catch {
+            print("Could not load pre-loaded levels.")
+        }
+
     }
 
     override func viewDidDisappear(_ animated: Bool) {

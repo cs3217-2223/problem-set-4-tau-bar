@@ -9,7 +9,7 @@ import Foundation
 
 class DodgeState: GameState {
     var delegate: GameStateDelegate?
-    
+
     var firstLabel: String? {
         "Chances Left:" + String(ballsWithoutHittingLeft)
     }

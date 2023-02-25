@@ -19,6 +19,20 @@ class DataManager {
         self.context = manager.context
     }
 
+    func hasBoard(with boardName: String) throws -> Bool {
+        do {
+            let boardData = try findBoards(with: boardName)
+            if boardData.count > 0 {
+                return true
+            } else if boardData.count == 0 {
+                return false
+            }
+        } catch {
+            print("Could not read Core Data.")
+        }
+        return false
+    }
+
     func fetchBoardData(boardName: String) throws -> BoardData {
         let boardData = try findBoards(with: boardName)
 

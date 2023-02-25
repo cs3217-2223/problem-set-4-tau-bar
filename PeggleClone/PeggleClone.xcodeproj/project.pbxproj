@@ -44,6 +44,11 @@
 		6131658F29A9FA26001C636D /* ExplosionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131658E29A9FA26001C636D /* ExplosionNode.swift */; };
 		6131659129AA4E41001C636D /* GameStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659029AA4E41001C636D /* GameStateDelegate.swift */; };
 		6131659329AA50C6001C636D /* BoardScene+GameStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659229AA50C6001C636D /* BoardScene+GameStateDelegate.swift */; };
+		6131659629AA66D5001C636D /* DefaultLevelOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659529AA66D5001C636D /* DefaultLevelOne.swift */; };
+		6131659829AA722E001C636D /* DefaultLevelTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659729AA722E001C636D /* DefaultLevelTwo.swift */; };
+		6131659A29AA76A9001C636D /* DefaultLevelThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659929AA76A9001C636D /* DefaultLevelThree.swift */; };
+		6131659D29AA7AE3001C636D /* PreloadedLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659C29AA7AE3001C636D /* PreloadedLevel.swift */; };
+		6131659F29AA7CD0001C636D /* LoadLevels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659E29AA7CD0001C636D /* LoadLevels.swift */; };
 		614298E0299B38EA00D39C75 /* MainMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614298DF299B38EA00D39C75 /* MainMenu.storyboard */; };
 		614298E2299B3A4D00D39C75 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */; };
 		614298E4299B409000D39C75 /* ChooseLevel.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614298E3299B409000D39C75 /* ChooseLevel.storyboard */; };
@@ -256,6 +261,11 @@
 		6131658E29A9FA26001C636D /* ExplosionNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExplosionNode.swift; sourceTree = "<group>"; };
 		6131659029AA4E41001C636D /* GameStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameStateDelegate.swift; sourceTree = "<group>"; };
 		6131659229AA50C6001C636D /* BoardScene+GameStateDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BoardScene+GameStateDelegate.swift"; sourceTree = "<group>"; };
+		6131659529AA66D5001C636D /* DefaultLevelOne.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLevelOne.swift; sourceTree = "<group>"; };
+		6131659729AA722E001C636D /* DefaultLevelTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLevelTwo.swift; sourceTree = "<group>"; };
+		6131659929AA76A9001C636D /* DefaultLevelThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLevelThree.swift; sourceTree = "<group>"; };
+		6131659C29AA7AE3001C636D /* PreloadedLevel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadedLevel.swift; sourceTree = "<group>"; };
+		6131659E29AA7CD0001C636D /* LoadLevels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadLevels.swift; sourceTree = "<group>"; };
 		614298DF299B38EA00D39C75 /* MainMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainMenu.storyboard; sourceTree = "<group>"; };
 		614298E1299B3A4D00D39C75 /* MainMenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		614298E3299B409000D39C75 /* ChooseLevel.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ChooseLevel.storyboard; sourceTree = "<group>"; };
@@ -551,6 +561,18 @@
 				61F07CFB29A76B3400C7A7A4 /* BucketBasePhysicsBodyDelegate.swift */,
 			);
 			path = Bucket;
+			sourceTree = "<group>";
+		};
+		6131659B29AA7ABD001C636D /* Preloaded Levels */ = {
+			isa = PBXGroup;
+			children = (
+				6131659529AA66D5001C636D /* DefaultLevelOne.swift */,
+				6131659729AA722E001C636D /* DefaultLevelTwo.swift */,
+				6131659929AA76A9001C636D /* DefaultLevelThree.swift */,
+				6131659C29AA7AE3001C636D /* PreloadedLevel.swift */,
+				6131659E29AA7CD0001C636D /* LoadLevels.swift */,
+			);
+			path = "Preloaded Levels";
 			sourceTree = "<group>";
 		};
 		614298E7299B4AD400D39C75 /* MainMenu */ = {
@@ -851,6 +873,7 @@
 		61DB63D8299CB9380048663D /* PeggleGame */ = {
 			isa = PBXGroup;
 			children = (
+				6131659B29AA7ABD001C636D /* Preloaded Levels */,
 				617D2DE3298BBC1300461FC9 /* Model */,
 				617D2DE0298BBBEB00461FC9 /* Controller */,
 				617D2DDD298BBA3300461FC9 /* View */,
@@ -1136,6 +1159,7 @@
 				615E43F929A64E55009F03BC /* CGPoint+StoredData.swift in Sources */,
 				61A1615A299CB14C000ADBAC /* SegueNames.swift in Sources */,
 				61CDDEAA298A428300297265 /* MSKPhysicsWorld.swift in Sources */,
+				6131659F29AA7CD0001C636D /* LoadLevels.swift in Sources */,
 				6186658129A71EA80040D7D2 /* BoardObjectNode.swift in Sources */,
 				615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */,
 				61F48D6C299906CF00B33D50 /* BoardScene+BallNodeDelegate.swift in Sources */,
@@ -1144,6 +1168,7 @@
 				610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */,
 				611A0A9029A8722A00B3AE25 /* GameFighterFactory.swift in Sources */,
 				6186658729A720F10040D7D2 /* PurplePegNode.swift in Sources */,
+				6131659629AA66D5001C636D /* DefaultLevelOne.swift in Sources */,
 				61B13BBB299D667D005242E8 /* BoardObjectWrapper.swift in Sources */,
 				6131658F29A9FA26001C636D /* ExplosionNode.swift in Sources */,
 				61F48D70299907A500B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift in Sources */,
@@ -1198,6 +1223,7 @@
 				61F07CE329A72B3B00C7A7A4 /* LevelBuilderConstants.swift in Sources */,
 				619D849329890A96007C8683 /* AppDelegate.swift in Sources */,
 				611A0A8829A8705200B3AE25 /* GameCharacter.swift in Sources */,
+				6131659829AA722E001C636D /* DefaultLevelTwo.swift in Sources */,
 				61F07CEE29A7440100C7A7A4 /* PeggleGameConstants.swift in Sources */,
 				61CDDEBD298AAC1200297265 /* MSKView.swift in Sources */,
 				61B4015F299FAE9E0022142B /* LevelBuilderActionsDelegate.swift in Sources */,
@@ -1214,6 +1240,7 @@
 				61F48D762999093E00B33D50 /* LevelBuilderViewController+BoardObjectViewDelegate.swift in Sources */,
 				61F65183299740D900B2FDEB /* BallNodeDelegate.swift in Sources */,
 				61F07CF429A75FBF00C7A7A4 /* GameMode+FetchedData.swift in Sources */,
+				6131659A29AA76A9001C636D /* DefaultLevelThree.swift in Sources */,
 				61F48D68299905F300B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */,
 				61CDDEA8298A363B00297265 /* MSKConstants.swift in Sources */,
 				61DB63DA299CB9910048663D /* BoardObject.swift in Sources */,
@@ -1230,6 +1257,7 @@
 				61AF44D1298CA31600A9181A /* MSKPolygonPhysicsBody.swift in Sources */,
 				6131657D29A8C790001C636D /* BoardScene+GameFighterDelegate.swift in Sources */,
 				617D2DE5298BBC1C00461FC9 /* BoardScene.swift in Sources */,
+				6131659D29AA7AE3001C636D /* PreloadedLevel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

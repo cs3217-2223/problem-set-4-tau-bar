@@ -56,12 +56,21 @@ public class Board {
         - width: The width of the board.
         - height: The height of the board.
         - name: The name of the board.
+        - balls: The number of balls for the board.
+        - gameMode: The game mode of the board.
      */
-    init(objects: Set<BoardObjectWrapper>, width: Double, height: Double, name: String) {
+    init(objects: Set<BoardObjectWrapper>,
+         width: Double,
+         height: Double,
+         name: String,
+         balls: Int = defaultBalls,
+         gameMode: GameMode = .classic) {
         self.objects = objects
         self.width = width
         self.height = height
         self.name = name
+        self.balls = balls
+        self.gameMode = gameMode
     }
 
     /**
