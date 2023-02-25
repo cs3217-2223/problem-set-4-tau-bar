@@ -8,6 +8,7 @@ import UIKit
 
 class BallNode: MSKSpriteNode {
     weak var delegate: BallNodeDelegate?
+    var isSpooky = false
     init(oldPosition: CGPoint, position: CGPoint) {
         let physicsBody = BallPhysicsBody(circleOfRadius: 20.0,
                                                  oldPosition: SIMD2<Double>(x: oldPosition.x, y: oldPosition.y),

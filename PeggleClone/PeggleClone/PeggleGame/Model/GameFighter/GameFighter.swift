@@ -8,5 +8,6 @@
 import Foundation
 
 protocol GameFighter {
-    func performPower()
+    var fighterDelegate: GameFighterDelegate? { get set }
+    func performPower(at location: CGPoint)
 }

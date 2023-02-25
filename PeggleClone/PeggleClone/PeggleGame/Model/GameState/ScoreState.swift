@@ -54,7 +54,7 @@ class ScoreState: GameState {
         ballsLeft += 1
         currentScore += 10
     }
-    
+
     func startGame() {
         self.timer = Timer.scheduledTimer(withTimeInterval: self.timeLimit, repeats: false) { _ in
             self.isTimerUp = true

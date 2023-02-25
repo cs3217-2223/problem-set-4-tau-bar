@@ -11,7 +11,7 @@ extension GameViewController: ChooseMasterViewControllerDelegate {
     func didChooseFighter(_ character: GameCharacter) {
         gameFighter = GameFighterFactory.getFighter(from: character)
     }
-    
+
     func didStartFight() {
         boardView.presentScene()
         startGameLoop()

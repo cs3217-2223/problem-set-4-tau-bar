@@ -11,4 +11,6 @@ protocol BoardSceneDelegate: AnyObject {
     func didCollideWithBall(updatedPegNode: PegNode)
 
     func didRemovePegNode(removedNode: PegNode)
+
+    func didAddExplosion(at location: CGPoint, duration: TimeInterval, radius: Double)
 }

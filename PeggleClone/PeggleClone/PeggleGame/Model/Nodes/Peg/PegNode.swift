@@ -13,6 +13,7 @@ class PegNode: BoardObjectNode {
     init(position: CGPoint, image: UIImage?, radius: Double, rotation: Double) {
         let pegPhysicsBody = PegPhysicsBody(circleOfRadius: radius,
                                             center: SIMD2<Double>(x: position.x, y: position.y),
+                                            affectedByGravity: false,
                                             isDynamic: false, rotation: rotation)
 
         super.init(physicsBody: pegPhysicsBody,

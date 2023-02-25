@@ -8,7 +8,10 @@
 import Foundation
 
 struct MortyFighter: GameFighter {
-    func performPower() {
-        // do something here
+    let defaultExplosionRadius: Double = 150
+    var fighterDelegate: GameFighterDelegate?
+
+    func performPower(at location: CGPoint) {
+        fighterDelegate?.createExplosionAt(location: location, radius: defaultExplosionRadius)
     }
 }

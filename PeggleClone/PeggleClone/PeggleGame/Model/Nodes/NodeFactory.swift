@@ -24,7 +24,7 @@ class NodeFactory {
             case .green:
                 return GreenPegNode(position: pos, radius: peg.radius, rotation: rotation)
             }
-            
+
         } else if boardObject is Block {
             return BlockNode(position: pos,
                              width: boardObject.width,

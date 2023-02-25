@@ -8,7 +8,9 @@
 import Foundation
 
 struct RickFighter: GameFighter {
-    func performPower() {
-        // do something here
+    var fighterDelegate: GameFighterDelegate?
+
+    func performPower(at location: CGPoint) {
+        fighterDelegate?.setSpookyBall()
     }
 }

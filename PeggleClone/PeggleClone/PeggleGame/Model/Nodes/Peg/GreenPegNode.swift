@@ -14,6 +14,6 @@ class GreenPegNode: PegNode {
 
     override func didCollideWithBall() {
         image = UIImage(named: "peg-green-glow")
-        super.didCollideWithBall()
+        delegate?.didActivatePower(pegNode: self)
     }
 }

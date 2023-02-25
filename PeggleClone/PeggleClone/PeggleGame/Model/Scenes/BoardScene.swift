@@ -15,7 +15,12 @@ class BoardScene: MSKScene {
     var gameState: GameState
 
     weak var boardSceneDelegate: BoardSceneDelegate?
-    private var ball: BallNode?
+    var fighter: GameFighter? {
+        didSet {
+            fighter?.fighterDelegate = self
+        }
+    }
+    var ball: BallNode?
     private var bucket: BucketNode?
     private var bucketDirection: BucketDirection = .right
     private var cannon: CannonNode?
@@ -50,7 +55,7 @@ class BoardScene: MSKScene {
 
         setUpBorders()
     }
-    
+
     func begin() {
         gameState.startGame()
     }

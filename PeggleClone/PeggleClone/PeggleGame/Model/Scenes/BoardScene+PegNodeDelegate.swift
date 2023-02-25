@@ -12,4 +12,8 @@ extension BoardScene: PegNodeDelegate {
         boardSceneDelegate?.didCollideWithBall(updatedPegNode: pegNode)
         gameState.didCollideWithBall(pegNode: pegNode)
     }
+
+    func didActivatePower(pegNode: PegNode) {
+        fighter?.performPower(at: pegNode.position)
+    }
 }

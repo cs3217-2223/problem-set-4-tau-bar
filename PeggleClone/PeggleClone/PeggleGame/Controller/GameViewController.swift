@@ -18,13 +18,17 @@ class GameViewController: UIViewController {
     @IBOutlet var secondLabel: UILabel!
     @IBOutlet var thirdLabel: UILabel!
     var musicPlayer: MusicPlayer?
-    var gameFighter: GameFighter?
+    var gameFighter: GameFighter? {
+        didSet {
+            boardScene?.fighter = gameFighter
+        }
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         // first time entering
         musicPlayer = MusicPlayer()
         musicPlayer?.startGameMusic()
-        
+
         performSegue(withIdentifier: "goToChooseMaster", sender: self)
     }
 
