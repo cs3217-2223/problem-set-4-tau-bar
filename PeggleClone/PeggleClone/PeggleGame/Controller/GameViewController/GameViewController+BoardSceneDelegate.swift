@@ -20,8 +20,10 @@ extension GameViewController: BoardSceneDelegate {
         musicPlayer?.playPopSound()
     }
 
-    func didRemovePegNode(removedNode: PegNode) {
-        musicPlayer?.playDeathSound()
+    func didRemoveBoardNode(removedNode: BoardObjectNode) {
+        if removedNode is PegNode {
+            musicPlayer?.playDeathSound()
+        }
     }
 
     func didAddExplosion(at location: CGPoint, duration: TimeInterval, radius: Double) {

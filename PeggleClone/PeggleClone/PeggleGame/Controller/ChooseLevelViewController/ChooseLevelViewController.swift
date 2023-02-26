@@ -22,7 +22,7 @@ class ChooseLevelViewController: UIViewController, UITableViewDataSource, UITabl
         self.registerTableViewCells()
 
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 400
+        tableView.estimatedRowHeight = 300
 
         reloadTableView()
     }
@@ -100,7 +100,7 @@ class ChooseLevelViewController: UIViewController, UITableViewDataSource, UITabl
 
     /// Specifies the height of the table cell view.
     private func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-            400
+            200
     }
 
     /// Deletes a saved board when user swipes left on a cell.

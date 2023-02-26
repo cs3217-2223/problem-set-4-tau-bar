@@ -12,7 +12,7 @@ protocol BoardSceneDelegate: AnyObject {
 
     func didHitBallFirstTime(pegNode: PegNode)
 
-    func didRemovePegNode(removedNode: PegNode)
+    func didRemoveBoardNode(removedNode: BoardObjectNode)
 
     func didAddExplosion(at location: CGPoint, duration: TimeInterval, radius: Double)
 

@@ -205,7 +205,7 @@ class BoardScene: MSKScene {
         hitPegs.forEach({ hitNode in
             nodes.removeAll(where: { $0 == hitNode })
             physicsWorld.removeBody(hitNode.physicsBody)
-            boardSceneDelegates.forEach({ $0.didRemovePegNode(removedNode: hitNode) })
+            boardSceneDelegates.forEach({ $0.didRemoveBoardNode(removedNode: hitNode) })
         })
     }
 

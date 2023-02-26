@@ -27,8 +27,8 @@ extension BoardScene: GameFighterDelegate {
         // simulate collision between pegs and explosion "body"
         let explosionNode = addExplosionNode(at: pegNode.position, radius: radius)
 
-        // remove nodes which are within 1/2 blast radius
-        removeNodesByExplosion(within: radius / 2, of: pegNode.position)
+        // remove nodes which are within 3/4 blast radius
+        removeNodesByExplosion(within: 3 * radius / 4, of: pegNode.position)
 
         // move nodes which are within blast radius
         moveNodesByExplosion(within: radius, awayFrom: pegNode.position)
@@ -67,6 +67,7 @@ extension BoardScene: GameFighterDelegate {
             }
 
             if isWithin(position: node.position, isWithin: radius, of: location) {
+                print(node)
                 removeNode(node)
             }
         }

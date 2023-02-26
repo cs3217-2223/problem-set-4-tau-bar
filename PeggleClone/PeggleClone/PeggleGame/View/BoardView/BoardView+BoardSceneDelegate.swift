@@ -43,7 +43,7 @@ extension BoardView: BoardSceneDelegate {
         nodeToView[updatedPegNode]?.image = updatedPegNode.image
     }
 
-    func didRemovePegNode(removedNode: PegNode) {
+    func didRemoveBoardNode(removedNode: BoardObjectNode) {
         let viewToRemove = nodeToView[removedNode]
         UIView.animate(withDuration: 0.5,
                        animations: { viewToRemove?.alpha = 0 },
