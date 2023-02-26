@@ -139,9 +139,14 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * object size should change
       * if slide left, size decrease
       * if slide right, size increase
-    * When slide size slider when object is already colliding with another
+    * When increase slide size slider when object is already colliding with another
       * size slider should not move
-      * object size should remain same  
+      * object size should remain same
+      * if decrease, should decrease size 
+    * When slide rotation slider towards direction where object is colliding with another
+      * rotation slider should not move
+      * object rotation should remain same
+      * if rotate in other direction, if not obstructed, should rotate 
   * Load Button
     * When tapped:
       * should open Level Select View
