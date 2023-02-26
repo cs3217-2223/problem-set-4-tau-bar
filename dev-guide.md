@@ -267,25 +267,60 @@ There are a few important functions, `fireCannon()`, `handleResetBall()` and `re
 ## <a name='Nodes'></a>Nodes
 There are a number of different node classes, which represent the pegs, the ball and the cannon.
 
-### <a name='PegNodeBluePegNodeOrangePegNode'></a>PegNode, BluePegNode, OrangePegNode
+### <a name='PegNodeBluePegNodeOrangePegNode'></a>PegNode
 Represents the pegs in the scene. It contains a `isHit` property to indicate whether the ball has hit the peg. It also stores a reference to a `PegNodeDelegate`.
 
 It conforms to the `PegPhysicsBodyDelegate` protocol, so it has `didCollideWithBall()` function.
 
 ```swift
-func didCollideWithBall() {
+func didCollideWithBall(ballBody: BallPhysicsBody) {
     isHit = true
     delegate?.didCollideWithBall(pegNode: self)
 }
 ```
-There are 2 subclasses, `BluePegNode` and `OrangePegNode`. These classes override the `didCollideWithBall()` function to implement custom logic upon colliding with the ball (changing the image to be the glowing variant). For example:
+
+### BluePegNode, OrangePegNode
+There are 2 basic subclasses, `BluePegNode` and `OrangePegNode`. These classes override the `didCollideWithBall()` function to implement custom logic upon colliding with the ball (changing the image to be the glowing variant). For example:
 
 ```swift
-override func didCollideWithBall() {
+override func didCollideWithBall(ballBody: BallPhysicsBody) {
         image = UIImage(named: "peg-blue-glow")
         super.didCollideWithBall()
 }
  ```
+ 
+### Special Peg Nodes
+In addition, there are 3 special peg nodes, `RedPegNode`, `GreenPegNode`, `PurplePegNode`. These pegs represent the Confusement, Power and Zombie pegs respectively.
+
+The Red Peg calls the custom Confusement peg logic as such:
+```swift
+override func didCollideWithBall(ballBody: BallPhysicsBody) {
+	image = UIImage(named: "peg-red-glow")
+	if !isHit {
+    		delegate?.didUpsideDown(pegNode: self)
+	}
+	super.didCollideWithBall(ballBody: ballBody)
+}
+```
+
+The Green Peg calls the custom power logic as such:
+```swift
+override func didCollideWithBall(ballBody: BallPhysicsBody) {
+        image = UIImage(named: "peg-green-glow")
+        delegate?.didActivatePower(pegNode: self, ballBody: ballBody)
+        super.didCollideWithBall(ballBody: ballBody)
+    }
+```
+
+The Purple Peg calls the custom Zombie logic as such:
+```swift
+override func didCollideWithBall(ballBody: BallPhysicsBody) {
+        image = UIImage(named: "peg-purple-glow")
+        delegate?.didTurnIntoBall(pegNode: self)
+        super.didCollideWithBall(ballBody: ballBody)
+    }
+```
+
  
 ### <a name='BallNode'></a>BallNode
  Represents the ball in the scene. It stores a reference to a `BallNodeDelegate`.
@@ -297,9 +332,27 @@ override func didCollideWithBall() {
         delegate?.handleBallStuck()
  }
  ```
+
+A Ball Node can also be spooky (if it collided with a Spooky Peg previously). It stores this in `isSpooky`:
+```swift
+var isSpooky = false {
+        didSet {
+            if isSpooky {
+                image = BallNode.spookyImage
+            } else {
+                image = BallNode.defaultImage
+            }
+            delegate?.didChangeSpooky(ballNode: self)
+        }
+    }
+```
+The `image` is automatically changes using the `didSet` observer.
+
 ### <a name='CannonNode'></a>CannonNode
  It represents the cannon. The notable thing is that its physics body has a `categoryBitMask` of 0 (i.e. 0x00000000) so it does not collide with anything.
 
+### BucketNode
+This represents the bucket at the bottom of the screen. It conforms to `BucketBasePhysicsBodyDelegate`, which has the function `didBallCollideWithBucketBase()` which is called by `BucketBasePhysicsBody` when it collides with a ball (i.e. ball enters the bucket). It also stores a reference to `BucketNodeDelegate`, which has the function `didEnterBucket(ball: BallPhysicsBody)`.
 
 ## <a name='Physics'></a>Physics
 The physics bodies implemented for this game use `MSKPhysicsEngine`. 
