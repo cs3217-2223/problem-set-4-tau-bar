@@ -381,13 +381,52 @@ This class subclasses `MSKCirclePhysicsBody`, and stores a reference to a `PegPh
 ```swift
 func collide(with body: BallPhysicsBody) -> Bool {
     if super.collide(with: body) {
-        pegPhysicsBodyDelegate?.didCollideWithBall()
+        pegPhysicsBodyDelegate?.didCollideWithBall(ballBody: body)
         return true
     } else {
         return false
     }
 }
 ```
+
+### BucketPhysicsBody & BucketBasePhysicsBody
+The BucketPhysicsBody represents the physics body of the bucket. It stores references to 3 physics bodies, to represent the left, right and bottom of the bucket (since the bucket is not a convex polygonal shape). It has the `move()` function (to move the entire bucket):
+```swift
+/// Moves the entire bucket, including base and sides.
+func move(by displacement: SIMD2<Double>) {
+	position += displacement
+	bucketBase.position += displacement
+	bucketLeft.position += displacement
+	bucketRight.position += displacement
+
+	delegate?.didUpdatePosition()
+}
+```
+
+The BucketBasePhysicsBody stores a reference to a `BucketBaseDelegate` which it uses when a ball collides with it. It overrides the `collide()` function and has a `collide(with body: BallPhysicsBody)` for custom collision logic with `BallPhysicsBody`.
+
+```swift
+override func collide(with body: MSKPhysicsBody) -> Bool {
+        guard let body = body as? BallPhysicsBody else {
+            return super.collide(with: body)
+        }
+
+        let didCollideWithBall = self.collide(with: body)
+
+        return didCollideWithBall
+}
+
+func collide(with body: BallPhysicsBody) -> Bool {
+	if super.collide(with: body) {
+	    bucketBaseDelegate?.didBallCollideWithBucketBase(ball: body)
+	    return true
+	} else {
+	    return false
+	}
+}
+```
+
+
 
 ## <a name='LevelDesigner'></a>Level Designer
 On top of the Peggle Game, there is also the Level designer.
