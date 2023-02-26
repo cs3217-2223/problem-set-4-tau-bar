@@ -15,12 +15,43 @@ class DetectOverlap {
         doPegAndBlockOverlap(peg: objectB, block: objectA)
     }
 
+    static func detectOverlap(blockA: Block,
+                                    blockB: Block) -> Bool {
+        let verticesA = getBlockAbsoluteVertices(block: blockA)
+        let verticesB = getBlockAbsoluteVertices(block: blockB)
+
+        for idx in 0..<verticesA.count {
+            let firstVertice = verticesA[idx]
+            let secondVertice = verticesA[(idx + 1) % verticesA.count]
+            let edge = secondVertice - firstVertice
+            let axis = SIMD2<Double>(x: -edge.y, y: edge.x)
+            let minMaxA: (min: Double, max: Double) = findMinMaxOf(blockVertices: verticesA, along: axis)
+            let minMaxB: (min: Double, max: Double) = findMinMaxOf(blockVertices: verticesB, along: axis)
+            // If find any separation between the range of values for each body, means no intersection.
+            if minMaxA.min >= minMaxB.max || minMaxB.min >= minMaxA.max {
+                return false
+            }
+        }
+
+        for idx in 0..<verticesB.count {
+            let firstVertice = verticesB[idx]
+            let secondVertice = verticesB[(idx + 1) % verticesB.count]
+            let edge = secondVertice - firstVertice
+            let axis = SIMD2<Double>(x: -edge.y, y: edge.x)
+            let minMaxA: (min: Double, max: Double) = findMinMaxOf(blockVertices: verticesA, along: axis)
+            let minMaxB: (min: Double, max: Double) = findMinMaxOf(blockVertices: verticesB, along: axis)
+
+            // If find any separation between the range of values for each body, means no intersection.
+            if minMaxA.min >= minMaxB.max || minMaxB.min >= minMaxA.max {
+                return false
+            }
+
+        }
+        return true
+    }
+
     static func doPegAndBlockOverlap(peg: Peg, block: Block) -> Bool {
         let vertices = getBlockAbsoluteVertices(block: block)
-        print(block.rotation)
-        print(getBlockAbsoluteVertices(block: block))
-        print(vertices)
-        print("---------")
         // Check whether there are any non-intersections for all the possible axes for bodyA
         for idx in 0..<vertices.count {
             let firstVertice = vertices[idx]
@@ -134,23 +165,6 @@ class DetectOverlap {
     static func detectOverlap(objectA: Peg, objectB: Peg) -> Bool {
         let distanceBetween = calculateEuclideanDistance(positionA: objectA.position, positionB: objectB.position)
         return distanceBetween < (objectA.radius + objectB.radius)
-    }
-
-    static func detectOverlap(objectA: Block, objectB: Block) -> Bool {
-        let aRight = objectA.position.x + objectA.width
-        let aTop = objectA.position.y + objectA.height
-        let bRight = objectB.position.x + objectB.width
-        let bTop = objectB.position.y + objectB.height
-
-        if objectA.position.x >= bRight || objectB.position.x >= aRight {
-            return false // rectangles do not overlap on X-axis
-        }
-
-        if objectA.position.y >= bTop || objectB.position.y >= aTop {
-            return false // rectangles do not overlap on Y-axis
-        }
-
-        return true // rectangles overlap on both X and Y axes
     }
 
     static func getAbsoluteVertices(relative: [V], center: CGPoint) -> [V] {

@@ -57,10 +57,7 @@ class Block: BoardObject {
     }
 
     func isOverlapping(with otherObject: Block) -> Bool {
-        if DetectOverlap.detectOverlap(objectA: self, objectB: otherObject) {
-            return true
-        }
-        return false
+        DetectOverlap.detectOverlap(blockA: self, blockB: otherObject)
     }
 
     func isEqual(to otherObject: BoardObject) -> Bool {
