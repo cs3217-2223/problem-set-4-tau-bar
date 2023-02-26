@@ -192,6 +192,10 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * should delete all saved levels in Core Data that are stored in `BoardData` entity
     * When tap outside the level select view
       * should hide the level select view and show the level builder view
+    * When swipe left
+      * should show delete button
+      * if delete, row should disappear
+      * when close and open should stay gone
 
 * Test Palette for Game
   * Menu
@@ -211,6 +215,10 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * should see number of each type of peg & block, balls and gamemode
     * When tap level
       * should open game view   
+    * When swipe left
+      * should show delete button
+      * if delete, row should disappear
+      * when close and open should stay gone 
     * When press back
       * should go back to main menu 
   * Game view
@@ -219,6 +227,20 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * should show select master modal
       * rick should be opaque
       * should not be able to dismiss modal except by pressing "FIGHT!"
+      * after choosing master, should show bucket, cannon and board objects
+    * When load classic mode
+      * should show number of balls left
+      * should show orange pegs left
+    * When load dodge mode
+      * should show number of balls left
+      * should show number of chances left
+      * if balls = 1, then chances should = 1
+      * otherwise, chances should = floor(0.9 * balls)
+    * When load socre mode
+      * should show number of balls left
+      * should show timer counting down
+      * should show current score = 0
+      * should show target score 
     * When tap either Rick or Morty
       * should select that fighter (i.e. selected opaque, other translucent) 
     * When press fight if Rick selected
@@ -286,14 +308,14 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * When the ball collides with a block
         * should bounce off the polygonal structure realistically  
         * should not change the asset of the block
-   * Exit button (in the game's Board View)
+   * Retreat button (in the game's Board View when came from choose level)
       * When tapped:
          * should dismiss the game view
-         * should show the level builder view with the board as it was before the game was started
-   * Level Builder (only new features)
-      * When START button is tapped:
-         * should load the level that was on the level builder view in the game view
-         * should show one cannon at the top middle of the screen aiming vertically downwards
+         * should show the choose level view
+   * Exit button (in game's Board view when came from level builder)
+     * When tapped:
+       * should dismiss game view
+       * should show level builder 
     
 
 
