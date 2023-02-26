@@ -21,7 +21,11 @@ enum PegColor: String {
 }
 
 class Peg: BoardObject {
-    static let pegAssets = [PegColor.blue: "peg-blue", PegColor.orange: "peg-orange", PegColor.red: "peg-red", PegColor.purple: "peg-purple", PegColor.green: "peg-green"]
+    static let pegAssets = [PegColor.blue: "peg-blue",
+                            PegColor.orange: "peg-orange",
+                            PegColor.red: "peg-red",
+                            PegColor.purple: "peg-purple",
+                            PegColor.green: "peg-green"]
 
     var position: CGPoint
 

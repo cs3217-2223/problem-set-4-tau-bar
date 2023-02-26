@@ -8,15 +8,14 @@
 import Foundation
 
 class DetectOverlap {
-    typealias V = SIMD2<Double>
+    typealias Vector = SIMD2<Double>
 
-    // TODO: Modify functions
     static func detectOverlap(objectA: Block, objectB: Peg) -> Bool {
         doPegAndBlockOverlap(peg: objectB, block: objectA)
     }
 
     static func detectOverlap(blockA: Block,
-                                    blockB: Block) -> Bool {
+                              blockB: Block) -> Bool {
         let verticesA = getBlockAbsoluteVertices(block: blockA)
         let verticesB = getBlockAbsoluteVertices(block: blockB)
 
@@ -57,7 +56,7 @@ class DetectOverlap {
             let firstVertice = vertices[idx]
             let secondVertice = vertices[(idx + 1) % vertices.count]
             let edge = secondVertice - firstVertice
-            let axis = V(x: -edge.y, y: edge.x)
+            let axis = Vector(x: -edge.y, y: edge.x)
             let minMaxA: (min: Double, max: Double) = findMinMaxOf(blockVertices: vertices, along: axis)
             let minMaxB: (min: Double, max: Double) = findMinMaxOf(peg: peg, along: axis)
             // If find any separation between the range of values for each body, means no intersection.
@@ -82,7 +81,7 @@ class DetectOverlap {
     }
 
     /// Returns the index of vertice in `vertices` that is closest to `point`.
-    static func findClosestVertice(in vertices: [V], to point: V) -> Int {
+    static func findClosestVertice(in vertices: [Vector], to point: Vector) -> Int {
         var minDistance: Double = .infinity
         var minIdx = -1
         for idx in 0..<vertices.count {
@@ -97,16 +96,16 @@ class DetectOverlap {
     }
 
     /// Returns the distance between two vectors.
-    static func getDistance(pointA: V, pointB: V) -> Double {
+    static func getDistance(pointA: Vector, pointB: Vector) -> Double {
         getLength(of: pointA - pointB)
     }
 
     /// Returns the length of the vector.
-    static func getLength(of vector: V) -> Double {
+    static func getLength(of vector: Vector) -> Double {
         sqrt(vector.x * vector.x + vector.y * vector.y)
     }
 
-    static func findMinMaxOf(peg: Peg, along axis: V) -> (min: Double, max: Double) {
+    static func findMinMaxOf(peg: Peg, along axis: Vector) -> (min: Double, max: Double) {
         let pos = convert(peg.position)
         let direction = findUnitVector(of: axis)
         let radiusVector = direction * peg.radius
@@ -124,7 +123,7 @@ class DetectOverlap {
     }
 
     /// Projects the given vertices onto the provided axis and finds the maximum and minimum values along the axis.
-    static func findMinMaxOf(blockVertices: [V], along axis: V) -> (min: Double, max: Double) {
+    static func findMinMaxOf(blockVertices: [Vector], along axis: Vector) -> (min: Double, max: Double) {
         var min: Double = .infinity
         var max: Double = -.infinity
         // Iterate vertices to find the min and max values along the axis for all the vertices
@@ -141,7 +140,7 @@ class DetectOverlap {
         return (min: min, max: max)
     }
 
-    static func getBlockAbsoluteVertices(block: Block) -> [V] {
+    static func getBlockAbsoluteVertices(block: Block) -> [Vector] {
         let angleDegrees = block.rotation
         let blockVertices = getBlockRelativeVertices(block: block)
         let rotatedRelativeVertices = rotateVertices(vertices: blockVertices,
@@ -151,14 +150,14 @@ class DetectOverlap {
         return vertices
     }
 
-    static func getBlockRelativeVertices(block: Block) -> [V] {
-        var vertices: [V] = []
+    static func getBlockRelativeVertices(block: Block) -> [Vector] {
+        var vertices: [Vector] = []
         let width = block.width
         let height = block.height
-        vertices.append(V(-width / 2, -height / 2))
-        vertices.append(V(width / 2, -height / 2))
-        vertices.append(V(width / 2, height / 2))
-        vertices.append(V(-width / 2, height / 2))
+        vertices.append(Vector(-width / 2, -height / 2))
+        vertices.append(Vector(width / 2, -height / 2))
+        vertices.append(Vector(width / 2, height / 2))
+        vertices.append(Vector(-width / 2, height / 2))
         return vertices
     }
 
@@ -167,33 +166,33 @@ class DetectOverlap {
         return distanceBetween < (objectA.radius + objectB.radius)
     }
 
-    static func getAbsoluteVertices(relative: [V], center: CGPoint) -> [V] {
-        var vertices: [V] = []
-        let centerPos = V(center.x, center.y)
+    static func getAbsoluteVertices(relative: [Vector], center: CGPoint) -> [Vector] {
+        var vertices: [Vector] = []
+        let centerPos = Vector(center.x, center.y)
         for vertex in relative {
             vertices.append(vertex + centerPos)
         }
         return vertices
     }
 
-    static func convert(_ cgPoint: CGPoint) -> V {
-        V(cgPoint.x, cgPoint.y)
+    static func convert(_ cgPoint: CGPoint) -> Vector {
+        Vector(cgPoint.x, cgPoint.y)
     }
 
-    static func convert(_ vector: V) -> CGPoint {
+    static func convert(_ vector: Vector) -> CGPoint {
         CGPoint(x: vector.x, y: vector.y)
     }
 
-    static func dotProduct(vectorA: V, vectorB: V) -> Double {
+    static func dotProduct(vectorA: Vector, vectorB: Vector) -> Double {
         vectorA.x * vectorB.x + vectorA.y * vectorB.y
     }
 
-    static func rotateVertices(vertices: [V], by angle: Double) -> [V] {
-        var rotatedVertices: [V] = []
+    static func rotateVertices(vertices: [Vector], by angle: Double) -> [Vector] {
+        var rotatedVertices: [Vector] = []
         for vertex in vertices {
             let newX = vertex.x * cos(angle) - vertex.y * sin(angle)
             let newY = vertex.x * sin(angle) + vertex.y * cos(angle)
-            let newVertex = V(newX, newY)
+            let newVertex = Vector(newX, newY)
             rotatedVertices.append(newVertex)
         }
 
@@ -201,7 +200,7 @@ class DetectOverlap {
     }
 
     /// Returns the unit vector of the specified `vector`.
-    static func findUnitVector(of vector: V) -> V {
+    static func findUnitVector(of vector: Vector) -> Vector {
         let length = getLength(of: vector)
         let normalizedVector = vector / length
         return normalizedVector

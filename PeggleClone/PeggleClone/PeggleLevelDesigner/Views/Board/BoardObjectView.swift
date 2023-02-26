@@ -38,7 +38,6 @@ import UIKit
         setup()
     }
 
-    // TODO: need to fix invisible pixel bug
     override func layoutSubviews() {
         super.layoutSubviews()
         self.clipsToBounds = true

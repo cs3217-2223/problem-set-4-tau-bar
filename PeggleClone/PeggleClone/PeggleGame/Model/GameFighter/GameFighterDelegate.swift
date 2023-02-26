@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol GameFighterDelegate {
+protocol GameFighterDelegate: AnyObject {
     func createExplosionAt(pegNode: PegNode)
     func setSpookyBall(ballNode: BallNode)
 }

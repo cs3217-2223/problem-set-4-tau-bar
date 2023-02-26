@@ -14,15 +14,23 @@ class BucketPhysicsBody: MSKPolygonPhysicsBody {
 
     static let defaultWidth: Double = 200
     static let defaultHeight: Double = 100
-    static let defaultLeftVertices: [SIMD2<Double>] = [SIMD2<Double>(-BucketPhysicsBody.defaultWidth / 2, -BucketPhysicsBody.defaultHeight / 2),
-                                                       SIMD2<Double>(-BucketPhysicsBody.defaultWidth / 2 + 10, -BucketPhysicsBody.defaultHeight / 2),
-                                                       SIMD2<Double>(-0.6 * BucketPhysicsBody.defaultWidth / 2 + 10, BucketPhysicsBody.defaultHeight / 2),
-                                                       SIMD2<Double>(-0.6 * BucketPhysicsBody.defaultWidth / 2, BucketPhysicsBody.defaultHeight / 2)]
+    static let defaultLeftVertices: [SIMD2<Double>] = [SIMD2<Double>(-BucketPhysicsBody.defaultWidth / 2,
+                                                                     -BucketPhysicsBody.defaultHeight / 2),
+                                                       SIMD2<Double>(-BucketPhysicsBody.defaultWidth / 2 + 10,
+                                                                     -BucketPhysicsBody.defaultHeight / 2),
+                                                       SIMD2<Double>(-0.6 * BucketPhysicsBody.defaultWidth / 2 + 10,
+                                                                     BucketPhysicsBody.defaultHeight / 2),
+                                                       SIMD2<Double>(-0.6 * BucketPhysicsBody.defaultWidth / 2,
+                                                                     BucketPhysicsBody.defaultHeight / 2)]
 
-    static let defaultRightVertices: [SIMD2<Double>] = [SIMD2<Double>(BucketPhysicsBody.defaultWidth / 2, -BucketPhysicsBody.defaultHeight / 2),
-                                                       SIMD2<Double>(BucketPhysicsBody.defaultWidth / 2 + 10, -BucketPhysicsBody.defaultHeight / 2),
-                                                       SIMD2<Double>(0.6 * BucketPhysicsBody.defaultWidth / 2 + 10, BucketPhysicsBody.defaultHeight / 2),
-                                                       SIMD2<Double>(0.6 * BucketPhysicsBody.defaultWidth / 2, BucketPhysicsBody.defaultHeight / 2)]
+    static let defaultRightVertices: [SIMD2<Double>] = [SIMD2<Double>(BucketPhysicsBody.defaultWidth / 2,
+                                                                      -BucketPhysicsBody.defaultHeight / 2),
+                                                       SIMD2<Double>(BucketPhysicsBody.defaultWidth / 2 + 10,
+                                                                     -BucketPhysicsBody.defaultHeight / 2),
+                                                       SIMD2<Double>(0.6 * BucketPhysicsBody.defaultWidth / 2 + 10,
+                                                                     BucketPhysicsBody.defaultHeight / 2),
+                                                       SIMD2<Double>(0.6 * BucketPhysicsBody.defaultWidth / 2,
+                                                                     BucketPhysicsBody.defaultHeight / 2)]
 
     init(position: SIMD2<Double>) {
         // Bucket base

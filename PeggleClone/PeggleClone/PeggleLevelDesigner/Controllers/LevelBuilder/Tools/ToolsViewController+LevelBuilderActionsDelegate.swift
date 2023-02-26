@@ -25,7 +25,6 @@ extension ToolsViewController: LevelBuilderActionsDelegate {
         }
     }
 
-    // TODO: Potentially refactor this
     func didTapBoard(at location: CGPoint) {
         guard let selectedButton = selectedButton else { return }
         switch selectedButton {
