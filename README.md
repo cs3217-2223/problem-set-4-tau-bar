@@ -129,6 +129,8 @@ At the top left of the game screen, you can see the game state, e.g. number of b
     * When panned to an invalid location (overlap or out of bounds):
       * `BoardObject` object which represented by view being panned should not update its position in `board`
       * peg view should not move on the screen to the new position
+    * When test on different screen size:
+      * `height` and `width` of board should adjust based on device screen size
   * Load Button
     * When tapped:
       * should open Level Select View
@@ -147,6 +149,12 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * opening level select view should show one more level than the number of levels before the save
       * `board` should remain the same
       * board view should not have changed before and after the save
+    * When close and open app after saving
+      * saved level should still be there when opening saved levels 
+    * When level name contains non-ASCII
+      * should show an error that level was not saved
+    * When level name is too long
+      * should show an error that level was not saved
   * Reset button
     * When tapped
       * should not have any object views on board view after
