@@ -21,6 +21,7 @@ extension BoardView: BoardSceneDelegate {
         label.frame = CGRect(x: location.x, y: location.y + 10, width: 100, height: 30)
         label.alpha = 0
         label.font = UIFont(name: "HiraginoSans-bold", size: 14.0)
+        label.textColor = UIColor.white
         addSubview(label)
         label.fadeIn(duration: 0.5, completion: { (_: Bool) -> Void in
             // when fade out is complete, remove from superview
