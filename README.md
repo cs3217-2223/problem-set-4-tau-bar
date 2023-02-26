@@ -194,7 +194,39 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * should hide the level select view and show the level builder view
 
 * Test Palette for Game
-  * Board view
+  * Menu
+    * When loaded
+      * theme song should play  
+    * When tap start button 
+      * theme song should stop playing
+      * choose level view should open
+      * should see all saved levels if previously saved level
+      * if first time, should see 3 preloaded levels, "LEVEL 1", "LEVEL 2", "LEVEL 3" 
+    * When tap Level Designer button
+      * theme song should stop playing 
+      * should open level designer with empty board, balls = 1, game mode classic, level name empty
+  * Choose Level
+    * When loaded
+      * should see all saved levels
+      * should see number of each type of peg & block, balls and gamemode
+    * When tap level
+      * should open game view   
+    * When press back
+      * should go back to main menu 
+  * Game view
+    * When loaded
+      * should start background music
+      * should show select master modal
+      * rick should be opaque
+      * should not be able to dismiss modal except by pressing "FIGHT!"
+    * When tap either Rick or Morty
+      * should select that fighter (i.e. selected opaque, other translucent) 
+    * When press fight if Rick selected
+      * `gameFighter` should be of type `RickFighter`
+      * subsequent ball collisions with green peg should be spooky ball
+    * When press fight if Morty selected
+      * `gameFighter` should be of type `MortyFighter`
+      * subsequent ball collisions with green peg should be kaboom    
     * When tapped in a valid location (below the height of the cannon):
       * if there is no ball that was already fired previously and is still on screen:
          * should create a `BallNode` in `BoardScene`
