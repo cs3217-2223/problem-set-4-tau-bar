@@ -10,7 +10,7 @@ import XCTest
 
 class MSKSpriteNodeTests: XCTestCase {
     var node: MSKSpriteNode?
-    let physicsBody = MSKCirclePhysicsBody(circleOfRadius: 1.0, center: .zero, isDynamic: true)
+    let physicsBody = MSKCirclePhysicsBody(circleOfRadius: 1.0, center: .zero, isDynamic: true, rotation: 0)
     let image = UIImage(named: "peg-blue")
 
     override func setUp() {

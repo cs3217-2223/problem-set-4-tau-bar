@@ -65,8 +65,8 @@ final class MSKPolygonPhysicsBodyTests: XCTestCase {
                                                isDynamic: false,
                                                radius: 2)
         XCTAssertTrue(polygonPhysicsBody.collide(with: circle))
-        XCTAssertEqual(polygonPhysicsBody.position.x, 0.7317787, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(polygonPhysicsBody.position.y, 4.8901844, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(polygonPhysicsBody.position.x, 3.9144502, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(polygonPhysicsBody.position.y, 5.7338659, accuracy: defaultTestAccuracy)
         XCTAssertEqual(circle.position, SIMD2<Double>(3.0, 2.5))
     }
 
@@ -80,10 +80,10 @@ final class MSKPolygonPhysicsBodyTests: XCTestCase {
                                                isDynamic: true,
                                                radius: 2)
         XCTAssertTrue(polygonPhysicsBody.collide(with: circle))
-        XCTAssertEqual(polygonPhysicsBody.position.x, 0.7317787, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(polygonPhysicsBody.position.y, 4.8901844, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(circle.position.x, 5.2682213, accuracy: defaultTestAccuracy)
-        XCTAssertEqual(circle.position.y, 0.6098156, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(polygonPhysicsBody.position.x, 3.9144502, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(polygonPhysicsBody.position.y, 5.733866, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(circle.position.x, 2.0855498, accuracy: defaultTestAccuracy)
+        XCTAssertEqual(circle.position.y, -0.233866, accuracy: defaultTestAccuracy)
     }
 
     func testCollide_withNonDynamicPolygon_shouldChangePositionCorrectly() {

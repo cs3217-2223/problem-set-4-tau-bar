@@ -11,26 +11,27 @@ import XCTest
 class BoardSceneTests: XCTestCase {
     var boardScene: BoardScene?
     let bsDelegate = MockBoardSceneDelegate()
-    let pegNode: PegNode = BluePegNode(position: .zero)
+    let pegNode: PegNode = BluePegNode(position: .zero, radius: 20, rotation: 0)
     let ballNode = BallNode(oldPosition: .zero, position: .zero)
+    let gameState: GameState = ClassicState(initialOrangePegs: 10, initialBalls: 10)
 
     override func setUp() {
         super.setUp()
-        boardScene = BoardScene(width: 500, height: 500)
-        boardScene?.boardSceneDelegate = bsDelegate
+        boardScene = BoardScene(width: 500, height: 500, gameState: gameState)
+        boardScene?.boardSceneDelegates.append(bsDelegate)
     }
 
     func testInit() {
         guard let boardScene = boardScene else {
             return XCTFail("Peg Node is nil")
         }
-        XCTAssertNotNil(boardScene.boardSceneDelegate)
+        XCTAssertEqual(boardScene.boardSceneDelegates.count, 1)
     }
 
     func testAddPegNode_shouldAddPegNode() {
         XCTAssertEqual(boardScene?.nodes.count, 0)
 
-        boardScene?.addPegNode(pegNode)
+        boardScene?.addBoardNode(pegNode)
 
         XCTAssertEqual(boardScene?.nodes.count, 1)
         guard let containsPegNode = boardScene?.nodes.contains(where: { $0 === pegNode }) else {
@@ -62,12 +63,12 @@ class BoardSceneTests: XCTestCase {
     func testSetupBoard_shouldAddCannonAndBorders() {
         boardScene?.setupBoard()
 
-        XCTAssertEqual(boardScene?.nodes.count, 1)
+        XCTAssertEqual(boardScene?.nodes.count, 2)
         guard let hasCannonNode = boardScene?.nodes.contains(where: { $0 is CannonNode }) else {
             return XCTFail("Board scene is nil")
         }
         XCTAssertTrue(hasCannonNode)
-        XCTAssertEqual(boardScene?.physicsWorld.bodiesCount, 4)
+        XCTAssertEqual(boardScene?.physicsWorld.bodiesCount, 8)
     }
 
     func testFireCannon() {
@@ -85,15 +86,15 @@ class BoardSceneTests: XCTestCase {
             return XCTFail("Board scene is nil")
         }
         XCTAssertTrue(hasBallNode)
-        XCTAssertEqual(boardScene?.nodes.count, 2)
+        XCTAssertEqual(boardScene?.nodes.count, 3)
     }
 
     func testHandleBallStuck_shouldRemoveHitPegs() {
         XCTAssertEqual(boardScene?.nodes.count, 0)
-        let hitPegNode = BluePegNode(position: .zero)
+        let hitPegNode = BluePegNode(position: .zero, radius: 20, rotation: 0)
         hitPegNode.isHit = true
-        boardScene?.addPegNode(pegNode)
-        boardScene?.addPegNode(hitPegNode)
+        boardScene?.addBoardNode(pegNode)
+        boardScene?.addBoardNode(hitPegNode)
         XCTAssertEqual(boardScene?.nodes.count, 2)
 
         boardScene?.handleBallStuck()
@@ -108,7 +109,7 @@ class BoardSceneTests: XCTestCase {
 
         XCTAssertTrue(hasPegNode)
         XCTAssertFalse(hasHitPegNode)
-        XCTAssertTrue(bsDelegate.isPegNodeRemoved)
+        XCTAssertTrue(bsDelegate.removeBoardNode)
     }
 
 }

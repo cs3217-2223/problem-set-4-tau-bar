@@ -38,9 +38,6 @@
 		6131657929A8C27B001C636D /* GreenPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657829A8C27B001C636D /* GreenPegNode.swift */; };
 		6131657B29A8C6BF001C636D /* GameFighterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657A29A8C6BF001C636D /* GameFighterDelegate.swift */; };
 		6131657D29A8C790001C636D /* BoardScene+GameFighterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657C29A8C790001C636D /* BoardScene+GameFighterDelegate.swift */; };
-		6131657F29A9E1FE001C636D /* PurplePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658629A720F10040D7D2 /* PurplePegNode.swift */; };
-		6131658029A9E1FE001C636D /* RedPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658429A720960040D7D2 /* RedPegNode.swift */; };
-		6131658129A9E203001C636D /* GreenPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657829A8C27B001C636D /* GreenPegNode.swift */; };
 		6131658F29A9FA26001C636D /* ExplosionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131658E29A9FA26001C636D /* ExplosionNode.swift */; };
 		6131659129AA4E41001C636D /* GameStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659029AA4E41001C636D /* GameStateDelegate.swift */; };
 		6131659329AA50C6001C636D /* BoardScene+GameStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659229AA50C6001C636D /* BoardScene+GameStateDelegate.swift */; };
@@ -92,6 +89,42 @@
 		6186658529A720960040D7D2 /* RedPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658429A720960040D7D2 /* RedPegNode.swift */; };
 		6186658729A720F10040D7D2 /* PurplePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658629A720F10040D7D2 /* PurplePegNode.swift */; };
 		6186658929A721190040D7D2 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658829A721190040D7D2 /* BlockNode.swift */; };
+		618CE73B29ABA760001A3B1C /* PegNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A7A2990F098005540DF /* PegNodeDelegate.swift */; };
+		618CE73C29ABA760001A3B1C /* RedPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658429A720960040D7D2 /* RedPegNode.swift */; };
+		618CE73D29ABA760001A3B1C /* BluePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A742990CC38005540DF /* BluePegNode.swift */; };
+		618CE73E29ABA760001A3B1C /* GreenPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657829A8C27B001C636D /* GreenPegNode.swift */; };
+		618CE73F29ABA760001A3B1C /* PurplePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658629A720F10040D7D2 /* PurplePegNode.swift */; };
+		618CE74029ABA760001A3B1C /* PegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DE6298BBC7F00461FC9 /* PegNode.swift */; };
+		618CE74129ABA760001A3B1C /* OrangePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A762990CF08005540DF /* OrangePegNode.swift */; };
+		618CE74229ABA766001A3B1C /* BoardObjectNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658029A71EA80040D7D2 /* BoardObjectNode.swift */; };
+		618CE74329ABA76B001A3B1C /* NodeFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658229A71FC90040D7D2 /* NodeFactory.swift */; };
+		618CE74429ABA76B001A3B1C /* ExplosionNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131658E29A9FA26001C636D /* ExplosionNode.swift */; };
+		618CE74529ABA782001A3B1C /* Block.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE0299DC095005242E8 /* Block.swift */; };
+		618CE74629ABA782001A3B1C /* GameMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CE429A72F4400C7A7A4 /* GameMode.swift */; };
+		618CE74729ABA782001A3B1C /* DetectOverlap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B13BE2299DDB02005242E8 /* DetectOverlap.swift */; };
+		618CE74829ABA79D001A3B1C /* GameCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8729A8705200B3AE25 /* GameCharacter.swift */; };
+		618CE74929ABA79D001A3B1C /* GameFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8529A86F7900B3AE25 /* GameFighter.swift */; };
+		618CE74A29ABA79D001A3B1C /* RickFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8B29A871DB00B3AE25 /* RickFighter.swift */; };
+		618CE74B29ABA79D001A3B1C /* GameFighterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8F29A8722A00B3AE25 /* GameFighterFactory.swift */; };
+		618CE74C29ABA79D001A3B1C /* GameFighterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657A29A8C6BF001C636D /* GameFighterDelegate.swift */; };
+		618CE74D29ABA79D001A3B1C /* MortyFighter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 611A0A8D29A8720800B3AE25 /* MortyFighter.swift */; };
+		618CE74E29ABA7A3001A3B1C /* GameStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659029AA4E41001C636D /* GameStateDelegate.swift */; };
+		618CE74F29ABA7A3001A3B1C /* DodgeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CEF29A744EA00C7A7A4 /* DodgeState.swift */; };
+		618CE75029ABA7A3001A3B1C /* ClassicState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CE929A7329800C7A7A4 /* ClassicState.swift */; };
+		618CE75129ABA7A3001A3B1C /* ScoreState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CEB29A734C100C7A7A4 /* ScoreState.swift */; };
+		618CE75229ABA7A3001A3B1C /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CE629A7321900C7A7A4 /* GameState.swift */; };
+		618CE75329ABA82B001A3B1C /* BucketNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CF529A7697A00C7A7A4 /* BucketNode.swift */; };
+		618CE75429ABA845001A3B1C /* BoardScene+BucketNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07D0329A76F0E00C7A7A4 /* BoardScene+BucketNodeDelegate.swift */; };
+		618CE75529ABA845001A3B1C /* BoardScene+GameFighterDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131657C29A8C790001C636D /* BoardScene+GameFighterDelegate.swift */; };
+		618CE75629ABA845001A3B1C /* BoardScene+GameStateDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6131659229AA50C6001C636D /* BoardScene+GameStateDelegate.swift */; };
+		618CE75729ABA85A001A3B1C /* BucketNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07D0129A76EBF00C7A7A4 /* BucketNodeDelegate.swift */; };
+		618CE75829ABAA0D001A3B1C /* PeggleGameConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CED29A7440100C7A7A4 /* PeggleGameConstants.swift */; };
+		618CE75929ABAA1B001A3B1C /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658829A721190040D7D2 /* BlockNode.swift */; };
+		618CE75A29ABAA3D001A3B1C /* BucketBasePhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CFB29A76B3400C7A7A4 /* BucketBasePhysicsBodyDelegate.swift */; };
+		618CE75B29ABAA3D001A3B1C /* BucketPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CF729A76A0100C7A7A4 /* BucketPhysicsBody.swift */; };
+		618CE75C29ABAA3D001A3B1C /* BucketBasePhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CF929A76B2600C7A7A4 /* BucketBasePhysicsBody.swift */; };
+		618CE75D29ABAA7B001A3B1C /* UILabel+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */; };
+		618CE75E29ABAB21001A3B1C /* BucketNode+BucketBasePhysicsBodyDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F07CFF29A76E2B00C7A7A4 /* BucketNode+BucketBasePhysicsBodyDelegate.swift */; };
 		61917D4B29AAEF0400B5BC53 /* UILabel+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */; };
 		61917D4D29AAF6D400B5BC53 /* enter-bucket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61917D4C29AAF6D300B5BC53 /* enter-bucket.mp3 */; };
 		61917D4F29AB0C9700B5BC53 /* LavelBuilderViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61917D4E29AB0C9700B5BC53 /* LavelBuilderViewController+Alerts.swift */; };
@@ -160,12 +193,8 @@
 		61F06FB529989A4600AA3964 /* MSKMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F06FB429989A4600AA3964 /* MSKMocks.swift */; };
 		61F06FB82998A6F900AA3964 /* PegNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F06FB72998A6F900AA3964 /* PegNodeTests.swift */; };
 		61F06FBA2998A72800AA3964 /* PeggleMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F06FB92998A72800AA3964 /* PeggleMocks.swift */; };
-		61F06FBB2998A74600AA3964 /* PegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 617D2DE6298BBC7F00461FC9 /* PegNode.swift */; };
-		61F06FBC2998A74A00AA3964 /* BluePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A742990CC38005540DF /* BluePegNode.swift */; };
 		61F06FBD2998A74E00AA3964 /* BallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A782990CF51005540DF /* BallNode.swift */; };
 		61F06FBE2998A74E00AA3964 /* CannonNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A8429913D55005540DF /* CannonNode.swift */; };
-		61F06FBF2998A74E00AA3964 /* PegNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A7A2990F098005540DF /* PegNodeDelegate.swift */; };
-		61F06FC02998A74E00AA3964 /* OrangePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A762990CF08005540DF /* OrangePegNode.swift */; };
 		61F06FC12998A74E00AA3964 /* BallNodeDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F65182299740D900B2FDEB /* BallNodeDelegate.swift */; };
 		61F06FC22998A84F00AA3964 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61554C282997B0FA00BD761A /* Constants.swift */; };
 		61F06FC32998A85C00AA3964 /* BallPhysicsBody.swift in Sources */ = {isa = PBXBuildFile; fileRef = 612F7A7E29912CC9005540DF /* BallPhysicsBody.swift */; };
@@ -1377,69 +1406,98 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				618CE74629ABA782001A3B1C /* GameMode.swift in Sources */,
 				61B13BC3299D8C18005242E8 /* Peg.swift in Sources */,
+				618CE74B29ABA79D001A3B1C /* GameFighterFactory.swift in Sources */,
 				61F06FB82998A6F900AA3964 /* PegNodeTests.swift in Sources */,
 				61F06FAF299894C600AA3964 /* MSKSpriteNodeTests.swift in Sources */,
 				61F06FD32998ACDC00AA3964 /* PegPhysicsBodyTests.swift in Sources */,
 				61F06F9629986AB300AA3964 /* MSKPolygonPhysicsBody.swift in Sources */,
 				61F06FC52998A85C00AA3964 /* PegPhysicsBody.swift in Sources */,
+				618CE75C29ABAA3D001A3B1C /* BucketBasePhysicsBody.swift in Sources */,
 				61F06F9829986ADB00AA3964 /* UtilFunctions.swift in Sources */,
 				61F06FC62998A85C00AA3964 /* BallPhysicsBodyDelegate.swift in Sources */,
 				61F06F9A2998708100AA3964 /* MSKPolygonPhysicsBodyTests.swift in Sources */,
 				61F06FAA2998900100AA3964 /* MSKScene.swift in Sources */,
+				618CE74029ABA760001A3B1C /* PegNode.swift in Sources */,
+				618CE75A29ABAA3D001A3B1C /* BucketBasePhysicsBodyDelegate.swift in Sources */,
+				618CE74A29ABA79D001A3B1C /* RickFighter.swift in Sources */,
+				618CE75B29ABAA3D001A3B1C /* BucketPhysicsBody.swift in Sources */,
 				61F06FB529989A4600AA3964 /* MSKMocks.swift in Sources */,
-				6131658029A9E1FE001C636D /* RedPegNode.swift in Sources */,
 				610FED6D298E5FE100875BBA /* PegTests.swift in Sources */,
-				6131657F29A9E1FE001C636D /* PurplePegNode.swift in Sources */,
+				618CE75529ABA845001A3B1C /* BoardScene+GameFighterDelegate.swift in Sources */,
 				61F06FCA2998A8AE00AA3964 /* OrangePegNodeTests.swift in Sources */,
-				61F06FBB2998A74600AA3964 /* PegNode.swift in Sources */,
 				61F06F9D2998737100AA3964 /* MSKPhysicsBodyTests.swift in Sources */,
+				618CE75429ABA845001A3B1C /* BoardScene+BucketNodeDelegate.swift in Sources */,
+				618CE75E29ABAB21001A3B1C /* BucketNode+BucketBasePhysicsBodyDelegate.swift in Sources */,
+				618CE73E29ABA760001A3B1C /* GreenPegNode.swift in Sources */,
 				61F06F942998674A00AA3964 /* MSKCirclePhysicsBody.swift in Sources */,
 				61F06FBE2998A74E00AA3964 /* CannonNode.swift in Sources */,
+				618CE74129ABA760001A3B1C /* OrangePegNode.swift in Sources */,
+				618CE73C29ABA760001A3B1C /* RedPegNode.swift in Sources */,
+				618CE75229ABA7A3001A3B1C /* GameState.swift in Sources */,
 				61B13BC5299D8C18005242E8 /* BoardObjectWrapper.swift in Sources */,
 				61F06FC42998A85C00AA3964 /* PegPhysicsBodyDelegate.swift in Sources */,
 				61B13BC8299DB23C005242E8 /* BoardObjectWrapperTests.swift in Sources */,
+				618CE74D29ABA79D001A3B1C /* MortyFighter.swift in Sources */,
+				618CE74F29ABA7A3001A3B1C /* DodgeState.swift in Sources */,
 				61F06FC22998A84F00AA3964 /* Constants.swift in Sources */,
 				619D84AA29890A9A007C8683 /* PeggleCloneTests.swift in Sources */,
 				61F06F9F29987EF500AA3964 /* MSKPhysicsWorldTests.swift in Sources */,
-				61F06FBF2998A74E00AA3964 /* PegNodeDelegate.swift in Sources */,
 				61F06F922998668400AA3964 /* MSKCirclePhysicsBodyTests.swift in Sources */,
+				618CE73D29ABA760001A3B1C /* BluePegNode.swift in Sources */,
 				61F06FD02998AC6B00AA3964 /* CannonNodeTests.swift in Sources */,
 				610FEDAC298E62AF00875BBA /* LevelDesignerConstants.swift in Sources */,
-				61F06FC02998A74E00AA3964 /* OrangePegNode.swift in Sources */,
 				61F06FC32998A85C00AA3964 /* BallPhysicsBody.swift in Sources */,
+				618CE75829ABAA0D001A3B1C /* PeggleGameConstants.swift in Sources */,
 				61F48D7729990B2900B33D50 /* BoardScene+BallNodeDelegate.swift in Sources */,
+				618CE75129ABA7A3001A3B1C /* ScoreState.swift in Sources */,
 				61F06FD92998B27000AA3964 /* BoardSceneTests.swift in Sources */,
 				61F06FAD2998900800AA3964 /* MSKView.swift in Sources */,
 				61F06FAB2998900300AA3964 /* MSKSpriteNode.swift in Sources */,
+				618CE74229ABA766001A3B1C /* BoardObjectNode.swift in Sources */,
 				61F06FAC2998900600AA3964 /* MSKSceneDelegate.swift in Sources */,
 				61F06FCC2998A94200AA3964 /* BluePegNodeTests.swift in Sources */,
 				61F48D7A29990B2D00B33D50 /* MSKNode+MSKPhysicsBodyDelegate.swift in Sources */,
+				618CE75629ABA845001A3B1C /* BoardScene+GameStateDelegate.swift in Sources */,
 				61F48D7829990B2900B33D50 /* BoardScene+PegNodeDelegate.swift in Sources */,
+				618CE74E29ABA7A3001A3B1C /* GameStateDelegate.swift in Sources */,
 				61F06F93299866D600AA3964 /* MSKPhysicsBody.swift in Sources */,
+				618CE74729ABA782001A3B1C /* DetectOverlap.swift in Sources */,
 				61F06FA62998838000AA3964 /* MSKPhysicsWorld.swift in Sources */,
 				61F06FA829988FBC00AA3964 /* MSKNodeTests.swift in Sources */,
 				61F06FD52998AEBD00AA3964 /* BallPhysicsBodyTests.swift in Sources */,
+				618CE73F29ABA760001A3B1C /* PurplePegNode.swift in Sources */,
+				618CE75729ABA85A001A3B1C /* BucketNodeDelegate.swift in Sources */,
+				618CE75329ABA82B001A3B1C /* BucketNode.swift in Sources */,
+				618CE75929ABAA1B001A3B1C /* BlockNode.swift in Sources */,
 				61F06FC82998A86000AA3964 /* BoardSceneDelegate.swift in Sources */,
+				618CE74C29ABA79D001A3B1C /* GameFighterDelegate.swift in Sources */,
 				61B13BC6299DB19C005242E8 /* UtilityFunctions.swift in Sources */,
 				61F06F9529986A8A00AA3964 /* MSKPhysicsBodyDelegate.swift in Sources */,
 				61F48D7B29990B2F00B33D50 /* BoardView+BoardSceneDelegate.swift in Sources */,
 				610FED6C298E5FE100875BBA /* BoardTests.swift in Sources */,
 				61F48D7E29990B8D00B33D50 /* BoardView.swift in Sources */,
 				61F06FBD2998A74E00AA3964 /* BallNode.swift in Sources */,
+				618CE73B29ABA760001A3B1C /* PegNodeDelegate.swift in Sources */,
 				61F06FA929988FFE00AA3964 /* MSKNode.swift in Sources */,
-				61F06FBC2998A74A00AA3964 /* BluePegNode.swift in Sources */,
 				61F06FC12998A74E00AA3964 /* BallNodeDelegate.swift in Sources */,
-				6131658129A9E203001C636D /* GreenPegNode.swift in Sources */,
 				61B13BC2299D8C18005242E8 /* Board.swift in Sources */,
+				618CE75029ABA7A3001A3B1C /* ClassicState.swift in Sources */,
 				61F06F9729986AC400AA3964 /* MSKConstants.swift in Sources */,
 				61B13BC4299D8C18005242E8 /* BoardObject.swift in Sources */,
 				61F48D7D29990B3800B33D50 /* BallNode+BallPhysicsBodyDelegate.swift in Sources */,
 				61F06FB12998955400AA3964 /* MSKSceneTests.swift in Sources */,
 				61F06FCE2998AB2A00AA3964 /* BallNodeTests.swift in Sources */,
+				618CE74429ABA76B001A3B1C /* ExplosionNode.swift in Sources */,
 				61F06FBA2998A72800AA3964 /* PeggleMocks.swift in Sources */,
 				61F06FC72998A86000AA3964 /* BoardScene.swift in Sources */,
+				618CE74329ABA76B001A3B1C /* NodeFactory.swift in Sources */,
+				618CE74929ABA79D001A3B1C /* GameFighter.swift in Sources */,
 				61F06FB32998999500AA3964 /* MSKViewTests.swift in Sources */,
+				618CE75D29ABAA7B001A3B1C /* UILabel+Fade.swift in Sources */,
+				618CE74529ABA782001A3B1C /* Block.swift in Sources */,
+				618CE74829ABA79D001A3B1C /* GameCharacter.swift in Sources */,
 				61F48D7929990B2D00B33D50 /* MSKView+MSKSceneDelegate.swift in Sources */,
 				61F06FA129987F1E00AA3964 /* MSKPhysicsBodyDelegateTests.swift in Sources */,
 			);

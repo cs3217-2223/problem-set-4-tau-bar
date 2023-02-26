@@ -25,7 +25,7 @@ final class PegTests: XCTestCase {
 
     func testConstructPeg_validRadius_shouldReturnNonNil() {
         XCTAssertNotNil(peg, "Peg should not be nil.")
-        XCTAssertEqual(peg?.colour, .orange)
+        XCTAssertEqual(peg?.color, .orange)
         XCTAssertEqual(peg?.position, .zero)
         XCTAssertEqual(peg?.radius, 1.5)
     }

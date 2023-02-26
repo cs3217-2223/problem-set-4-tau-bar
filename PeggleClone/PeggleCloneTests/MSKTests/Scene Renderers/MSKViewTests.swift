@@ -13,7 +13,7 @@ class MSKViewTests: XCTestCase {
     var view: MSKView?
     let physicsBody = MSKCirclePhysicsBody(circleOfRadius: 1.0,
                                            center: .zero,
-                                           isDynamic: true)
+                                           isDynamic: true, rotation: 0)
     let image = UIImage(named: "peg-blue")
     let defaultTimeInterval: Double = 0.1
 

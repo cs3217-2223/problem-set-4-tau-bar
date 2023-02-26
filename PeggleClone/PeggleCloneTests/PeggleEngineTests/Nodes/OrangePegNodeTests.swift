@@ -14,7 +14,7 @@ class OrangePegNodeTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        pegNode = OrangePegNode(position: .zero)
+        pegNode = OrangePegNode(position: .zero, radius: 20, rotation: 0)
     }
 
     func testInit() {
@@ -28,10 +28,11 @@ class OrangePegNodeTests: XCTestCase {
         guard let pegNode = pegNode else {
             return XCTFail("Peg Node is nil")
         }
+        let ballBody = BallPhysicsBody(circleOfRadius: 20, center: .zero, isDynamic: false, rotation: 0)
 
         XCTAssertEqual(pegNode.image, image)
 
-        pegNode.didCollideWithBall()
+        pegNode.didCollideWithBall(ballBody: ballBody)
 
         XCTAssertEqual(pegNode.image, UIImage(named: "peg-orange-glow"))
     }

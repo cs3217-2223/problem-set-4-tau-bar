@@ -94,7 +94,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
         // Overlapping circlePhysicsBody on x-axis --> Collision should occur
         let otherBody = MSKCirclePhysicsBody(circleOfRadius: 1.0,
                                          center: SIMD2<Double>(x: 0.9, y: 2.0),
-                                         isDynamic: true)
+                                         isDynamic: true, rotation: 0)
 
         physicsWorld?.addBody(circlePhysicsBody)
         physicsWorld?.addBody(otherBody)
@@ -115,7 +115,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
 
         let outOfBoundsBody = MSKCirclePhysicsBody(circleOfRadius: 20,
                                                    center: SIMD2<Double>(x: 50, y: 19),
-                                                   isDynamic: true)
+                                                   isDynamic: true, rotation: 0)
         physicsWorld?.addTopBorder(xPos: 50, yPos: 0, width: 1_000)
         physicsWorld?.addBody(outOfBoundsBody)
         physicsWorld?.simulatePhysics(timeInterval: defaultTimeInterval)
@@ -127,7 +127,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
 
         let outOfBoundsBody = MSKCirclePhysicsBody(circleOfRadius: 20,
                                                    center: SIMD2<Double>(x: 19, y: 50),
-                                                   isDynamic: true)
+                                                   isDynamic: true, rotation: 0)
         physicsWorld?.addLeftBorder(xPos: 0, yPos: 50, height: 1_000)
         physicsWorld?.addBody(outOfBoundsBody)
         physicsWorld?.simulatePhysics(timeInterval: defaultTimeInterval)
@@ -139,7 +139,7 @@ final class MSKPhysicsWorldTests: XCTestCase {
 
         let outOfBoundsBody = MSKCirclePhysicsBody(circleOfRadius: 20,
                                                    center: SIMD2<Double>(x: 481, y: 50),
-                                                   isDynamic: true)
+                                                   isDynamic: true, rotation: 0)
         physicsWorld?.addRightBorder(xPos: 500, yPos: 50, height: 1_000)
         physicsWorld?.addBody(outOfBoundsBody)
         physicsWorld?.simulatePhysics(timeInterval: defaultTimeInterval)

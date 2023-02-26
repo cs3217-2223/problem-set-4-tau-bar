@@ -15,7 +15,7 @@ class PegNodeTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        pegNode = PegNode(position: .zero, image: image)
+        pegNode = PegNode(position: .zero, image: image, radius: 20, rotation: 0)
         pegNode?.delegate = delegate
     }
 
@@ -27,7 +27,7 @@ class PegNodeTests: XCTestCase {
         XCTAssertFalse(pegNode.isHit)
         XCTAssertFalse(delegate.hasCollidedWithBall)
 
-        pegNode.didCollideWithBall()
+        pegNode.didCollideWithBall(ballBody: BallPhysicsBody(positionLast: .zero, position: .zero))
 
         XCTAssertTrue(pegNode.isHit)
         XCTAssertTrue(delegate.hasCollidedWithBall)

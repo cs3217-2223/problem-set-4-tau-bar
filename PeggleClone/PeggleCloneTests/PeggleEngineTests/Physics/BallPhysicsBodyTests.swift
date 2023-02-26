@@ -16,7 +16,7 @@ class BallPhysicsBodyTests: XCTest {
         super.setUp()
         physicsBody = BallPhysicsBody(circleOfRadius: 1.0,
                                      center: .zero,
-                                     isDynamic: true)
+                                      isDynamic: true, rotation: 0)
         physicsBody?.ballPhysicsBodyDelegate = bpbDelegate
     }
 
@@ -30,7 +30,7 @@ class BallPhysicsBodyTests: XCTest {
     func testCollide_ballStationary_shouldCallDelegate() {
         let body = MSKCirclePhysicsBody(circleOfRadius: 1.0,
                                         center: SIMD2<Double>(0.0, 2.0),
-                                        isDynamic: false)
+                                        isDynamic: false, rotation: 0)
 
         XCTAssertFalse(bpbDelegate.didCallHandleBallStuck)
 

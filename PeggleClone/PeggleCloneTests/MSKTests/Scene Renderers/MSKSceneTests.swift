@@ -14,7 +14,7 @@ class MSKSceneTests: XCTestCase {
     let delegate = MockMSKSceneDelegate()
     let sNode = MSKSpriteNode(physicsBody: MSKCirclePhysicsBody(circleOfRadius: 1.0,
                                                                center: .zero,
-                                                               isDynamic: true),
+                                                               isDynamic: true, rotation: 0),
                              image: UIImage(named: "peg-blue"))
 
     let defaultTimeInterval: Double = 0.1

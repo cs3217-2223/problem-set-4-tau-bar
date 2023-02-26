@@ -16,7 +16,7 @@ class PegPhysicsBodyTests: XCTest {
         super.setUp()
         physicsBody = PegPhysicsBody(circleOfRadius: 1.0,
                                      center: .zero,
-                                     isDynamic: true)
+                                     isDynamic: true, rotation: 0)
         physicsBody?.pegPhysicsBodyDelegate = ppbDelegate
     }
 
@@ -30,7 +30,7 @@ class PegPhysicsBodyTests: XCTest {
     func testCollide_withBall_shouldCallDelegate() {
         let ballBody = BallPhysicsBody(circleOfRadius: 2.0,
                                        center: .zero,
-                                       isDynamic: true)
+                                       isDynamic: true, rotation: 0)
 
         XCTAssertFalse(ppbDelegate.collidedWithBall)
 
@@ -45,7 +45,7 @@ class PegPhysicsBodyTests: XCTest {
     func testCollide_notWithBall_shouldNotCallDelegate() {
         let body = MSKCirclePhysicsBody(circleOfRadius: 2.0,
                                        center: .zero,
-                                       isDynamic: true)
+                                        isDynamic: true, rotation: 0)
 
         XCTAssertFalse(ppbDelegate.collidedWithBall)
 

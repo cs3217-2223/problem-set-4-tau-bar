@@ -12,6 +12,7 @@ class MockMSKSceneDelegate: MSKSceneDelegate {
     var isNodeAdded = false
     var isNodeUpdated = false
     var isNodeRotated = false
+    var isNodeImageUpdated = false
 
     func didRemoveNode(_ removedNode: MSKSpriteNode) {
         isNodeRemoved = true
@@ -27,6 +28,10 @@ class MockMSKSceneDelegate: MSKSceneDelegate {
 
     func didRotateNode(_ node: MSKSpriteNode) {
         isNodeRotated = true
+    }
+    
+    func didUpdateNodeImage(_ node: MSKSpriteNode) {
+        isNodeImageUpdated = true
     }
 }
 

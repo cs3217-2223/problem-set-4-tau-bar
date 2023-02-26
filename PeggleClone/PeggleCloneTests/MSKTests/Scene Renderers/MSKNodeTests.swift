@@ -10,7 +10,7 @@ import XCTest
 
 class MSKNodeTests: XCTestCase {
     var node: MSKNode?
-    let physicsBody = MSKCirclePhysicsBody(circleOfRadius: 1.0, center: .zero, isDynamic: true)
+    let physicsBody = MSKCirclePhysicsBody(circleOfRadius: 1.0, center: .zero, isDynamic: true, rotation: 0)
     let defaultTimeInterval: Double = 0.1
 
     override func setUp() {
