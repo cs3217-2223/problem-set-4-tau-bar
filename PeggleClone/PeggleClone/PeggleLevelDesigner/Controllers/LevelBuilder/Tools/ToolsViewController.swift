@@ -85,6 +85,7 @@ class ToolsViewController: UIViewController {
         blockButton.alpha = ToolButton.unselectedAlphaValue
         bluePegButton.alpha = ToolButton.unselectedAlphaValue
         orangePegButton.alpha = ToolButton.unselectedAlphaValue
+        greenPegButton.alpha = ToolButton.unselectedAlphaValue
     }
 
     func setSelectedButtonOpaque(selected: ToolButton) {

@@ -431,7 +431,7 @@
                                     <backgroundConfiguration key="background" image="peg-green"/>
                                 </buttonConfiguration>
                                 <connections>
-                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="bdU-7q-4Xp"/>
+                                    <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="2lF-UV-0ti"/>
                                     <action selector="pegButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gPA-tF-hkE"/>
                                 </connections>
                             </button>
