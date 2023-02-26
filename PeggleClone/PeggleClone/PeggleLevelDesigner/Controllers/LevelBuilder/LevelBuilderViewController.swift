@@ -118,11 +118,6 @@ class LevelBuilderViewController: UIViewController {
         }
     }
 
-    @IBAction func didChangeGameMode(_ sender: UISegmentedControl) {
-        let mode = LevelBuilderConstants.gameModes[gameModeSelect.selectedSegmentIndex]
-        board?.gameMode = mode
-    }
-
     /// Saves the level with the current level name.
     /// If no name is provided, the level is not saved.
     @IBAction func saveButtonTapped(_ sender: Any) {
@@ -164,6 +159,13 @@ class LevelBuilderViewController: UIViewController {
         }
     }
 
+    @IBAction func didSelectGameMode(_ sender: Any) {
+        print("didchange gmaemode")
+        let mode = LevelBuilderConstants.gameModes[gameModeSelect.selectedSegmentIndex]
+        print(mode)
+        board?.gameMode = mode
+        print(board?.gameMode)
+    }
     // MARK: Functions for interacting with model
     func addObject(addedObjectWrapper: BoardObjectWrapper) {
         board?.addObject(addedObjectWrapper)

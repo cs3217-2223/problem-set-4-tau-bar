@@ -144,25 +144,6 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <segmentedControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="THa-aE-f7K">
-                                        <rect key="frame" x="384" y="130" width="272" height="32"/>
-                                        <segments>
-                                            <segment title="Classic"/>
-                                            <segment title="Beat Score!"/>
-                                            <segment title="Dodge"/>
-                                        </segments>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="selectedSegmentTintColor" red="0.4054582417" green="0.60026109220000001" blue="0.63047081230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <connections>
-                                            <action selector="didChangeGameMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="pPB-iZ-1ue"/>
-                                        </connections>
-                                    </segmentedControl>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCH-jX-hdQ">
-                                        <rect key="frame" x="465" y="93" width="102" height="17"/>
-                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5g0-oH-zqk" userLabel="Start Button" colorLabel="IBBuiltInLabel-Blue">
                                         <rect key="frame" x="624" y="75" width="76" height="35"/>
                                         <constraints>
@@ -181,6 +162,24 @@
                                             <action selector="startButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ELn-02-P4x"/>
                                         </connections>
                                     </button>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lcq-bx-hr5">
+                                        <rect key="frame" x="380" y="130" width="272" height="32"/>
+                                        <segments>
+                                            <segment title="Classic"/>
+                                            <segment title="Beat Score!"/>
+                                            <segment title="Dodge"/>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" red="0.4054582417" green="0.60026109220000001" blue="0.63047081230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="didSelectGameMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="FtG-o1-Y0L"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Mode" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DCH-jX-hdQ">
+                                        <rect key="frame" x="465" y="81" width="102" height="17"/>
+                                        <fontDescription key="fontDescription" name="HiraginoSans-W3" family="Hiragino Sans" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -190,13 +189,14 @@
                                     <constraint firstItem="XbQ-F7-vbO" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="30" id="9KU-pb-pLL"/>
                                     <constraint firstItem="XbQ-F7-vbO" firstAttribute="leading" secondItem="7e4-8o-MiD" secondAttribute="trailing" constant="25" id="A5u-8i-koe"/>
                                     <constraint firstItem="Whg-lF-Ebp" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="30" id="Ame-98-VjX"/>
+                                    <constraint firstItem="lcq-bx-hr5" firstAttribute="top" secondItem="5g0-oH-zqk" secondAttribute="bottom" constant="20" id="DDB-NU-6Mo"/>
+                                    <constraint firstAttribute="trailing" secondItem="lcq-bx-hr5" secondAttribute="trailing" constant="92" id="FNj-bq-f40"/>
                                     <constraint firstItem="fym-f0-WEo" firstAttribute="leading" secondItem="Z93-ln-flZ" secondAttribute="trailing" constant="15.5" id="Gi1-Fq-Wg2"/>
                                     <constraint firstItem="DIX-hW-oNx" firstAttribute="leading" secondItem="Whg-lF-Ebp" secondAttribute="trailing" constant="20" id="JFL-e7-Tu1"/>
                                     <constraint firstAttribute="trailing" secondItem="5g0-oH-zqk" secondAttribute="trailing" constant="44" id="K9S-uO-T19"/>
                                     <constraint firstItem="5g0-oH-zqk" firstAttribute="leading" secondItem="DCH-jX-hdQ" secondAttribute="trailing" constant="57" id="L5d-gL-iP8"/>
                                     <constraint firstAttribute="bottom" secondItem="5g0-oH-zqk" secondAttribute="bottom" constant="76" id="N7D-ck-WJP"/>
                                     <constraint firstItem="DIX-hW-oNx" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="30" id="OQL-gf-4JY"/>
-                                    <constraint firstAttribute="trailing" secondItem="THa-aE-f7K" secondAttribute="trailing" constant="88" id="Rse-w1-xmB"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="186" id="TVx-l8-9vd"/>
                                     <constraint firstItem="r3Z-Fs-PqP" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="250" id="Tb9-Bo-9Zh"/>
                                     <constraint firstItem="IsX-5G-N6v" firstAttribute="top" secondItem="DIX-hW-oNx" secondAttribute="bottom" constant="20" id="VMW-ay-7yM"/>
@@ -204,9 +204,8 @@
                                     <constraint firstAttribute="bottom" secondItem="5g0-oH-zqk" secondAttribute="bottom" constant="76" id="XhW-Uh-eTN"/>
                                     <constraint firstItem="Whg-lF-Ebp" firstAttribute="top" secondItem="a5n-U7-fNX" secondAttribute="top" constant="30" id="ZT7-np-jIX"/>
                                     <constraint firstItem="Z93-ln-flZ" firstAttribute="leading" secondItem="IsX-5G-N6v" secondAttribute="trailing" constant="50" id="dFH-JB-G9t"/>
-                                    <constraint firstAttribute="bottom" secondItem="THa-aE-f7K" secondAttribute="bottom" constant="25" id="jJA-g9-Xat"/>
                                     <constraint firstItem="r3Z-Fs-PqP" firstAttribute="top" secondItem="fym-f0-WEo" secondAttribute="bottom" constant="26" id="kbY-P4-IYP"/>
-                                    <constraint firstItem="THa-aE-f7K" firstAttribute="top" secondItem="DCH-jX-hdQ" secondAttribute="bottom" constant="20" id="qp1-H8-WTM"/>
+                                    <constraint firstItem="DCH-jX-hdQ" firstAttribute="top" secondItem="XbQ-F7-vbO" secondAttribute="bottom" constant="21" id="nuv-fz-1qp"/>
                                     <constraint firstItem="7e4-8o-MiD" firstAttribute="leading" secondItem="DIX-hW-oNx" secondAttribute="trailing" constant="50" id="rCn-ue-W6k"/>
                                     <constraint firstItem="Gq9-0X-Gkz" firstAttribute="top" secondItem="Whg-lF-Ebp" secondAttribute="bottom" constant="20" id="tJG-VJ-Zqf"/>
                                     <constraint firstItem="Gq9-0X-Gkz" firstAttribute="leading" secondItem="a5n-U7-fNX" secondAttribute="leading" constant="30" id="uvy-ia-byO"/>
@@ -286,7 +285,7 @@
                         <outlet property="ballCountLabel" destination="fym-f0-WEo" id="V3t-6k-Fqd"/>
                         <outlet property="ballStepper" destination="r3Z-Fs-PqP" id="pnK-sY-Che"/>
                         <outlet property="boardView" destination="vsl-h7-nc6" id="n4d-qT-moh"/>
-                        <outlet property="gameModeSelect" destination="THa-aE-f7K" id="2fl-m5-5BI"/>
+                        <outlet property="gameModeSelect" destination="lcq-bx-hr5" id="uAo-Gh-TeD"/>
                         <outlet property="levelNameTextField" destination="XbQ-F7-vbO" id="EfO-tS-itl"/>
                         <outlet property="loadButton" destination="Gq9-0X-Gkz" id="q4Q-09-cdg"/>
                         <outlet property="resetButton" destination="IsX-5G-N6v" id="l9e-Fu-cPW"/>
