@@ -522,24 +522,25 @@ The `Board` class sends a notification using `NotificationCenter` whenever the b
 The view component represents the UI seen by the user when the application is running. In the level designer, there are two main views, the level builder view and the level select view.
 
 #### <a name='LevelBuilderView'></a>Level Builder View
-The level builder view represents the UI that the user sees when they are at the level builder screen. The level builder view consists of `SelectPegButton` views which are the blue, orange and delete peg buttons, as well as the action buttons (Save, Load, Reset, Start) which are of `UIButton` class. The level builder view also consists of a board view, which is the view where `BoardPegView` views (which are the pegs on the board view) are shown and added as the user builds the level. These views were added using Interface Builder, and set to fit different iPad sizes by setting up Auto Layout constraints. Refer to the image below for the Interface Builder for this view:
+The level builder view represents the UI that the user sees when they are at the level builder screen. The level builder view consists of `ToolsViewController`, which is the view controller for the tools (peg buttons, delete, resize, rotate) as well as the ControlsView which consits of the action buttons (Save, Load, Reset, Start) which are of `UIButton` class. The level builder view also consists of a board view, which is the view where `BoardObjectView` views (which are the objects on the board view) are shown and added as the user builds the level. These views were added using Interface Builder, and set to fit different iPad sizes by setting up Auto Layout constraints. Refer to the image below for the Interface Builder for this view:
 
-![image](https://user-images.githubusercontent.com/61085398/214991832-46ca0da3-d637-4e8d-9948-f8eb27d30aef.png)
+![image](https://user-images.githubusercontent.com/61085398/221411204-ff90c457-b21e-443b-ae36-45baf68808db.png)
 
-##### Board View & `BoardPegView`
-The Board View, is where `BoardPegView` views get added as subviews of the Board View when the user builds/modifies the level. The Board Peg View has an `UIImageView` as a subview which represents the background of the board being seen. Visually, the Board View represents the board that the user is editing.
+##### Board View & `BoardObjectView`
+The Board View, is where `BoardObjectView` views get added as subviews of the Board View when the user builds/modifies the level. The Board View has an `UIImageView` as a subview which represents the background of the board being seen. Visually, the Board View represents the board that the user is editing.
 
-`BoardPegView` represents the peg views that get added/removed/moved on the board view.
+`BoardObjectView` represents the object views that get added/removed/moved on the board view.
 
-`BoardPegView` has three gesture recognizers, tap, pan and long press. To get actions to occur based on these gestures, `BoardPegView` uses a Delegate pattern, storing a reference to a delegate which conforms to the `BoardPegViewDelegate` protocol. Refer to the class diagram below:
+`BoardObjectView` has three gesture recognizers, tap, pan and long press. To get actions to occur based on these gestures, `BoardObjectView` uses a Delegate pattern, storing a reference to a delegate which conforms to the `BoardObjectViewDelegate` protocol. Refer to the class diagram below:
 
-![image](https://user-images.githubusercontent.com/61085398/215009137-821484b8-c141-4b71-9937-d3a62c38db65.png)
+![image](https://user-images.githubusercontent.com/61085398/221411504-573b3495-a41d-4ba1-a7e7-da695f8ec150.png)
 
-The gesture recognizer handlers run when the gestures are done by the user on a `BoardPegView`. The screenshot below shows the gesture recognizer handlers in `BoardPegView` class:
+The gesture recognizer handlers run when the gestures are done by the user on a `BoardObjectView`. The screenshot below shows the gesture recognizer handlers in `BoardObjectView` class:
 
 ![image](https://user-images.githubusercontent.com/61085398/214992326-d86994ef-14da-409f-8448-ccb1701270c8.png)
 
-`BoardPegView` views are added to the Board View at runtime programatically, whenever the user loads a level or starts building the level. The `BoardPegView` views are stored as subviews of the Board View.
+`BoardObjectView` views are added to the Board View at runtime programatically, whenever the user loads a level or starts building the level. The `BoardObjectView` views are stored as subviews of the Board View.
+
 
 #### <a name='LevelSelectView'></a>Level Select View
 The level select view represents the UI seen by user when they want to select a level to load. The level select view consists of two `UIButton` views for creating a new level and deleting all the existing levels, as well as a `UITableView` which loads the levels stored on the device using `LevelTableViewCell` views. The `LevelTableViewCell` views are added programatically at runtime. Refer to the image below for the Interface Builder for this view:
@@ -561,31 +562,76 @@ The `LevelSelectViewController` stores a reference to its delegate, the `LevelBu
 #### <a name='LevelBuilderViewController'></a>`LevelBuilderViewController`
 The `LevelBuilderViewController` controls the user interactions on the level builder UI and propagates the actions to the board model, as well as updates the level builder UI when the model changes.
 
+##### ToolsViewController
+The logic of what should happen when a tool is selected (e.g. reduce opacity of other tools and make selected tool opaque) is abstracted out into `ToolsViewController`:
+
+![image](https://user-images.githubusercontent.com/61085398/221412393-700b7b63-620e-4fe6-a781-89a5a91abd1f.png)
+
+
+It conforms to `LevelBuilderActionsDelegate`, which is defined as such:
+```swift
+protocol LevelBuilderActionsDelegate: AnyObject {
+    func didTapBoardObject(_ object: BoardObjectWrapper)
+    func didTapBoard(at location: CGPoint)
+    func unselectAllTools()
+}
+```
+This is because the action that gets run for each of these events is dependent on which tool is selected, which is managed by `ToolViewController`.
+
+`ToolsViewController` stores a reference to `ToolsViewControllerDelegate` which allows it to add, remove, change size, select and unselect objects on the BoardView since `LevelBuilderViewController` conforms to `ToolsViewControllerDelegate`.
+
 ##### Protocols
-As mentioned in previous sections, the `LevelBuilderViewController` serves as the delegate for `BoardPegView` views and `LevelSelectViewController`. As such, it conforms to `BoardPegViewDelegate` and `LevelSelectViewControllerDelegate` protocols.
+As mentioned in previous sections, the `LevelBuilderViewController` serves as the delegate for `BoardPegView` views, `LevelSelectViewController` and `ToolsViewController`. As such, it conforms to `BoardPegViewDelegate`, `LevelSelectViewControllerDelegate` and `ToolsViewControllerDelegate` protocols.
 
 ##### Variables and Properties
 `LevelBuilderViewController` stores variables that are essential to the control flow of the Level Builder view.
 
-![image](https://user-images.githubusercontent.com/61085398/215010523-9e15a6cf-bca8-47e8-b96a-e3e5f18daeb1.png)
+Controls:
+```swift
+    @IBOutlet var levelNameTextField: UITextField!
+    @IBOutlet var boardView: UIView!
+    @IBOutlet var startButton: UIButton!
+    @IBOutlet var resetButton: UIButton!
+    @IBOutlet var saveButton: UIButton!
+    @IBOutlet var loadButton: UIButton!
+    @IBOutlet var ballStepper: UIStepper!
+    @IBOutlet var ballCountLabel: UILabel!
+    @IBOutlet var gameModeSelect: UISegmentedControl!
+    
+    @IBOutlet var rotationLabel: UILabel!
+    @IBOutlet var rotationSlider: UISlider!
+```
+These are used to modify the board or objects or carry out actions.
 
-`buttons` represent all the selectable peg buttons (blue, orange, delete).
+Helper properties:
+```swift
+// Helper variables & properties
+var objectsToViews: [BoardObjectWrapper: BoardObjectView] = [:]
+var viewsToObjects: [BoardObjectView: BoardObjectWrapper] = [:]
+```
 
-`selectedButton` represents the selectable peg button which is currently selected. The opacity of this selected button is set through the `selectedButton`'s property observer, which updates the UI to show which button is currently selected.
-
-`currentSelectedColour` represents which `PegColour` peg should be added to the screen if the user taps it. If a blue or orange peg is selected, the `currentSelectedColour` value would be `PegColour.blue` and `PegColour.orange` respectively. If the delete peg button is selected, then the value is `nil`.
-
-`pegToViewDict` is a dictionary storing `Peg` objects as the key and `BoardPegView` views which represent the peg on the screen. 
-
-`buttonColours` is a helper structure which stores what `PegColour` is associated with a `SelectPegButton`.
+`objectToViewDict` is a dictionary storing `BoardObject` objects as the key and `BoardObjectView` views which represent the peg on the screen. 
+`viewsToObjects` is the reverse lookup dictionary used for removing `BoardObjects` (e.g. when user taps a `BoardObjectView`).
 
 ##### UI Actions
-The `LevelBuilderViewController` has `@IBAction` handler functions which handle taps on the action buttons (save, load, reset) and taps on the Board View. Tapping on the peg buttons to select them just sets the `selectedButton` variable to the tapped button. The reset and tapping on the Board View causes updates to the board model. The specific implementations will be covered in the [Implementation](#implementation) section.
+The `LevelBuilderViewController` has `@IBAction` handler functions which handle taps on the action buttons (save, load, reset) and taps on the Board View as well as modifying objects.
 
 ##### Notification
 As mentioned in the previous section, certain user actions cause the controller to interact with the model. The controller is a listener to the model, which communicates through `NotificationCenter`. This requires the controller to listen to notifications from the model, as set up in the controller's `viewDidLoad()`:
 
-![Screenshot 2023-01-27 at 12 53 36 PM](https://user-images.githubusercontent.com/61085398/215012220-6a8271ba-e7a3-44e9-81ff-cc960f4fb5d5.png)
+```swift
+// Register for relevant notifications
+NotificationCenter.default.addObserver(self, selector: #selector(addObjectToBoardView),
+				       name: .objectAdded, object: nil)
+NotificationCenter.default.addObserver(self, selector: #selector(deleteObjectFromBoardView),
+				       name: .objectDeleted, object: nil)
+NotificationCenter.default.addObserver(self, selector: #selector(moveObjectOnBoardView),
+				       name: .objectMoved, object: nil)
+NotificationCenter.default.addObserver(self, selector: #selector(clearBoardView),
+				       name: .boardCleared, object: nil)
+NotificationCenter.default.addObserver(self, selector: #selector(resizeObjectOnBoardView),
+				       name: .objectResizeSuccess, object: nil)
+```
 
 When a notification is received from the model, e.g. a peg has been added to the model, the controller updates the Board View to reflect the changes in the model.
 
