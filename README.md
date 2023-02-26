@@ -1,8 +1,8 @@
 # CS3217 Problem Set 4
 
-**Name:** Your name
+**Name:** Taufiq Bin Abdul Rahman
 
-**Matric No:** Your matric no
+**Matric No:** A0218081L
 
 ## Tips
 1. CS3217's docs is at https://cs3217.github.io/cs3217-docs. Do visit the docs often, as
@@ -18,9 +18,7 @@
 3. Do not burn out. Have fun!
 
 ## Dev Guide
-You may put your dev guide either in this section, or in a new file entirely.
-You are encouraged to include diagrams where appropriate in order to enhance
-your guide.
+Check out [dev-guide.md](https://github.com/cs3217-2223/problem-set-4-tau-bar/blob/master/dev-guide.md).
 
 ## Rules of the Game
 Please write the rules of your game here. This section should include the
@@ -108,4 +106,16 @@ tests in code, please delete this section.
 > - if you were to redo the entire application, is there anything you would
 >   have done differently?
 
-Your answer here
+I think that my PS2 Level Designer was not extensible enough. I tightly coupled the Board with Pegs, and instead should have created a generic board object which can store BoardObjects instead of just Pegs. Eventually, I had to refactor it to store BoardObjects anyway, which took a very long time. 
+
+Another thing I was unhappy with was how I implemented the Core Data, and I found what I thought was a cleaner and clearer way to store the objects in Core Data. The initial way, I had to ensure that my entities conformed to NSObject and NSSecureCoding, which cluttered the model class and tightly coupled it to Core Data since the conforming was done within the main class file. In the new method I use, I use extensions to conform to my custom protocols which allow me to encode and decode from Core Data. This way, my model is not coupled with the persistence logic.
+
+Yet another thing I was unhappy about in my PS2 was the LevelBuilderViewController having too many responsibilities. As I continued developing, the LevelBuilderViewController was slowly becoming a God class and at that point it was too late to be able to refactor it. Therefore, in this PS, I had to refactor the LevelBuilderViewController and split some of the responsibilities to other view controllers.
+
+As for PS3, I think my design was okay, I didn't have to change too much in order to add the new features. I think the most troublesome feature to add was the explosions, but even so I didn't feel like I had to change too much to implement it. One thing I should have done is not assume that there would only be one ball on the board, I think that caused quite a bit of refactoring to be required, since the Zombie Pegs add balls to the board.
+
+Overall, I honestly think I spent more time refactoring/cleaning up my design than working on the actual features, which was quite surprising for me. I tracked the time I took for the refactoring and the time I took for the new features, and while the time taken for the new features wasn't insignificant, it pales in comparison to the time I took to refactor.
+
+If I were to do this PS again, I would fix the stuff I mentioned above, as well as make my UI a little nicer from the get-go in PS2. I spent quite a while redesigning the UI until I was sufficiently happy due to the increased number of buttons & the resize/rotate featres. While I did read PS3 and PS4 before doing PS2, I didn't sufficiently account for those features that I would eventually have to add.
+
+Ultimately this project was a painful but memorable lesson in making my software design extensible and easily maintainable.
