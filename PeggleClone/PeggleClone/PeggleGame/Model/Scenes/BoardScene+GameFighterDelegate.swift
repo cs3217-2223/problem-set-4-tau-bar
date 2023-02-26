@@ -67,7 +67,6 @@ extension BoardScene: GameFighterDelegate {
             }
 
             if isWithin(position: node.position, isWithin: radius, of: location) {
-                print(node)
                 removeNode(node)
             }
         }
