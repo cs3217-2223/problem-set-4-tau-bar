@@ -11,7 +11,6 @@ protocol ToolsViewControllerDelegate: AnyObject {
     func didAddObject(_ object: BoardObjectWrapper)
     func didRemoveObject(_ object: BoardObjectWrapper)
     func didChangeSize(to size: Double)
-    func didRotateObject(to rotation: Double)
     func didSelectObject(_ object: BoardObjectWrapper)
     func didUnselectObject()
 }

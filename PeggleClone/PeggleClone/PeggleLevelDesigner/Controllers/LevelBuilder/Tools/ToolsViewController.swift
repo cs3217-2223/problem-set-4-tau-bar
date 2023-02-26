@@ -21,11 +21,6 @@ class ToolsViewController: UIViewController {
     @IBOutlet var sizeSlider: UISlider!
     @IBOutlet var sizeLabel: UILabel!
 
-    @IBOutlet var angleSlider: UISlider!
-    @IBOutlet var rotationLabel: UILabel!
-
-    @IBOutlet var stepper: UIStepper!
-
     var selectedButton: ToolButton? {
         didSet {
             setButtonsTranslucent()
@@ -40,21 +35,11 @@ class ToolsViewController: UIViewController {
         sizeSlider.minimumValue = 15.0
         sizeSlider.maximumValue = 60.0
 
-        angleSlider.minimumValue = -.pi
-        angleSlider.maximumValue = .pi
-
-        stepper.stepValue = 0.1
-
         hideObjectSpecificTools()
 
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(resetSizeSlider),
                                                name: .objectResizeFail,
-                                               object: nil)
-
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(resetAngleSlider),
-                                               name: .objectRotateFail,
                                                object: nil)
     }
 
@@ -68,14 +53,6 @@ class ToolsViewController: UIViewController {
 
     @IBAction func didChangeSize(_ sender: Any) {
         delegate?.didChangeSize(to: Double(sizeSlider.value))
-    }
-
-    @IBAction func didChangeRotation(_ sender: UISlider) {
-        delegate?.didRotateObject(to: Double(angleSlider.value))
-    }
-
-    @IBAction func didChangeStepper(_ sender: Any) {
-        delegate?.didRotateObject(to: Double(stepper.value))
     }
 
     func setButtonsTranslucent() {
@@ -95,18 +72,12 @@ class ToolsViewController: UIViewController {
     func hideObjectSpecificTools() {
         sizeSlider.alpha = 0
         sizeLabel.alpha = 0
-        rotationLabel.alpha = 0
-        angleSlider.alpha = 0
     }
 
     func showObjectSpecificTools(for object: BoardObjectWrapper) {
         sizeSlider.value = Float(Double(object.object.width))
         sizeSlider.alpha = 1
         sizeLabel.alpha = 1
-
-        angleSlider.value = Float(Double(object.object.rotation))
-        angleSlider.alpha = 1
-        rotationLabel.alpha = 1
     }
 
     func unselectObject() {
@@ -124,18 +95,7 @@ class ToolsViewController: UIViewController {
         sizeSlider.setValue(Float(oldValue), animated: false)
     }
 
-    @objc func resetAngleSlider(_ notification: Notification) {
-        guard let rotatedObjectWrapper = notification.object as? BoardObjectWrapper
-        else {
-            return
-        }
-
-        let oldValue = rotatedObjectWrapper.object.rotation
-        angleSlider.setValue(Float(oldValue), animated: false)
-    }
-
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .objectRotateFail, object: nil)
         NotificationCenter.default.removeObserver(self, name: .objectResizeFail, object: nil)
     }
 

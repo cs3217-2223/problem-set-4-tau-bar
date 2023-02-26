@@ -8,6 +8,7 @@
 import UIKit
 
 extension LevelBuilderViewController: ToolsViewControllerDelegate {
+    
     func didAddObject(_ object: BoardObjectWrapper) {
         addObject(addedObjectWrapper: object)
     }
@@ -47,10 +48,4 @@ extension LevelBuilderViewController: ToolsViewControllerDelegate {
             view.alpha = 1
         })
     }
-
-    func didRotateObject(to rotation: Double) {
-        guard let selectedObject = selectedObject else { return }
-        board?.rotateObject(selectedObject, to: rotation)
-    }
-
 }

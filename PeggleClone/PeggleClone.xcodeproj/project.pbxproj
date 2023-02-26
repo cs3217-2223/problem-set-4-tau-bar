@@ -94,6 +94,7 @@
 		6186658929A721190040D7D2 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658829A721190040D7D2 /* BlockNode.swift */; };
 		61917D4B29AAEF0400B5BC53 /* UILabel+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */; };
 		61917D4D29AAF6D400B5BC53 /* enter-bucket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61917D4C29AAF6D300B5BC53 /* enter-bucket.mp3 */; };
+		61917D4F29AB0C9700B5BC53 /* LavelBuilderViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61917D4E29AB0C9700B5BC53 /* LavelBuilderViewController+Alerts.swift */; };
 		619D849329890A96007C8683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849229890A96007C8683 /* AppDelegate.swift */; };
 		619D849529890A96007C8683 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849429890A96007C8683 /* SceneDelegate.swift */; };
 		619D849729890A96007C8683 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849629890A96007C8683 /* GameViewController.swift */; };
@@ -320,6 +321,7 @@
 		6186658829A721190040D7D2 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Fade.swift"; sourceTree = "<group>"; };
 		61917D4C29AAF6D300B5BC53 /* enter-bucket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "enter-bucket.mp3"; sourceTree = "<group>"; };
+		61917D4E29AB0C9700B5BC53 /* LavelBuilderViewController+Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LavelBuilderViewController+Alerts.swift"; sourceTree = "<group>"; };
 		619D848F29890A96007C8683 /* PeggleClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeggleClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		619D849229890A96007C8683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		619D849429890A96007C8683 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -476,6 +478,7 @@
 			children = (
 				61B40152299F7F4C0022142B /* LevelBuilder */,
 				61B40151299F7F400022142B /* LevelSelect */,
+				61917D4E29AB0C9700B5BC53 /* LavelBuilderViewController+Alerts.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1291,6 +1294,7 @@
 				61B13BE1299DC095005242E8 /* Block.swift in Sources */,
 				61F07CFA29A76B2600C7A7A4 /* BucketBasePhysicsBody.swift in Sources */,
 				61F07CF229A75EF200C7A7A4 /* GameMode+StoredData.swift in Sources */,
+				61917D4F29AB0C9700B5BC53 /* LavelBuilderViewController+Alerts.swift in Sources */,
 				61B13BE5299DDCB9005242E8 /* BlockView.swift in Sources */,
 				611A0A8C29A871DB00B3AE25 /* RickFighter.swift in Sources */,
 				612F7A7D29912CAB005540DF /* PegPhysicsBody.swift in Sources */,

@@ -149,7 +149,7 @@ public class Board {
         sendNotification(of: .objectResizeSuccess, with: resizedObjectWrapper)
     }
 
-    func rotateObject(_ rotatedObjectWrapper: BoardObjectWrapper, to rotation: Double) {
+    func rotateObject(_ rotatedObjectWrapper: BoardObjectWrapper, to rotation: Double) -> Bool {
         let rotatedObject = rotatedObjectWrapper.object
         let oldRotation = rotatedObject.rotation
         rotatedObject.rotation = rotation
@@ -157,11 +157,10 @@ public class Board {
         if hasOverlappingObjects(with: rotatedObjectWrapper) ||
             isOutOfBounds(rotatedObjectWrapper) {
             rotatedObject.rotation = oldRotation
-            sendNotification(of: .objectRotateFail, with: rotatedObjectWrapper)
-            return
+            return false
         }
-
-        sendNotification(of: .objectRotateSuccess, with: rotatedObjectWrapper)
+        
+        return true
     }
 
     /// Checks whether the specified object is overlapping with any other objects on the board.

@@ -19,6 +19,7 @@ extension ToolsViewController: LevelBuilderActionsDelegate {
             return
         } else {
             // Else it should select the peg & show the size/rotation editors
+            sizeSlider.value = Float(object.object.width)
             delegate?.didSelectObject(object)
             showObjectSpecificTools(for: object)
         }

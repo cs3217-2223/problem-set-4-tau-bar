@@ -13,9 +13,24 @@ class LevelBuilderViewController: UIViewController {
     @IBOutlet var ballCountLabel: UILabel!
     @IBOutlet var gameModeSelect: UISegmentedControl!
 
+    @IBOutlet weak var rotationLabel: UILabel!
+    @IBOutlet weak var rotationSlider: UISlider!
     // Delegate references
     weak var actionsDelegate: LevelBuilderActionsDelegate?
-    var selectedObject: BoardObjectWrapper?
+    var selectedObject: BoardObjectWrapper? {
+        didSet {
+            if selectedObject == nil {
+                rotationLabel.alpha = 0
+                rotationSlider.alpha = 0
+            } else {
+                rotationLabel.alpha = 1
+                rotationSlider.alpha = 1
+            }
+            
+            guard let rotationValue = selectedObject?.object.rotation else { return }
+            rotationSlider.value = Float(rotationValue)
+        }
+    }
 
     // Model objects
     var board: Board? {
@@ -62,10 +77,21 @@ class LevelBuilderViewController: UIViewController {
                                                name: .boardCleared, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resizeObjectOnBoardView),
                                                name: .objectResizeSuccess, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(rotatedObjectOnBoardView),
-                                               name: .objectRotateSuccess, object: nil)
 
         // Do any additional setup after loading the view.
+    }
+    @IBAction func didRotateSelected(_ sender: Any) {
+        guard let selectedObject = selectedObject else { return }
+        let isRotated = board?.rotateObject(selectedObject, to: Double(rotationSlider.value))
+        if isRotated ?? false {
+            rotateSelected(to: Double(rotationSlider.value))
+        }
+    }
+    
+    func rotateSelected(to rotation: Double) {
+        guard let selectedObject = selectedObject else { return }
+        guard let rotatedView = objectsToViews[selectedObject] else { return }
+        rotatedView.layer.transform = CATransform3DMakeRotation(rotation, 0, 0, 1)
     }
 
     // MARK: Functions for interactions with UI buttons
@@ -200,18 +226,18 @@ class LevelBuilderViewController: UIViewController {
         frame?.size.height = resizedObjectWrapper.object.height
         frame?.size.width = resizedObjectWrapper.object.width
         guard let frame = frame else { return }
+        // resizing not commutative with previous rotations, so reset rotation temporarily
+        resizedView?.layer.transform = CATransform3DMakeRotation(0, 0, 0, 1)
+        
         resizedView?.frame = frame
         resizedView?.center.x = resizedObjectWrapper.object.position.x
         resizedView?.center.y = resizedObjectWrapper.object.position.y
+        
+        // reset rotation afterwards
+        let rotationValue = resizedObjectWrapper.object.rotation
+        resizedView?.layer.transform = CATransform3DMakeRotation(rotationValue, 0, 0, 1)
     }
-
-    @objc func rotatedObjectOnBoardView(_ notification: Notification) {
-        guard let rotatedObjectWrapper = notification.object as? BoardObjectWrapper else { return }
-        let rotatedObject = rotatedObjectWrapper.object
-        guard let rotatedView = objectsToViews[rotatedObjectWrapper] else { return }
-        rotatedView.layer.transform = CATransform3DMakeRotation(rotatedObject.rotation, 0, 0, 1)
-    }
-
+    
     /// Clears board view when receive .boardCleared notification from board model.
     @objc func clearBoardView(_ notification: Notification) {
         removeAllBoardObjectsFromView()
@@ -286,37 +312,12 @@ class LevelBuilderViewController: UIViewController {
         viewsToObjects[viewToInsert] = objectWrapper
     }
 
-    /// Presents an alert to user that no level name was entered.
-    private func alertUserNoName() {
-        let alert = UIAlertController(title: "No name", message: "Please enter level name.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,
-                                      handler: { _ in NSLog("The alertUserNoName alert occured.") }))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    /// Presents an alert to inform user that level has saved.
-    private func alertUserLevelSaved() {
-        let alert = UIAlertController(title: "Level saved", message: "Your level is saved.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,
-                                      handler: { _ in NSLog("The alertUserLevelSaved alert occured.") }))
-        self.present(alert, animated: true, completion: nil)
-    }
-
-    private func alertUserSaveError() {
-        let alert = UIAlertController(title: "Error while saving",
-                                      message: "There was an error saving your level.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Default action"), style: .default,
-                                      handler: { _ in NSLog("The alertUserSaveError alert occured.") }))
-        self.present(alert, animated: true, completion: nil)
-    }
-
     // MARK: Remove Notification
     deinit {
         notificationCenter.removeObserver(self, name: .objectAdded, object: nil)
         notificationCenter.removeObserver(self, name: .objectDeleted, object: nil)
         notificationCenter.removeObserver(self, name: .objectMoved, object: nil)
         notificationCenter.removeObserver(self, name: .objectResizeSuccess, object: nil)
-        notificationCenter.removeObserver(self, name: .objectRotateSuccess, object: nil)
         notificationCenter.removeObserver(self, name: .boardCleared, object: nil)
     }
 }
