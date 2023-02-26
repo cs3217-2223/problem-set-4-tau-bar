@@ -360,6 +360,9 @@ The `image` is automatically changes using the `didSet` observer.
 ### <a name='BucketNode'></a>BucketNode
 This represents the bucket at the bottom of the screen. It conforms to `BucketBasePhysicsBodyDelegate`, which has the function `didBallCollideWithBucketBase()` which is called by `BucketBasePhysicsBody` when it collides with a ball (i.e. ball enters the bucket). It also stores a reference to `BucketNodeDelegate`, which has the function `didEnterBucket(ball: BallPhysicsBody)`.
 
+### BlockNode
+This represents a square block. It has no special collision logic, and there is nothing notable.
+
 ## <a name='Physics'></a>Physics
 The physics bodies implemented for this game use `MSKPhysicsEngine`. 
 
@@ -455,7 +458,33 @@ func performPower(pegNode: PegNode, ballNode: BallNode) {
 	fighterDelegate?.createExplosionAt(pegNode: pegNode)
 }
 ```
+## Preloaded Levels
+There are 3 preloaded levels. They are stored within `DefaultLevelOne`, `DefaultLevelTwo` and `DefaultLevelThree`, which conform to `PreloadedLevel` protocol. The `LoadLevel` class assists in converting the level data to the current device using `convertObject()`.
 
+```swift
+func convertObject(oldHeight: Double,
+	       oldWidth: Double,
+	       newHeight: Double,
+	       newWidth: Double,
+	       obj: BoardObjectWrapper) -> BoardObjectWrapper {
+	let widthRatio = newWidth / oldWidth
+	let heightRatio = newHeight / oldHeight
+	let multiplier: Double = min(heightRatio, widthRatio)
+	if let peg = obj.object as? Peg {
+	    peg.radius *= multiplier
+	    peg.position.x *= widthRatio
+	    peg.position.y *= heightRatio
+	} else if let block = obj.object as? Block {
+	    block.width *= multiplier
+	    block.height *= multiplier
+	    block.position.x *= widthRatio
+	    block.position.y *= heightRatio
+	}
+	return obj
+}
+```
+
+This ensures that the levels are loaded with the same layout for any device.
 
 ## <a name='LevelDesigner'></a>Level Designer
 On top of the Peggle Game, there is also the Level designer.
