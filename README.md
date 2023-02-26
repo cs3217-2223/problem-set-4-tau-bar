@@ -91,9 +91,99 @@ At the top left of the game screen, you can see the game state, e.g. number of b
 
 
 ## Tests
-If you decide to write how you are going to do your tests instead of writing
-actual tests, please write in this section. If you decide to write all of your
-tests in code, please delete this section.
+* Test Palette
+  * Board object (pegs, blocks)/Delete buttons
+    * When tapped:
+      * set `selectedButton` to `bluePegButton`
+      * opacity of blue peg button should be 1
+      * opacity of other buttons should be 0.2
+      * if there was a board object that was selected, it would unselect the board object
+  * Board View
+    * When board object selected and tapped in a valid location where no overlap and within board bounds:
+      * should add a board object into the current `board` with the same asset as the selected button
+      * should have a board object appear with its centre at the tapped position
+    * When board object selected and tapped in a invalid location where object would be partially/fully out of bounds:
+      * `board` should not change (no object added)
+      * the board view should not change (no object should be added)
+    * When delete button selected and tapped on a position with no objects on it:
+      * the board view should not change
+  * `BoardObjectView`
+    * When delete object button selected and tapped:
+      * should remove the object from `board`
+      * should remove the `BoardObjectView` from board view
+    * When long pressed (any button selected):
+      * should remove the object from `board`
+      * should remove the `BoardObjectView` from board view
+    * When a board object button selected and tapped:
+      * should set `selectedObject` to the object represented by the view
+      * the board object selected should have alpha of 1.0
+      * the other objects on the board should have alpha of 0.5
+      * the resize and rotate sliders should appear
+    * When a board object is selected and tap a tool that is not resize/rotate
+      * set `selectedObject` to nil
+      * all board objects should have alpha of 1.0
+      * resize and rotate sliders should disappear
+    * When panned to a valid location (no overlap and within bounds):
+      * `BoardObject` object which represented by view being panned should update its position in `board`
+      * BoardObject view should move on the screen to the new position
+    * When panned to an invalid location (overlap or out of bounds):
+      * `BoardObject` object which represented by view being panned should not update its position in `board`
+      * peg view should not move on the screen to the new position
+  * Load Button
+    * When tapped:
+      * should open Level Select View
+      * should show any saved levels in Table View
+  * Save Button
+    * When tapped and level name is empty
+      * should show an alert to enter level name before saving
+      * `board` should remain the same
+      * board view should not have changed before and after the save
+    * When tapped and level name is the name of an existing level
+      * should show an alert that level was not saved
+      * `board` should remain the same
+      * board view should not have changed before and after the save
+    * When tapped and level name is a unique name (no other levels currently have that name)
+      * should show an alert that level has been saved
+      * opening level select view should show one more level than the number of levels before the save
+      * `board` should remain the same
+      * board view should not have changed before and after the save
+  * Reset button
+    * When tapped
+      * should not have any object views on board view after
+      * `board` should not have any objects (`board.objects.count == 0`)
+  * Start button
+    * When tapped
+      * should open the game view controller
+  * Level Name Text Field
+    * When tapped and level name is not empty
+      * should open a keyboard at the bottom of the screen
+      * should show a clear ('x') button at the rightmost side of the text field
+      * should not change the text that was inside the text field
+    * When tapped and level name is empty
+      * should open a keyboard at the bottom of the screen
+    * When type on keyboard
+      * should fill text field with text being typed
+      * e.g., type 'abcd' on empty text field should show 'abcd' on text field
+      * e.g. type 'abcd' on text field which has 'xz' should show 'xzabcd' on text field
+  * Level Select View
+    * When tap on a saved level
+      * should load `board` with `BoardObject` objects that are at the correct position, rotation and correct colour
+      * should load the board view with object views that are at correct position, rotation and correct colour
+      * text field should contain the name of the level loaded
+      * the balls should be updated to the number of balls for that board
+      * the game mode control should be updated to the game mode for that board
+    * When tap on new level
+      * should hide level select view and show level builder view
+      * should show an empty board view (no peg views on board)
+      * `board` should be empty (`board.pegs.count == 0`)
+      * text field should be empty
+      * balls should be 1
+      * game mode should be classic
+    * When tap on delete all levels
+      * should clear all saved levels from table view
+      * should delete all saved levels in Core Data that are stored in `BoardData` entity
+    * When tap outside the level select view
+      * should hide the level select view and show the level builder view
 
 ## Written Answers
 
