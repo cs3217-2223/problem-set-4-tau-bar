@@ -36,7 +36,8 @@ class PhysicsUtil {
     /// // polygonB will move in direction of normal after the collision
     /// ```
     static func findCollisionVector(polygonA: MSKPolygonPhysicsBody,
-                             polygonB: MSKPolygonPhysicsBody) -> (minDepth: Double, normal: SIMD2<Double>)? {
+                                    polygonB: MSKPolygonPhysicsBody) -> (minDepth: Double,
+                                                                         normal: SIMD2<Double>)? {
         let verticesA = getAbsoluteVertices(of: polygonA)
         let verticesB = getAbsoluteVertices(of: polygonB)
         var minDepth = maxDoubleValue
@@ -106,8 +107,13 @@ class PhysicsUtil {
     /// // circle will move in direction of -1 * normal after the collision
     /// ```
     static func findCollisionVector(polygon: MSKPolygonPhysicsBody,
-                             circle: MSKCirclePhysicsBody) -> (minDepth: Double, normal: SIMD2<Double>)? {
-        let vertices = getAbsoluteVertices(of: polygon)
+                                    circle: MSKCirclePhysicsBody) -> (minDepth: Double,                                     normal: SIMD2<Double>)? {
+        
+        let angleDegrees = polygon.angle * 180 / .pi
+        let rotatedRelativeVertices = rotateVertices(vertices: polygon.vertices,
+                                                     by: angleDegrees)
+        let vertices = getAbsoluteVertices(vertices: rotatedRelativeVertices,
+                                           center: polygon.position)
         var minDepth = maxDoubleValue
         var normal = SIMD2<Double>.zero
 
@@ -251,6 +257,13 @@ class PhysicsUtil {
             vertex + polygon.position
         })
     }
+    
+    /// Returns the absolute vertices.
+    static func getAbsoluteVertices(vertices: [SIMD2<Double>], center: SIMD2<Double>) -> [SIMD2<Double>] {
+        vertices.map({ vertex in
+            vertex + center
+        })
+    }
 
     /// Returns the angle between `vectorA` and `vectorB`
     static func findAngleBetween(vectorA: SIMD2<Double>, vectorB: SIMD2<Double>) -> Double {
@@ -280,5 +293,17 @@ class PhysicsUtil {
         let multiplier = pow(10.0, Double(4))
         return round(positionA.x * multiplier) == round(positionB.x * multiplier) &&
         round(positionA.y * multiplier) == round(positionB.y * multiplier)
+    }
+    
+    static func rotateVertices(vertices: [SIMD2<Double>], by angle: Double) -> [SIMD2<Double>] {
+        var rotatedVertices: [SIMD2<Double>] = []
+        for vertex in vertices {
+            let newX = vertex.x * cos(angle) - vertex.y * sin(angle)
+            let newY = vertex.x * sin(angle) + vertex.y * cos(angle)
+            let newVertex = SIMD2<Double>(newX, newY)
+            rotatedVertices.append(newVertex)
+        }
+        
+        return rotatedVertices
     }
 }
