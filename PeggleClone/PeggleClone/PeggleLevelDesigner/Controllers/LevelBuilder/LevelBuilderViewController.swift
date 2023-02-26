@@ -160,11 +160,8 @@ class LevelBuilderViewController: UIViewController {
     }
 
     @IBAction func didSelectGameMode(_ sender: Any) {
-        print("didchange gmaemode")
         let mode = LevelBuilderConstants.gameModes[gameModeSelect.selectedSegmentIndex]
-        print(mode)
         board?.gameMode = mode
-        print(board?.gameMode)
     }
     // MARK: Functions for interacting with model
     func addObject(addedObjectWrapper: BoardObjectWrapper) {

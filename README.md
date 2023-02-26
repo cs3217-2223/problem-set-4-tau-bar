@@ -30,12 +30,12 @@ Alternatively, you can rewrite this section in your own style. You may also
 write this section in a new file entirely, if you wish.
 
 ### Game
-To start playing, press the Start button on the Main Menu. You should see 3 pre-loaded levels, named "LEVEL ONE", "LEVEL TWO" and "LEVEL THREE". Press on one of the levels to start playing.
+To start playing, press the Start button on the Main Menu. If it is your first time loading, you should see 3 pre-loaded levels, named "LEVEL ONE", "LEVEL TWO" and "LEVEL THREE". Press on one of the levels to start playing.
 
 You will see a screen asking you to choose your master, either Rick (left) or Morty (right). Rick should be opaque and Morty should be translucent. Tap to select either one and press "FIGHT!" to start.
 
 ### Fighters
-If you choose Rick, green pegs are spooky. By the power of Rick's portal guns, when a ball collides with a green peg, it turns yellow to indicate that it is a spooky ball. When it falls out of bounds, it reappears at the top of the board at the same x-coordinate.
+If you choose Rick, green pegs are spooky. By the power of Rick's portal gun, when a ball collides with a green peg, it turns yellow to indicate that it is a spooky ball. When it falls out of bounds, it reappears at the top of the board at the same x-coordinate.
 
 If you choose Morty, green pegs are Ka-Boom i.e., will explode on impact with a ball. It will destroy nearby pegs and throw pegs within its blast radius away. If another green peg is within blast range, it will get triggered (light up) and explode after a delay.
 
@@ -45,19 +45,19 @@ The different pegs have different events. Blue and orange pegs are normal pegs, 
 Note that if a ball is stuck on a peg, all the pegs which were hit previously (light up) will get rmeoved from the screen. When the ball falls out of bounds, all the light up pegs (which weren't already removed) get removed.
 
 ### Blocks
-Blocks are just obstacles. They are square in shape and don't have any effects when the ball collides with it. Note that they can also get destroyed by green Kaboom pegs or get moved away.
+Blocks are just obstacles. They are square in shape and don't have any effects when the ball collides with it. Note that they can also get destroyed by green Kaboom pegs or get moved away. Note that if a level is designed poorly, the ball can get stuck and the blocks won't get removed, because only pegs can get removed when ball is stuck.
 
 ### Cannon Direction
-The player aims the cannon by tapping on the board where they want the cannon to shoot. The cannon will shoot in the direction of the tap such that the ball will head towards the tapped location. If there are no obstacles in the way (pegs/blocks), then the ball will reach the tapped location.
+The player aims the cannon by tapping on the board where they want the cannon to shoot. The cannon will rotate and shoot in the direction of the tap such that the ball will head towards the tapped location. If there are no obstacles in the way (pegs/blocks), then the ball will reach the tapped location.
 
 ### Win and Lose Conditions
 There are 3 different game modes, Classic, Score, and Dodge mode.
 
 In Classic, the player is has to eliminate all the orange pegs with the given number of balls. Each level has a number of balls provided to the player. If the player successfully eliminates all the orange pegs before using up all the available balls, they win. Note that the player can obtain more balls if balls enter the bucket.
 
-In Score, the player has to obtain a certain score in a certain amount of time without running out of balls. Similar to Classic, each level has a number of balls provided to the player. If the player successfully hits the score requirement, then they win. If the player runs out of time, or runs out of balls before hitting the target score, then they lose. Note that the player can obtain an additional ball if a ball lands in the bucket.
+In Score, the player has to obtain a certain score in a certain amount of time without running out of balls. Similar to Classic, each level has a number of balls provided to the player. If the player successfully hits the score requirement, then they win. If the player runs out of time, or runs out of balls before hitting the target score, then they lose. Note that the player can obtain an additional ball if a ball lands in the bucket. The target score (as of now) is defined to be floor(90% of the total possible score from the pegs only).
 
-In Dodge, the player has is given a certain number chances to shoot balls without hitting any pegs. The game ends when the player either runs out of chances or runs out of balls. If the player runs out of chances, they lose. If the player manages to clear all the balls with chances remaining, then they win. Note that the player can get an additional +1 chance if a ball lands in the bucket.
+In Dodge, the player has is given a certain number chances to shoot balls without hitting any pegs. The game ends when the player either runs out of chances or runs out of balls. If the player runs out of chances, they lose. If the player manages to clear all the balls with chances remaining, then they win. Note that the player can get an additional +1 chance if a ball lands in the bucket. The number of chances if the number of balls is 1 is 1. If number of balls > 1, then chances = floor(90% of number of balls available).
 
 ## Level Designer Additional Features
 The following features require a player to select a board object: resizing, rotating.

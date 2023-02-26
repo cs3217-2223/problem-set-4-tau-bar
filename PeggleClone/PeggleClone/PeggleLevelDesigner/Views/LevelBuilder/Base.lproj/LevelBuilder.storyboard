@@ -169,7 +169,6 @@
                                             <segment title="Beat Score!"/>
                                             <segment title="Dodge"/>
                                         </segments>
-                                        <color key="selectedSegmentTintColor" red="0.4054582417" green="0.60026109220000001" blue="0.63047081230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="didSelectGameMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="FtG-o1-Y0L"/>
                                         </connections>
@@ -219,6 +218,20 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="space-background" translatesAutoresizingMaskIntoConstraints="NO" id="BHJ-dG-G4z">
                                         <rect key="frame" x="0.0" y="0.0" width="724" height="847"/>
                                     </imageView>
+                                    <segmentedControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="p02-ZH-CNI">
+                                        <rect key="frame" x="10" y="10" width="272" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <segments>
+                                            <segment title="Classic"/>
+                                            <segment title="Beat Score!"/>
+                                            <segment title="Dodge"/>
+                                        </segments>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="selectedSegmentTintColor" red="0.4054582417" green="0.60026109220000001" blue="0.63047081230000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <action selector="didChangeGameMode:" destination="BYZ-38-t0r" eventType="valueChanged" id="ASn-ct-8re"/>
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" name="AccentColor"/>
                                 <accessibility key="accessibilityConfiguration" label="Board View"/>
