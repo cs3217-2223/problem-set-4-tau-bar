@@ -644,132 +644,107 @@ The `LevelSelectViewController` serves as the delegate for the `UITableView` whi
 ##### Variables and Properties
 The controller only stores two variables which are required for the control flow of the level select view.
 
-<img width="372" alt="Screenshot 2023-01-27 at 6 25 30 PM" src="https://user-images.githubusercontent.com/61085398/215064132-458a2473-14e0-4111-b3bf-b9a4e5a14729.png">
+```swift
+var boards: [Board] = []
+var delegate: LevelSelectViewControllerDelegate?
+var dataManager: DataManager?
+```
 
 `boards`, which represent the all the boards that are stored and displayed in the `UITableView`.
 
 `delegate`, which is of type `LevelSelectViewControllerDelegate` and is used by the controller for user interactions such as tapping on a saved level, or creating a new level.
 
+`dataManager`, which is used to access Core Data to retrieve stored levels.
+
 ##### UI Actions
 The `LevelSelectViewController` has `@IBAction` handler functions which handle taps on the action buttons (delete all levels, create new level). The controller also has UI actions on the table such as swiping to delete a level as it conforms to `UITableViewDelegate`, and has the following function: 
 
-![Screenshot 2023-01-28 at 1 30 38 PM](https://user-images.githubusercontent.com/61085398/215247911-588561c8-0920-4b18-bdac-c842f0432299.png)
+```swift
+    /// Deletes a saved board when user swipes left on a cell.
+    func tableView(_ tableView: UITableView,
+                   trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let delete = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] _, _, _ in
+            do {
+                boards.remove(at: indexPath.row)
+                try dataManager?.delete(board: boards[indexPath.row])
+                try loadBoardDatas()
+            } catch {
+                print(error)
+                print("Unable to fetch board data from Core Data.")
+            }
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
 
-The delete all levels and delete a single level cause data stored in Core Data to be modified. Afterwards, `reloadTableData()` is called to refresh the table with the latest saved data.
+        return UISwipeActionsConfiguration(actions: [delete])
+    }
+```
+
+The delete all levels and delete a single level cause data stored in Core Data to be modified. Afterwards, `loadBoardDatas()` is called to refresh the table with the latest saved data.
 
 ### <a name='StorageComponent'></a>Storage Component
-The application data is saved to Core Data. In the `BoardModelData` file, there is a single entity being saved, `BoardData`, which has a single attribute, `boards`, which is of type `[Board]` (array of `Board`). However, in the Model Data file, it is shown as type `Transformable` (since `[Board]` is not a standard data type supported by Core Data):
+The application data is saved to Core Data. In the `PeggleCloneData` file:
 
-![Screenshot 2023-01-28 at 1 36 30 PM](https://user-images.githubusercontent.com/61085398/215248111-8d7798f3-e3cc-4ff7-a5b1-9e2de3539f28.png)
+![image](https://user-images.githubusercontent.com/61085398/221412590-4beffd22-8dc8-4080-ac3d-376c3c01d504.png)
 
-#### <a name='BoardsTransformer'></a>`BoardsTransformer`
-Since `[Board]` is not a standard data type, it must be transformed using a custom class transformer. `BoardsTransformer` is used by the Data Model to transform the data to be compatible with Core Data:
+To allow the objects to be converted to and from Core Data objects, the objects conform to `StoredData` and `FetchedData`. Classes cannot conform to `FetchedData` as it causes a required init error, so the classes have a `createX()` function. For example:
 
-![Screenshot 2023-01-28 at 1 41 20 PM](https://user-images.githubusercontent.com/61085398/215248374-1d57d455-0b61-4056-abe1-743dd5c66712.png)
+```swift
+static func createPeg(with data: PegData) throws -> Peg {
+	guard let position = data.positionData,
+	      let color = data.colorData else {
+	    throw StorageError.invalidPegData
+	}
+
+	let pegPosition = try CGPoint(data: position)
+	let pegColor = try PegColor(data: color)
+	guard let asset = Self.pegAssets[pegColor] else {
+	    throw StorageError.invalidPegColor
+	}
+
+	let peg = Peg(color: pegColor,
+			   position: pegPosition,
+			   rotation: data.rotation,
+			   radius: data.radius,
+			   asset: asset)
+
+	return peg
+}
+```
 
 #### <a name='DataManager'></a>`DataManager`
-The main component interacting with Core Data is the `DataManager`. It uses a singleton pattern, which is the `sharedInstance` in `DataManager` class. To use the functions in `DataManager` in other classes, the `sharedInstance` is used (e.g. `DataManager.sharedInstance.deleteAllBoards()`).
+The main component interacting with Core Data is the `DataManager`. View Controllers which wish to use `DataManager` must initialize it. Alternatively, it can also be passed between view controllers via segue.
 
 ## <a name='Implementation'></a>Implementation
-### <a name='SelectPegButton'></a>Select Peg Button
-When user taps on any of the select peg buttons (orange, blue, delete), the `pegButtonTapped()` in `LevelBuilderViewController` is called. The `selectedButton` attribute is then changed to the tapped button through `selectButton()`.
-
-When the `selectedButton` changes, the `didSet` observers run the necessary logic to keep the view updated (reducing opacity of non-selected buttons and setting the selected button opaque).
+### <a name='SelectPegButton'></a>Select Tool
+The logic for tool selection is contained within `ToolsViewController`. It calls `didTapToolButton()` which sets the `selectedButton`.
 
 ### <a name='AddPeg'></a>Add Peg
-
-![image](https://user-images.githubusercontent.com/61085398/215251215-899c6bcb-6b7a-4d5d-84d9-012054bb5c13.png)
-
-The user taps on the screen.
-
-Board View propagates the action by calling `didTapView()` in `LevelBuilderViewController`.
-
-`LevelBuilderViewController` checks whether `currentSelectedColour` is `nil`. If it is `nil`, nothing happens. If it is not `nil`, the `addPeg()` function is called. The `addPeg()` function calls `board?.addPeg()`.
-
-In `Board`, checks are done to ensure that the newly added peg does not overlap any other exising pegs on the board or out of bounds. If the peg overlaps or is out of bounds, it is not added to the model. If it is a valid position, the peg is added to the model. The model then sends a `.pegAdded` notification to its listeners.
-
-`LevelBuilderViewController` is a listener of `.pegAdded`. It receives the notification and calls `addPegToBoardView()` to add a new `BoardPegView` to the Board View.
-
-The user then sees the new peg on the screen.
+![image](https://user-images.githubusercontent.com/61085398/221412951-2132ac04-faee-409e-9af5-479b78dbb975.png)
 
 ### <a name='DeletePeg'></a>Delete Peg
 There are 2 methods to delete a peg from the screen, either selecting the delete peg button and tapping the board peg view or long pressing on the board peg view.
 
 #### <a name='TappingBoardPegView'></a>Tapping `BoardPegView`
-
-![image](https://user-images.githubusercontent.com/61085398/215251711-67e0389e-5d08-4533-9a29-76e4d8b376f1.png)
-
-User taps on the `BoardPegView`.
-
-`BoardPegView` calls `delegate?.userDidTap()` (`LevelBuilderViewController` is its delegate).
-
-`LevelBuilderViewController` checks whether `selectedButton` is `deletePegButton` by calling `isDeletePegButton(selectedButton)`. If the current selected button is not the delete button, nothing happens. Else, the `deletePeg()` function is called. The `deletePeg()` function calls `board?.removePeg()`.
-
-In `Board`, checks are done to ensure that the deleted peg exists. If the peg doesn't exist, nothing happens.. If it does exist, the peg is deleted from the model. The model then sends a `.pegDeleted` notification to its listeners.
-
-`LevelBuilderViewController` is a listener of `.pegDeleted`. It receives the notification and calls `deletePegFromBoardView()` to remove the `BoardPegView` to the Board View.
-
-The user then sees the peg removed from the board.
+The process is almost entirely the same as Add Peg, except `LevelBuilderViewController` calls `didTapBoardObject()` instead.
 
 #### <a name='LongpressingBoardPegView'></a>Long pressing `BoardPegView`
-The process for deletion is similar to tapping.
+The process for deletion is similar to tapping, but doesn't involve the `ToolViewController`.
 
-![image](https://user-images.githubusercontent.com/61085398/215252630-0a973ea6-3a86-478b-a433-4bfe5cddc9d8.png)
+![image](https://user-images.githubusercontent.com/61085398/221413178-d03bb485-f305-400a-92c0-0dcae9805df3.png)
 
-`BoardPegView` calls `delegate?.userDidLongPress()` (`LevelBuilderViewController` is its delegate).
-
-Here, `LevelBuilderViewController` does no checks and calls `deletePeg()`. 
-
-After this, the process is the same as outlined in the previous section (tapping `BoardPegView`).
 
 ### <a name='MovePeg'></a>Move Peg
 The process for moving is quite similar to deleting a peg.
 
-![image](https://user-images.githubusercontent.com/61085398/215252934-1857e95c-bbda-4127-87ab-9cda91a1f368.png)
-
-`BoardPegView` calls `delegate?.userDidPan()` (`LevelBuilderViewController` is its delegate).
-
-`LevelBuilderViewController` calls `movePeg()`. The `movePeg()` function calls `board?.movePeg()`.
-
-In `Board`, checks are done to ensure that the new position of the peg does not cause it to overlap with another peg or make it go out of bounds. If the new position causes the peg to overlap another or be out of bounds, the peg is not moved. Else, model sends a `.pegMoved` notification to its listeners.
-
-`LevelBuilderViewController` is a listener of `.pegMoved`. It receives the notification and calls `movePegOnBoardView()` which sets the new position to the `BoardPegView` that was panned.
-
-The user then sees the peg move on the board.
+![image](https://user-images.githubusercontent.com/61085398/221413300-f32ab018-b3b4-4e80-9b56-ac0cf73df203.png)
 
 ### <a name='ResetBoard'></a>Reset Board
 
-![image](https://user-images.githubusercontent.com/61085398/215254437-c42e9a9e-ab16-4ac3-9fd2-06bd25599af6.png)
-
-The user taps the reset button.
-
-Board View propagates the action by calling `resetButtonTapped()` in `LevelBuilderViewController`.
-
-`LevelBuilderViewController` calls `resetBoard()`. The `resetBoard()` function calls `board?.removeAllPegs()`
-
-In `Board`, the `pegs` attribute is set to a new `Set()`. `Board` sends its listeners the `.boardCleared` notification.
-
-`LevelBuilderViewController` is a listener of `.boardCleared`. It receives the notification and calls `clearBoardView()` to remove all the existing `BoardPegView` views on the Board View.
-
-The user then sees that the board has been cleared.
+![image](https://user-images.githubusercontent.com/61085398/221413364-e950eeda-b546-473f-aec5-ccba41bd72f3.png)
 
 ### <a name='SaveBoard'></a>Save Board
 
-![image](https://user-images.githubusercontent.com/61085398/215256762-141cce50-e359-438d-bcac-7bf2c723234a.png)
-
-User taps the save button.
-
-Board View propagates the action by calling `saveButtonTapped()` in `LevelBuilderViewController`.
-
-`LevelBuilderViewController` checks that the text field is not empty. 
-
-If it is empty, `LevelBuilderViewController` presents an alert to the user that the level name must not be empty.
-
-Else, `LevelBuilderViewController` calls `DataManager.sharedInstance.saveBoard()`. 
-
-`DataManager` tries to save the board. If there is already a level saved with the same name, `DataManager`overwrites the level. In either case (success or error), `DataManeger` sends a `.dataSaved` or `dataSaveError` Notification to the `LevelBuilderViewController`.
-
-`LevelBuilderViewController` is a listener of `.dataSaved` and `dataSaveError`. Upon receiving the Notification, `LevelBuilderViewController` either calls `notifyUserSaved()` or `notifyUserSaveError()`, which presents an alert to the user informing of the success or error.
+![image](https://user-images.githubusercontent.com/61085398/221413446-25fceeb2-d9d8-429d-b19c-00329f6700c9.png)
 
 ### <a name='Viewsavedlevels'></a>View saved levels
 
@@ -780,11 +755,13 @@ First, the user taps the load button. `loadButtonTapped()` method of `LevelBuild
 The user sees the saved levels.
 
 ### <a name='Loadsavedlevel'></a>Load saved level
-![image](https://user-images.githubusercontent.com/61085398/215257655-e792033e-e611-4fcf-80dc-dd9314e0de59.png)
+
+![image](https://user-images.githubusercontent.com/61085398/221413560-0e63629a-142a-4e4b-b455-0fd511bd40fc.png)
+
 
 User taps on one of saved levels in the table. This calls `tableView()` in `LevelSelectViewController` which runs when user taps on a cell in the table view.
 
-`LevelSelectViewController` calls `delegate?.loadBoard()`. In the application, `LevelBuilderViewController` is the delegate for `LevelSelectViewController`. `LevelBuilderViewController` then loads the selected board into its `board` variable. The `didSet` obsever runs, calling `removeAllBoardPegsFromBoardView()`, `loadPegsFromModelOnBoard()` and `setTextFieldText()`.
+`LevelSelectViewController` calls `delegate?.loadBoard()`. In the application, `LevelBuilderViewController` is the delegate for `LevelSelectViewController`. `LevelBuilderViewController` then loads the selected board into its `board` variable. The `didSet` obsever runs, calling `removeAllBoardPegsFromBoardView()`, `loadPegsFromModelOnBoard()` and `setInputValues()`.
 
 `LevelSelectViewController` then dismisses the level select view.
 
