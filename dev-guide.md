@@ -14,12 +14,18 @@
 	* [MSKView](#MSKView)
 * [BoardScene](#BoardScene)
 * [Nodes](#Nodes)
-	* [PegNode, BluePegNode, OrangePegNode](#PegNodeBluePegNodeOrangePegNode)
+	* [PegNode](#PegNode)
+	* [BluePegNode, OrangePegNode](#BluePegNodeOrangePegNode)
+	* [Special Peg Nodes](#SpecialPegNodes)
 	* [BallNode](#BallNode)
 	* [CannonNode](#CannonNode)
+	* [BucketNode](#BucketNode)
 * [Physics](#Physics)
 	* [BallPhysicsBody](#BallPhysicsBody)
 	* [PegPhysicsBody](#PegPhysicsBody)
+	* [BucketPhysicsBody & BucketBasePhysicsBody](#BucketPhysicsBodyBucketBasePhysicsBody)
+* [Game State](#GameState)
+* [GameFighter](#GameFighter)
 * [Level Designer](#LevelDesigner)
 	* [Architecture](#Architecture)
 	* [Model Component](#ModelComponent)
@@ -267,7 +273,7 @@ There are a few important functions, `fireCannon()`, `handleResetBall()` and `re
 ## <a name='Nodes'></a>Nodes
 There are a number of different node classes, which represent the pegs, the ball and the cannon.
 
-### <a name='PegNodeBluePegNodeOrangePegNode'></a>PegNode
+### <a name='PegNode'></a>PegNode
 Represents the pegs in the scene. It contains a `isHit` property to indicate whether the ball has hit the peg. It also stores a reference to a `PegNodeDelegate`.
 
 It conforms to the `PegPhysicsBodyDelegate` protocol, so it has `didCollideWithBall()` function.
@@ -279,7 +285,7 @@ func didCollideWithBall(ballBody: BallPhysicsBody) {
 }
 ```
 
-### BluePegNode, OrangePegNode
+### <a name='BluePegNodeOrangePegNode'></a>BluePegNode, OrangePegNode
 There are 2 basic subclasses, `BluePegNode` and `OrangePegNode`. These classes override the `didCollideWithBall()` function to implement custom logic upon colliding with the ball (changing the image to be the glowing variant). For example:
 
 ```swift
@@ -289,7 +295,7 @@ override func didCollideWithBall(ballBody: BallPhysicsBody) {
 }
  ```
  
-### Special Peg Nodes
+### <a name='SpecialPegNodes'></a>Special Peg Nodes
 In addition, there are 3 special peg nodes, `RedPegNode`, `GreenPegNode`, `PurplePegNode`. These pegs represent the Confusement, Power and Zombie pegs respectively.
 
 The Red Peg calls the custom Confusement peg logic as such:
@@ -351,7 +357,7 @@ The `image` is automatically changes using the `didSet` observer.
 ### <a name='CannonNode'></a>CannonNode
  It represents the cannon. The notable thing is that its physics body has a `categoryBitMask` of 0 (i.e. 0x00000000) so it does not collide with anything.
 
-### BucketNode
+### <a name='BucketNode'></a>BucketNode
 This represents the bucket at the bottom of the screen. It conforms to `BucketBasePhysicsBodyDelegate`, which has the function `didBallCollideWithBucketBase()` which is called by `BucketBasePhysicsBody` when it collides with a ball (i.e. ball enters the bucket). It also stores a reference to `BucketNodeDelegate`, which has the function `didEnterBucket(ball: BallPhysicsBody)`.
 
 ## <a name='Physics'></a>Physics
@@ -389,7 +395,7 @@ func collide(with body: BallPhysicsBody) -> Bool {
 }
 ```
 
-### BucketPhysicsBody & BucketBasePhysicsBody
+### <a name='BucketPhysicsBodyBucketBasePhysicsBody'></a>BucketPhysicsBody & BucketBasePhysicsBody
 The BucketPhysicsBody represents the physics body of the bucket. It stores references to 3 physics bodies, to represent the left, right and bottom of the bucket (since the bucket is not a convex polygonal shape). It has the `move()` function (to move the entire bucket):
 ```swift
 /// Moves the entire bucket, including base and sides.
@@ -426,7 +432,7 @@ func collide(with body: BallPhysicsBody) -> Bool {
 }
 ```
 
-## Game State
+## <a name='GameState'></a>Game State
 Game State represents the state of the game mode. There are 3 game modes, Classic, Score and Dodge. As such, there are 3 classes, `ClassicState`, `DodgeState`, `ScoreState` which conform to `GameState` protocol.
 
 The important functions are `isGameWon()`, `isGameLost()`, `didCollideWithBall()` and `didBallEnterBucket()`. These are customizable by the subclass conforming to `GameState`, since they are varying for the different game modes.
@@ -440,7 +446,7 @@ func isGameWon() -> Bool {
 
 It is easy to imagine that there are different win-conditions in different game modes, and they are defined in this function. Similarly for the rest of the functions, the subclass can customize the logic that should run when any of the events occur (e.g. ball entering bucket, ball hitting peg node, etc.).
 
-## GameFighter
+## <a name='GameFighter'></a>GameFighter
 GameFighter represents the 'Master' that is chosen at the start of the game. There are 2 fighters currently, `RickFighter` and `MortyFighter` which conform to `GameFighter` protocol. The important function is `performPower()`, where the subclass can decide what logic to run to represent the special power of the fighter.
 
 For example, in `MortyFighter` (whose special power is to make green pegs explode when colliding with a ball):
