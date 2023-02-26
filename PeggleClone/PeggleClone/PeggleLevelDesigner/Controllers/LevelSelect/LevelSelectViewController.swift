@@ -74,8 +74,8 @@ class LevelSelectViewController: UIViewController, UITableViewDataSource, UITabl
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Delete") { [unowned self] _, _, _ in
             do {
-                boards.remove(at: indexPath.row)
                 try dataManager?.delete(board: boards[indexPath.row])
+                boards.remove(at: indexPath.row)
                 try loadBoardDatas()
             } catch {
                 print(error)

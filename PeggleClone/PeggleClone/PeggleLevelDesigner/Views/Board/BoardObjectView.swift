@@ -1,7 +1,6 @@
 import UIKit
 
 @IBDesignable class BoardObjectView: UIImageView {
-    var id: ObjectIdentifier?
     weak var delegate: BoardObjectViewDelegate?
 
     private func setup() {
@@ -19,7 +18,6 @@ import UIKit
 
     convenience init(image: UIImage?, id: ObjectIdentifier) {
         self.init(image: image)
-        self.id = id
         setup()
     }
 
