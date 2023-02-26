@@ -13,8 +13,8 @@ class LevelBuilderViewController: UIViewController {
     @IBOutlet var ballCountLabel: UILabel!
     @IBOutlet var gameModeSelect: UISegmentedControl!
 
-    @IBOutlet weak var rotationLabel: UILabel!
-    @IBOutlet weak var rotationSlider: UISlider!
+    @IBOutlet var rotationLabel: UILabel!
+    @IBOutlet var rotationSlider: UISlider!
     // Delegate references
     weak var actionsDelegate: LevelBuilderActionsDelegate?
     var selectedObject: BoardObjectWrapper? {
@@ -26,7 +26,7 @@ class LevelBuilderViewController: UIViewController {
                 rotationLabel.alpha = 1
                 rotationSlider.alpha = 1
             }
-            
+
             guard let rotationValue = selectedObject?.object.rotation else { return }
             rotationSlider.value = Float(rotationValue)
         }
@@ -87,7 +87,7 @@ class LevelBuilderViewController: UIViewController {
             rotateSelected(to: Double(rotationSlider.value))
         }
     }
-    
+
     func rotateSelected(to rotation: Double) {
         guard let selectedObject = selectedObject else { return }
         guard let rotatedView = objectsToViews[selectedObject] else { return }
@@ -228,16 +228,16 @@ class LevelBuilderViewController: UIViewController {
         guard let frame = frame else { return }
         // resizing not commutative with previous rotations, so reset rotation temporarily
         resizedView?.layer.transform = CATransform3DMakeRotation(0, 0, 0, 1)
-        
+
         resizedView?.frame = frame
         resizedView?.center.x = resizedObjectWrapper.object.position.x
         resizedView?.center.y = resizedObjectWrapper.object.position.y
-        
+
         // reset rotation afterwards
         let rotationValue = resizedObjectWrapper.object.rotation
         resizedView?.layer.transform = CATransform3DMakeRotation(rotationValue, 0, 0, 1)
     }
-    
+
     /// Clears board view when receive .boardCleared notification from board model.
     @objc func clearBoardView(_ notification: Notification) {
         removeAllBoardObjectsFromView()

@@ -12,7 +12,7 @@ class ScoreState: GameState {
                                         10
                                         +1 ball
                                         """
-    
+
     var delegate: GameStateDelegate?
 
     var firstLabel: String? {

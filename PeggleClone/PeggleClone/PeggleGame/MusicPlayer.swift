@@ -73,7 +73,7 @@ class MusicPlayer {
     func playDeathSound() {
         deathAudioPlayer?.play()
     }
-    
+
     func playEnterBucket() {
         enterBucketAudioPlayer?.play()
     }

@@ -33,7 +33,7 @@ extension BoardView: BoardSceneDelegate {
     func didFireCannon() {
         // TOOD: add something here
     }
-    
+
     func didEnterBucket(gameState: GameState, at location: CGPoint) {
         let newPos = CGPoint(x: location.x, y: location.y - 100)
         addDescriptorText(string: gameState.enterBucketDescriptor, at: newPos)

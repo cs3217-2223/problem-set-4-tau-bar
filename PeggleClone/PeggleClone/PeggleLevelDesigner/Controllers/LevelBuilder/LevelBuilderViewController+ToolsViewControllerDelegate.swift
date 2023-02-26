@@ -8,7 +8,7 @@
 import UIKit
 
 extension LevelBuilderViewController: ToolsViewControllerDelegate {
-    
+
     func didAddObject(_ object: BoardObjectWrapper) {
         addObject(addedObjectWrapper: object)
     }

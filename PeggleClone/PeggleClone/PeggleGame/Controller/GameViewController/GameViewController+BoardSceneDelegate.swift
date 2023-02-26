@@ -11,7 +11,7 @@ extension GameViewController: BoardSceneDelegate {
     func didEnterBucket(gameState: GameState, at location: CGPoint) {
         musicPlayer?.playEnterBucket()
     }
-    
+
     func didHitBallFirstTime(pegNode: PegNode) {
         // insert any code to run when ball hits peg for first time
     }

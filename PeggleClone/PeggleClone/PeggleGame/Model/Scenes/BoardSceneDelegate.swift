@@ -17,6 +17,6 @@ protocol BoardSceneDelegate: AnyObject {
     func didAddExplosion(at location: CGPoint, duration: TimeInterval, radius: Double)
 
     func didFireCannon()
-    
+
     func didEnterBucket(gameState: GameState, at location: CGPoint)
 }

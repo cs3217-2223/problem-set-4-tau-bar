@@ -107,9 +107,10 @@ class PhysicsUtil {
     /// // circle will move in direction of -1 * normal after the collision
     /// ```
     static func findCollisionVector(polygon: MSKPolygonPhysicsBody,
-                                    circle: MSKCirclePhysicsBody) -> (minDepth: Double,                                     normal: SIMD2<Double>)? {
-        
-        let angleDegrees = polygon.angle * 180 / .pi
+                                    circle: MSKCirclePhysicsBody) -> (
+                                        minDepth: Double,
+                                        normal: SIMD2<Double>)? {
+        let angleDegrees = polygon.angle
         let rotatedRelativeVertices = rotateVertices(vertices: polygon.vertices,
                                                      by: angleDegrees)
         let vertices = getAbsoluteVertices(vertices: rotatedRelativeVertices,
@@ -257,7 +258,7 @@ class PhysicsUtil {
             vertex + polygon.position
         })
     }
-    
+
     /// Returns the absolute vertices.
     static func getAbsoluteVertices(vertices: [SIMD2<Double>], center: SIMD2<Double>) -> [SIMD2<Double>] {
         vertices.map({ vertex in
@@ -294,7 +295,7 @@ class PhysicsUtil {
         return round(positionA.x * multiplier) == round(positionB.x * multiplier) &&
         round(positionA.y * multiplier) == round(positionB.y * multiplier)
     }
-    
+
     static func rotateVertices(vertices: [SIMD2<Double>], by angle: Double) -> [SIMD2<Double>] {
         var rotatedVertices: [SIMD2<Double>] = []
         for vertex in vertices {
@@ -303,7 +304,7 @@ class PhysicsUtil {
             let newVertex = SIMD2<Double>(newX, newY)
             rotatedVertices.append(newVertex)
         }
-        
+
         return rotatedVertices
     }
 }

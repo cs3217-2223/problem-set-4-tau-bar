@@ -159,7 +159,7 @@ public class Board {
             rotatedObject.rotation = oldRotation
             return false
         }
-        
+
         return true
     }
 
