@@ -382,7 +382,7 @@
                                     <action selector="didTapToolButton:" destination="9qP-8e-c0W" eventType="touchUpInside" id="5vl-Vi-QKB"/>
                                 </connections>
                             </button>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Jd-Z3-mIm">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="37" minValue="15" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="9Jd-Z3-mIm">
                                 <rect key="frame" x="474" y="53.5" width="118" height="31"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="114" id="Ect-1n-Lgj"/>

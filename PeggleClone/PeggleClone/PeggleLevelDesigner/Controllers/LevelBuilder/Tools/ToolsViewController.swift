@@ -32,9 +32,6 @@ class ToolsViewController: UIViewController {
     override func viewDidLoad() {
         selectedButton = orangePegButton
 
-        sizeSlider.minimumValue = 15.0
-        sizeSlider.maximumValue = 60.0
-
         hideObjectSpecificTools()
 
         NotificationCenter.default.addObserver(self,
