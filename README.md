@@ -91,7 +91,7 @@ At the top left of the game screen, you can see the game state, e.g. number of b
 
 
 ## Tests
-* Test Palette
+* Test Palette for Level Designer
   * Board object (pegs, blocks)/Delete buttons
     * When tapped:
       * set `selectedButton` to `bluePegButton`
@@ -192,6 +192,78 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * should delete all saved levels in Core Data that are stored in `BoardData` entity
     * When tap outside the level select view
       * should hide the level select view and show the level builder view
+
+* Test Palette for Game
+  * Board view
+    * When tapped in a valid location (below the height of the cannon):
+      * if there is no ball that was already fired previously and is still on screen:
+         * should create a `BallNode` in `BoardScene`
+         * `isCannonFired` in `BoardScene` should be set to true
+         * should update the rotation of `CannonNode`
+         * visually, a ball should appear to emerge from the cannon
+         * visually, a ball should move towards the location that was tapped
+         * visually, the cannon view should be rotated to aim at the target location
+      * else:
+         * should do nothing
+    * When tapped in an invalid location (above the height of the cannon):
+      * should do nothing
+    * When ball has been fired and is on the screen:
+      * should move around the screen in a realistic looking manner
+    * When the ball collides with the edge of the screen/another peg  
+      * should bounce off the edge of the screen (regardless of screen size) in a natural & reasonable manner
+      * should light up pegs which it collides with
+    * When ball collides with same normal peg repeatedly
+      * peg should remain lit
+      * no visible changes should occur to the peg
+      * ball should bounce off peg normally
+    * When normal peg has been lit/hit
+      * should stay on screen unless ball is stuck or ball falls out of bounds 
+    * When the ball is on screen and is stuck on a peg (stationary):
+      * should fade out pegs which have been hit
+      * should be able to continue moving after the pegs have faded out
+    * When the ball falls out of the screen and ball is not spooky:
+      * pegs which were hit and are lit should fade from the screen
+      * should remove `BallNode` from `BoardScene`
+      * `isCannonFired` in `BoardScene` should be set to false
+      * should fire another ball if the user taps on the board view again
+      * there should not be any ghost objects on the board (no view but ball seems to collide with something)
+    * When a ball collides with a zombie peg 
+      * ball should collide with the peg as if the peg had no velocity but could move
+      * zombie peg should turn into a normal sized ball immediately (not the same size as the zombie peg)
+      * there should not be a "ghost" peg where zombie peg once was
+     * When a ball collides with a confusement peg
+       * confusement peg should light up
+       * all board objects should appear at x = boardWidth - position.x and y = boardHeight - position.y
+       * ball should have zero velocity after board is rotated
+       * if ball collides with confusement peg again, it should rotate the screen again, as long as it is on the screen
+     * When ball collides with a green peg when Morty chosen
+       * peg should explode and disappear
+       * an explosion animation should play
+       * objects within 3/4 of the radius of the explosion should disappear
+       * objects within the radius of the explosion which were not removed should be thrown off as if they collided with a body
+       * the explosion should not destroy the bucket or the cannon or other green pegs
+       * the explosion should not destroy the ball
+       * the explosion should cause other green pegs to light up (but not explode immediately)
+       * the green pegs should explode after a short delay
+      * When ball collides with green peg when Rick chosen
+        * peg should light up
+        * peg should not disappear
+        * ball should turn yellow and `isSpooky` should be true
+        * when ball falls out of bounds, should reappear at same x-coordinate at top of board
+        * if spooky ball goes to either bottom corner of screen, should appear at the top of edge of the screen it was closer to when went out of bounds 
+      * When the ball collides with a block
+        * should bounce off the polygonal structure realistically  
+        * should not change the asset of the block
+   * Exit button (in the game's Board View)
+      * When tapped:
+         * should dismiss the game view
+         * should show the level builder view with the board as it was before the game was started
+   * Level Builder (only new features)
+      * When START button is tapped:
+         * should load the level that was on the level builder view in the game view
+         * should show one cannon at the top middle of the screen aiming vertically downwards
+    
+
 
 ## Written Answers
 
