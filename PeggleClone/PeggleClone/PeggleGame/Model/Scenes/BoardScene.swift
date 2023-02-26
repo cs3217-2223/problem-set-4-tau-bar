@@ -26,7 +26,7 @@ class BoardScene: MSKScene {
     }
     var ball: BallNode?
     var isCannonFired = false
-    private var bucket: BucketNode?
+    var bucket: BucketNode?
     private var bucketDirection: BucketDirection = .right
     private var cannon: CannonNode?
     private let defaultDirectionVectorMultiplier: Double = 10.0

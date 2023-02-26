@@ -8,6 +8,9 @@
 import Foundation
 
 class ClassicState: GameState {
+    var enterBucketDescriptor: String = """
+                                        +1 ball
+                                        """
     var delegate: GameStateDelegate?
 
     var firstLabel: String? {

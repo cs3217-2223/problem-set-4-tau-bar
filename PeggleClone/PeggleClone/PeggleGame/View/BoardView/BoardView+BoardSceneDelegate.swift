@@ -18,7 +18,7 @@ extension BoardView: BoardSceneDelegate {
     func addDescriptorText(string: String, at location: CGPoint) {
         let label = UILabel()
         label.text = string
-        label.frame = CGRect(x: location.x, y: location.y + 10, width: 50, height: 30)
+        label.frame = CGRect(x: location.x, y: location.y + 10, width: 100, height: 30)
         label.alpha = 0
         label.font = UIFont(name: "HiraginoSans-bold", size: 14.0)
         addSubview(label)
@@ -32,6 +32,11 @@ extension BoardView: BoardSceneDelegate {
 
     func didFireCannon() {
         // TOOD: add something here
+    }
+    
+    func didEnterBucket(gameState: GameState, at location: CGPoint) {
+        let newPos = CGPoint(x: location.x, y: location.y - 100)
+        addDescriptorText(string: gameState.enterBucketDescriptor, at: newPos)
     }
 
     func didCollideWithBall(updatedPegNode: PegNode) {

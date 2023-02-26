@@ -8,6 +8,11 @@
 import Foundation
 
 class ScoreState: GameState {
+    var enterBucketDescriptor: String = """
+                                        10
+                                        +1 ball
+                                        """
+    
     var delegate: GameStateDelegate?
 
     var firstLabel: String? {

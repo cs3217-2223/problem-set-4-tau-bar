@@ -93,6 +93,7 @@
 		6186658729A720F10040D7D2 /* PurplePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658629A720F10040D7D2 /* PurplePegNode.swift */; };
 		6186658929A721190040D7D2 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658829A721190040D7D2 /* BlockNode.swift */; };
 		61917D4B29AAEF0400B5BC53 /* UILabel+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */; };
+		61917D4D29AAF6D400B5BC53 /* emter-bucket.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 61917D4C29AAF6D300B5BC53 /* emter-bucket.mp3 */; };
 		619D849329890A96007C8683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849229890A96007C8683 /* AppDelegate.swift */; };
 		619D849529890A96007C8683 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849429890A96007C8683 /* SceneDelegate.swift */; };
 		619D849729890A96007C8683 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849629890A96007C8683 /* GameViewController.swift */; };
@@ -318,6 +319,7 @@
 		6186658629A720F10040D7D2 /* PurplePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurplePegNode.swift; sourceTree = "<group>"; };
 		6186658829A721190040D7D2 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
 		61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Fade.swift"; sourceTree = "<group>"; };
+		61917D4C29AAF6D300B5BC53 /* emter-bucket.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "emter-bucket.mp3"; sourceTree = "<group>"; };
 		619D848F29890A96007C8683 /* PeggleClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeggleClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		619D849229890A96007C8683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		619D849429890A96007C8683 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 				613165AC29AA9210001C636D /* cannon.mp3 */,
 				614B107129A7E68A00D39064 /* backgroundMusic.mp3 */,
 				613165AE29AA924E001C636D /* explosion.wav */,
+				61917D4C29AAF6D300B5BC53 /* emter-bucket.mp3 */,
 				613165A829AA8F44001C636D /* pop.mp3 */,
 				614B106D29A7BD8800D39064 /* get_schwifty.ttf */,
 			);
@@ -1183,6 +1186,7 @@
 				61BD3D75299E679000EED58C /* LevelTableViewCell.xib in Resources */,
 				613165AD29AA9210001C636D /* cannon.mp3 in Resources */,
 				614B106E29A7BD8800D39064 /* get_schwifty.ttf in Resources */,
+				61917D4D29AAF6D400B5BC53 /* emter-bucket.mp3 in Resources */,
 				614B107429A7E98E00D39064 /* game.mp3 in Resources */,
 				619D849C29890A9A007C8683 /* Assets.xcassets in Resources */,
 				613165A929AA8F44001C636D /* pop.mp3 in Resources */,

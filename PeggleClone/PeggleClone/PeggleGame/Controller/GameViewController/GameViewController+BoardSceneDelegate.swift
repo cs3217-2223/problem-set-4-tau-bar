@@ -8,6 +8,10 @@
 import Foundation
 
 extension GameViewController: BoardSceneDelegate {
+    func didEnterBucket(gameState: GameState, at location: CGPoint) {
+        // insert code to run when ball enters bucket
+    }
+    
     func didHitBallFirstTime(pegNode: PegNode) {
         // insert any code to run when ball hits peg for first time
     }

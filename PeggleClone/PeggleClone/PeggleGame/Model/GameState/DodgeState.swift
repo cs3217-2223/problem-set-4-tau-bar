@@ -8,6 +8,10 @@
 import Foundation
 
 class DodgeState: GameState {
+    var enterBucketDescriptor: String = """
+                                        +1 chance
+                                        """
+    
     var delegate: GameStateDelegate?
 
     var firstLabel: String? {
