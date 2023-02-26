@@ -508,24 +508,18 @@ For Storage interactions, the controller either saves data/loads data to/from th
 The Model is a standalone capability which represents the domain logic of the problem. 
 
 #### <a name='ComponentStructure'></a>Component Structure
-![image](https://user-images.githubusercontent.com/61085398/215314986-80ababf3-c60d-4dc4-b672-766672166b23.png)
+![image](https://user-images.githubusercontent.com/61085398/221410882-88c3ee8e-792d-4839-bd06-6e01cd272d9c.png)
 
-The `Board` class stores a reference to the pegs on it, stored in a set. The board has a `height`, `width` and `name` (types can be seen from class diagram). The board has methods to add, remove, move and find pegs.
+The `Board` class stores a reference to the objects on it, stored in a set.
 
-The `Peg` class has a `radius`, `colour` and `position`.
+The `BoardObjectWrapper` class serves as a wrapper to `BoardObject`, since the Set cannot store protocol type objects & we cannot make `BoardObject` conform to Hashable. This allows the objects to be stored in a `Set`.
 
-The `Position` class has a `xPos` and `yPos` value.
+`BoardObject` represents objects on the board. It defines the functions shown above, for subclasses which conform to it to implement their custom implementation. `Peg` and `Block` conform to `BoardObject`. For example, `isOverlapping()` is implemented differently in `Peg` and `Block`.
 
 The `Board` class sends a notification using `NotificationCenter` whenever the board is updated (adding, removing pegs and reset). In certain cases, e.g. add, remove pegs, the peg involved (e.g. the peg that was added or removed) in the update will be sent in the notification.
 
-#### <a name='NSObjectNSSecureCodingProtocol'></a>`NSObject`, `NSSecureCoding` Protocol
-The `Board`, `Peg` and `Positon` class all conform to `NSObject` and `NSSecureCoding` protocols for the Core Data ORM to be able to store instances of these objects. As a result, all three classes contain an `encode()` method as well as `init?(coder: NSCoder)` in order to conform to the `NSSecureCoding` protocol. The `encode()` method assists with the storing of the objects in Core Data, and the `init?(coder: NSCoder)` initializer is used for creating objects which are retrieved from Core Data.
-
-#### <a name='BoardKeysPegKeysPositionKeys'></a>`BoardKeys`, `PegKeys`, `PositionKeys`
-These are enumerations used to specify the key value of attributes in `Board`, `Peg` and `Position` respectively. They are used as coding keys in the encoding and decoding of these class instances from Core Data.
-
 ### <a name='ViewComponent'></a>View Component
-The view component represents the UI seen by the user when the application is running. In the application, there are two main views, the level builder view and the level select view.
+The view component represents the UI seen by the user when the application is running. In the level designer, there are two main views, the level builder view and the level select view.
 
 #### <a name='LevelBuilderView'></a>Level Builder View
 The level builder view represents the UI that the user sees when they are at the level builder screen. The level builder view consists of `SelectPegButton` views which are the blue, orange and delete peg buttons, as well as the action buttons (Save, Load, Reset, Start) which are of `UIButton` class. The level builder view also consists of a board view, which is the view where `BoardPegView` views (which are the pegs on the board view) are shown and added as the user builds the level. These views were added using Interface Builder, and set to fit different iPad sizes by setting up Auto Layout constraints. Refer to the image below for the Interface Builder for this view:
