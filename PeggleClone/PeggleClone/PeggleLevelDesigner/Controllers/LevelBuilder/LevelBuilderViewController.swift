@@ -85,6 +85,8 @@ class LevelBuilderViewController: UIViewController {
         let isRotated = board?.rotateObject(selectedObject, to: Double(rotationSlider.value))
         if isRotated ?? false {
             rotateSelected(to: Double(rotationSlider.value))
+        } else {
+            rotationSlider.value = Float(selectedObject.object.rotation)
         }
     }
 
