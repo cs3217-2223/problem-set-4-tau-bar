@@ -131,6 +131,17 @@ At the top left of the game screen, you can see the game state, e.g. number of b
       * peg view should not move on the screen to the new position
     * When test on different screen size:
       * `height` and `width` of board should adjust based on device screen size
+    * When selected and slide rotate slider
+      * object should rotate
+      * if slide all the way from center position to left should rotate 180 degrees left
+      * if slide all the way from center position to right should rotate 180 degrees right
+    * When selected and slide size slider
+      * object size should change
+      * if slide left, size decrease
+      * if slide right, size increase
+    * When slide size slider when object is already colliding with another
+      * size slider should not move
+      * object size should remain same  
   * Load Button
     * When tapped:
       * should open Level Select View
