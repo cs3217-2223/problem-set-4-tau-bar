@@ -107,22 +107,20 @@ The `didSimulatePhysics()` function updates the positions & rotations of the nod
 In `BoardScene`, the `update()` function is overridden to add some Peggle-specific logic:
 
 ```swift
-override func update(timeInterval: TimeInterval) {
-    super.update(timeInterval: timeInterval)
-    guard let ball = ball else { return }
-    if isOutOfBounds(node: ball) {
-        // Remove the balls out of the scene.
-        removeFiredBall()
+/// Updates the state of the scene over the `timeInterval`.
+    override func update(timeInterval: TimeInterval) {
+        super.update(timeInterval: timeInterval)
+        updateBucketPos()
 
-        // Remove nodes that are hit once ball is out of bounds.
-        removeHitPegs()
-
-        // Allow cannon to be fired again
-        isCannonFired = false
+        for node in nodes {
+            guard let ballNode = node as? BallNode else { continue }
+            if isOutOfBounds(node: ballNode) {
+                handleResetBall(ballNode: ballNode)
+            }
+        }
     }
-}
 ```
-If the ball is out of bounds, the ball is removed from the scene and the pegs which were hit are removed. Upon removing the pegs, the `delegate?.didRemoveNode()` is called. `BoardView`, being the delegate, removes the subviews from the screen, and the user sees the hit pegs fading out of the screen.
+It checks that if a ball is out of bounds, the ball is reset. In the case that a ball is spooky, it is put at the top of the screen at the same x-coorindate, otherwise it is removed from the scene. If the original ball that was fired goes out of bounds and it is not spooky, then the pegs which were hit are removed. Upon removing the pegs, the `delegate?.didRemoveNode()` is called. `BoardView`, being the delegate, removes the subviews from the screen, and the user sees the hit pegs fading out of the screen.
 
 
 # MySpriteKit
@@ -258,9 +256,11 @@ To implement Peggle specific logic & UI, MSK is used to implement the custom phy
 
 The custom property added on top of `MSKScene` is `isCannonFired`. If true, the cannon can't be fired (as it has already been fired).
 
-There are two important functions, `fireCannon()` and `removeHitPegs()`.
+There are a few important functions, `fireCannon()`, `handleResetBall()` and `removeHitPegs()`.
 
 `fireCannon(at tapLocation: CGPoint)` shoots the cannon by creating a `BallNode`. The `tapLocation` is used to calculate the angle to fire the ball, as well as to rotate the cannon. If `isCannonFired` is false, nothing happens.
+
+`handleResetBall()` resets the ball when it goes out of bounds. If the ball is spooky, it calls `resetSpookyBall()`. If the ball is not spooky, it calls `removeHitPegs()` and updates the game state (e.g. reducing balls left by 1).
 
 `removeHitPegs()` removes the pegs that were hit by the ball when the ball goes out of the scene (falls out the bottom).
 
