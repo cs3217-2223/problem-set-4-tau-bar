@@ -133,6 +133,7 @@ class LevelBuilderViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToGameView" {
             guard let gameVc = segue.destination as? GameViewController else { return }
+            gameVc.fromDesigner = true
             gameVc.board = board
         } else if segue.identifier == "goToLevelSelect" {
             guard let levelSelectVc = segue.destination as? LevelSelectViewController else { return }

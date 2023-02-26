@@ -12,11 +12,15 @@ class GameViewController: UIViewController {
     var displayLink: CADisplayLink!
     var count = 0
     var board: Board?
+    var fromDesigner: Bool = false
+    
     @IBOutlet var boardView: BoardView!
     @IBOutlet var ballsLeftLabel: UILabel!
     @IBOutlet var firstLabel: UILabel!
     @IBOutlet var secondLabel: UILabel!
     @IBOutlet var thirdLabel: UILabel!
+    @IBOutlet weak var exitButton: UIButton!
+    @IBOutlet weak var retreatButton: UIButton!
     var musicPlayer: MusicPlayer?
     var gameFighter: GameFighter? {
         didSet {
@@ -25,6 +29,14 @@ class GameViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        if fromDesigner {
+            retreatButton.removeFromSuperview()
+            exitButton.alpha = 1
+        } else {
+            exitButton.removeFromSuperview()
+            retreatButton.alpha = 1
+        }
+        
         // first time entering
         musicPlayer = MusicPlayer()
         musicPlayer?.startGameMusic()

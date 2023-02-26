@@ -24,13 +24,13 @@
                                         <rect key="frame" x="0.0" y="0.0" width="744" height="1133"/>
                                         <gestureRecognizers/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MX8-ft-T1W">
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MX8-ft-T1W">
                                         <rect key="frame" x="673" y="19" width="52" height="35"/>
                                         <color key="tintColor" systemColor="systemRedColor"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Exit" titleAlignment="leading"/>
                                         <connections>
-                                            <segue destination="gmW-Us-W4C" kind="unwind" unwindAction="unwindFromGameViewControllerToChooseLevel:" id="ob5-eI-Jwk"/>
+                                            <segue destination="gmW-Us-W4C" kind="unwind" unwindAction="unwindFromGameViewController:" id="YMm-c6-lNq"/>
                                         </connections>
                                     </button>
                                     <view clipsSubviews="YES" alpha="0.90000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CRD-WX-vgM" userLabel="DetailsView">
@@ -100,6 +100,21 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
+                                    <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPa-d6-ZZl">
+                                        <rect key="frame" x="629" y="53" width="96" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="6EF-Sy-1yP"/>
+                                            <constraint firstAttribute="width" constant="96" id="dEF-cF-Rk0"/>
+                                        </constraints>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="tinted" title="RETREAT">
+                                            <color key="baseForegroundColor" systemColor="systemRedColor"/>
+                                            <color key="baseBackgroundColor" systemColor="systemRedColor"/>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <segue destination="gmW-Us-W4C" kind="unwind" unwindAction="unwindFromGameViewControllerToChooseLevel:" id="CAg-zO-3lr"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
@@ -109,7 +124,9 @@
                                     <constraint firstItem="rGp-r9-Qp7" firstAttribute="top" secondItem="31p-kz-ibb" secondAttribute="top" id="6VI-6H-3TN"/>
                                     <constraint firstItem="CRD-WX-vgM" firstAttribute="leading" secondItem="31p-kz-ibb" secondAttribute="leading" constant="10" id="AXJ-V1-EjE"/>
                                     <constraint firstAttribute="trailing" secondItem="MX8-ft-T1W" secondAttribute="trailing" constant="19" id="Bo8-P8-nl2"/>
+                                    <constraint firstAttribute="trailing" secondItem="NPa-d6-ZZl" secondAttribute="trailing" constant="19" id="FjM-SA-nNJ"/>
                                     <constraint firstItem="rGp-r9-Qp7" firstAttribute="leading" secondItem="31p-kz-ibb" secondAttribute="leading" id="GuW-wH-DNE"/>
+                                    <constraint firstItem="NPa-d6-ZZl" firstAttribute="top" secondItem="31p-kz-ibb" secondAttribute="top" constant="53" id="Umn-v1-Fcw"/>
                                     <constraint firstAttribute="trailing" secondItem="rGp-r9-Qp7" secondAttribute="trailing" id="mVk-TT-2wd"/>
                                     <constraint firstItem="MX8-ft-T1W" firstAttribute="top" secondItem="31p-kz-ibb" secondAttribute="top" constant="19" id="o76-Da-rwe"/>
                                 </constraints>
@@ -130,7 +147,9 @@
                     <connections>
                         <outlet property="ballsLeftLabel" destination="ooX-XG-Y0R" id="JAZ-lM-ayP"/>
                         <outlet property="boardView" destination="31p-kz-ibb" id="aAV-kW-ilv"/>
+                        <outlet property="exitButton" destination="MX8-ft-T1W" id="frI-lB-P8y"/>
                         <outlet property="firstLabel" destination="6UK-mO-ODu" id="AdW-V6-hYt"/>
+                        <outlet property="retreatButton" destination="NPa-d6-ZZl" id="pLl-4m-Raf"/>
                         <outlet property="secondLabel" destination="BnZ-o1-Chk" id="dLc-Se-e4D"/>
                         <outlet property="thirdLabel" destination="mIW-wf-NE7" id="GJI-o7-3LN"/>
                         <segue destination="Llt-xU-xCK" kind="presentation" identifier="goToChooseMaster" id="x9q-fq-vQ6"/>
