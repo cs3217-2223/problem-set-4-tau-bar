@@ -426,6 +426,29 @@ func collide(with body: BallPhysicsBody) -> Bool {
 }
 ```
 
+## Game State
+Game State represents the state of the game mode. There are 3 game modes, Classic, Score and Dodge. As such, there are 3 classes, `ClassicState`, `DodgeState`, `ScoreState` which conform to `GameState` protocol.
+
+The important functions are `isGameWon()`, `isGameLost()`, `didCollideWithBall()` and `didBallEnterBucket()`. These are customizable by the subclass conforming to `GameState`, since they are varying for the different game modes.
+
+For example, `isGameWon()` in `ScoreState`:
+```swift
+func isGameWon() -> Bool {
+        currentScore >= scoreToHit
+}
+```
+
+It is easy to imagine that there are different win-conditions in different game modes, and they are defined in this function. Similarly for the rest of the functions, the subclass can customize the logic that should run when any of the events occur (e.g. ball entering bucket, ball hitting peg node, etc.).
+
+## GameFighter
+GameFighter represents the 'Master' that is chosen at the start of the game. There are 2 fighters currently, `RickFighter` and `MortyFighter` which conform to `GameFighter` protocol. The important function is `performPower()`, where the subclass can decide what logic to run to represent the special power of the fighter.
+
+For example, in `MortyFighter` (whose special power is to make green pegs explode when colliding with a ball):
+```swift
+func performPower(pegNode: PegNode, ballNode: BallNode) {
+	fighterDelegate?.createExplosionAt(pegNode: pegNode)
+}
+```
 
 
 ## <a name='LevelDesigner'></a>Level Designer
