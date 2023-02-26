@@ -30,10 +30,4 @@ extension Notification.Name {
 
     static var boardCleared: Notification.Name {
           .init(rawValue: "Board.cleared") }
-
-    static var dataSaved: Notification.Name {
-          .init(rawValue: "Data.saved") }
-
-    static var dataSaveError: Notification.Name {
-          .init(rawValue: "Data.saveError") }
 }

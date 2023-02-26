@@ -60,10 +60,6 @@ class LevelBuilderViewController: UIViewController {
                                                name: .objectMoved, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(clearBoardView),
                                                name: .boardCleared, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(notifyUserSaved),
-                                               name: .dataSaved, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(notifyUserSaveError),
-                                               name: .dataSaveError, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(resizeObjectOnBoardView),
                                                name: .objectResizeSuccess, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(rotatedObjectOnBoardView),
@@ -322,7 +318,5 @@ class LevelBuilderViewController: UIViewController {
         notificationCenter.removeObserver(self, name: .objectResizeSuccess, object: nil)
         notificationCenter.removeObserver(self, name: .objectRotateSuccess, object: nil)
         notificationCenter.removeObserver(self, name: .boardCleared, object: nil)
-        notificationCenter.removeObserver(self, name: .dataSaved, object: nil)
-        notificationCenter.removeObserver(self, name: .dataSaveError, object: nil)
     }
 }
