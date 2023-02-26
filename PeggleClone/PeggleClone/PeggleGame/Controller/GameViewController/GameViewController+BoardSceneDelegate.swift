@@ -9,7 +9,7 @@ import Foundation
 
 extension GameViewController: BoardSceneDelegate {
     func didEnterBucket(gameState: GameState, at location: CGPoint) {
-        // insert code to run when ball enters bucket
+        musicPlayer?.playEnterBucket()
     }
     
     func didHitBallFirstTime(pegNode: PegNode) {

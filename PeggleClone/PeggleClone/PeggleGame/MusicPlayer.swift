@@ -15,6 +15,7 @@ class MusicPlayer {
     var explosionAudioPlayer: AVAudioPlayer?
     var popAudioPlayer: AVAudioPlayer?
     var deathAudioPlayer: AVAudioPlayer?
+    var enterBucketAudioPlayer: AVAudioPlayer?
 
     init() {
         backgroundAudioPlayer = MusicPlayer.createAudioPlayer(resource: "backgroundMusic", type: "mp3", numLoops: -1)
@@ -23,6 +24,7 @@ class MusicPlayer {
         explosionAudioPlayer = MusicPlayer.createAudioPlayer(resource: "explosion", type: "wav", numLoops: 0)
         popAudioPlayer = MusicPlayer.createAudioPlayer(resource: "pop", type: "mp3", numLoops: 0)
         deathAudioPlayer = MusicPlayer.createAudioPlayer(resource: "death", type: "mp3", numLoops: 0)
+        enterBucketAudioPlayer = MusicPlayer.createAudioPlayer(resource: "enter-bucket", type: "mp3", numLoops: 0)
     }
 
     static func createAudioPlayer(resource: String, type: String, numLoops: Int) -> AVAudioPlayer? {
@@ -70,5 +72,9 @@ class MusicPlayer {
 
     func playDeathSound() {
         deathAudioPlayer?.play()
+    }
+    
+    func playEnterBucket() {
+        enterBucketAudioPlayer?.play()
     }
 }
