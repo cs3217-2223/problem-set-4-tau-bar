@@ -23,6 +23,9 @@ class PegNode: BoardObjectNode, PegPhysicsBodyDelegate {
 
     func didCollideWithBall(ballBody: BallPhysicsBody) {
         delegate?.didCollideWithBall(pegNode: self)
-        isHit = true
+        if !isHit {
+            isHit = true
+            delegate?.didHitBallFirstTIme(pegNode: self)
+        }
     }
 }

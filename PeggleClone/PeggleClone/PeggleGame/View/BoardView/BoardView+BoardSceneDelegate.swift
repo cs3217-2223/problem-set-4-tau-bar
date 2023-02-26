@@ -9,6 +9,27 @@ import Foundation
 import UIKit
 
 extension BoardView: BoardSceneDelegate {
+    func didHitBallFirstTime(pegNode: PegNode) {
+        // add a ui indicator of how many points obtained
+        let points = PeggleGameConstants.getPoints(of: pegNode)
+        addDescriptorText(string: String(points), at: pegNode.position)
+    }
+
+    func addDescriptorText(string: String, at location: CGPoint) {
+        let label = UILabel()
+        label.text = string
+        label.frame = CGRect(x: location.x, y: location.y + 10, width: 50, height: 30)
+        label.alpha = 0
+        label.font = UIFont(name: "HiraginoSans-bold", size: 14.0)
+        addSubview(label)
+        label.fadeIn(duration: 0.5, completion: { (_: Bool) -> Void in
+            // when fade out is complete, remove from superview
+            label.fadeOut(duration: 0.5, delay: 0.5, completion: { (_: Bool) -> Void in
+                label.removeFromSuperview()
+            })
+        })
+    }
+
     func didFireCannon() {
         // TOOD: add something here
     }

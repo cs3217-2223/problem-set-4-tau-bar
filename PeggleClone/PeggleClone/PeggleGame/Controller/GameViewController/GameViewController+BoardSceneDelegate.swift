@@ -8,6 +8,10 @@
 import Foundation
 
 extension GameViewController: BoardSceneDelegate {
+    func didHitBallFirstTime(pegNode: PegNode) {
+        // insert any code to run when ball hits peg for first time
+    }
+
     func didCollideWithBall(updatedPegNode: PegNode) {
         musicPlayer?.playPopSound()
     }

@@ -92,6 +92,7 @@
 		6186658529A720960040D7D2 /* RedPegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658429A720960040D7D2 /* RedPegNode.swift */; };
 		6186658729A720F10040D7D2 /* PurplePegNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658629A720F10040D7D2 /* PurplePegNode.swift */; };
 		6186658929A721190040D7D2 /* BlockNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6186658829A721190040D7D2 /* BlockNode.swift */; };
+		61917D4B29AAEF0400B5BC53 /* UILabel+Fade.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */; };
 		619D849329890A96007C8683 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849229890A96007C8683 /* AppDelegate.swift */; };
 		619D849529890A96007C8683 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849429890A96007C8683 /* SceneDelegate.swift */; };
 		619D849729890A96007C8683 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 619D849629890A96007C8683 /* GameViewController.swift */; };
@@ -316,6 +317,7 @@
 		6186658429A720960040D7D2 /* RedPegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedPegNode.swift; sourceTree = "<group>"; };
 		6186658629A720F10040D7D2 /* PurplePegNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurplePegNode.swift; sourceTree = "<group>"; };
 		6186658829A721190040D7D2 /* BlockNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockNode.swift; sourceTree = "<group>"; };
+		61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Fade.swift"; sourceTree = "<group>"; };
 		619D848F29890A96007C8683 /* PeggleClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PeggleClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		619D849229890A96007C8683 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		619D849429890A96007C8683 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -940,6 +942,7 @@
 				610FED88298E616400875BBA /* BoardObjectViewDelegate.swift */,
 				610FED89298E616400875BBA /* BoardObjectView.swift */,
 				61B13BE4299DDCB9005242E8 /* BlockView.swift */,
+				61917D4A29AAEF0400B5BC53 /* UILabel+Fade.swift */,
 			);
 			path = Board;
 			sourceTree = "<group>";
@@ -1261,6 +1264,7 @@
 				6186658129A71EA80040D7D2 /* BoardObjectNode.swift in Sources */,
 				615B02FA298E508700A38993 /* MSKPhysicsBodyDelegate.swift in Sources */,
 				61F48D6C299906CF00B33D50 /* BoardScene+BallNodeDelegate.swift in Sources */,
+				61917D4B29AAEF0400B5BC53 /* UILabel+Fade.swift in Sources */,
 				617D2DDF298BBBB100461FC9 /* BoardView.swift in Sources */,
 				61CDDEBF298AACC600297265 /* MSKSpriteNode.swift in Sources */,
 				610FEDA1298E616400875BBA /* BoardObjectViewDelegate.swift in Sources */,

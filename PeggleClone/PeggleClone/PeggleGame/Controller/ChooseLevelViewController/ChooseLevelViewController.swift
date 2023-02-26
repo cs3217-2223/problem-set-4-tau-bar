@@ -26,18 +26,18 @@ class ChooseLevelViewController: UIViewController, UITableViewDataSource, UITabl
 
         reloadTableView()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         selectedBoard = nil
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "chooseLevelToGame" {
             guard let gameVc = segue.destination as? GameViewController else { return }
             gameVc.board = selectedBoard
         }
     }
-    
+
     @IBAction func unwindFromGameViewControllerToChooseLevel(_ segue: UIStoryboardSegue) {}
 
     /// Returns the number of rows that the table should load.

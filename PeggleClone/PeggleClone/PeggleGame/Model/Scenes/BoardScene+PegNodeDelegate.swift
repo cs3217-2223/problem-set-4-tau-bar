@@ -8,9 +8,13 @@
 import Foundation
 
 extension BoardScene: PegNodeDelegate {
+    func didHitBallFirstTIme(pegNode: PegNode) {
+        gameState.didCollideWithBall(pegNode: pegNode)
+        boardSceneDelegates.forEach({ $0.didHitBallFirstTime(pegNode: pegNode) })
+    }
+
     func didCollideWithBall(pegNode: PegNode) {
         boardSceneDelegates.forEach({ $0.didCollideWithBall(updatedPegNode: pegNode) })
-        gameState.didCollideWithBall(pegNode: pegNode)
     }
 
     func didActivatePower(pegNode: PegNode, ballBody: BallPhysicsBody) {
