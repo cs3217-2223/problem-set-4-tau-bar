@@ -20,18 +20,18 @@
 	* [BallNode](#BallNode)
 	* [CannonNode](#CannonNode)
 	* [BucketNode](#BucketNode)
+	* [BlockNode](#BlockNode)
 * [Physics](#Physics)
 	* [BallPhysicsBody](#BallPhysicsBody)
 	* [PegPhysicsBody](#PegPhysicsBody)
 	* [BucketPhysicsBody & BucketBasePhysicsBody](#BucketPhysicsBodyBucketBasePhysicsBody)
 * [Game State](#GameState)
 * [GameFighter](#GameFighter)
+* [Preloaded Levels](#PreloadedLevels)
 * [Level Designer](#LevelDesigner)
 	* [Architecture](#Architecture)
 	* [Model Component](#ModelComponent)
 		* [Component Structure](#ComponentStructure)
-		* [`NSObject`, `NSSecureCoding` Protocol](#NSObjectNSSecureCodingProtocol)
-		* [`BoardKeys`, `PegKeys`, `PositionKeys`](#BoardKeysPegKeysPositionKeys)
 	* [View Component](#ViewComponent)
 		* [Level Builder View](#LevelBuilderView)
 		* [Level Select View](#LevelSelectView)
@@ -39,10 +39,9 @@
 		* [`LevelBuilderViewController`](#LevelBuilderViewController)
 		* [`LevelSelectViewController`](#LevelSelectViewController)
 	* [Storage Component](#StorageComponent)
-		* [`BoardsTransformer`](#BoardsTransformer)
 		* [`DataManager`](#DataManager)
 * [Implementation](#Implementation)
-	* [Select Peg Button](#SelectPegButton)
+	* [Select Tool](#SelectTool)
 	* [Add Peg](#AddPeg)
 	* [Delete Peg](#DeletePeg)
 		* [Tapping `BoardPegView`](#TappingBoardPegView)
@@ -360,7 +359,7 @@ The `image` is automatically changes using the `didSet` observer.
 ### <a name='BucketNode'></a>BucketNode
 This represents the bucket at the bottom of the screen. It conforms to `BucketBasePhysicsBodyDelegate`, which has the function `didBallCollideWithBucketBase()` which is called by `BucketBasePhysicsBody` when it collides with a ball (i.e. ball enters the bucket). It also stores a reference to `BucketNodeDelegate`, which has the function `didEnterBucket(ball: BallPhysicsBody)`.
 
-### BlockNode
+### <a name='BlockNode'></a>BlockNode
 This represents a square block. It has no special collision logic, and there is nothing notable.
 
 ## <a name='Physics'></a>Physics
@@ -458,7 +457,7 @@ func performPower(pegNode: PegNode, ballNode: BallNode) {
 	fighterDelegate?.createExplosionAt(pegNode: pegNode)
 }
 ```
-## Preloaded Levels
+## <a name='PreloadedLevels'></a>Preloaded Levels
 There are 3 preloaded levels. They are stored within `DefaultLevelOne`, `DefaultLevelTwo` and `DefaultLevelThree`, which conform to `PreloadedLevel` protocol. The `LoadLevel` class assists in converting the level data to the current device using `convertObject()`.
 
 ```swift
@@ -714,39 +713,39 @@ static func createPeg(with data: PegData) throws -> Peg {
 #### <a name='DataManager'></a>`DataManager`
 The main component interacting with Core Data is the `DataManager`. View Controllers which wish to use `DataManager` must initialize it. Alternatively, it can also be passed between view controllers via segue.
 
-## <a name='Implementation'></a>Implementation
-### <a name='SelectPegButton'></a>Select Tool
+### <a name='Implementation'></a>Implementation
+#### <a name='SelectTool'></a>Select Tool
 The logic for tool selection is contained within `ToolsViewController`. It calls `didTapToolButton()` which sets the `selectedButton`.
 
-### <a name='AddPeg'></a>Add Peg
+#### <a name='AddPeg'></a>Add Peg
 ![image](https://user-images.githubusercontent.com/61085398/221412951-2132ac04-faee-409e-9af5-479b78dbb975.png)
 
-### <a name='DeletePeg'></a>Delete Peg
+#### <a name='DeletePeg'></a>Delete Peg
 There are 2 methods to delete a peg from the screen, either selecting the delete peg button and tapping the board peg view or long pressing on the board peg view.
 
-#### <a name='TappingBoardPegView'></a>Tapping `BoardPegView`
+##### <a name='TappingBoardPegView'></a>Tapping `BoardPegView`
 The process is almost entirely the same as Add Peg, except `LevelBuilderViewController` calls `didTapBoardObject()` instead.
 
-#### <a name='LongpressingBoardPegView'></a>Long pressing `BoardPegView`
+##### <a name='LongpressingBoardPegView'></a>Long pressing `BoardPegView`
 The process for deletion is similar to tapping, but doesn't involve the `ToolViewController`.
 
 ![image](https://user-images.githubusercontent.com/61085398/221413178-d03bb485-f305-400a-92c0-0dcae9805df3.png)
 
 
-### <a name='MovePeg'></a>Move Peg
+#### <a name='MovePeg'></a>Move Peg
 The process for moving is quite similar to deleting a peg.
 
 ![image](https://user-images.githubusercontent.com/61085398/221413300-f32ab018-b3b4-4e80-9b56-ac0cf73df203.png)
 
-### <a name='ResetBoard'></a>Reset Board
+#### <a name='ResetBoard'></a>Reset Board
 
 ![image](https://user-images.githubusercontent.com/61085398/221413364-e950eeda-b546-473f-aec5-ccba41bd72f3.png)
 
-### <a name='SaveBoard'></a>Save Board
+#### <a name='SaveBoard'></a>Save Board
 
 ![image](https://user-images.githubusercontent.com/61085398/221413446-25fceeb2-d9d8-429d-b19c-00329f6700c9.png)
 
-### <a name='Viewsavedlevels'></a>View saved levels
+#### <a name='Viewsavedlevels'></a>View saved levels
 
 ![image](https://user-images.githubusercontent.com/61085398/215257277-e8d7a75c-4052-4125-bbc7-65782f00853e.png)
 
@@ -754,7 +753,7 @@ First, the user taps the load button. `loadButtonTapped()` method of `LevelBuild
 
 The user sees the saved levels.
 
-### <a name='Loadsavedlevel'></a>Load saved level
+#### <a name='Loadsavedlevel'></a>Load saved level
 
 ![image](https://user-images.githubusercontent.com/61085398/221413560-0e63629a-142a-4e4b-b455-0fd511bd40fc.png)
 
