@@ -1,3 +1,6 @@
+# Developer Guide
+Do check out my [developer guide](https://github.com/cs3217-2223/problem-set-4-tau-bar/blob/master/dev-guide.md) for my design decisions and justifications :)
+
 # CS3217 Problem Set 4
 
 **Name:** Taufiq Bin Abdul Rahman
@@ -16,9 +19,6 @@
    In addition, keep in mind that, ultimately, this tool is only a guideline;
    some exceptions may be made as long as code quality is not compromised.
 3. Do not burn out. Have fun!
-
-## Dev Guide
-Check out [dev-guide.md](https://github.com/cs3217-2223/problem-set-4-tau-bar/blob/master/dev-guide.md).
 
 ## Rules of the Game
 Please write the rules of your game here. This section should include the
